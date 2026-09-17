@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SITA-TECH | Cyber, Tech & Government Services Hub</title>
+  
+  <!-- FontAwesome & Clean Fonts (Share Tech Mono & Chakra Petch for Money/Pricing) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* Google Official Palette */
+      --g-blue: #4285F4;
+      --g-red: #EA4335;
+      --g-yellow: #FBBC05;
+      --g-green: #34A853;
+      
+      --neon-cyan: #00f2fe;
+      --matrix-green: #00ff87;
+      --dark-bg: #04060c;
+      --card-bg: rgba(10, 15, 28, 0.92);
+      --text-light: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #1e293b;
+      --wa-green: #25d366;
+      
+      /* Sleek Money Font */
+      --font-money: 'Share Tech Mono', 'Chakra Petch', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background-color: var(--dark-bg); color: var(--text-light); line-height: 1.5; overflow-x: hidden; position: relative; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ANIMATED RGB GLOW BACKGROUND LIGHTING */
+    .rgb-ambient-glow {
+      position: fixed; width: 300px; height: 300px; border-radius: 50%;
+      filter: blur(120px); opacity: 0.2; pointer-events: none; z-index: -2;
+      animation: rgbPulse 12s infinite alternate ease-in-out;
+    }
+    .glow-1 { top: -80px; left: -80px; background: linear-gradient(135deg, var(--g-blue), var(--g-red)); }
+    .glow-2 { bottom: -80px; right: -80px; background: linear-gradient(135deg, var(--g-green), var(--neon-cyan)); animation-delay: -6s; }
+
+    @keyframes rgbPulse {
+      0% { transform: scale(1) translate(0, 0); opacity: 0.15; }
+      50% { transform: scale(1.2) translate(30px, 20px); opacity: 0.25; }
+      100% { transform: scale(0.9) translate(-20px, -15px); opacity: 0.15; }
+    }
+
+    /* MOTION CANVAS BACKGROUND */
+    #tech-bg-canvas {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1; pointer-events: none;
+    }
+
+    /* HEADER & NAVIGATION */
+    header {
+      position: sticky; top: 0; background: rgba(4, 6, 12, 0.95);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); z-index: 1000;
+      box-shadow: 0 4px 15px rgba(66, 133, 244, 0.12);
+    }
+    .nav-container {
+      max-width: 1200px; margin: 0 auto; display: flex;
+      justify-content: space-between; align-items: center; padding: 0.75rem 1rem;
+    }
+    
+    /* GOOGLE COLOURED "ST" LOGO */
+    .brand-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .logo-badge {
+      width: 36px; height: 36px; border-radius: 8px; background: rgba(10, 15, 28, 0.9);
+      border: 2px solid var(--g-blue); display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 10px rgba(66, 133, 244, 0.4);
+    }
+    .logo-st {
+      font-family: 'Chakra Petch', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: -1px;
+    }
+    .st-s { color: var(--g-blue); }
+    .st-t { color: var(--g-red); }
+    
+    .logo-text { font-family: 'Chakra Petch', sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: 0.5px; }
+    .g-blue { color: var(--g-blue); }
+    .g-red { color: var(--g-red); }
+    .g-yellow { color: var(--g-yellow); }
+    .g-green { color: var(--g-green); }
+
+    .nav-contacts { display: flex; gap: 10px; align-items: center; }
+    .btn-header {
+      background: linear-gradient(135deg, var(--wa-green), #10b981); color: #fff; padding: 0.45rem 0.9rem;
+      border-radius: 50px; font-weight: 600; font-size: 0.8rem; display: flex; align-items: center; gap: 6px;
+      box-shadow: 0 0 10px rgba(37, 211, 102, 0.25); transition: 0.3s;
+    }
+    .btn-header:hover { transform: translateY(-2px); }
+
+    /* HERO SECTION */
+    .hero { position: relative; padding: 2.5rem 1rem 1.8rem 1rem; text-align: center; }
+    .hero-badge {
+      display: inline-block; background: rgba(66, 133, 244, 0.12); border: 1px solid var(--g-blue);
+      color: var(--neon-cyan); padding: 0.25rem 0.8rem; border-radius: 50px; font-size: 0.72rem; font-weight: 700; margin-bottom: 1rem;
+      font-family: 'Fira Code', monospace; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: 1.7rem; margin-bottom: 0.7rem; font-weight: 800; letter-spacing: -0.5px;
+      background: linear-gradient(to right, #ffffff, var(--neon-cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.25;
+    }
+    .hero p { font-size: 0.9rem; max-width: 700px; margin: 0 auto 1.4rem auto; color: var(--text-muted); }
+    .hero-buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; }
+    
+    .btn-hero-wa {
+      background: var(--wa-green); color: #fff; padding: 0.65rem 1.4rem; border-radius: 50px;
+      font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.3); transition: 0.3s;
+    }
+    .btn-hero-call {
+      background: transparent; color: var(--g-blue); border: 1.5px solid var(--g-blue);
+      padding: 0.65rem 1.4rem; border-radius: 50px; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;
+    }
+    .btn-hero-call:hover { background: var(--g-blue); color: #fff; }
+
+    /* FOUNDER PROFILE SECTION (MOBILE OPTIMIZED) */
+    .founder-card {
+      max-width: 850px; margin: 1rem auto 2rem auto; background: var(--card-bg);
+      border: 1px solid rgba(66, 133, 244, 0.3); border-radius: 14px; padding: 1.2rem;
+      display: flex; align-items: center; gap: 18px; backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(66, 133, 244, 0.15); position: relative; overflow: hidden;
+    }
+    .founder-img {
+      width: 90px; height: 90px; border-radius: 50%; object-fit: cover;
+      border: 3px solid var(--g-blue); box-shadow: 0 0 15px rgba(66, 133, 244, 0.5); flex-shrink: 0;
+    }
+    .founder-info h3 { font-size: 1.1rem; color: #fff; font-weight: 700; }
+    .founder-info .role { color: var(--matrix-green); font-family: 'Fira Code', monospace; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px; }
+    .founder-info p { color: var(--text-muted); font-size: 0.82rem; line-height: 1.45; }
+
+    /* HACKER TERMINAL CONSOLE */
+    .terminal-box {
+      max-width: 850px; margin: 0 auto; background: #02040a; border: 1px solid var(--matrix-green);
+      border-radius: 10px; overflow: hidden; text-align: left; font-family: 'Fira Code', monospace;
+      box-shadow: 0 0 15px rgba(0, 255, 135, 0.15);
+    }
+    .terminal-header {
+      background: #090f1d; padding: 6px 12px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--border-color);
+    }
+    .dot { width: 9px; height: 9px; border-radius: 50%; }
+    .dot-red { background: #ff5f56; } .dot-yellow { background: #ffbd2e; } .dot-green { background: #27c93f; }
+    .terminal-body { padding: 12px; font-size: 0.78rem; color: var(--matrix-green); height: 85px; overflow-y: auto; }
+
+    /* TABS & CONTAINER */
+    .main-container { max-width: 1200px; margin: 2rem auto; padding: 0 0.9rem; }
+    .section-title { text-align: center; margin-bottom: 1.5rem; }
+    .section-title h2 { font-size: 1.5rem; color: #fff; font-weight: 800; }
+    .section-title p { color: var(--text-muted); font-size: 0.85rem; }
+
+    .category-tabs { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-bottom: 1.8rem; }
+    .tab-btn {
+      background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-light);
+      padding: 0.45rem 0.9rem; border-radius: 20px; cursor: pointer; font-size: 0.78rem; font-weight: 600; transition: all 0.25s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: linear-gradient(135deg, var(--g-blue), var(--neon-cyan));
+      color: #fff; border-color: transparent; box-shadow: 0 0 12px rgba(66, 133, 244, 0.3);
+    }
+
+    /* SERVICES GRID (COMPACT MOBILE CARDS) */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+    .service-card {
+      background: var(--card-bg); border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border-color); display: flex; flex-direction: column; transition: 0.3s;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    }
+    .service-card:hover { transform: translateY(-4px); border-color: var(--g-blue); }
+    .card-img-wrapper { height: 140px; width: 100%; overflow: hidden; position: relative; border-bottom: 1px solid var(--border-color); }
+    .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    
+    .card-content { padding: 1.1rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-category { font-size: 0.68rem; text-transform: uppercase; font-weight: 800; color: var(--matrix-green); margin-bottom: 4px; font-family: 'Fira Code', monospace; letter-spacing: 0.5px; }
+    .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px; }
+    
+    /* ITEM LISTING WITH COMPACT MOBILE PRICE BADGE */
+    .item-list { list-style: none; margin-bottom: 1.2rem; flex-grow: 1; }
+    .item-list li {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 7px 0; border-bottom: 1px dashed rgba(255,255,255,0.06); font-size: 0.82rem; color: #cbd5e1;
+    }
+    .item-list li:last-child { border-bottom: none; }
+    
+    .item-price {
+      font-family: var(--font-money); font-weight: 700; font-size: 0.82rem;
+      color: var(--g-yellow); background: rgba(251, 188, 5, 0.1); padding: 3px 8px;
+      border-radius: 5px; border: 1px solid rgba(251, 188, 5, 0.25); letter-spacing: 0.5px; flex-shrink: 0; margin-left: 8px;
+    }
+
+    .card-btn {
+      background: linear-gradient(135deg, var(--wa-green), #10b981); color: #fff; text-align: center;
+      padding: 0.65rem; border-radius: 8px; font-weight: 700; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: auto;
+      box-shadow: 0 3px 10px rgba(37, 211, 102, 0.2); transition: 0.25s; cursor: pointer; border: none;
+    }
+    .card-btn:hover { background: #1eb954; }
+
+    /* COMRADE CAMPUS DELIVERY CARD */
+    .comrade-section {
+      background: rgba(10, 15, 28, 0.85); border: 1px solid var(--g-blue);
+      border-radius: 12px; padding: 1.1rem; margin: 2.5rem auto 1.5rem auto; max-width: 850px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .comrade-info h4 { font-size: 1rem; color: #fff; font-weight: 700; }
+    .comrade-info p { color: var(--text-muted); font-size: 0.78rem; }
+    .btn-comrade-small {
+      background: linear-gradient(135deg, var(--g-blue), var(--neon-cyan)); color: #fff;
+      padding: 0.5rem 1.1rem; border-radius: 50px; font-weight: 700; font-size: 0.78rem; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+
+    /* HARDWARE STORE SECTION */
+    .shop-section {
+      background: var(--card-bg); padding: 1.5rem 1.1rem; border-radius: 14px; margin: 2.5rem 0;
+      border: 1px solid var(--border-color); box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    .shop-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px; }
+    .shop-header h2 { font-size: 1.3rem; }
+    .shop-header p { font-size: 0.8rem; }
+    
+    .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+    .product-card {
+      background: rgba(4, 6, 12, 0.9); border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden;
+      display: flex; flex-direction: column; transition: 0.3s; position: relative;
+    }
+    .product-img { height: 130px; width: 100%; object-fit: cover; }
+    .product-body { padding: 0.9rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .product-body h4 { font-size: 0.92rem; }
+    .product-price { font-family: var(--font-money); font-size: 1.05rem; font-weight: 700; color: var(--matrix-green); margin: 6px 0; }
+    .delete-btn {
+      position: absolute; top: 8px; right: 8px; background: var(--g-red); color: white;
+      border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: none; z-index: 10; font-size: 0.75rem;
+    }
+
+    .btn-admin-access {
+      background: transparent; color: var(--text-muted); border: 1px dashed var(--border-color);
+      padding: 0.35rem 0.8rem; border-radius: 6px; font-size: 0.75rem; cursor: pointer; transition: 0.25s;
+    }
+    .btn-admin-access:hover { color: var(--g-blue); border-color: var(--g-blue); }
+
+    /* MODAL POPUPS */
+    .modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.88); backdrop-filter: blur(8px); z-index: 2000;
+      justify-content: center; align-items: center; padding: 0.8rem;
+    }
+    .modal-content {
+      background: var(--card-bg); border: 1px solid var(--g-blue); width: 100%; max-width: 450px;
+      padding: 1.5rem; border-radius: 14px; position: relative; color: #fff; box-shadow: 0 0 25px rgba(66, 133, 244, 0.25);
+    }
+    .modal-content h3 { font-size: 1.15rem; }
+    .close-modal { position: absolute; top: 12px; right: 16px; font-size: 1.4rem; cursor: pointer; color: var(--text-muted); }
+    .form-group { margin-bottom: 0.9rem; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 0.82rem; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 0.6rem; background: var(--dark-bg); border: 1px solid var(--border-color);
+      border-radius: 6px; color: #fff; font-size: 0.85rem;
+    }
+    .submit-btn {
+      width: 100%; background: linear-gradient(135deg, var(--g-blue), var(--neon-cyan));
+      color: #fff; border: none; padding: 0.7rem; border-radius: 6px; font-weight: 700; font-size: 0.85rem; cursor: pointer;
+    }
+
+    /* CONTACT SECTION & FOOTER */
+    .contact-section { background: var(--card-bg); padding: 2.5rem 1rem; border-top: 1px solid var(--border-color); }
+    .contact-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center; }
+    .contact-card { padding: 1.4rem; background: rgba(4, 6, 12, 0.8); border-radius: 12px; border: 1px solid var(--border-color); }
+    .contact-card i { font-size: 1.8rem; color: var(--g-blue); margin-bottom: 0.6rem; }
+    .contact-card h3 { font-size: 1rem; }
+    .contact-card p { font-size: 0.78rem; }
+    .contact-card a { font-size: 0.85rem; }
+    
+    .floating-wa {
+      position: fixed; bottom: 20px; right: 18px; background: var(--wa-green); color: white;
+      width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 24px; box-shadow: 0 0 18px rgba(37, 211, 102, 0.4); z-index: 10000; transition: 0.3s;
+    }
+    footer { background: var(--dark-bg); color: var(--text-muted); text-align: center; padding: 1.5rem 1rem; font-size: 0.8rem; border-top: 1px solid var(--border-color); }
+
+    /* MOBILE-SPECIFIC LAYOUT ADJUSTMENTS */
+    @media(max-width: 600px) {
+      .nav-container { flex-direction: row; padding: 0.6rem 0.8rem; }
+      .logo-text { font-size: 1.1rem; }
+      .nav-contacts a span { display: none; } /* Hide extra text on small screens */
+      .founder-card { flex-direction: column; text-align: center; gap: 10px; padding: 1rem; }
+      .founder-img { width: 75px; height: 75px; }
+      .hero h1 { font-size: 1.5rem; }
+      .hero p { font-size: 0.82rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .comrade-section { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AMBIENT RGB BACKGROUND GLOW LIGHTS -->
+  <div class="rgb-ambient-glow glow-1"></div>
+  <div class="rgb-ambient-glow glow-2"></div>
+
+  <!-- ANIMATED TECH MATRIX CANVAS BACKGROUND -->
+  <canvas id="tech-bg-canvas"></canvas>
+
+  <!-- HEADER WITH GOOGLE COLOURED "ST" LOGO -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <div class="logo-badge">
+          <span class="logo-st"><span class="st-s">S</span><span class="st-t">T</span></span>
+        </div>
+        <span class="logo-text">
+          <span class="g-blue">S</span><span class="g-red">I</span><span class="g-yellow">T</span><span class="g-green">A</span><span class="g-blue">-TECH</span>
+        </span>
+      </a>
+      <div class="nav-contacts">
+        <a href="tel:0795609046" style="font-weight: 600; font-family: var(--font-money); font-size: 0.85rem;"><i class="fa-solid fa-phone"></i> <span>0795609046</span></a>
+        <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20have%20an%20inquiry." target="_blank" class="btn-header">
+          <i class="fa-brands fa-whatsapp"></i> Chat
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> SITA-TECH CYBER & SYSTEM SOLUTIONS</div>
+    <h1>Advanced Cyber Services & Tech Center</h1>
+    <p>Professional KRA, NTSA, HELB, BRS, SHA, Government Clearances, Web Development, CCTV Security & Hardware Repairs.</p>
+    <div class="hero-buttons">
+      <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20assistance%20with%20a%20service." target="_blank" class="btn-hero-wa">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp Us Now
+      </a>
+      <a href="tel:0795609046" class="btn-hero-call">
+        <i class="fa-solid fa-phone"></i> Call 0795609046
+      </a>
+    </div>
+
+    <!-- FOUNDER & LEAD ENGINEER CARD -->
+    <div class="founder-card">
+      <img src="B.jpeg" alt="SITA-TECH Founder & Lead Engineer" class="founder-img" />
+      <div class="founder-info">
+        <h3>Lead Systems Engineer & Founder</h3>
+        <div class="role">&gt; SITA-TECH Core Cyber Division</div>
+        <p>Directing SITA-TECH cyber infrastructure, website development, hardware diagnostics, CCTV security deployments, and student delivery services across Moi University.</p>
+      </div>
+    </div>
+
+    <!-- HACKER MATRIX LIVE TERMINAL -->
+    <div class="terminal-box">
+      <div class="terminal-header">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+        <span style="font-size: 0.7rem; color: var(--text-muted); margin-left: 8px;">sitatech-security-terminal --bash</span>
+      </div>
+      <div class="terminal-body" id="terminalLog">
+        [SYSTEM ONLINE] SITA-TECH Cyber Hub Initialized...<br/>
+        [SECURITY STATUS] Operational & Compliant.<br/>
+        [HARDWARE & CCTV ENGINE] Ready for dispatch.<br/>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN SERVICES CONTAINER -->
+  <main class="main-container">
+
+    <div class="section-title">
+      <h2>Our Services & Pricing</h2>
+      <p>Select a category below to filter services or scroll to explore all offerings.</p>
+    </div>
+
+    <!-- CATEGORY FILTER TABS -->
+    <div class="category-tabs">
+      <button class="tab-btn active" onclick="filterServices('all')">All Services</button>
+      <button class="tab-btn" onclick="filterServices('kra')">KRA Services</button>
+      <button class="tab-btn" onclick="filterServices('ntsa')">NTSA / TIMS</button>
+      <button class="tab-btn" onclick="filterServices('helb')">HELB / KUCCPS</button>
+      <button class="tab-btn" onclick="filterServices('brs')">BRS Business</button>
+      <button class="tab-btn" onclick="filterServices('sha')">SHA Health</button>
+      <button class="tab-btn" onclick="filterServices('govt')">Government Services</button>
+      <button class="tab-btn" onclick="filterServices('design')">Graphic Design</button>
+      <button class="tab-btn" onclick="filterServices('web')">Website Design</button>
+      <button class="tab-btn" onclick="filterServices('cctv')">CCTV Installation</button>
+      <button class="tab-btn" onclick="filterServices('repair')">Hardware & Repair</button>
+      <button class="tab-btn" onclick="filterServices('print')">Printing Services</button>
+    </div>
+
+    <!-- SERVICES GRID -->
+    <div class="services-grid">
+
+      <!-- 1. KRA iTAX SERVICES -->
+      <div class="service-card" data-category="kra">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80" alt="Tax Documents and Financial Statements" class="card-img" />
+        </div>
+        <div class="card-content">
+          <span class="card-category">Tax & Compliance</span>
+          <h3 class="card-title">KRA iTax Services</h3>
+          <ul class="item-list">
+            <li><span>Individual PIN Registration</span> <span class="item-price">Ksh 200</span></li>
+            <li><span>KRA Email Reset</span> <span class="item-price">Ksh 300</span></li>
+            <li><span>Nil Returns Filing</span> <span class="item-price">Ksh 150</span></li>
+            <li><span>P9 Returns Filing</span> <span class="item-price">Ksh 300</span></li>
+            <li><span>Returns w/ Withholding Cert.</span> <span class="item-price">Ksh 350</span></li>
+            <li><span>Tax Compliance Certificate (TCC)</span> <span class="item-price">Ksh 200</span></li>
+            <li><span>PIN Update / New Email</span> <span class="item-price">Ksh 300</span></li>
+            <li><span>Group PIN Registration</span> <span class="item-price">Ksh 1,500</span></li>
+          </ul>
+          <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20help%20with%20KRA%20iTax%20Services." target="_blank" class="card-btn">
+            <i class="fa-brands fa-whatsapp"></i> Apply via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. NTSA & TIMS SERVICES -->
+      <div class="service-card" data-category="ntsa">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=600&q=80" alt="Driving Licensing and Vehicle Dashboard" class="card-img" />
+        </div>
+        <div class="card-content">
+          <span class="card-category">Transport & Licensing</span>
+          <h3 class="card-title">NTSA & TIMS Services</h3>
+          <ul class="item-list">
+            <li><span>Provisional Driving License (PDL)</span> <span class="item-price">Ksh 250</span></li>
+            <li><span>Smart Driving License (Smart DL)</span> <span class="item-price">Ksh 300</span></li>
+            <li><span>NTSA / TIMS Account Creation</span> <span class="item-price">Ksh 300</span></li>
+            <li><span>1-Year / 3-Year DL Renewal</span> <span class="item-price">Ksh 300</span></li>
+            <li><span>Logbook Application</span> <span class="item-price">Ksh 500</span></li>
+            <li><span>Reflective Number Plates</span> <span class="item-price">Ksh 500</span></li>
+            <li><span>Permits Application / Inspection</span> <span class="item-price">Ksh 500</span></li>
+            <li><span>Correction of TIMS Account ID</span> <span class="item-price">Ksh 300</span></li>
+          </ul>
+          <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20help%20with%20NTSA/TIMS%20Services." target="_blank" class="card-btn">
+            <i class="fa-brands fa-whatsapp"></i> Apply via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. HELB & KUCCPS SERVICES -->
+      <div class="service-card" data-category="helb">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80" alt="Graduation Mortarboard and Certificate" class="card-img" />
+        </div>
+        <div class="card-content">
+          <span class="card-category">Education & Admissions</span>
+          <h3 class="card-title">HELB & KUCCPS Services</h3>
+          <ul class="item-list">
+            <li><span>KUCCPS University / TVET Placement</span> <span class="item-price">Ksh 500</span></li>
+            <li><span>Inter-Institution Transfer</span> <span class="item-price">Ksh 300</span></li>
+            <li><span>HEF / HELB Loan Application</span> <span class="item-price">Ksh 500</span></li>
+            <li><span>HELB Loan Appeal</span> <span class="item-price">Ksh 400</span></li>
+            <li><span>HELB Clearance Certificate</span> <span class="item-price">Ksh 250</span></li>
+            <li><span>KMTC / TTC Application</span> <span class="item-price">Ksh 500</span></li>
+            <li><span>KMTC Confirmation</span> <span class="item-price">Ksh 250</span></li>
+            <li><span>Admission Letter Download</span> <span class="item-price">Ksh 200</span></li>
+          </ul>
+          <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20help%20with%20HELB/KUCCPS%20Services." target="_blank" class="card-btn">
+            <i class="fa-brands fa-whatsapp"></i> Apply via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. BRS BUSINESS REGISTRATION -->
+      <div class="service-card" data-category="brs">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80" alt="Official Business Contract Documents" class="card-img" />
+        </div>
+        <div class="card-content">
+          <span class="card-category">Business & Corporate</span>
+          <h3 class="card-title">BRS Business Registration</h3>
+          <ul class="item-list">
+            <li><span>Company Registration / CR12</span> <span class="item-price">Ksh 2,000</span></li>
+            <li><span>Company Profile</span> <span class="item-price">Ksh 2,000</span></li>
+            <li><span>Profile + Articles of Association</span> <span class="item-price">Ksh 2,500</span></li>
+            <li><span>Articles of Association</span> <span class="item-price">Ksh 3,000</span></li>
+            <li><span>Business Name Registration</span> <span class="item-price">Ksh 1,000</span></li>
+            <li><span>Partnership Deed Preparation</span> <span class="item-price">Ksh 1,000</span></li>
+            <li><span>Business Linking Services</span> <span class="item-price">Ksh 1,000</span></li>
+            <li><span>Import & Export License</span> <span class="item-price">Ksh 3,000</span></li>
+          </ul>
+          <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20help%20with%20BRS%20Business%20Registration." target="_blank" class="card-btn">
+            <i class="fa-brands fa-whatsapp"></i> Apply via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. SHA SERVICES -->
+      <div class="service-card" data-category="sha">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Digital Health Insurance Setup" class="card-img" />
+        </div>
+        <div class="card-content">
+          <span class="card-category">Healthcare & Registration</span>
+          <h3 class="card-title">SHA Services</h3>
+          <ul class="item-list">
+            <li><span>SHA Registration</span> <span class="item-price">Ksh 250</span></li>
+            <li><span>Overcharged / Premium Reduction</span> <span class="item-price">Ksh 650</span></li>
+            <li><span>Phone Number Update</span> <span class="item-price">Ksh 300</span></li>
+            <li><span>Registration Issues Resolution</span> <span class="item-price">Ksh 300</span></li>
+            <li><span>ID Not Found Correction</span> <span class="item-price">Ksh 400</span></li>
+            <li><span>PIN Setup Failed Resolution</span> <span class="item-price">Ksh 350</span></li>
+            <li><span>Name / Gender Change Update</span> <span class="item-price">Ksh 300 - 400</span></li>
+          </ul>
+          <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20help%20with%20SHA%20Services." target="_blank" class="card-btn">
+            <i class="fa-brands fa-whatsapp"></i> Apply via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- 6. GOVERNMENT SERVICES -->
+      <div class="service-card" data-category="govt">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80" alt="Passport Document and Official Government Stamp" class="card-img" />
+        </div>
+        <div class="card-content">
+          <span class="card-category">Public & Official Clearance</span>
+          <h3 class="card-title">Government Services</h3>
+          <ul class="item-list">
+            <li><span>Passport Application / Renewal</span> <span class="item-price">Ksh 1,000 - 2,000</span></li>
+            <li><span>Notice of Marriage Application</span> <span class="item-price">Ksh 500</span></li>
+            <li><span>GHRIS Registration / Payslip</span> <span class="item-price">Ksh 100 - 350</span></li>
+            <li><span>NSSF Application / Update</span> <span class="item-price">Ksh 350</span></li>
+            <li><span>AGPO Certificate Application</span> <span class="item-price">Ksh 350</span></li>
+            <li><span>IFMIS Services</span> <span class="item-price">Ksh 400</span></li>
+            <li><span>EACC Clearance Certificate</span> <span class="item-price">Ksh 600</span></li>
+            <li><span>CRB Clearance Certificate</span> <span class="item-price">Ksh 400</span></li>
+          </ul>
+          <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20Government%20Services." target="_blank" class="card-btn">
+            <i class="fa-brands fa-whatsapp"></i> Apply via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- 7. GRAPHIC DESIGN SERVICES -->
+      <div class="service-card" data-category="design">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80" alt="Digital Graphic Design Monitor Artwork" class="card-img" />
+        </div>
+        <div class="card-content">
+          <span class="card-category">Creative & Branding</span>
+          <h3 class="card-title">Graphic Design Services</h3>
+          <ul class="item-list">
+            <li><span>Logo Design</span> <span class="item-price">Ksh 2,500</span></li>
+            <li><span>Poster / Flyer Design</span> <span class="item-price">Ksh 500</span></li>
+            <li><span>Business Card Design</span> <span class="item-price">Ksh 800 - 1,000</span></li>
+            <li><span>Banner Design</span> <span class="item-price">Ksh 1,000</span></li>
+            <li><span>Social Media Post Design</span> <span class="item-price">Ksh 500</span></li>
+            <li><span>Letterhead Design</span> <span class="item-price">Ksh 800</span></li>
+            <li><span>CV Design</span> <span class="item-price">Ksh 500</span></li>
+          </ul>
+          <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20Graphic%20Design%20Services." target="_blank" class="card-btn">
+            <i class="fa-brands fa-whatsapp"></i> Order Design via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- 8. WEBSITE DESIGN SERVICES -->
+      <div class="service-card" data-category="web">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Website Coding Analytics Monitor Screen" class="card-img" />
+        </div>
+        <div class="card-content">
+          <span class="card-category">Digital & Web Solutions</span>
+          <h3 class="card-title">Website Design Services</h3>
+          <ul class="item-list">
+            <li><span>Basic Website (1–3 Pages)</span> <span class="item-price">Ksh 15,000</span></li>
+            <li><span>Business Website Design</span> <span class="item-price">Ksh 25,000</span></li>
+            <li><span>E-Commerce Website Design</span> <span class="item-price">Ksh 35,000</span></li>
+            <li><span>Website Redesign / Editing</span> <span class="item-price">Ksh 10,000</span></li>
+            <li><span>Domain Registration / Email Setup</span> <span class="item-price">Ksh 2,500</span></li>
+            <li><span>Web Hosting Setup</span> <span class="item-price">Ksh 3,000</span></li>
+            <li><span>Website Maintenance (Monthly)</span> <span class="item-price">Ksh 5,000</span></li>
+          </ul>
+          <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20Website%20Design%20Services." target="_blank" class="card-btn">
+            <i class="fa-brands fa-whatsapp"></i> Start Project via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- 9. CCTV INSTALLATION -->
+      <div class="service-card" data-category="cctv">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80" alt="Technicians Installing CCTV Camera" class="card-img" />
+        </div>
+        <div class="card-content">
+          <span class="card-category">Security Systems</span>
+          <h3 class="card-title">CCTV Security Installation</h3>
+          <ul class="item-list">
+            <li><span>HD CCTV Camera Setup & Cabling</span> <span class="item-price">Ksh 2,500</span></li>
+            <li><span>DVR / NVR Configuration</span> <span class="item-price">Ksh 1,500</span></li>
+            <li><span>Mobile Phone Remote Viewing Setup</span> <span class="item-price">Ksh 1,000</span></li>
+            <li><span>CCTV System Maintenance & Check</span> <span class="item-price">Ksh 1,000</span></li>
+          </ul>
+          <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20CCTV%20Installation%20Services." target="_blank" class="card-btn">
+            <i class="fa-brands fa-whatsapp"></i> Book CCTV Installation
+          </a>
+        </div>
+      </div>
+
+      <!-- 10. COMPUTER HARDWARE & REPAIR -->
+      <div class="service-card" data-category="repair">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="African Computer Repair Technician" class="card-img" />
+        </div>
+        <div class="card-content">
+          <span class="card-category">Hardware Diagnostics</span>
+          <h3 class="card-title">Computer Hardware & OS Repair</h3>
+          <ul class="item-list">
+            <li><span>Windows OS Installation / Format</span> <span class="item-price">Ksh 1,000</span></li>
+            <li><span>Computer Hardware Repair</span> <span class="item-price">Ksh 500</span></li>
+            <li><span>Software & Antivirus Setup</span> <span class="item-price">Ksh 300</span></li>
+            <li><span>RAM & Hard Drive / SSD Upgrade</span> <span class="item-price">Ksh 500</span></li>
+            <li><span>System Cleaning & Thermal Paste</span> <span class="item-price">Ksh 300</span></li>
+          </ul>
+          <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20Computer/Hardware%20Repair." target="_blank" class="card-btn">
+            <i class="fa-brands fa-whatsapp"></i> Book Hardware Repair
+          </a>
+        </div>
+      </div>
+
+      <!-- 11. PRINTING SERVICES -->
+      <div class="service-card" data-category="print">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=600&q=80" alt="Digital Office Printer with Document Stack" class="card-img" />
+        </div>
+        <div class="card-content">
+          <span class="card-category">Printing Center</span>
+          <h3 class="card-title">Printing & Scanning Services</h3>
+          <ul class="item-list">
+            <li><span>Black & White Printing / Copying</span> <span class="item-price">Ksh 5 / pg</span></li>
+            <li><span>Coloured Printing</span> <span class="item-price">Ksh 10 / pg</span></li>
+            <li><span>High Resolution Document Scanning</span> <span class="item-price">Ksh 10 / pg</span></li>
+            <li><span>Lamination & Book Binding</span> <span class="item-price">Ksh 50</span></li>
+          </ul>
+          <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20Printing/Scanning%20Services." target="_blank" class="card-btn">
+            <i class="fa-brands fa-whatsapp"></i> Order Printing
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COMRADE CAMPUS DELIVERY CARD -->
+    <div class="comrade-section">
+      <div class="comrade-info">
+        <h4><i class="fa-solid fa-graduation-cap" style="color: var(--g-yellow);"></i> Moi University Comrade Quick Order</h4>
+        <p>Printing, assignments & laptop repairs delivered to Hostels, Stage, or Annex at Comrade Prices.</p>
+      </div>
+      <button class="btn-comrade-small" onclick="openComradeModal()">
+        <i class="fa-solid fa-truck-fast"></i> Order & Campus Delivery
+      </button>
+    </div>
+
+    <!-- HARDWARE STORE SECTION -->
+    <section class="shop-section">
+      <div class="shop-header">
+        <div>
+          <h2 style="color: #fff;">SITA-TECH Hardware & Items Shop</h2>
+          <p style="color: var(--text-muted);">Purchase tech accessories and hardware directly from us.</p>
+        </div>
+        <div>
+          <button class="btn-admin-access" onclick="authenticateAdmin()">
+            <i class="fa-solid fa-lock"></i> <span id="adminBtnText">Admin Portal</span>
+          </button>
+          <button class="btn-admin-access" id="addProductBtn" style="display:none; background: var(--g-blue); color: #fff; border:none; font-weight: 700;" onclick="openModal()">
+            <i class="fa-solid fa-plus"></i> Add Product
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-grid" id="productGrid">
+        <!-- Products Render Dynamic -->
+      </div>
+    </section>
+  </main>
+
+  <!-- COMRADE BOOKING MODAL -->
+  <div class="modal" id="comradeModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeComradeModal()">&times;</span>
+      <h3 style="margin-bottom: 0.4rem; color: var(--g-yellow);"><i class="fa-solid fa-graduation-cap"></i> Moi University Comrade Order</h3>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Order printing or laptop repair with campus delivery.</p>
+      <form onsubmit="submitComradeOrder(event)">
+        <div class="form-group">
+          <label>Your Name / Reg No.</label>
+          <input type="text" id="cName" required placeholder="e.g. John / EDU/1002/23" />
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select id="cService" required>
+            <option value="Document / Assignment Printing">Document / Assignment Printing</option>
+            <option value="Laptop Repair / OS Format (Ksh 1,000)">Laptop Repair / OS Format (Ksh 1,000)</option>
+            <option value="Software Setup">Software Setup</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Delivery Location in Campus</label>
+          <input type="text" id="cLocation" required placeholder="e.g. Hostel H, Gate A, Annex" />
+        </div>
+        <div class="form-group">
+          <label>Additional Info</label>
+          <textarea id="cNotes" rows="2" placeholder="Mention number of pages, color preference, etc."></textarea>
+        </div>
+        <button type="submit" class="submit-btn" style="background: linear-gradient(135deg, var(--wa-green), #10b981);">
+          <i class="fa-brands fa-whatsapp"></i> Send Order via WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN ADD PRODUCT MODAL -->
+  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h3 style="margin-bottom: 1rem; color: var(--g-blue);">Add Item to SITA-TECH Store</h3>
+      <form id="productForm" onsubmit="saveProduct(event)">
+        <div class="form-group">
+          <label>Item Name</label>
+          <input type="text" id="pTitle" required placeholder="e.g. 64GB USB Flash Drive" />
+        </div>
+        <div class="form-group">
+          <label>Price (Ksh)</label>
+          <input type="number" id="pPrice" required placeholder="e.g. 1200" />
+        </div>
+        <div class="form-group">
+          <label>Image Link URL</label>
+          <input type="url" id="pImg" required placeholder="Paste image address" />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="pDesc" rows="3" required placeholder="Brief item specs..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Publish Item</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section">
+    <div class="section-title">
+      <h2>Get In Touch</h2>
+      <p>Have questions or need assistance? Reach out to us directly!</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="fa-brands fa-whatsapp" style="color: var(--wa-green);"></i>
+        <h3>WhatsApp</h3>
+        <p>Chat with us instantly</p>
+        <a href="https://wa.me/254795609046" target="_blank" style="color: var(--wa-green); font-weight: 600;">+254 795 609 046</a>
+      </div>
+      <div class="contact-card">
+        <i class="fa-solid fa-envelope"></i>
+        <h3>Email Us</h3>
+        <p>Send your documents/inquiries</p>
+        <a href="mailto:sitatech3@gmail.com" style="color: var(--g-blue); font-weight: 600;">sitatech3@gmail.com</a>
+      </div>
+      <div class="contact-card">
+        <i class="fa-solid fa-phone"></i>
+        <h3>Call Us</h3>
+        <p>Direct Phone Assistance</p>
+        <a href="tel:0795609046" style="color: var(--g-blue); font-weight: 600;">0795609046</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH," target="_blank" class="floating-wa">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 SITA-TECH Cyber & Tech Solutions. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JAVASCRIPT ANIMATED MATRIX CANVAS & ADMIN AUTHENTICATION LOGIC -->
+  <script>
+    // 1. ANIMATED TECH NETWORK MOTION BACKGROUND
+    const canvas = document.getElementById('tech-bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 1.2;
+        this.vy = (Math.random() - 0.5) * 1.2;
+        this.radius = Math.random() * 2 + 1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#4285F4';
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 65; i++) particles.push(new Particle());
+
+    function animateTechBg() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(66, 133, 244, ${1 - dist / 120})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateTechBg);
+    }
+    animateTechBg();
+
+    // 2. LIVE TERMINAL LOGS
+    const terminalLogs = [
+      "[NETWORK] Checking connection status...",
+      "[FIREWALL] Port 8080 online for remote IT support.",
+      "[COMRADE HUB] Campus delivery system active.",
+      "[HARDWARE] Diagnostics completed on station #4.",
+      "[SECURITY] Automated system back-ups active."
+    ];
+    let logIndex = 0;
+    setInterval(() => {
+      const term = document.getElementById('terminalLog');
+      if (term) {
+        term.innerHTML += `${terminalLogs[logIndex]}<br/>`;
+        term.scrollTop = term.scrollHeight;
+        logIndex = (logIndex + 1) % terminalLogs.length;
+      }
+    }, 4000);
+
+    // 3. SERVICE CATEGORY FILTERING
+    function filterServices(category) {
+      const cards = document.querySelectorAll('.service-card');
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 4. COMRADE BOOKING MODAL HANDLERS
+    function openComradeModal() { document.getElementById('comradeModal').style.display = 'flex'; }
+    function closeComradeModal() { document.getElementById('comradeModal').style.display = 'none'; }
+
+    function submitComradeOrder(e) {
+      e.preventDefault();
+      const name = document.getElementById('cName').value;
+      const service = document.getElementById('cService').value;
+      const location = document.getElementById('cLocation').value;
+      const notes = document.getElementById('cNotes').value;
+
+      const message = `*NEW MOI UNIVERSITY COMRADE ORDER*%0A%0A*Name/ID:* ${encodeURIComponent(name)}%0A*Service:* ${encodeURIComponent(service)}%0A*Campus Location:* ${encodeURIComponent(location)}%0A*Notes:* ${encodeURIComponent(notes)}`;
+      window.open(`https://wa.me/254795609046?text=${message}`, '_blank');
+      closeComradeModal();
+    }
+
+    // 5. SECURE ADMIN AUTHENTICATION SYSTEM
+    const ADMIN_PASSCODE = "1234";
+    let isAdmin = false;
+
+    let defaultProducts = [
+      { id: 1, name: "32GB High Speed Flash Drive", price: 800, img: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80", desc: "Fast USB 3.0 storage drive." },
+      { id: 2, name: "1080p HD CCTV Dome Camera", price: 3500, img: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=400&q=80", desc: "Night vision security camera." },
+      { id: 3, name: "Wireless Optical Mouse", price: 1200, img: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=400&q=80", desc: "2.4GHz quiet mouse." }
+    ];
+
+    let products = JSON.parse(localStorage.getItem('sitatech_products')) || defaultProducts;
+
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+      
+      products.forEach(p => {
+        const itemHtml = `
+          <div class="product-card">
+            <button class="delete-btn" style="display: ${isAdmin ? 'block' : 'none'};" onclick="deleteProduct(${p.id})">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+            <img src="${p.img}" alt="${p.name}" class="product-img" />
+            <div class="product-body">
+              <h4 style="font-size: 0.92rem; color: #fff;">${p.name}</h4>
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">${p.desc}</p>
+              <div class="product-price">Ksh ${p.price.toLocaleString()}</div>
+              <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20want%20to%20buy%20${encodeURIComponent(p.name)}%20priced%20at%20Ksh%20${p.price}" target="_blank" class="card-btn" style="margin-top:6px;">
+                <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
+              </a>
+            </div>
+          </div>
+        `;
+        grid.innerHTML += itemHtml;
+      });
+    }
+
+    function authenticateAdmin() {
+      if (isAdmin) {
+        isAdmin = false;
+        document.getElementById('adminBtnText').innerText = "Admin Portal";
+        document.getElementById('addProductBtn').style.display = "none";
+        renderProducts();
+        alert("Logged out of Admin Portal.");
+      } else {
+        const inputPass = prompt("Enter SITA-TECH Admin Passcode:");
+        if (inputPass === ADMIN_PASSCODE) {
+          isAdmin = true;
+          document.getElementById('adminBtnText').innerText = "Exit Admin";
+          document.getElementById('addProductBtn').style.display = "inline-flex";
+          renderProducts();
+          alert("Admin Authentication Successful!");
+        } else if (inputPass !== null) {
+          alert("Incorrect Passcode! Access Denied.");
+        }
+      }
+    }
+
+    function openModal() { document.getElementById('productModal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('productModal').style.display = 'none'; }
+
+    function saveProduct(e) {
+      e.preventDefault();
+      if (!isAdmin) return;
+      const newProduct = {
+        id: Date.now(),
+        name: document.getElementById('pTitle').value,
+        price: Number(document.getElementById('pPrice').value),
+        img: document.getElementById('pImg').value,
+        desc: document.getElementById('pDesc').value
+      };
+      
+      products.push(newProduct);
+      localStorage.setItem('sitatech_products', JSON.stringify(products));
+      renderProducts();
+      closeModal();
+      document.getElementById('productForm').reset();
+    }
+
+    function deleteProduct(id) {
+      if (!isAdmin) return;
+      products = products.filter(p => p.id !== id);
+      localStorage.setItem('sitatech_products', JSON.stringify(products));
+      renderProducts();
+    }
+
+    renderProducts();
+  </script>
+
+</body>
+</html>
