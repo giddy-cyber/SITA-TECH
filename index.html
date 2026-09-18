@@ -50,6 +50,10 @@
       justify-content: space-between; align-items: center; padding: 0.35rem 0.5rem;
     }
     .brand-logo { display: flex; align-items: center; gap: 5px; text-decoration: none; }
+    .brand-logo-image {
+      height: 36px; width: auto; display: block;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.28));
+    }
     .logo-badge {
       width: 24px; height: 24px; border-radius: 0px; /* SQUARE */
       background: rgba(10, 15, 28, 0.9); border: 1.5px solid var(--g-blue); display: flex; align-items: center; justify-content: center;
@@ -241,9 +245,8 @@
   <!-- ULTRA-SLIM SQUARE HEADER -->
   <header>
     <div class="nav-container">
-      <a href="#" class="brand-logo">
-        <div class="logo-badge"><span class="logo-st"><span class="st-s">S</span><span class="st-t">T</span></span></div>
-        <span class="logo-text"><span class="g-blue">S</span><span class="g-red">I</span><span class="g-yellow">T</span><span class="g-green">A</span><span class="g-blue">-TECH</span></span>
+      <a href="#" class="brand-logo" aria-label="SITA-TECH home">
+        <img src="sita-tech-logo.svg" alt="SITA-TECH logo" class="brand-logo-image" />
       </a>
       <div class="nav-contacts">
         <a href="tel:0795609046" style="font-family: var(--font-money); font-size: 0.72rem;"><i class="fa-solid fa-phone"></i> 0795609046</a>
@@ -722,7 +725,7 @@
             <div class="product-body">
               <h4>${p.name}</h4>
               <div class="product-price">Ksh ${p.price.toLocaleString()}</div>
-              <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20want%20to%20buy%20${encodeURIComponent(p.name)}%20priced%20at%20Ksh%20${p.price}" target="_blank" class="card-btn" style="margin-top:2px;">
+              <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20want%20to%20buy%20${encodeURIComponent(p.name)}%20priced%20at%20Ksh%20${p.price}" target="_blank" class="card-btn">
                 <i class="fa-brands fa-whatsapp"></i> Buy
               </a>
             </div>
