@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" role="img" aria-label="SITA-TECH logo">
+  <defs>
+    <linearGradient id="g1" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a66ff"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff2d55"/>
+      <stop offset="100%" stop-color="#d90429"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#00d46a"/>
+      <stop offset="100%" stop-color="#0a8f44"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffd54a"/>
+      <stop offset="100%" stop-color="#f9a825"/>
+    </linearGradient>
+    <linearGradient id="g5" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5f7fb"/>
+      <stop offset="100%" stop-color="#dfe7f1"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <g transform="translate(15 10)" filter="url(#shadow)">
+    <path d="M195 28 L58 125 L111 164 L258 67 L195 28 Z" fill="url(#g1)"/>
+    <path d="M206 58 L68 169 L129 216 L292 105 L206 58 Z" fill="url(#g2)" opacity="0.95"/>
+    <path d="M294 71 L360 26 L446 116 L367 164 L294 71 Z" fill="url(#g5)"/>
+    <path d="M188 20 L296 80 L274 127 L196 82 L188 20 Z" fill="url(#g1)"/>
+    <path d="M275 93 L165 198 L203 225 L332 118 L275 93 Z" fill="url(#g3)"/>
+    <path d="M327 99 L436 30 L432 103 L398 130 L327 99 Z" fill="url(#g4)"/>
+    <path d="M156 108 L86 177 L25 134 L95 66 L156 108 Z" fill="url(#g1)"/>
+    <path d="M188 145 L286 201 L254 254 L155 196 L188 145 Z" fill="url(#g4)"/>
+    <path d="M96 100 L151 141 L118 181 L63 141 L96 100 Z" fill="url(#g5)"/>
+    <path d="M107 118 L142 150 L111 182 L76 151 L107 118 Z" fill="url(#g2)"/>
+    <path d="M224 93 L320 155 L291 203 L196 137 L224 93 Z" fill="url(#g5)"/>
+    <path d="M250 105 L303 78 L356 109 L298 142 L250 105 Z" fill="url(#g2)"/>
+    <path d="M170 111 L111 69 L129 27 L230 96 L170 111 Z" fill="url(#g2)" opacity="0.9"/>
+    <path d="M87 112 L174 173 L151 214 L66 157 L87 112 Z" fill="url(#g4)" opacity="0.9"/>
+    <path d="M200 94 L262 59 L330 95 L280 126 L200 94 Z" fill="url(#g1)" opacity="0.9"/>
+  </g>
+
+  <g transform="translate(0 0)">
+    <text x="460" y="158" font-size="104" font-weight="900" font-family="Segoe UI, Arial, sans-serif" letter-spacing="2" fill="#ffffff">SITA-</text>
+    <text x="460" y="235" font-size="104" font-weight="900" font-family="Segoe UI, Arial, sans-serif" letter-spacing="2" fill="#ffffff">TECH</text>
+    <g>
+      <path d="M460 50 L625 50 L625 70 L460 70 Z" fill="url(#g1)"/>
+      <path d="M460 72 L625 72 L625 92 L460 92 Z" fill="url(#g2)"/>
+      <path d="M460 94 L625 94 L625 114 L460 114 Z" fill="url(#g4)"/>
+      <path d="M460 116 L625 116 L625 136 L460 136 Z" fill="url(#g3)"/>
+    </g>
+  </g>
+</svg>
