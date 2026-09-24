@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>SITA-TECH | Cyber Hub</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700;800&family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  
+  <!-- Cropper.js CSS for Admin Image Cropping -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+
+  <style>
+    :root {
+      --g-blue: #4285F4;
+      --g-red: #EA4335;
+      --g-green: #34A853;
+      --neon-cyan: #00f2fe;
+      --matrix-green: #00ff87;
+      --dark-bg: #04060c;
+      --card-bg: rgba(10, 15, 28, 0.94);
+      --text-light: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #1e293b;
+      --wa-green: #25d366;
+      --mpesa-green: #00a03e;
+      --font-money: 'Share Tech Mono', 'Chakra Petch', monospace;
+
+      /* Compact Square Item Colors */
+      --shop-orange: #f68b1e;
+      --shop-card-bg: #ffffff;
+      --shop-dark-text: #0f172a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background-color: var(--dark-bg); color: var(--text-light); line-height: 1.35; overflow-x: hidden; font-size: 12px; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Ambient Glow Effects */
+    .rgb-ambient-glow {
+      position: fixed; width: 160px; height: 160px; border-radius: 50%;
+      filter: blur(75px); opacity: 0.15; pointer-events: none; z-index: -2;
+    }
+    .glow-1 { top: -40px; left: -40px; background: linear-gradient(135deg, var(--g-blue), var(--g-red)); }
+    .glow-2 { bottom: -40px; right: -40px; background: linear-gradient(135deg, var(--g-green), var(--neon-cyan)); }
+
+    #tech-bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+    /* Header & Navigation */
+    header {
+      position: sticky; top: 0; background: rgba(4, 6, 12, 0.96);
+      backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1200px; margin: 0 auto; display: flex;
+      justify-content: space-between; align-items: center; padding: 0.4rem 0.6rem;
+    }
+    
+    .brand-logo-container {
+      display: flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer;
+    }
+
+    /* Animated Vector Cyber SVG Logo */
+    .brand-svg-logo {
+      width: 36px; height: 36px; filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.7));
+      animation: logoGlowTilt 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes logoGlowTilt {
+      0% { transform: rotate(0deg) scale(1); filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.7)); }
+      50% { transform: rotate(3deg) scale(1.05); filter: drop-shadow(0 0 14px rgba(0, 255, 135, 0.9)); }
+      100% { transform: rotate(-3deg) scale(1); filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.7)); }
+    }
+
+    /* Single-Color Glowing SITA-TECH Brand Text */
+    .glowing-brand-text {
+      font-family: 'Chakra Petch', sans-serif; font-size: 1.35rem; font-weight: 800;
+      color: var(--neon-cyan); letter-spacing: 0.06em; text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.8), 0 0 20px rgba(0, 242, 254, 0.4);
+    }
+
+    .nav-contacts { display: flex; gap: 6px; align-items: center; }
+
+    /* ANIMATED PHONE ICON */
+    .glowing-phone {
+      font-family: var(--font-money); font-size: 0.88rem; font-weight: 700; color: var(--neon-cyan);
+      display: flex; align-items: center; gap: 4px; padding: 0.2rem 0.4rem;
+    }
+    .glowing-phone i {
+      animation: ringRotate 2.5s infinite ease-in-out;
+      display: inline-block;
+    }
+
+    @keyframes ringRotate {
+      0%, 100% { transform: rotate(0deg); }
+      10%, 30% { transform: rotate(15deg); }
+      20%, 40% { transform: rotate(-15deg); }
+      50% { transform: rotate(0deg); }
+    }
+
+    /* COMPACT ANIMATED TILL BUTTON ICON */
+    .btn-till-badge {
+      background: rgba(0, 160, 62, 0.15); border: 1px solid var(--mpesa-green); color: var(--matrix-green);
+      padding: 0.28rem 0.5rem; border-radius: 4px; font-weight: 700; font-size: 0.68rem;
+      display: flex; align-items: center; gap: 4px; cursor: pointer; transition: transform 0.2s;
+    }
+    .btn-till-badge:hover { transform: scale(1.05); background: rgba(0, 160, 62, 0.3); }
+    .btn-till-badge i {
+      animation: tiltPulse 2s infinite ease-in-out; color: var(--matrix-green);
+    }
+
+    @keyframes tiltPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+    }
+
+    /* ANIMATED WHATSAPP BUTTON ICON */
+    .btn-header-glow {
+      background: linear-gradient(135deg, var(--wa-green), #10b981);
+      color: #fff; padding: 0.3rem 0.65rem; border-radius: 4px; font-weight: 700; font-size: 0.72rem;
+      display: flex; align-items: center; gap: 4px; box-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
+      animation: waPulse 3s infinite alternate;
+    }
+    .btn-header-glow i {
+      animation: waIconBounce 2s infinite ease-in-out;
+    }
+
+    @keyframes waPulse {
+      0% { box-shadow: 0 0 6px rgba(37, 211, 102, 0.4); }
+      100% { box-shadow: 0 0 16px rgba(37, 211, 102, 0.9); }
+    }
+    @keyframes waIconBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+
+    /* Cyber Services Section */
+    .top-services-wrapper { padding: 0.5rem 0.5rem 0.2rem 0.5rem; max-width: 1200px; margin: 0 auto; }
+    .section-headline { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; }
+    .section-headline h2 { font-size: 0.9rem; color: #fff; font-weight: 700; }
+    .swipe-hint { font-size: 0.62rem; color: var(--neon-cyan); font-family: 'Fira Code', monospace; display: flex; align-items: center; gap: 3px; }
+
+    .category-tabs {
+      display: flex; gap: 4px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 0.5rem; scrollbar-width: none;
+    }
+    .category-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-light);
+      padding: 0.25rem 0.55rem; border-radius: 0px; cursor: pointer; font-size: 0.65rem; font-weight: 600; white-space: nowrap; flex-shrink: 0;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: linear-gradient(135deg, var(--g-blue), var(--neon-cyan)); color: #fff; border-color: transparent;
+    }
+
+    .horizontal-services-track {
+      display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: none;
+    }
+    .horizontal-services-track::-webkit-scrollbar { display: none; }
+
+    .service-card {
+      flex: 0 0 82vw; max-width: 300px; scroll-snap-align: start;
+      background: var(--card-bg); border-radius: 0px; overflow: hidden; border: 1px solid var(--border-color);
+      display: flex; flex-direction: column; position: relative;
+    }
+    .card-img-wrapper { height: 100px; width: 100%; overflow: hidden; position: relative; border-bottom: 1px solid var(--border-color); }
+    .card-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+    .card-content { padding: 0.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-category { font-size: 0.55rem; text-transform: uppercase; font-weight: 800; color: var(--matrix-green); margin-bottom: 2px; font-family: 'Fira Code', monospace; }
+    .card-title { font-size: 0.82rem; font-weight: 700; margin-bottom: 5px; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 2px; }
+
+    .item-list { list-style: none; margin-bottom: 0.5rem; flex-grow: 1; }
+    .item-list li {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 2.5px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); font-size: 0.68rem; color: #cbd5e1;
+    }
+
+    .item-price-wrapper { display: flex; align-items: center; gap: 3px; }
+    .item-price {
+      font-family: 'Chakra Petch', sans-serif; font-weight: 800; font-size: 0.72rem;
+      color: var(--neon-cyan); background: rgba(0, 242, 254, 0.1);
+      padding: 0.12rem 0.35rem; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 2px;
+    }
+    .edit-price-btn { color: var(--neon-cyan); cursor: pointer; font-size: 0.65rem; }
+
+    .card-btn {
+      background: linear-gradient(135deg, var(--wa-green), #10b981); color: #fff; text-align: center;
+      padding: 0.3rem; border-radius: 0px; font-weight: 700; font-size: 0.68rem; display: flex; align-items: center; justify-content: center; gap: 3px; margin-top: auto; border: none; cursor: pointer;
+    }
+
+    .comrade-section {
+      background: rgba(10, 15, 28, 0.85); border: 1px solid var(--g-blue);
+      border-radius: 0px; padding: 0.5rem; margin: 0.6rem 0.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 5px;
+    }
+    .comrade-info h4 { font-size: 0.75rem; color: #fff; font-weight: 700; }
+    .comrade-info p { color: var(--text-muted); font-size: 0.62rem; }
+    .btn-comrade-small {
+      background: linear-gradient(135deg, var(--g-blue), var(--neon-cyan)); color: #fff;
+      padding: 0.25rem 0.5rem; border-radius: 0px; font-weight: 700; font-size: 0.65rem; border: none; cursor: pointer; flex-shrink: 0;
+    }
+
+    /* Compact Square Shop Items Grid */
+    .shop-section {
+      background: var(--card-bg); padding: 0.5rem; margin: 0.6rem 0.5rem; border: 1px solid var(--border-color);
+    }
+    .shop-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; padding-bottom: 0.2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .shop-header h2 { font-size: 0.88rem; color: #fff; font-weight: 700; }
+
+    .square-products-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 6px;
+    }
+
+    .square-product-card {
+      background: var(--shop-card-bg); border-radius: 4px; border: 1px solid #334155;
+      overflow: hidden; display: flex; flex-direction: column; position: relative;
+    }
+
+    .square-img-box {
+      height: 110px; width: 100%; background: #ffffff; padding: 4px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .square-product-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+    .square-card-body {
+      padding: 0.35rem 0.4rem; display: flex; flex-direction: column; flex-grow: 1;
+      background: #ffffff; color: var(--shop-dark-text); border-top: 1px solid #f1f5f9;
+    }
+
+    .square-prod-title {
+      font-size: 0.65rem; color: #0f172a; font-weight: 600; line-height: 1.15;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 2.3em; margin-bottom: 2px;
+    }
+
+    .square-price-tag {
+      font-size: 0.75rem; font-weight: 800; color: var(--g-blue); margin-bottom: 4px;
+    }
+
+    .square-buy-btn {
+      background: linear-gradient(135deg, var(--g-blue), var(--neon-cyan)); color: #fff;
+      border: none; padding: 0.28rem; border-radius: 2px; font-weight: 700; font-size: 0.62rem; cursor: pointer; width: 100%; text-align: center; margin-top: auto;
+    }
+
+    .delete-btn {
+      position: absolute; top: 2px; left: 2px; background: var(--g-red); color: white;
+      border: none; width: 18px; height: 18px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 0.55rem;
+    }
+
+    /* Professionally Arranged Contact Card */
+    .prof-contact-card {
+      background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px;
+      padding: 0.6rem; margin: 0.6rem 0.5rem;
+    }
+    .prof-contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px;
+    }
+    .contact-block {
+      display: flex; align-items: center; gap: 8px; background: rgba(4, 6, 12, 0.6);
+      padding: 0.45rem 0.6rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05);
+    }
+    .contact-block i { font-size: 1rem; color: var(--neon-cyan); }
+    .contact-details h5 { font-size: 0.6rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+    .contact-details a, .contact-details span { font-size: 0.75rem; font-weight: 700; color: #fff; }
+
+    /* Social Hub Section */
+    .social-hub-section {
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      padding: 0.8rem 0.75rem; margin: 0.6rem 0.5rem; text-align: center;
+    }
+    .social-hub-title { font-size: 0.9rem; color: #fff; font-weight: 700; margin-bottom: 0.2rem; }
+    .social-hub-subtitle { font-size: 0.65rem; color: var(--text-muted); margin-bottom: 0.6rem; }
+    .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); gap: 6px; }
+    .social-card {
+      background: rgba(4, 6, 12, 0.8); border: 1px solid var(--border-color);
+      padding: 0.4rem 0.3rem; border-radius: 4px; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-light);
+    }
+    .social-card i { transition: transform 0.2s; }
+    .social-card:hover i { transform: scale(1.2); }
+
+    /* RGB Motion Strip Banner */
+    .rgb-motion-strip {
+      width: 100%; overflow: hidden;
+      background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bfd, #7a00ff, #ff00c8, #ff0000);
+      background-size: 400% 400%; animation: rgbGlow 6s ease infinite; padding: 0.35rem 0; white-space: nowrap;
+      border-top: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    @keyframes rgbGlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    .rgb-motion-track { display: inline-block; white-space: nowrap; animation: marquee 12s linear infinite; }
+    .rgb-motion-text {
+      font-family: 'Chakra Petch', sans-serif; font-weight: 800; font-size: 0.85rem;
+      color: #000; letter-spacing: 0.15em; text-transform: uppercase; padding: 0 1rem; text-shadow: 0 0 4px rgba(255,255,255,0.8);
+    }
+    @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+
+    /* Footer with Live Clock */
+    footer { background: var(--dark-bg); border-top: 1px solid var(--border-color); padding: 0.8rem 0.5rem; text-align: center; color: var(--text-muted); }
+    .live-clock-wrapper { font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: var(--neon-cyan); margin-bottom: 0.3rem; }
+
+    /* Modals */
+    .modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.88); backdrop-filter: blur(5px); z-index: 2000;
+      justify-content: center; align-items: center; padding: 0.5rem;
+    }
+    .modal-content {
+      background: var(--card-bg); border: 1px solid var(--g-blue); width: 100%; max-width: 340px;
+      padding: 0.8rem; border-radius: 6px; position: relative; color: #fff; max-height: 90vh; overflow-y: auto;
+    }
+    .close-modal { position: absolute; top: 6px; right: 10px; font-size: 1rem; cursor: pointer; color: var(--text-muted); }
+    .form-group { margin-bottom: 0.45rem; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 2px; font-size: 0.68rem; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 0.35rem; background: var(--dark-bg); border: 1px solid var(--border-color);
+      border-radius: 4px; color: #fff; font-size: 0.7rem;
+    }
+    .submit-btn {
+      width: 100%; background: linear-gradient(135deg, var(--g-blue), var(--neon-cyan));
+      color: #fff; border: none; padding: 0.45rem; border-radius: 4px; font-weight: 700; font-size: 0.72rem; cursor: pointer;
+    }
+
+    .crop-preview-box { width: 100%; height: 180px; background: #000; margin-bottom: 0.5rem; overflow: hidden; display: none; }
+    .crop-preview-box img { max-width: 100%; }
+
+    .secret-admin-tools {
+      position: fixed; bottom: 12px; left: 12px; z-index: 9999; display: none; gap: 6px;
+    }
+    .admin-fab-btn {
+      background: var(--g-blue); color: #fff; border: none; padding: 0.4rem 0.7rem;
+      border-radius: 20px; font-weight: 700; font-size: 0.68rem; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="rgb-ambient-glow glow-1"></div>
+  <div class="rgb-ambient-glow glow-2"></div>
+  <canvas id="tech-bg-canvas"></canvas>
+
+  <header>
+    <div class="nav-container">
+      <div class="brand-logo-container" onclick="handleLogoClick()">
+        <svg class="brand-svg-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="80" height="80" rx="16" fill="url(#logoBgGrad)" />
+          <path d="M25 35 C25 25, 75 25, 75 35 C75 45, 25 45, 25 55 C25 75, 75 75, 75 65" stroke="#00f2fe" stroke-width="10" stroke-linecap="round" fill="none"/>
+          <path d="M50 20 L50 80 M35 80 L65 80" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="logoBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#04060c"/>
+              <stop offset="100%" stop-color="#0f172a"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="glowing-brand-text">SITA-TECH</span>
+      </div>
+
+      <div class="nav-contacts">
+        <!-- Compact Animated Till Icon Button -->
+        <button class="btn-till-badge" onclick="openTillModal()"><i class="fa-solid fa-mobile-screen"></i> Till</button>
+        <!-- Animated Phone Button -->
+        <a href="tel:0795609046" class="glowing-phone"><i class="fa-solid fa-phone-volume"></i> 0795609046</a>
+        <!-- Animated WhatsApp Button -->
+        <a href="https://wa.me/254795609046" target="_blank" class="btn-header-glow"><i class="fa-brands fa-whatsapp"></i> Chat</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto;">
+    <!-- Cyber Services Track -->
+    <div class="top-services-wrapper">
+      <div class="section-headline">
+        <h2>Cyber & Tech Services</h2>
+        <span class="swipe-hint">Swipe right <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+
+      <div class="category-tabs">
+        <button class="tab-btn active" onclick="filterServices('all')">All Services</button>
+        <button class="tab-btn" onclick="filterServices('kra')">KRA Services</button>
+        <button class="tab-btn" onclick="filterServices('ntsa')">NTSA / TIMS</button>
+        <button class="tab-btn" onclick="filterServices('helb')">HELB / KUCCPS</button>
+        <button class="tab-btn" onclick="filterServices('brs')">BRS Business</button>
+        <button class="tab-btn" onclick="filterServices('sha')">SHA Health</button>
+        <button class="tab-btn" onclick="filterServices('govt')">Government</button>
+        <button class="tab-btn" onclick="filterServices('design')">Graphic Design</button>
+        <button class="tab-btn" onclick="filterServices('web')">Web Design</button>
+        <button class="tab-btn" onclick="filterServices('cctv')">CCTV Setup</button>
+        <button class="tab-btn" onclick="filterServices('repair')">Repairs</button>
+        <button class="tab-btn" onclick="filterServices('print')">Printing</button>
+      </div>
+
+      <div class="horizontal-services-track" id="servicesTrack"></div>
+
+      <div class="comrade-section">
+        <div class="comrade-info">
+          <h4><i class="fa-solid fa-graduation-cap" style="color: var(--neon-cyan);"></i> Moi Univ. Comrade Delivery</h4>
+          <p>Printing & laptop repairs delivered to Hostels or Annex.</p>
+        </div>
+        <button class="btn-comrade-small" onclick="openComradeModal()">Order Now</button>
+      </div>
+    </div>
+
+    <!-- Square Shop Items Section -->
+    <section class="shop-section">
+      <div class="shop-header">
+        <h2>Hardware & Items Shop</h2>
+      </div>
+      <div class="square-products-grid" id="productGrid"></div>
+    </section>
+
+    <!-- Professionally Arranged Contacts Section -->
+    <section class="prof-contact-card">
+      <div class="prof-contact-grid">
+        <div class="contact-block">
+          <i class="fa-brands fa-whatsapp" style="color: var(--wa-green);"></i>
+          <div class="contact-details">
+            <h5>WhatsApp Line</h5>
+            <a href="https://wa.me/254795609046" target="_blank">+254 795 609 046</a>
+          </div>
+        </div>
+        <div class="contact-block">
+          <i class="fa-solid fa-phone"></i>
+          <div class="contact-details">
+            <h5>Direct Call</h5>
+            <a href="tel:0795609046">0795609046</a>
+          </div>
+        </div>
+        <div class="contact-block">
+          <i class="fa-solid fa-envelope"></i>
+          <div class="contact-details">
+            <h5>Email Address</h5>
+            <a href="mailto:sitatech3@gmail.com">sitatech3@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-hub-section">
+      <h3 class="social-hub-title">Connect & Follow SITA-TECH</h3>
+      <p class="social-hub-subtitle">Fast inquiries, direct updates, and customer support.</p>
+      <div class="social-grid">
+        <a href="https://wa.me/254795609046" target="_blank" class="social-card"><i class="fa-brands fa-whatsapp" style="color: var(--wa-green);"></i><span>WhatsApp</span></a>
+        <a href="https://facebook.com" target="_blank" class="social-card"><i class="fa-brands fa-facebook" style="color: #1877f2;"></i><span>Facebook</span></a>
+        <a href="https://instagram.com" target="_blank" class="social-card"><i class="fa-brands fa-instagram" style="color: #e4405f;"></i><span>Instagram</span></a>
+        <a href="https://linkedin.com" target="_blank" class="social-card"><i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i><span>LinkedIn</span></a>
+        <a href="https://x.com" target="_blank" class="social-card"><i class="fa-brands fa-x-twitter" style="color: #fff;"></i><span>X (Twitter)</span></a>
+        <a href="https://tiktok.com" target="_blank" class="social-card"><i class="fa-brands fa-tiktok" style="color: #ff0050;"></i><span>TikTok</span></a>
+        <a href="https://youtube.com" target="_blank" class="social-card"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i><span>YouTube</span></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- M-Pesa Till Quick Lookup Modal -->
+  <div class="modal" id="tillModal">
+    <div class="modal-content" style="text-align: center;">
+      <span class="close-modal" onclick="closeTillModal()">&times;</span>
+      <h3 style="color: var(--matrix-green); margin-bottom: 0.4rem;"><i class="fa-solid fa-mobile-screen-button"></i> M-Pesa Payment Till</h3>
+      <p style="color: var(--text-muted); font-size: 0.68rem; margin-bottom: 0.6rem;">Lipa na M-Pesa (Buy Goods & Services)</p>
+      <div style="background:#000; border: 1px dashed var(--mpesa-green); padding: 0.8rem; border-radius: 6px; margin-bottom: 0.6rem;">
+        <div style="font-family: var(--font-money); font-size: 1.6rem; font-weight: 800; color: var(--matrix-green); letter-spacing: 0.12em;">6807927</div>
+        <div style="font-size: 0.72rem; color: #fff; margin-top: 2px;">SITA-TECH SERVICES</div>
+      </div>
+      <button class="submit-btn" onclick="closeTillModal()">Done</button>
+    </div>
+  </div>
+
+  <!-- Hidden Secret Admin Tool Overlay -->
+  <div class="secret-admin-tools" id="secretAdminWrap">
+    <button class="admin-fab-btn" onclick="openModal()">+ Add Shop Item</button>
+  </div>
+
+  <!-- RGB Motion Strip Banner -->
+  <div class="rgb-motion-strip">
+    <div class="rgb-motion-track">
+      <span class="rgb-motion-text">✦ SITA-TECH ✦ CYBER SERVICES ✦ HARDWARE & REPAIRS ✦ SITA-TECH ✦ QUALITY SERVICES ✦ SITA-TECH ✦ FAST & RELIABLE ✦</span>
+      <span class="rgb-motion-text">✦ SITA-TECH ✦ CYBER SERVICES ✦ HARDWARE & REPAIRS ✦ SITA-TECH ✦ QUALITY SERVICES ✦ SITA-TECH ✦ FAST & RELIABLE ✦</span>
+    </div>
+  </div>
+
+  <!-- Footer with Live Clock -->
+  <footer>
+    <div class="live-clock-wrapper"><i class="fa-solid fa-clock"></i> <span id="liveClockDisplay">Loading time...</span></div>
+    <div>&copy; <span id="copyrightYear"></span> SITA-TECH. All Rights Reserved.</div>
+  </footer>
+
+  <!-- Admin Image Crop Modal -->
+  <div class="modal" id="cropperModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeCropperModal()">&times;</span>
+      <h3 style="margin-bottom: 0.5rem; color: var(--neon-cyan);">Crop Photo Before Upload</h3>
+      <div class="crop-preview-box" id="cropContainer">
+        <img id="imageToCrop" src="" alt="Crop Preview" />
+      </div>
+      <button type="button" class="submit-btn" onclick="applyCropAndSave()">Apply Crop & Save</button>
+    </div>
+  </div>
+
+  <!-- Admin Add Product Modal -->
+  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h3>Add Shop Item</h3>
+      <form id="productForm" onsubmit="saveProduct(event)">
+        <div class="form-group"><label>Item Name</label><input type="text" id="pTitle" required placeholder="e.g. 64GB Flash Drive" /></div>
+        <div class="form-group"><label>Price (Ksh)</label><input type="number" id="pPrice" required placeholder="800" /></div>
+        <div class="form-group"><label>Product Photo</label><input type="file" id="pFile" accept="image/*" onchange="triggerImageCrop(event)" required /></div>
+        <button type="submit" class="submit-btn">Publish Product</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+  <!-- Firebase Script for Global Realtime Sync Across Browsers -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    const firebaseConfig = { databaseURL: "https://sita-tech-default-rtdb.firebaseio.com/" };
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    window.db = db;
+    window.dbRef = ref;
+    window.dbSet = set;
+
+    onValue(ref(db, 'sitatech_services'), (snapshot) => {
+      const data = snapshot.val();
+      if (data) { window.services = data; renderServices(); }
+    });
+
+    onValue(ref(db, 'sitatech_products'), (snapshot) => {
+      const data = snapshot.val();
+      if (data) { window.products = Object.values(data); renderProducts(); }
+    });
+  </script>
+
+  <script>
+    /* Live Clock and Year */
+    function updateLiveClockAndYear() {
+      const now = new Date();
+      document.getElementById('copyrightYear').innerText = now.getFullYear();
+      document.getElementById('liveClockDisplay').innerText = `${now.toLocaleDateString()} | ${now.toLocaleTimeString()}`;
+    }
+    setInterval(updateLiveClockAndYear, 1000);
+    updateLiveClockAndYear();
+
+    /* Till Modal Functions */
+    function openTillModal() { document.getElementById('tillModal').style.display = 'flex'; }
+    function closeTillModal() { document.getElementById('tillModal').style.display = 'none'; }
+
+    /* Secret Admin Access (Passcode: 1387) */
+    let logoClickCount = 0;
+    function handleLogoClick() {
+      logoClickCount++;
+      if (logoClickCount >= 5) {
+        authenticateAdmin();
+        logoClickCount = 0;
+      }
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        authenticateAdmin();
+      }
+    });
+
+    function authenticateAdmin() {
+      const pass = prompt('Enter Admin Passcode:');
+      if (pass === '1387') {
+        isAdmin = true;
+        document.getElementById('secretAdminWrap').style.display = 'flex';
+        renderServices();
+        renderProducts();
+        alert("Admin Mode Unlocked!");
+      } else if (pass !== null) {
+        alert("Incorrect Code!");
+      }
+    }
+
+    /* Particle Background Animation */
+    const canvas = document.getElementById('tech-bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 1.2; this.vy = (Math.random() - 0.5) * 1.2; this.radius = Math.random() * 2 + 1;
+      }
+      update() {
+        this.x += this.vx; this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = '#4285F4'; ctx.fill(); }
+    }
+    for (let i = 0; i < 28; i++) particles.push(new Particle());
+
+    function animateTechBg() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update(); particles[i].draw();
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 90) {
+            ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(66, 133, 244, ${1 - dist / 90})`; ctx.lineWidth = 0.5; ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateTechBg);
+    }
+    animateTechBg();
+
+    /* ALL 11 CYBER SERVICES RESTORED */
+    const defaultServices = [
+      {
+        id: "kra", category: "kra", categoryTitle: "Taxation", title: "KRA iTax Services",
+        img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80",
+        items: [
+          { name: "Individual PIN Registration", price: "Ksh 200" },
+          { name: "KRA Email Reset", price: "Ksh 300" },
+          { name: "Nil Returns Filing", price: "Ksh 150" },
+          { name: "P9 Returns Filing", price: "Ksh 300" },
+          { name: "Returns w/ Withholding Cert.", price: "Ksh 350" },
+          { name: "Tax Compliance Cert. (TCC)", price: "Ksh 200" },
+          { name: "PIN Update / New Email", price: "Ksh 300" },
+          { name: "Group PIN Registration", price: "Ksh 1,500" }
+        ]
+      },
+      {
+        id: "ntsa", category: "ntsa", categoryTitle: "Transport", title: "NTSA & TIMS Services",
+        img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
+        items: [
+          { name: "Provisional Driving License (PDL)", price: "Ksh 250" },
+          { name: "Smart Driving License (Smart DL)", price: "Ksh 300" },
+          { name: "NTSA / TIMS Account Creation", price: "Ksh 300" },
+          { name: "1-Year / 3-Year DL Renewal", price: "Ksh 300" },
+          { name: "Logbook Application", price: "Ksh 500" },
+          { name: "Reflective Number Plates", price: "Ksh 500" },
+          { name: "Permits Application / Inspection", price: "Ksh 500" },
+          { name: "Correction of TIMS Account ID", price: "Ksh 300" }
+        ]
+      },
+      {
+        id: "helb", category: "helb", categoryTitle: "Education", title: "HELB & KUCCPS Services",
+        img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80",
+        items: [
+          { name: "KUCCPS Placement", price: "Ksh 500" },
+          { name: "Inter-Institution Transfer", price: "Ksh 300" },
+          { name: "HEF / HELB Loan App", price: "Ksh 500" },
+          { name: "HELB Loan Appeal", price: "Ksh 400" },
+          { name: "HELB Clearance Cert", price: "Ksh 250" },
+          { name: "KMTC / TTC Application", price: "Ksh 500" },
+          { name: "KMTC Confirmation", price: "Ksh 250" },
+          { name: "Admission Letter Download", price: "Ksh 200" }
+        ]
+      },
+      {
+        id: "brs", category: "brs", categoryTitle: "Corporate", title: "BRS Business Registration",
+        img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80",
+        items: [
+          { name: "Company Registration / CR12", price: "Ksh 2,000" },
+          { name: "Company Profile", price: "Ksh 2,000" },
+          { name: "Profile + Articles of Assoc.", price: "Ksh 2,500" },
+          { name: "Articles of Association", price: "Ksh 3,000" },
+          { name: "Business Name Registration", price: "Ksh 1,000" },
+          { name: "Partnership Deed Prep", price: "Ksh 1,000" },
+          { name: "Business Linking Services", price: "Ksh 1,000" },
+          { name: "Import & Export License", price: "Ksh 3,000" }
+        ]
+      },
+      {
+        id: "sha", category: "sha", categoryTitle: "Healthcare", title: "SHA Services",
+        img: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80",
+        items: [
+          { name: "SHA Registration", price: "Ksh 250" },
+          { name: "Premium Reduction", price: "Ksh 650" },
+          { name: "Phone Number Update", price: "Ksh 300" },
+          { name: "Registration Issues", price: "Ksh 300" },
+          { name: "ID Not Found Correction", price: "Ksh 400" },
+          { name: "PIN Setup Failed Resolution", price: "Ksh 350" },
+          { name: "Name / Gender Update", price: "Ksh 300-400" }
+        ]
+      },
+      {
+        id: "govt", category: "govt", categoryTitle: "Official", title: "Government Services",
+        img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+        items: [
+          { name: "Passport App / Renewal", price: "Ksh 1k-2k" },
+          { name: "Notice of Marriage", price: "Ksh 500" },
+          { name: "GHRIS Registration / Payslip", price: "Ksh 100-350" },
+          { name: "NSSF Application / Update", price: "Ksh 350" },
+          { name: "AGPO Certificate App", price: "Ksh 350" },
+          { name: "IFMIS Services", price: "Ksh 400" },
+          { name: "EACC Clearance Cert", price: "Ksh 600" },
+          { name: "CRB Clearance Cert", price: "Ksh 400" }
+        ]
+      },
+      {
+        id: "design", category: "design", categoryTitle: "Creative", title: "Graphic Design Services",
+        img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80",
+        items: [
+          { name: "Logo Design", price: "Ksh 2,500" },
+          { name: "Poster / Flyer Design", price: "Ksh 500" },
+          { name: "Business Card Design", price: "Ksh 800-1k" },
+          { name: "Banner Design", price: "Ksh 1,000" },
+          { name: "Social Media Post Design", price: "Ksh 500" },
+          { name: "Letterhead Design", price: "Ksh 800" },
+          { name: "CV Design", price: "Ksh 500" }
+        ]
+      },
+      {
+        id: "web", category: "web", categoryTitle: "Web Dev", title: "Website Design Services",
+        img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+        items: [
+          { name: "Basic Website (1–3 Pages)", price: "Ksh 15,000" },
+          { name: "Business Website Design", price: "Ksh 25,000" },
+          { name: "E-Commerce Website", price: "Ksh 35,000" },
+          { name: "Website Redesign / Editing", price: "Ksh 10,000" },
+          { name: "Domain / Email Setup", price: "Ksh 2,500" },
+          { name: "Web Hosting Setup", price: "Ksh 3,000" },
+          { name: "Monthly Maintenance", price: "Ksh 5,000" }
+        ]
+      },
+      {
+        id: "cctv", category: "cctv", categoryTitle: "Security", title: "CCTV Security Setup",
+        img: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80",
+        items: [
+          { name: "HD Camera Setup & Cabling", price: "Ksh 2,500" },
+          { name: "DVR / NVR Config", price: "Ksh 1,500" },
+          { name: "Mobile Phone Remote Setup", price: "Ksh 1,000" },
+          { name: "CCTV System Maintenance", price: "Ksh 1,000" }
+        ]
+      },
+      {
+        id: "repair", category: "repair", categoryTitle: "Hardware", title: "Hardware & OS Repair",
+        img: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=600&q=80",
+        items: [
+          { name: "Windows OS Installation / Format", price: "Ksh 1,000" },
+          { name: "Computer Hardware Repair", price: "Ksh 500" },
+          { name: "Software & Antivirus Setup", price: "Ksh 300" },
+          { name: "RAM & Hard Drive / SSD Upgrade", price: "Ksh 500" },
+          { name: "System Cleaning & Thermal Paste", price: "Ksh 300" }
+        ]
+      },
+      {
+        id: "print", category: "print", categoryTitle: "Printing", title: "Printing & Scanning",
+        img: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=600&q=80",
+        items: [
+          { name: "Black & White Printing", price: "Ksh 5 / pg" },
+          { name: "Coloured Printing", price: "Ksh 10 / pg" },
+          { name: "High Res Document Scanning", price: "Ksh 10 / pg" },
+          { name: "Lamination & Binding", price: "Ksh 50" }
+        ]
+      }
+    ];
+
+    window.services = defaultServices;
+    window.products = [
+      { id: "1", name: "32GB High Speed Flash Drive", price: 800, img: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80" },
+      { id: "2", name: "1080p HD CCTV Dome Camera", price: 3500, img: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=400&q=80" }
+    ];
+
+    let isAdmin = false;
+    let cropperInstance = null;
+    let croppedResultBase64 = '';
+
+    function renderServices() {
+      const track = document.getElementById('servicesTrack');
+      if (!track) return;
+      track.innerHTML = '';
+      window.services.forEach(s => {
+        let itemsHtml = '';
+        s.items.forEach((item, idx) => {
+          itemsHtml += `
+            <li>
+              <span>${item.name}</span>
+              <div class="item-price-wrapper">
+                <span class="item-price">${item.price}</span>
+                ${isAdmin ? `<i class="fa-solid fa-pen edit-price-btn" onclick="editServicePrice('${s.id}',${idx})"></i>` : ''}
+              </div>
+            </li>
+          `;
+        });
+
+        track.innerHTML += `
+          <div class="service-card" data-category="${s.category}">
+            <div class="card-img-wrapper"><img src="${s.img}" class="card-img" /></div>
+            <div class="card-content">
+              <span class="card-category">${s.categoryTitle}</span>
+              <h3 class="card-title">${s.title}</h3>
+              <ul class="item-list">${itemsHtml}</ul>
+              <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20help%20with%20${encodeURIComponent(s.title)}" target="_blank" class="card-btn">
+                <i class="fa-brands fa-whatsapp"></i> Apply via WhatsApp
+              </a>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      window.products.forEach(p => {
+        grid.innerHTML += `
+          <div class="square-product-card">
+            ${isAdmin ? `<button class="delete-btn" onclick="deleteProduct('${p.id}')"><i class="fa-solid fa-trash"></i></button>` : ''}
+            <div class="square-img-box">
+              <img src="${p.img}" class="square-product-img" alt="${p.name}" />
+            </div>
+            <div class="square-card-body">
+              <div class="square-prod-title">${p.name}</div>
+              <div class="square-price-tag">KSh ${Number(p.price).toLocaleString()}</div>
+              <button onclick="orderProductWhatsApp('${p.name}', ${p.price})" class="square-buy-btn">Buy Now</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function editServicePrice(sId, itemIdx) {
+      if (!isAdmin) return;
+      const targetServ = window.services.find(s => s.id === sId);
+      if (targetServ && targetServ.items[itemIdx]) {
+        const newPrice = prompt("Enter new price:", targetServ.items[itemIdx].price);
+        if (newPrice) {
+          targetServ.items[itemIdx].price = newPrice;
+          if (window.dbSet && window.dbRef && window.db) {
+            window.dbSet(window.dbRef(window.db, 'sitatech_services'), window.services);
+          }
+        }
+      }
+    }
+
+    function filterServices(category) {
+      const cards = document.querySelectorAll('.service-card');
+      cards.forEach(card => {
+        card.style.display = (category === 'all' || card.getAttribute('data-category') === category) ? 'flex' : 'none';
+      });
+    }
+
+    function orderProductWhatsApp(name, price) {
+      const message = `*ORDER - SITA-TECH SHOP*%0A%0A*Item:* ${encodeURIComponent(name)}%0A*Price:* KSh ${price}`;
+      window.open(`https://wa.me/254795609046?text=${message}`, '_blank');
+    }
+
+    function triggerImageCrop(e) {
+      const files = e.target.files;
+      if (files && files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          document.getElementById('imageToCrop').src = evt.target.result;
+          document.getElementById('cropContainer').style.display = 'block';
+          document.getElementById('cropperModal').style.display = 'flex';
+          
+          if (cropperInstance) cropperInstance.destroy();
+          cropperInstance = new Cropper(document.getElementById('imageToCrop'), {
+            aspectRatio: 1,
+            viewMode: 1
+          });
+        };
+        reader.readAsDataURL(files[0]);
+      }
+    }
+
+    function applyCropAndSave() {
+      if (cropperInstance) {
+        croppedResultBase64 = cropperInstance.getCroppedCanvas({ width: 400, height: 400 }).toDataURL('image/jpeg', 0.85);
+        closeCropperModal();
+      }
+    }
+
+    function closeCropperModal() { document.getElementById('cropperModal').style.display = 'none'; }
+    function openModal() { document.getElementById('productModal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('productModal').style.display = 'none'; }
+
+    function saveProduct(e) {
+      e.preventDefault();
+      if (!isAdmin) return;
+      const pId = 'prod_' + Date.now();
+      const price = Number(document.getElementById('pPrice').value);
+
+      const newP = {
+        id: pId,
+        name: document.getElementById('pTitle').value,
+        price: price,
+        img: croppedResultBase64 || "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80"
+      };
+
+      if (window.dbSet && window.dbRef && window.db) {
+        window.dbSet(window.dbRef(window.db, 'sitatech_products/' + pId), newP);
+      }
+      closeModal();
+    }
+
+    function deleteProduct(pId) {
+      if (!isAdmin) return;
+      if (window.dbSet && window.dbRef && window.db) {
+        window.dbSet(window.dbRef(window.db, 'sitatech_products/' + pId), null);
+      }
+    }
+
+    renderServices();
+    renderProducts();
+  </script>
+</body>
+</html>
