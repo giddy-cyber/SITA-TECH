@@ -2,19 +2,1171 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SITA-TECH | Cyber &amp; Tech Services</title>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH59TVT3HM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-JH59TVT3HM');
-  </script>
-
-  <link rel="icon" type="image/webp" href="data:image/webp;base64,UklGRuIZAABXRUJQVlA4WAoAAAAQAAAAnwAAWAAAQUxQSDwKAAABv6egbRtp6fiz/ncHICLS+NKJYiHE2tmLhwlHAdyGjWTdzy1/wJU3ChH9nwBJinu2PlLSyK297ma1jde[...]
+  <link rel="icon" type="image/webp" href="data:image/webp;base64,UklGRuIZAABXRUJQVlA4WAoAAAAQAAAAnwAAWAAAQUxQSDwKAAABv6egbRtp6fiz/ncHICLS+NKJYiHE2tmLhwlHAdyGjWTdzy1/wJU3ChH9nwBJinu2PlLSyK297ma1jde2NYkB4BGW9NzH4Ak8b4N0my7UNQ0yowP1kc9Qb0Q7M5q5u8vHYC4g==" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700;800&family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+  <style>
+    :root {
+      --bg: #04060c;
+      --panel: rgba(10, 15, 28, 0.96);
+      --panel-2: #0b1324;
+      --text: #eef6ff;
+      --muted: #9fb3c8;
+      --line: #1f2d3d;
+      --blue: #4285F4;
+      --red: #EA4335;
+      --green: #34A853;
+      --cyan: #00f2fe;
+      --matrix: #00ff87;
+      --wa: #25d366;
+      --mpesa: #00a03e;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea, select { font: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(4, 6, 12, 0.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.6rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #2d6cdf, #00f2fe);
+      padding: 4px;
+    }
+    .wordmark {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.15rem;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .wordmark b { font-weight: 800; }
+
+    .nav-contacts {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .chip, .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0.45rem 0.7rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .chip:hover, .wa-btn:hover { transform: translateY(-1px); }
+    .chip { background: rgba(0, 160, 62, 0.08); border-color: var(--mpesa); color: var(--matrix); }
+    .wa-btn { background: linear-gradient(135deg, var(--wa), #10b981); color: white; border-color: transparent; box-shadow: 0 0 12px rgba(37, 211, 102, 0.3); }
+    .phone-link {
+      color: var(--cyan);
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 2.2rem 0 1.2rem;
+    }
+    .hero-text {
+      flex: 1 1 auto;
+      max-width: 620px;
+    }
+    .hero h1 {
+      margin: 0 0 0.8rem;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      line-height: 1.08;
+    }
+    .hero p {
+      margin: 0 0 1.25rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 52ch;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .primary-btn, .ghost-btn {
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 0.75rem 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--blue);
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    .primary-btn {
+      background: var(--blue);
+      color: white;
+    }
+    .ghost-btn {
+      background: transparent;
+      color: white;
+    }
+    .primary-btn:hover, .ghost-btn:hover { filter: brightness(1.08); }
+
+    .hero-photo-wrap {
+      width: min(28vw, 220px);
+      min-width: 150px;
+      position: relative;
+      border-radius: 16px;
+      padding: 6px;
+      background: linear-gradient(135deg, #4285F4, #EA4335, #FBBC04, #34A853);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+    }
+    .hero-photo-wrap img {
+      border-radius: 12px;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 504 / 640;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 1.5rem 0 0.9rem;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .swipe-text {
+      color: var(--cyan);
+      font-size: 0.7rem;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .category-tabs {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.4rem;
+      scrollbar-width: none;
+      margin-bottom: 0.9rem;
+    }
+    .category-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      white-space: nowrap;
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border-color: transparent;
+      color: white;
+    }
+
+    .services-track {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.8rem;
+      scrollbar-width: none;
+    }
+    .services-track::-webkit-scrollbar { display: none; }
+    .service-card {
+      flex: 0 0 280px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      min-height: 260px;
+    }
+    .service-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--line);
+    }
+    .service-body {
+      padding: 0.8rem;
+    }
+    .service-badge {
+      font-size: 0.56rem;
+      color: var(--matrix);
+      font-family: 'Fira Code', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: inline-block;
+      margin-bottom: 0.45rem;
+    }
+    .service-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    .service-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.3rem;
+    }
+    .service-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px dashed rgba(255,255,255,0.08);
+      padding: 0.14rem 0 0.24rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+    .price-tag {
+      color: var(--cyan);
+      font-weight: 700;
+      font-size: 0.72rem;
+      white-space: nowrap;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      padding: 0.12rem 0.35rem;
+      border-radius: 4px;
+    }
+    .service-card button {
+      width: 100%;
+      margin-top: 0.8rem;
+      border: none;
+      background: linear-gradient(135deg, var(--wa), #10b981);
+      color: white;
+      padding: 0.55rem 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 0;
+    }
+
+    .shop-section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 0.9rem 0.8rem 1rem;
+      margin-top: 1.2rem;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.6rem;
+    }
+    .product-card {
+      background: white;
+      color: #0f172a;
+      border: 1px solid #dfe7f2;
+      overflow: hidden;
+    }
+    .product-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      background: #eef3ff;
+    }
+    .product-body {
+      padding: 0.55rem 0.6rem 0.7rem;
+    }
+    .product-name {
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1.3;
+      min-height: 2.6em;
+      margin-bottom: 0.35rem;
+    }
+    .product-price {
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .product-btn {
+      width: 100%;
+      border: 0;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.55rem 0.6rem;
+      cursor: pointer;
+    }
+
+    .contact-card {
+      margin-top: 1.4rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 1rem 0.8rem;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 0.8rem;
+      background: rgba(4, 6, 12, 0.45);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .contact-item i {
+      font-size: 1.1rem;
+      color: var(--cyan);
+      width: 20px;
+      text-align: center;
+    }
+    .contact-item h5 {
+      margin: 0 0 0.12rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .contact-item a, .contact-item span {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .social-section {
+      margin-top: 1.4rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 1rem 0.8rem;
+      text-align: center;
+    }
+    .social-section h3 {
+      margin: 0 0 0.25rem;
+      font-size: 0.95rem;
+    }
+    .social-section p {
+      margin: 0 0 0.9rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      gap: 0.6rem;
+    }
+    .social-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.35rem;
+      background: rgba(4, 6, 12, 0.7);
+      border: 1px solid var(--line);
+      padding: 0.7rem 0.5rem;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      min-height: 72px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: var(--bg);
+      padding: 1rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+    .live-clock {
+      color: var(--cyan);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal.open { display: flex; }
+    .modal-box {
+      width: min(440px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--blue);
+      padding: 1rem;
+      position: relative;
+    }
+    .close-x {
+      position: absolute;
+      right: 0.8rem;
+      top: 0.7rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+    .modal-box h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.12rem;
+      font-family: 'Chakra Petch', sans-serif;
+    }
+    .modal-sub {
+      color: var(--muted);
+      font-size: 0.74rem;
+      margin: 0 0 0.8rem;
+    }
+    .order-product {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      padding: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .order-product img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: white;
+    }
+    .order-product .name {
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .order-product .unit {
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+    .field {
+      margin-bottom: 0.7rem;
+    }
+    .field label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      padding: 0.65rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: #0a111c;
+      color: var(--text);
+    }
+    .stepper {
+      display: flex;
+      align-items: center;
+      background: #0a111c;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .stepper button {
+      width: 42px;
+      background: #0f1b2b;
+      border: none;
+      color: white;
+      padding: 0.65rem 0;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .stepper input {
+      border: none;
+      background: transparent;
+      text-align: center;
+      padding: 0.65rem !important;
+    }
+    .total-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(52,168,83,0.1);
+      border: 1px solid rgba(52,168,83,0.5);
+      border-radius: 8px;
+      padding: 0.7rem 0.8rem;
+      margin: 0.2rem 0 0.8rem;
+      font-weight: 700;
+    }
+    .total-box strong {
+      font-family: 'Chakra Petch', sans-serif;
+      color: var(--matrix);
+      font-size: 1.25rem;
+    }
+    .pay-note {
+      margin: 0.2rem 0 0.8rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .pay-note b { color: white; }
+    .error {
+      color: #ff8a80;
+      font-size: 0.72rem;
+      margin: 0 0 0.7rem;
+      min-height: 1.2em;
+    }
+    .submit-btn {
+      width: 100%;
+      border: none;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: white;
+      font-weight: 800;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .done-box {
+      display: none;
+      text-align: center;
+      padding-top: 0.5rem;
+    }
+    .done-box .wa-link {
+      display: inline-block;
+      margin: 0.75rem 0;
+      background: var(--wa);
+      color: white;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 26px;
+      transform: translate(-50%, 22px);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid var(--blue);
+      color: var(--text);
+      padding: 0.6rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      opacity: 0;
+      transition: 0.25s ease;
+      pointer-events: none;
+      z-index: 101;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 760px) {
+      .hero { flex-direction: column; text-align: center; }
+      .hero-text { max-width: none; }
+      .hero-cta { justify-content: center; }
+      .hero-photo-wrap { width: min(42vw, 240px); }
+      .nav-container { padding: 0.55rem 0.8rem; }
+      .brand { letter-spacing: 0.05em; }
+      .wordmark { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="brand">
+        <img class="brand-mark" src="data:image/webp;base64,UklGRuIZAABXRUJQVlA4WAoAAAAQAAAAnwAAWAAAQUxQSDwKAAABv6egbRtp6fiz/ncHICLS+NKJYiHE2tmLhwlHAdyGjWTdzy1/wJU3ChH9nwBJinu2PlLSyK297ma1jde2NYkB4BGW9NzH4Ak8b4N0my7UNQ0yowP1kc9Qb0Q7M5q5u8vHYC4g==" alt="SITA-TECH logo" />
+        <div class="wordmark"><b style="color:#2563eb">S</b><b style="color:#2563eb">I</b><b style="color:#2563eb">T</b><b style="color:#2563eb">A</b><b style="color:#ef2b2d">-</b><b style="color:#1d4ed8">T</b><b style="color:#1d4ed8">E</b><b style="color:#1d4ed8">C</b><b style="color:#1d4ed8">H</b></div>
+      </div>
+      <div class="nav-contacts">
+        <button class="chip" type="button" onclick="openTillModal()"><i class="fa-solid fa-mobile-screen-button"></i> Till</button>
+        <a class="phone-link" href="tel:0795609046"><i class="fa-solid fa-phone-volume"></i> 0795609046</a>
+        <a class="wa-btn" href="https://wa.me/254795609046" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Chat</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Government e-services, design, web and repairs, done for you.</h1>
+        <p>Choose a service, tell us what you need, and we handle the rest.</p>
+        <div class="hero-cta">
+          <a class="primary-btn" href="#services">Browse services</a>
+          <button class="ghost-btn" type="button" onclick="openRequest('web')">Hire a Developer</button>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="SITA-TECH team" />
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-head">
+        <h2>Cyber &amp; Tech Services</h2>
+        <span class="swipe-text">Swipe right →</span>
+      </div>
+      <div id="categoryTabs" class="category-tabs"></div>
+      <div id="servicesTrack" class="services-track"></div>
+    </section>
+
+    <section class="shop-section" id="shop">
+      <div class="section-head" style="margin-top:0;">
+        <h2>Hardware &amp; Items Shop</h2>
+      </div>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+
+    <section class="contact-card" id="contact">
+      <div class="contact-grid">
+        <div class="contact-item">
+          <i class="fa-brands fa-whatsapp" style="color:var(--wa);"></i>
+          <div>
+            <h5>WhatsApp Line</h5>
+            <a href="https://wa.me/254795609046" target="_blank" rel="noopener">+254 795 609 046</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <h5>Direct Call</h5>
+            <a href="tel:0795609046">0795609046</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <div>
+            <h5>Email Address</h5>
+            <a href="mailto:sitatech3@gmail.com">sitatech3@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="social-section">
+      <h3>Connect &amp; Follow SITA-TECH</h3>
+      <p>Fast inquiries, direct updates, and customer support.</p>
+      <div class="social-grid">
+        <a class="social-card" href="https://wa.me/254795609046" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="color: var(--wa);"></i><span>WhatsApp</span></a>
+        <a class="social-card" href="https://facebook.com" target="_blank" rel="noopener"><i class="fa-brands fa-facebook" style="color:#1877f2;"></i><span>Facebook</span></a>
+        <a class="social-card" href="https://instagram.com" target="_blank" rel="noopener"><i class="fa-brands fa-instagram" style="color:#e4405f;"></i><span>Instagram</span></a>
+        <a class="social-card" href="https://linkedin.com" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" style="color:#0a66c2;"></i><span>LinkedIn</span></a>
+        <a class="social-card" href="https://x.com" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter" style="color:#fff;"></i><span>X</span></a>
+        <a class="social-card" href="https://tiktok.com" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok" style="color:#ff0050;"></i><span>TikTok</span></a>
+        <a class="social-card" href="https://youtube.com" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" style="color:#ff0000;"></i><span>YouTube</span></a>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="tillModal">
+    <div class="modal-box" style="max-width:360px; text-align:center;">
+      <span class="close-x" onclick="closeTillModal()">&times;</span>
+      <h3 style="color: var(--matrix);">M-Pesa Till</h3>
+      <p class="modal-sub" style="margin-bottom:0.8rem;">Lipa na M-Pesa (Buy Goods &amp; Services)</p>
+      <div style="background:#000; border:1px dashed var(--mpesa); padding:0.9rem; border-radius:8px; margin-bottom:0.8rem;">
+        <div style="font-family:'Share Tech Mono', monospace; font-size:1.7rem; font-weight:800; color:var(--matrix); letter-spacing:0.1em;">6807927</div>
+        <div style="font-size:0.74rem; margin-top:0.2rem; color:white;">SITA-TECH SERVICES</div>
+      </div>
+      <button class="submit-btn" type="button" onclick="closeTillModal()">Done</button>
+    </div>
+  </div>
+
+  <div class="modal" id="orderModal">
+    <div class="modal-box">
+      <span class="close-x" onclick="closeOrder()">&times;</span>
+      <div id="orderFormView">
+        <h3 id="omTitle">Request Service</h3>
+        <p id="omSub" class="modal-sub">Choose a service and send your details.</p>
+        <div class="order-product">
+          <img id="omImg" alt="item" />
+          <div>
+            <div id="omName" class="name">Service</div>
+            <div id="omUnit" class="unit">Quote on request</div>
+          </div>
+        </div>
+        <form id="orderForm" onsubmit="submitOrder(event)">
+          <div class="field" id="omSelectWrap">
+            <label for="omSelect">Service needed</label>
+            <select id="omSelect" onchange="omRecalc()"></select>
+          </div>
+
+          <div class="field">
+            <label for="omQty" id="omQtyLabel">Quantity</label>
+            <div class="stepper">
+              <button type="button" onclick="omStep(-1)">−</button>
+              <input id="omQty" type="number" min="1" max="999" value="1" oninput="omRecalc()" />
+              <button type="button" onclick="omStep(1)">+</button>
+            </div>
+          </div>
+
+          <div class="total-box"><span>Total</span><strong id="omTotal">KSh 0</strong></div>
+
+          <div class="field">
+            <label for="omLoc" id="omLocLabel">Location</label>
+            <input id="omLoc" type="text" placeholder="Town / area" />
+          </div>
+          <div class="field">
+            <label for="omName2">Your name</label>
+            <input id="omName2" type="text" required />
+          </div>
+          <div class="field">
+            <label for="omPhone">Phone number</label>
+            <input id="omPhone" type="tel" required placeholder="07XX XXX XXX" />
+          </div>
+          <div class="field">
+            <label for="omEmail">Email (optional)</label>
+            <input id="omEmail" type="email" />
+          </div>
+          <div class="field">
+            <label for="omNotes" id="omNotesLabel">Notes</label>
+            <textarea id="omNotes" rows="3"></textarea>
+          </div>
+          <input type="text" id="omHoney" tabindex="-1" autocomplete="off" style="display:none" />
+          <p class="pay-note">Pay after we confirm: M-Pesa Till <b>6807927</b> (<b>SITA-TECH SERVICES</b>).</p>
+          <div id="omError" class="error" aria-live="polite"></div>
+          <button class="submit-btn" type="submit" id="omSubmit">Send request</button>
+        </form>
+      </div>
+
+      <div id="omDoneView" class="done-box">
+        <h3>Received. Thank you!</h3>
+        <p id="omDoneText" class="modal-sub"></p>
+        <a id="omWa" class="wa-link" href="#" target="_blank" rel="noopener">Confirm on WhatsApp</a>
+        <div><button class="ghost-btn" type="button" onclick="closeOrder()" style="margin-top:0.5rem; width:100%;">Close</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <footer>
+    <div class="live-clock" id="liveClock">Loading time...</div>
+    <div>&copy; <span id="copyrightYear"></span> SITA-TECH. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    window.site = {
+      phone: '0795609046',
+      whatsapp: '254795609046',
+      email: 'sitatech3@gmail.com',
+      till: '6807927',
+      tillName: 'SITA-TECH SERVICES'
+    };
+
+    const defaultServices = [
+      {
+        id: 'kra', category: 'kra', categoryTitle: 'Taxation', tab: 'KRA Services', title: 'KRA iTax Services',
+        img: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
+        items: [
+          { name: 'Individual PIN Registration', price: 'Ksh 200' },
+          { name: 'KRA Email Reset', price: 'Ksh 300' },
+          { name: 'Nil Returns Filing', price: 'Ksh 150' },
+          { name: 'P9 Returns Filing', price: 'Ksh 300' },
+          { name: 'Tax Compliance Cert. (TCC)', price: 'Ksh 200' },
+          { name: 'PIN Update / New Email', price: 'Ksh 300' }
+        ]
+      },
+      {
+        id: 'ntsa', category: 'ntsa', categoryTitle: 'Transport', tab: 'NTSA', title: 'NTSA & TIMS Services',
+        img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+        items: [
+          { name: 'Provisional Driving License (PDL)', price: 'Ksh 250' },
+          { name: 'Smart Driving License (Smart DL)', price: 'Ksh 300' },
+          { name: 'NTSA / TIMS Account Creation', price: 'Ksh 300' },
+          { name: 'Logbook Application', price: 'Ksh 500' },
+          { name: 'Permits Application / Inspection', price: 'Ksh 500' }
+        ]
+      },
+      {
+        id: 'helb', category: 'helb', categoryTitle: 'Education', tab: 'HELB / KUCCPS', title: 'HELB & KUCCPS Services',
+        img: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80',
+        items: [
+          { name: 'KUCCPS Placement', price: 'Ksh 500' },
+          { name: 'HEF / HELB Loan App', price: 'Ksh 500' },
+          { name: 'HELB Loan Appeal', price: 'Ksh 400' },
+          { name: 'HELB Clearance Cert', price: 'Ksh 250' },
+          { name: 'KMTC / TTC Application', price: 'Ksh 500' }
+        ]
+      },
+      {
+        id: 'design', category: 'design', categoryTitle: 'Creative', tab: 'Design', title: 'Graphic Design Services',
+        img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80',
+        items: [
+          { name: 'Logo Design', price: 'Ksh 2,500' },
+          { name: 'Poster / Flyer Design', price: 'Ksh 500' },
+          { name: 'Business Card Design', price: 'Ksh 800' },
+          { name: 'Banner Design', price: 'Ksh 1,000' },
+          { name: 'Social Media Post Design', price: 'Ksh 500' }
+        ]
+      },
+      {
+        id: 'web', category: 'web', categoryTitle: 'Web Dev', tab: 'Web Design', title: 'Website Design Services',
+        img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
+        items: [
+          { name: 'Basic Website (1–3 Pages)', price: 'Ksh 15,000' },
+          { name: 'Business Website Design', price: 'Ksh 25,000' },
+          { name: 'E-Commerce Website', price: 'Ksh 35,000' },
+          { name: 'Website Redesign / Editing', price: 'Ksh 10,000' },
+          { name: 'Domain / Email Setup', price: 'Ksh 2,500' }
+        ]
+      },
+      {
+        id: 'repair', category: 'repair', categoryTitle: 'Hardware', tab: 'Repairs', title: 'Hardware & OS Repair',
+        img: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=800&q=80',
+        items: [
+          { name: 'Windows OS Installation / Format', price: 'Ksh 1,000' },
+          { name: 'Computer Hardware Repair', price: 'Ksh 500' },
+          { name: 'Software & Antivirus Setup', price: 'Ksh 300' },
+          { name: 'RAM & Hard Drive / SSD Upgrade', price: 'Ksh 500' },
+          { name: 'System Cleaning & Thermal Paste', price: 'Ksh 300' }
+        ]
+      },
+      {
+        id: 'cctv', category: 'cctv', categoryTitle: 'Security', tab: 'CCTV', title: 'CCTV Security Setup',
+        img: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80',
+        items: [
+          { name: 'HD Camera Setup & Cabling', price: 'Ksh 2,500' },
+          { name: 'DVR / NVR Config', price: 'Ksh 1,500' },
+          { name: 'Mobile Phone Remote Setup', price: 'Ksh 1,000' },
+          { name: 'CCTV System Maintenance', price: 'Ksh 1,000' }
+        ]
+      }
+    ];
+
+    const defaultProducts = [
+      { id: '1', name: '32GB High Speed Flash Drive', price: 800, img: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=600&q=80' },
+      { id: '2', name: '1080p HD CCTV Dome Camera', price: 3500, img: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80' },
+      { id: '3', name: 'USB Wi-Fi Adapter', price: 1200, img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80' },
+      { id: '4', name: 'Laptop Cooling Pad', price: 1800, img: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80' }
+    ];
+
+    const CTA = {
+      web: ['Hire a Developer', 'Tell us about your project. We reply with a plan and timeline.'],
+      design: ['Hire a Designer', 'Share what you need designed and we will start right away.'],
+      default: ['Request this service', 'Choose the service and tell us what you need.']
+    };
+
+    const state = { activeCategory: 'all' };
+    const $ = (id) => document.getElementById(id);
+    let om = null;
+
+    function formatMoney(n) {
+      return 'KSh ' + Math.round(n).toLocaleString('en-KE');
+    }
+
+    function parsePrice(str) {
+      const re = /(\d[\d,]*(?:\.\d+)?)\s*(k)?/gi;
+      const nums = [];
+      let m;
+      while ((m = re.exec(String(str)))) {
+        let v = parseFloat(m[1].replace(/,/g, ''));
+        if (m[2]) v *= 1000;
+        nums.push(v);
+      }
+      const unitMatch = /\/\s*(\w+)/.exec(String(str));
+      return { low: nums[0] || 0, high: nums[nums.length - 1] || 0, unit: unitMatch ? unitMatch[1] : null };
+    }
+
+    function openTillModal() {
+      $('tillModal').classList.add('open');
+    }
+    function closeTillModal() {
+      $('tillModal').classList.remove('open');
+    }
+
+    function renderTabs() {
+      const services = defaultServices;
+      const tabs = ['all', ...new Set(services.map(s => s.category))];
+      $('categoryTabs').innerHTML = tabs.map(cat => {
+        const label = cat === 'all' ? 'All Services' : (services.find(s => s.category === cat)?.tab || services.find(s => s.category === cat)?.categoryTitle || cat);
+        return `<button class="tab-btn ${state.activeCategory === cat ? 'active' : ''}" type="button" data-cat="${cat}">${label}</button>`;
+      }).join('');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.activeCategory = btn.dataset.cat;
+          renderTabs();
+          renderServices();
+        });
+      });
+    }
+
+    function renderServices() {
+      let filtered = defaultServices;
+      if (state.activeCategory !== 'all') {
+        filtered = defaultServices.filter(s => s.category === state.activeCategory);
+      }
+
+      $('servicesTrack').innerHTML = filtered.map(service => {
+        const items = service.items.slice(0, 4).map(item => `<li><span>${item.name}</span><span class="price-tag">${item.price}</span></li>`).join('');
+        return `
+          <article class="service-card">
+            <img src="${service.img}" alt="${service.title}" />
+            <div class="service-body">
+              <div class="service-badge">${service.categoryTitle}</div>
+              <div class="service-title">${service.title}</div>
+              <ul class="service-list">${items}</ul>
+              <button type="button" onclick="openRequest('${service.id}')">Request service</button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderProducts() {
+      $('productGrid').innerHTML = defaultProducts.map(product => `
+        <article class="product-card">
+          <img src="${product.img}" alt="${product.name}" />
+          <div class="product-body">
+            <div class="product-name">${product.name}</div>
+            <div class="product-price">${formatMoney(product.price)}</div>
+            <button class="product-btn" type="button" onclick="openOrder('${product.id}')">Order now</button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function toast(msg) {
+      const el = $('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(toast.timeout);
+      toast.timeout = setTimeout(() => el.classList.remove('show'), 2600);
+    }
+
+    function openRequest(serviceId) {
+      const service = defaultServices.find(s => s.id === serviceId);
+      if (!service) return;
+      const cta = (CTA[service.category] || CTA.default).slice();
+      om = {
+        kind: service.title,
+        items: service.items.map(item => Object.assign({ name: item.name, label: item.price }, parsePrice(item.price))),
+        img: service.img,
+        title: cta[0],
+        subtitle: cta[1]
+      };
+
+      $('omTitle').textContent = cta[0];
+      $('omSub').textContent = cta[1];
+      $('omImg').src = service.img;
+      $('omName').textContent = service.title;
+      $('omUnit').textContent = service.items.length ? `${service.items[0].price} onwards` : 'Quote on request';
+      $('omSelectWrap').style.display = 'block';
+      $('omSelect').innerHTML = om.items.map((item, index) => `<option value="${index}">${item.name} (${item.label})</option>`).join('');
+      $('omQtyLabel').textContent = 'Quantity';
+      $('omLocLabel').textContent = 'Location';
+      $('omNotesLabel').textContent = 'Project details';
+      $('omSubmit').textContent = 'Send request';
+      $('orderFormView').style.display = 'block';
+      $('omDoneView').style.display = 'none';
+      $('orderModal').classList.add('open');
+      $('orderForm').reset();
+      $('omQty').value = 1;
+      omRecalc();
+    }
+
+    function openOrder(productId) {
+      const product = defaultProducts.find(p => String(p.id) === String(productId));
+      if (!product) return;
+      om = {
+        kind: 'Shop item',
+        items: [{ name: product.name, label: formatMoney(product.price), low: Number(product.price), high: Number(product.price), unit: null }],
+        img: product.img,
+        title: 'Order: ' + product.name,
+        subtitle: 'Choose how many you need. The total updates automatically.'
+      };
+
+      $('omTitle').textContent = 'Order: ' + product.name;
+      $('omSub').textContent = 'Choose how many you need. The total updates automatically.';
+      $('omImg').src = product.img;
+      $('omName').textContent = product.name;
+      $('omUnit').textContent = formatMoney(product.price);
+      $('omSelectWrap').style.display = 'none';
+      $('omQtyLabel').textContent = 'Quantity';
+      $('omLocLabel').textContent = 'Delivery or pickup location';
+      $('omNotesLabel').textContent = 'Notes';
+      $('omSubmit').textContent = 'Send order';
+      $('orderFormView').style.display = 'block';
+      $('omDoneView').style.display = 'none';
+      $('orderModal').classList.add('open');
+      $('orderForm').reset();
+      $('omQty').value = 1;
+      omRecalc();
+    }
+
+    function omCurrent() {
+      if (!om) return null;
+      if ($('omSelectWrap').style.display !== 'none') {
+        return om.items[Number($('omSelect').value) || 0] || om.items[0];
+      }
+      return om.items[0];
+    }
+
+    function omQty() {
+      return Math.min(999, Math.max(1, parseInt($('omQty').value, 10) || 1));
+    }
+
+    function omStep(delta) {
+      $('omQty').value = Math.min(999, Math.max(1, omQty() + delta));
+      omRecalc();
+    }
+
+    function omRecalc() {
+      if (!om) return;
+      const item = omCurrent();
+      if (!item) return;
+      const q = omQty();
+      const low = Number(item.low || 0);
+      const high = Number(item.high || low || 0);
+      const totalLow = low * q;
+      const totalHigh = high * q;
+      $('omName').textContent = item.name;
+      $('omUnit').textContent = low ? (low === high ? formatMoney(low) : `${formatMoney(low)} – ${formatMoney(high).replace('KSh ', '')}`) : 'Quote on request';
+      $('omTotal').textContent = low === high ? formatMoney(totalLow) : `${formatMoney(totalLow)} – ${formatMoney(totalHigh).replace('KSh ', '')}`;
+    }
+
+    function closeOrder() {
+      $('orderModal').classList.remove('open');
+    }
+
+    async function submitOrder(event) {
+      event.preventDefault();
+      if ($('omHoney').value) return;
+      if (!om) return;
+
+      const item = omCurrent();
+      const qty = omQty();
+      const total = $('omTotal').textContent;
+      const ref = 'ST-' + Date.now().toString(36).toUpperCase().slice(-6);
+
+      const payload = {
+        _subject: `New order ${ref}: ${item.name} x ${qty} (${total})`,
+        _template: 'table',
+        _captcha: 'false',
+        'Order ref': ref,
+        Type: om.kind,
+        Item: item.name,
+        'Unit price': item.label || formatMoney(item.low || 0),
+        Quantity: qty,
+        Total: total,
+        'Customer name': $('omName2').value.trim(),
+        Phone: $('omPhone').value.trim(),
+        Location: $('omLoc').value.trim() || 'Not given',
+        Notes: $('omNotes').value.trim() || 'None'
+      };
+
+      if ($('omEmail').value.trim()) payload.email = $('omEmail').value.trim();
+
+      const btn = $('omSubmit');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      $('omError').textContent = '';
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/' + window.site.email, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || 'failed');
+
+        $('omDoneText').textContent = `Order ${ref}: ${item.name} x ${qty}, total ${total}. We will contact you on ${payload.Phone} to confirm.`;
+        $('omWa').href = 'https://wa.me/' + window.site.whatsapp + '?text=' + encodeURIComponent(`Hello SITA-TECH, I just placed order ${ref}: ${item.name} x ${qty} (${total}).`);
+        $('orderFormView').style.display = 'none';
+        $('omDoneView').style.display = 'block';
+      } catch (err) {
+        $('omError').textContent = 'Could not send. Check your internet and try again, or message us on WhatsApp ' + window.site.phone + '.';
+      }
+
+      btn.disabled = false;
+      btn.textContent = om.kind === 'Shop item' ? 'Send order' : 'Send request';
+    }
+
+    function updateClock() {
+      const now = new Date();
+      $('liveClock').textContent = `${now.toLocaleDateString()} | ${now.toLocaleTimeString()}`;
+      $('copyrightYear').textContent = now.getFullYear();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeOrder();
+        closeTillModal();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      const modal = e.target.closest('.modal');
+      if (modal && e.target === modal) {
+        modal.classList.remove('open');
+      }
+    });
+
+    renderTabs();
+    renderServices();
+    renderProducts();
+    updateClock();
+    setInterval(updateClock, 1000);
+    toast('Website restored to standard mode');
+  </script>
+</body>
+</html>
