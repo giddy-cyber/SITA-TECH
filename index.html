@@ -617,15 +617,39 @@
             { id: 55, category: "Government", title: "KUCCPS & Online Applications", price: "Enquire on WhatsApp", desc: "Help with university, college, job and scholarship applications online.", icon: "fa-building-columns", btnText: "Apply Online" }
         ];
 
-        // Load services saved by the admin (stored in this browser)
-        try {
-            const saved = JSON.parse(localStorage.getItem('sita_services'));
-            if (Array.isArray(saved) && saved.length) {
-                const fresh = defaultServices.filter(d => d.id >= 41 && d.id <= 46 && !saved.some(x => String(x.id) === String(d.id)));
-                if (!localStorage.getItem('sita_web_added')) { saved.push(...fresh); localStorage.setItem('sita_web_added', '1'); localStorage.setItem('sita_services', JSON.stringify(saved)); }
-                defaultServices.splice(0, defaultServices.length, ...saved);
-            }
-        } catch (e) {}
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBVvJYOo9kcaEvZJQ93r18oSMlqahwmpb4",
+  authDomain: "sita-tech-b1bbc.firebaseapp.com",
+  databaseURL: "https://sita-tech-b1bbc-default-rtdb.firebaseio.com",
+  projectId: "sita-tech-b1bbc",
+  storageBucket: "sita-tech-b1bbc.firebasestorage.app",
+  messagingSenderId: "187760355144",
+  appId: "1:187760355144:web:1bd077f85bc877f825f57d",
+  measurementId: "G-CXF5E5D0YB"
+};
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+// Listen for live updates from Firebase Realtime Database
+const servicesRef = ref(database, 'sita_services');
+onValue(servicesRef, (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+        const saved = Array.isArray(data) ? data : Object.values(data);
+        defaultServices.splice(0, defaultServices.length, ...saved);
+        
+        // Re-render your UI elements here if your app has a render function
+        if (typeof renderServices === 'function') {
+            renderServices();
+        }
+    }
+});
+            
+        
 
         function iconClass(i) { return /fa-(solid|brands|regular)/.test(i) ? i : 'fa-solid ' + i; }
         function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
