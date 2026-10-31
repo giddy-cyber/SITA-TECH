@@ -19,28 +19,22 @@ h2{font-size:.95rem;color:#fff;font-weight:800}h3{font-size:.8rem;color:#fff;fon
 .live{border-color:#22c55e;box-shadow:0 0 12px rgba(34,197,94,.35)}.hide{display:none!important}.err{color:#f87171;font-size:.7rem;margin-top:.4rem}
 table{width:100%;border-collapse:collapse}td{font-size:.68rem;padding:.4rem .2rem;border-bottom:1px solid #27272a;vertical-align:middle}
 </style></head><body><div class="w">
-<div class="top"><div class="brand" id="logo"><i class="fa-solid fa-graduation-cap" style="color:#22c55e"></i> SITA-TECH <b>Student Portal</b></div><div><a class="b g" href="index.html"><i class="fa-solid fa-house"></i> Site</a> <button class="b g hide" id="out" onclick="logout()">Log out</button></div></div>
+<div class="top"><div class="brand"><i class="fa-solid fa-graduation-cap" style="color:#22c55e"></i> SITA-TECH <b>Student Portal</b></div><div><a class="b g" href="index.html"><i class="fa-solid fa-house"></i> Site</a> <button class="b g hide" id="out" onclick="logout()">Log out</button></div></div>
 
 <div id="login" class="card"><h2><i class="fa-solid fa-lock" style="color:#22c55e"></i> Student login</h2>
-<p>Use the full name and password SITA-TECH gave you after your fee payment was confirmed.</p>
-<input class="in" id="ln" placeholder="Full name" autocomplete="username"><input class="in" id="lp" type="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
+<p>Use the email and password for your SITA-TECH student account.</p>
+<input class="in" id="ln" type="email" placeholder="Email address" autocomplete="username"><input class="in" id="lp" type="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
 <button class="b f" onclick="login()">Log in</button><div class="err" id="le"></div>
 <p style="margin-top:.6rem">No login yet? <a href="enroll.html" style="color:#4ade80">Enroll for a course</a> and pay your fee. We confirm payment and send your login.</p></div>
 
 <div id="app" class="hide"><div class="card"><h2 id="hi"></h2><p id="sub"></p></div>
+<div class="err" id="portalError" role="status"></div>
 <div class="tabs"><button id="t1" class="on" onclick="tab(1)">My courses</button><button id="t2" onclick="tab(2)">Live classes</button></div>
 <div id="v1"></div><div id="v2" class="hide"></div></div>
 
-<div id="adm" class="hide"><div class="card"><h2>Admin</h2><div class="tabs"><button onclick="at(1)">Students</button><button onclick="at(2)">Classes</button><button onclick="at(3)">Publish</button></div></div>
-<div id="a1" class="card"><h3>Add student (after payment is confirmed)</h3>
-<input class="in" id="sn" placeholder="Student full name"><input class="in" id="sph" placeholder="WhatsApp number e.g. 0712345678"><div id="sc" style="margin-top:.4rem"></div>
-<label style="display:block;margin-top:.4rem"><input type="checkbox" id="sp"> I confirm this student's fee payment</label>
-<button class="b f" onclick="addStu()">Create login</button><div id="sres" class="err" style="color:#4ade80"></div><div id="sl" style="margin-top:.6rem"></div></div>
-<div id="a2" class="card hide"><h3>Share an online class link</h3><input class="in" id="cn" placeholder="Class title"><select class="in" id="cc"></select><input class="in" id="cd" type="datetime-local"><input class="in" id="cl" placeholder="Zoom / Google Meet / YouTube link (https://...)"><button class="b f" onclick="addCls()">Share class</button><div id="cl2" style="margin-top:.6rem"></div></div>
-<div id="a3" class="card hide"><h3>Publish</h3><p>Changes are saved on this device only. Tap the button, then upload <b>portal-data.json</b> next to portal.html on your website (replace the old file). Students can then log in.</p><button class="b f" onclick="dl('portal-data.json',pub())">Download portal-data.json</button><button class="b f g" onclick="dl('private-roster.json',JSON.stringify(L))">Download private roster (keep safe)</button><p style="margin-top:.4rem">The published file stores only scrambled logins, never names or passwords.</p></div></div>
-</div>
-<script>
-const PIN='179ffe11b2be67a15cc87f7c5b4737637f44782d19ef131bf3ce40299499cd53',CO=[
+<script type="module">
+import { supabase } from './supabaseClient.js';
+const CO=[
 ['comp','Computer Packages','fa-computer',[['Word: your first document','## Getting started\nOpen Word, choose Blank document and type. Save often with Ctrl+S.\n- Bold Ctrl+B, Italic Ctrl+I, Underline Ctrl+U\n- Use Heading styles for titles so a contents page can be made\n- Insert a table from Insert, then Table'],['Excel: formulas that matter','## Formulas\nEvery formula starts with =.\n- =SUM(A1:A10) adds a range\n- =AVERAGE(B1:B10) finds the average\n- =IF(C2>=50,"Pass","Fail") tests a condition\nUse Sort and Filter on the Data tab to organise lists.'],['PowerPoint: clear slides','## Good slides\nOne idea per slide, large text, few words. Use the Design tab for a theme and Insert for pictures. Press F5 to present.'],['Internet & Email','## Safe email\nWrite a clear subject, attach files with the paperclip, and check the address before sending. Never open attachments from people you do not know.']]],
 ['web','Web Design','fa-laptop-code',[['HTML: the structure','## HTML\nHTML describes content using tags.\n- <h1> main heading, <p> paragraph\n- <a href="..."> link, <img src="..."> picture\n- <ul><li> lists\nSave a file as index.html and open it in a browser.'],['CSS: the style','## CSS\nCSS controls colour, size and layout.\n- color, background, font-size\n- margin outside, padding inside\n- display:flex lines items up in a row\nAdd it in a <style> tag or a .css file.'],['JavaScript: make it react','## JavaScript\nJavaScript runs when something happens.\n- document.querySelector finds an element\n- addEventListener("click", fn) reacts to a click\nStart by changing text when a button is pressed.'],['Responsive sites','## Responsive\nAdd <meta name="viewport" content="width=device-width, initial-scale=1"> and use percentages, rem and max-width so the page fits phones and computers.']]],
 ['gfx','Graphic Design','fa-palette',[['Design basics','## Four rules\n- Contrast: make important things stand out\n- Repetition: reuse colours and fonts\n- Alignment: line things up\n- Space: leave breathing room'],['Canva: poster in 10 minutes','## Poster steps\nPick a template, change the text, replace images with your own, keep to two fonts and three colours, then Share and Download as PNG or PDF.'],['Logos that work','## Logo tips\nKeep it simple, make sure it works in one colour, and test it small. Save a PNG with a transparent background.']]],
@@ -49,6 +43,7 @@ const PIN='179ffe11b2be67a15cc87f7c5b4737637f44782d19ef131bf3ce40299499cd53',CO=
 ['vid','Video Editing & Content','fa-film',[['Plan your video','## Plan first\nWrite the goal, the hook (first 3 seconds), the main points and a call to action. Shoot in good light and keep sound clear.'],['CapCut basics','## Editing flow\nImport clips, trim, add captions, add music at low volume, then export in 1080p. Vertical 9:16 suits Reels and Shorts.'],['Thumbnails','## Thumbnails\nOne face or object, big readable words (3 or fewer), strong contrast.']]],
 ['cyb','Cyber Safety & Security','fa-user-shield',[['Strong passwords','## Rules\n- Long beats complex: use a phrase of 4 words or more\n- Never reuse a password\n- Turn on two-step verification\n- Use a password manager'],['Spot phishing','## Warning signs\nUrgent threats, odd sender addresses, links that do not match the real site, requests for PINs or OTP. When unsure, go to the website yourself.'],['Secure your devices','## Habits\nInstall updates, lock your screen, back up important files, and avoid public Wi-Fi for banking.']]],
 ['prog','Programming Basics','fa-code',[['Thinking like a programmer','## Logic\nBreak a problem into small steps. Write the steps in plain words first (pseudocode), then in code.'],['Python: first steps','## Python\nname = input("Name: ")\nprint("Hello", name)\n- Variables store values\n- if / else make decisions\n- for loops repeat'],['Mini project','## Try this\nBuild a number guessing game: pick a random number, ask for guesses, and say higher or lower until correct.']]]];
+/*
 const E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),Q=i=>document.getElementById(i);
 const sha=async s=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))].map(x=>x.toString(16).padStart(2,'0')).join('');
 const nm=n=>n.trim().toLowerCase().replace(/\s+/g,' ');
@@ -86,4 +81,68 @@ function addCls(){const t=Q('cn').value.trim(),w=Q('cd').value,l=Q('cl').value.t
 const pub=()=>JSON.stringify({students:L.students.map(s=>({id:s.id,h:s.h,courses:s.courses,active:s.active})),classes:L.classes});
 function dl(n,t){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'application/json'}));a.download=n;a.click()}
 load().then(async()=>{const h=sessionStorage.getItem('pt_me');if(h){const s=L.students.find(x=>x.h===h);if(s){me=s;show(sessionStorage.getItem('pt_n')||'student')}}});
+*/
+const E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),Q=i=>document.getElementById(i);
+let me=null,completed=new Set(),classSessions=[];
+function txt(t){let o='',u=0;t.split('\n').forEach(l=>{if(l.startsWith('- ')){if(!u){o+='<ul>';u=1}o+='<li>'+E(l.slice(2))+'</li>'}else{if(u){o+='</ul>';u=0}o+=l.startsWith('## ')?'<h4>'+E(l.slice(3))+'</h4>':'<p>'+E(l)+'</p>'}});return o+(u?'</ul>':'')}
+function showError(message,target='portalError'){Q(target).textContent=message}
+async function loadAccount(user){
+    showError('');
+    const {data: enrollments,error: enrollmentError}=await supabase.from('sita_enrollments').select('course_code').eq('status','active');
+    if(enrollmentError)throw enrollmentError;
+    me={id:user.id,courses:enrollments.map(row=>row.course_code)};
+    const [{data: progress,error: progressError},{data: sessions,error: sessionsError}]=await Promise.all([
+        supabase.from('sita_module_progress').select('course_code,module_key'),
+        supabase.from('sita_class_sessions').select('title,course_code,starts_at,meeting_url').order('starts_at')
+    ]);
+    if(progressError)throw progressError;
+    if(sessionsError)throw sessionsError;
+    completed=new Set(progress.map(row=>row.course_code+row.module_key));
+    classSessions=sessions;
+    Q('login').classList.add('hide');
+    Q('app').classList.remove('hide');
+    Q('out').classList.remove('hide');
+    Q('hi').textContent='Welcome, '+(user.user_metadata.full_name||user.email||'student');
+    Q('sub').textContent='You are enrolled in '+me.courses.map(c=>(CO.find(x=>x[0]===c)||[])[1]).filter(Boolean).join(', ');
+    tab(1);
+}
+async function login(){
+    showError('', 'le');
+    const email=Q('ln').value.trim(),password=Q('lp').value;
+    if(!email||!password)return showError('Enter your email and password.', 'le');
+    try{
+        const {data,error}=await supabase.auth.signInWithPassword({email,password});
+        if(error){showError('Email or password is incorrect.', 'le');console.error('Student sign-in failed:',error);return}
+        await loadAccount(data.user);
+    }catch(error){showError('Could not sign in or load student data. Please try again.','le');console.error('Student sign-in failed:',error)}
+}
+async function logout(){
+    try{
+        const {error}=await supabase.auth.signOut();
+        if(error)throw error;
+        me=null;completed.clear();classSessions=[];
+        Q('login').classList.remove('hide');Q('app').classList.add('hide');Q('out').classList.add('hide');
+    }catch(error){showError('Could not sign out. Please try again.');console.error('Student sign-out failed:',error)}
+}
+function tab(n){Q('t1').classList.toggle('on',n===1);Q('t2').classList.toggle('on',n===2);Q('v1').classList.toggle('hide',n!==1);Q('v2').classList.toggle('hide',n!==2);n===1?courses():classes()}
+function courses(){Q('v1').innerHTML=CO.filter(c=>me&&me.courses.includes(c[0])).map(c=>{const t=c[3].length,k=c[3].filter((_,i)=>completed.has(c[0]+c[0]+i)).length;return'<div class="card"><h3><i class="fa-solid '+c[2]+'" style="color:#22c55e"></i> '+E(c[1])+'</h3><p>'+k+' of '+t+' lessons done</p><div class="bar"><i style="width:'+k/t*100+'%"></i></div>'+c[3].map((l,i)=>'<div class="les'+(completed.has(c[0]+c[0]+i)?' done':'')+'" onclick="les(\''+c[0]+'\','+i+')"><i class="fa-solid fa-circle-check"></i>'+E(l[0])+'</div>').join('')+'</div>'}).join('')||'<div class="card"><p>No courses assigned yet. Contact SITA-TECH.</p></div>'}
+function les(c,i){const C=CO.find(x=>x[0]===c),l=C[3][i],key=c+c+i;Q('v1').innerHTML='<div class="card"><button class="b g" onclick="courses()"><i class="fa-solid fa-arrow-left"></i> Back</button><h2 style="margin-top:.5rem">'+E(l[0])+'</h2><div class="tx">'+txt(l[1])+'</div><button class="b f" onclick="done(\''+c+'\','+i+')">'+(completed.has(key)?'Marked done. Back to list':'Mark as done')+'</button></div>'}
+async function done(c,i){
+    if(!me)return;
+    const key=c+c+i;
+    if(completed.has(key))return courses();
+    try{
+        const {error}=await supabase.from('sita_module_progress').upsert({student_id:me.id,course_code:c,module_key:c+i,completed_at:new Date().toISOString()},{onConflict:'student_id,course_code,module_key'});
+        if(error)throw error;
+        completed.add(key);showError('');courses();
+    }catch(error){showError('Could not save your lesson progress. Please try again.');console.error('Lesson progress update failed:',error)}
+}
+function classes(){const now=Date.now(),l=classSessions.filter(c=>c.course_code==='all'||me.courses.includes(c.course_code)).sort((a,b)=>new Date(a.starts_at)-new Date(b.starts_at));
+Q('v2').innerHTML=l.map(c=>{const t=new Date(c.starts_at).getTime(),on=now>t-18e5&&now<t+108e5;return'<div class="card'+(on?' live':'')+'"><h3>'+E(c.title)+'</h3><p>'+new Date(c.starts_at).toLocaleString()+(t<now-108e5?' (finished)':'')+'</p><a class="b f '+(on?'':'y')+'" target="_blank" rel="noopener" href="'+E(c.meeting_url)+'"><i class="fa-solid fa-video"></i>'+(on?'Join class now':'Open class link')+'</a></div>'}).join('')||'<div class="card"><p>No live classes shared yet.</p></div>'}
+Object.assign(window,{login,logout,tab,courses,les,done});
+try{
+    const {data:{session},error}=await supabase.auth.getSession();
+    if(error)throw error;
+    if(session)await loadAccount(session.user);
+}catch(error){showError('Could not restore your student session. Please sign in again.','le');console.error('Session restore failed:',error)}
 </script></body></html>

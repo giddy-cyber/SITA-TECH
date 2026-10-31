@@ -60,31 +60,6 @@
     <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    <!-- Firebase SDK (v9 Web) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getDatabase, ref, push, onValue, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDemoKeySitaTech2026",
-            authDomain: "sita-tech-hub.firebaseapp.com",
-            databaseURL: "https://sita-tech-hub-default-rtdb.firebaseio.com",
-            projectId: "sita-tech-hub",
-            storageBucket: "sita-tech-hub.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcdef123456"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        window.firebaseDB = db;
-        window.dbRef = ref;
-        window.dbPush = push;
-        window.dbOnValue = onValue;
-        window.dbSet = set;
-    </script>
-
     <style>
         body {
             font-family: 'Inter', sans-serif;

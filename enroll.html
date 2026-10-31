@@ -70,8 +70,8 @@
 
     </main>
 
-    <script>
-        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xwllqypz';
+    <script type="module">
+        import { supabase } from './supabaseClient.js';
 
         const params = new URLSearchParams(location.search);
         const course = params.get('course') || '';
@@ -93,27 +93,26 @@
             btn.textContent = 'Submitting...';
 
             const data = new FormData(this);
-            data.append('_subject', 'New Academy enrolment: ' + (course || 'General') + ' - ' + data.get('Official Name'));
 
             try {
-                const res = await fetch(FORMSPREE_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json' },
-                    body: data
+                if (data.get('_gotcha')) throw new Error('Spam submission rejected');
+                const { error } = await supabase.from('sita_enrollment_applications').insert({
+                    full_name: data.get('Official Name'),
+                    email: data.get('email'),
+                    phone: data.get('Phone'),
+                    course_name: data.get('Course'),
+                    topics: data.get('Topics') || null
                 });
-                
-                if (!res.ok) {
-                    const json = await res.json().catch(() => ({}));
-                    throw new Error(json.error || 'Form submission failed');
-                }
+                if (error) throw error;
 
                 document.getElementById('doneText').textContent = 'Thank you, ' + data.get('Official Name').split(' ')[0] + '. Your details for ' + (course || 'the Academy') + ' were sent. SITA-TECH will contact you on ' + data.get('Phone') + '.';
                 document.getElementById('formView').classList.add('hidden');
                 document.getElementById('doneView').classList.remove('hidden');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
-            } catch (ex) {
-                err.textContent = 'Could not send your details. Check your internet and try again, or call 0795609046.';
+            } catch (error) {
+                console.error('Enrollment submission failed:', error);
+                err.textContent = 'Could not send your details. Please try again or call 0795609046.';
                 err.classList.remove('hidden');
                 btn.disabled = false;
                 btn.textContent = 'Submit Enrolment';
