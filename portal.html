@@ -25,7 +25,15 @@ table{width:100%;border-collapse:collapse}td{font-size:.68rem;padding:.4rem .2re
 <p>Use the email and password for your SITA-TECH student account.</p>
 <input class="in" id="ln" type="email" placeholder="Email address" autocomplete="username"><input class="in" id="lp" type="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
 <button class="b f" onclick="login()">Log in</button><div class="err" id="le"></div>
+<button class="b f g" id="resetRequestButton" onclick="requestPasswordReset()">Forgot password?</button>
+<div class="err" id="resetMessage" role="status"></div>
 <p style="margin-top:.6rem">No login yet? <a href="enroll.html" style="color:#4ade80">Enroll for a course</a> and pay your fee. We confirm payment and send your login.</p></div>
+
+<div id="passwordReset" class="card hide"><h2>Choose a new password</h2>
+<p>Enter a new password for your student account.</p>
+<input class="in" id="newPassword" type="password" autocomplete="new-password" placeholder="New password (at least 8 characters)">
+<input class="in" id="confirmPassword" type="password" autocomplete="new-password" placeholder="Confirm new password" onkeydown="if(event.key==='Enter')saveNewPassword()">
+<button class="b f" onclick="saveNewPassword()">Save new password</button><div class="err" id="passwordResetMessage" role="status"></div></div>
 
 <div id="app" class="hide"><div class="card"><h2 id="hi"></h2><p id="sub"></p></div>
 <div class="err" id="portalError" role="status"></div>
@@ -84,8 +92,60 @@ load().then(async()=>{const h=sessionStorage.getItem('pt_me');if(h){const s=L.st
 */
 const E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),Q=i=>document.getElementById(i);
 let me=null,completed=new Set(),classSessions=[];
+let isPasswordRecovery=false;
 function txt(t){let o='',u=0;t.split('\n').forEach(l=>{if(l.startsWith('- ')){if(!u){o+='<ul>';u=1}o+='<li>'+E(l.slice(2))+'</li>'}else{if(u){o+='</ul>';u=0}o+=l.startsWith('## ')?'<h4>'+E(l.slice(3))+'</h4>':'<p>'+E(l)+'</p>'}});return o+(u?'</ul>':'')}
 function showError(message,target='portalError'){Q(target).textContent=message}
+function getSignInErrorMessage(error){
+    if(error.code==='invalid_credentials')return 'Email or password is incorrect. Check your email, or use Forgot password? to reset it.';
+    if(error.code==='email_not_confirmed')return 'Confirm your email using the link sent by Supabase, then try signing in again.';
+    if(error.status===401&&/api key/i.test(error.message||''))return 'Supabase rejected the frontend key. Verify it matches the project publishable key, then reload the deployed site.';
+    if(error.name==='AuthRetryableFetchError'||error instanceof TypeError)return 'Could not reach Supabase. Check your connection and try again.';
+    return 'Sign-in failed. Check your account details and try again.';
+}
+function showPasswordReset(){
+    isPasswordRecovery=true;
+    Q('login').classList.add('hide');
+    Q('passwordReset').classList.remove('hide');
+}
+async function requestPasswordReset(){
+    const email=Q('ln').value.trim();
+    Q('resetMessage').textContent='';
+    if(!email){Q('resetMessage').textContent='Enter the student email address above first.';return}
+    try{
+        const {error}=await supabase.auth.resetPasswordForEmail(email,{
+            redirectTo:'https://sita-tech.co.ke/portal.html?mode=reset'
+        });
+        if(error)throw error;
+        Q('resetMessage').textContent='If that email belongs to a student account, a password reset link will be sent.';
+    }catch(error){
+        Q('resetMessage').textContent='Could not send the reset email. Please try again or contact SITA-TECH.';
+        console.error('Password reset request failed:',error);
+    }
+}
+async function saveNewPassword(){
+    const password=Q('newPassword').value,confirmation=Q('confirmPassword').value;
+    Q('passwordResetMessage').textContent='';
+    if(password.length<8){Q('passwordResetMessage').textContent='Use a password with at least 8 characters.';return}
+    if(password!==confirmation){Q('passwordResetMessage').textContent='The passwords do not match.';return}
+    try{
+        const {error}=await supabase.auth.updateUser({password});
+        if(error)throw error;
+        isPasswordRecovery=false;
+        Q('passwordReset').classList.add('hide');
+        Q('login').classList.remove('hide');
+        Q('lp').value='';
+        Q('passwordResetMessage').textContent='Password updated. Sign in with your new password.';
+        Q('le').textContent='Password updated. Sign in with your new password.';
+        const {error: signOutError}=await supabase.auth.signOut();
+        if(signOutError){
+            Q('passwordResetMessage').textContent='Password updated, but sign-out failed. Reload the page before signing in again.';
+            console.error('Sign-out after password update failed:',signOutError);
+        }
+    }catch(error){
+        Q('passwordResetMessage').textContent='Could not update the password. Request a new reset email and try again.';
+        console.error('Password update failed:',error);
+    }
+}
 async function loadAccount(user){
     showError('');
     const {data: enrollments,error: enrollmentError}=await supabase.from('sita_enrollments').select('course_code').eq('status','active');
@@ -110,11 +170,20 @@ async function login(){
     showError('', 'le');
     const email=Q('ln').value.trim(),password=Q('lp').value;
     if(!email||!password)return showError('Enter your email and password.', 'le');
+    let data,error;
     try{
-        const {data,error}=await supabase.auth.signInWithPassword({email,password});
-        if(error){showError('Email or password is incorrect.', 'le');console.error('Student sign-in failed:',error);return}
-        await loadAccount(data.user);
-    }catch(error){showError('Could not sign in or load student data. Please try again.','le');console.error('Student sign-in failed:',error)}
+        ({data,error}=await supabase.auth.signInWithPassword({email,password}));
+    }catch(requestError){
+        showError(getSignInErrorMessage(requestError),'le');
+        console.error('Student sign-in request failed:',requestError);
+        return;
+    }
+    if(error){showError(getSignInErrorMessage(error),'le');console.error('Student sign-in failed:',error);return}
+    try{await loadAccount(data.user)}
+    catch(loadError){
+        showError('Signed in, but student records could not be loaded. Verify the Supabase schema and enrollment setup, then try again.');
+        console.error('Student portal data load failed:',loadError);
+    }
 }
 async function logout(){
     try{
@@ -139,10 +208,14 @@ async function done(c,i){
 }
 function classes(){const now=Date.now(),l=classSessions.filter(c=>c.course_code==='all'||me.courses.includes(c.course_code)).sort((a,b)=>new Date(a.starts_at)-new Date(b.starts_at));
 Q('v2').innerHTML=l.map(c=>{const t=new Date(c.starts_at).getTime(),on=now>t-18e5&&now<t+108e5;return'<div class="card'+(on?' live':'')+'"><h3>'+E(c.title)+'</h3><p>'+new Date(c.starts_at).toLocaleString()+(t<now-108e5?' (finished)':'')+'</p><a class="b f '+(on?'':'y')+'" target="_blank" rel="noopener" href="'+E(c.meeting_url)+'"><i class="fa-solid fa-video"></i>'+(on?'Join class now':'Open class link')+'</a></div>'}).join('')||'<div class="card"><p>No live classes shared yet.</p></div>'}
-Object.assign(window,{login,logout,tab,courses,les,done});
+Object.assign(window,{login,logout,tab,courses,les,done,requestPasswordReset,saveNewPassword});
 try{
     const {data:{session},error}=await supabase.auth.getSession();
     if(error)throw error;
-    if(session)await loadAccount(session.user);
+    if(new URLSearchParams(location.search).get('mode')==='reset'&&session)showPasswordReset();
+    else if(session)await loadAccount(session.user);
 }catch(error){showError('Could not restore your student session. Please sign in again.','le');console.error('Session restore failed:',error)}
+supabase.auth.onAuthStateChange((event)=>{
+    if(event==='PASSWORD_RECOVERY')showPasswordReset();
+});
 </script></body></html>
