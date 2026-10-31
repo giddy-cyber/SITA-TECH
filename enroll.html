@@ -112,7 +112,15 @@
                 
             } catch (error) {
                 console.error('Enrollment submission failed:', error);
-                err.textContent = 'Could not send your details. Please try again or call 0795609046.';
+                if (error.code === 'PGRST205' || error.code === '42P01') {
+                    err.textContent = 'Enrollment is not set up yet. The site administrator must run the Supabase database setup, then try again.';
+                } else if (error.code === '42501' || error.code === 'PGRST301') {
+                    err.textContent = 'Supabase blocked this submission. The site administrator must check the enrollment table permissions and Row Level Security policy.';
+                } else if (error.message === 'Spam submission rejected') {
+                    err.textContent = 'Submission could not be accepted. Please reload the form and try again.';
+                } else {
+                    err.textContent = 'Could not send your details (' + (error.code || 'network error') + '). Please try again or call 0795609046.';
+                }
                 err.classList.remove('hidden');
                 btn.disabled = false;
                 btn.textContent = 'Submit Enrolment';

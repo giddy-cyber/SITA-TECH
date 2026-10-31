@@ -102,6 +102,12 @@ function getSignInErrorMessage(error){
     if(error.name==='AuthRetryableFetchError'||error instanceof TypeError)return 'Could not reach Supabase. Check your connection and try again.';
     return 'Sign-in failed. Check your account details and try again.';
 }
+function getPasswordUpdateErrorMessage(error){
+    if(error.code==='weak_password')return error.message||'Choose a stronger password and try again.';
+    if(error.code==='session_not_found'||error.name==='AuthSessionMissingError')return 'This reset link is invalid or expired. Request a new reset email and open the newest link.';
+    if(error.code==='otp_expired'||error.code==='bad_code_verifier')return 'This reset link has expired or was already used. Request a new reset email.';
+    return 'Password update failed: '+(error.message||'Please request a new reset email and try again.');
+}
 function showPasswordReset(){
     isPasswordRecovery=true;
     Q('login').classList.add('hide');
@@ -142,7 +148,7 @@ async function saveNewPassword(){
             console.error('Sign-out after password update failed:',signOutError);
         }
     }catch(error){
-        Q('passwordResetMessage').textContent='Could not update the password. Request a new reset email and try again.';
+        Q('passwordResetMessage').textContent=getPasswordUpdateErrorMessage(error);
         console.error('Password update failed:',error);
     }
 }
