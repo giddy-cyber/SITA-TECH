@@ -583,6 +583,7 @@
             <div id="adminPanelView" class="hidden">
                 <div id="admTabBar" class="flex flex-wrap gap-1.5 mb-4 text-[11px] font-bold">
                     <button data-t="services" onclick="admTab('services')" class="px-3 py-1.5 rounded-full">Services</button>
+                    <button data-t="courses" onclick="admTab('courses')" class="px-3 py-1.5 rounded-full">Courses</button>
                     <button data-t="fees" onclick="admTab('fees')" class="px-3 py-1.5 rounded-full">Course Fees</button>
                     <button data-t="social" onclick="admTab('social')" class="px-3 py-1.5 rounded-full">Social Links</button>
                     <button data-t="corner" onclick="admTab('corner')" class="px-3 py-1.5 rounded-full">Student Corner</button>
@@ -596,16 +597,8 @@
                 <div class="space-y-2.5">
                     <input type="hidden" id="editId">
                     <input type="text" id="newServTitle" placeholder="Service title" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
-                    <select id="newServCat" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
-                        <option value="Hardware">Hardware & CCTV</option>
-                        <option value="Printing">Printing</option>
-                        <option value="SHA">SHA Services</option>
-                        <option value="Government">Government / eCitizen</option>
-                        <option value="Business">Business Registration</option>
-                        <option value="Documents">CV & Documents</option>
-                        <option value="Design">Design & Graphics</option>
-                        <option value="Web">Web & Digital</option>
-                    </select>
+                    <input id="newServCat" list="serviceCategoryOptions" value="Hardware" placeholder="Service category (type a new category or choose one)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                    <datalist id="serviceCategoryOptions"></datalist>
                     <input type="text" id="newServPrice" placeholder="Price (e.g. From KSh 200)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
                     <textarea id="newServDesc" placeholder="Brief service description..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white h-20"></textarea>
                     <div class="flex items-center gap-3">
@@ -632,6 +625,24 @@
                     <button onclick="admSaveFees()" class="mt-3 w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs">Save fees</button>
                 </div>
 
+                <div id="admTab-courses" class="hidden">
+                    <h3 class="text-lg font-bold text-white mb-1">Academy Courses</h3>
+                    <p class="text-[11px] text-zinc-400 mb-3">Add or edit courses shown in the Academy and enrollment form. Enter topics separated by commas.</p>
+                    <input type="hidden" id="editCourseIndex">
+                    <div class="space-y-2">
+                        <input id="admCourseTitle" placeholder="Course name" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                        <input id="admCourseFee" placeholder="Fee (e.g. KSh 3,000)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                        <input id="admCourseTopics" placeholder="Topics, comma separated (e.g. Basics, Practice)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                        <textarea id="admCourseDesc" placeholder="Course description" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white h-20"></textarea>
+                        <div class="flex gap-2">
+                            <button id="saveCourseButton" onclick="admSaveCourse()" class="flex-1 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs">Add Course</button>
+                            <button id="cancelCourseButton" onclick="admCancelCourseEdit()" class="hidden px-4 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 font-bold text-xs">Cancel</button>
+                        </div>
+                    </div>
+                    <h4 class="text-white font-bold text-xs mt-5 mb-2">Courses (<span id="adminCourseCount">0</span>)</h4>
+                    <div id="adminCourseList" class="max-h-64 overflow-y-auto space-y-2 pr-1"></div>
+                </div>
+
                 <div id="admTab-social" class="hidden">
                     <h3 class="text-lg font-bold text-white mb-1">Social Links</h3>
                     <p class="text-[11px] text-zinc-400 mb-3">Paste the full link (starting with https://). Leave empty to show the icon dimmed.</p>
@@ -641,9 +652,10 @@
 
                 <div id="admTab-corner" class="hidden">
                     <h3 class="text-lg font-bold text-white mb-1">Student Corner</h3>
-                    <p class="text-[11px] text-zinc-400 mb-3">Add a link (Google Drive, YouTube, etc.) or upload a small file (up to 1.5 MB).</p>
+                    <p class="text-[11px] text-zinc-400 mb-3">Add a link (Google Drive, YouTube, etc.) or upload a file (up to 7 MB).</p>
                     <div class="space-y-2">
-                        <select id="admCType" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white"><option value="english">English Setbooks</option><option value="kiswahili">Kiswahili Setbooks</option><option value="novels">Novels</option><option value="magazines">Magazines</option><option value="notes">Computer Notes</option><option value="interview">Interview Questions</option></select>
+                        <input id="admCType" list="cornerCategoryOptions" value="English Setbooks" placeholder="Student Corner category (type a new category or choose one)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                        <datalist id="cornerCategoryOptions"></datalist>
                         <input id="admCTitle" placeholder="Title" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
                         <input id="admCDesc" placeholder="Short description (optional)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
                         <input id="admCUrl" placeholder="Link (https://...) or choose a file below" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
@@ -816,6 +828,25 @@
             ['Web', 'Web & Digital', 'fa-globe']
         ];
 
+        function getServiceCategories() {
+            const categories = CATS.slice();
+            const known = new Set(categories.map(([key]) => key));
+            defaultServices.forEach(service => {
+                const category = String(service.category || '').trim();
+                if (category && !known.has(category)) {
+                    known.add(category);
+                    categories.push([category, category, 'fa-star']);
+                }
+            });
+            return categories;
+        }
+
+        function renderServiceCategoryOptions() {
+            const options = document.getElementById('serviceCategoryOptions');
+            if (options) options.innerHTML = getServiceCategories().filter(([key]) => key !== 'All')
+                .map(([key, label]) => `<option value="${esc(key)}">${esc(label)}</option>`).join('');
+        }
+
         function svcThumb(s) {
             const ph = PHOTOS[s.img], base = 'svc-th ';
             if (s.img) return `<img src="${imgSrc(s.img)}" alt="" loading="lazy" class="${base}${ph && ph.fit === 'contain' ? 'object-contain' : 'object-cover'}" style="background:${ph && ph.fit === 'contain' ? ph.bg : '#18181b'};object-position:${(ph && ph.pos) || 'center'}">`;
@@ -853,11 +884,13 @@
         function renderServicesPanel(filter, searchQuery) {
             const q = (searchQuery || '').trim().toLowerCase();
             const active = q ? 'All' : filter;
-            document.getElementById('catRail').innerHTML = CATS
+            const categories = getServiceCategories();
+            document.getElementById('catRail').innerHTML = categories
                 .filter(([k]) => k === 'All' || defaultServices.some(s => s.category === k))
-                .map(([k, l, ic]) => `<button type="button" class="sp-item${k === active ? ' on' : ''}" data-cat="${k}" onclick="selectCategory('${k}')"><i class="fa-solid ${ic}"></i><span class="sp-lbl">${l}</span></button>`).join('');
+                .map(([k, l, ic]) => `<button type="button" class="sp-item${k === active ? ' on' : ''}" data-cat="${esc(k)}"><i class="fa-solid ${ic}"></i><span class="sp-lbl">${esc(l)}</span></button>`).join('');
+            document.querySelectorAll('#catRail [data-cat]').forEach(button => button.addEventListener('click', () => selectCategory(button.dataset.cat)));
             const list = defaultServices.filter(s => (active === 'All' || s.category === active) && (!q || (s.title + ' ' + s.desc).toLowerCase().includes(q)));
-            const name = (CATS.find(c => c[0] === active) || CATS[0])[1];
+            const name = (categories.find(c => c[0] === active) || CATS[0])[1];
             const head = q ? `Results for “${esc(searchQuery.trim())}”` : esc(name);
             const panel = document.getElementById('servicesContainer');
             panel.innerHTML = `<p class="sp-head">${head} · ${list.length} service${list.length === 1 ? '' : 's'}</p>` +
@@ -886,7 +919,7 @@
         function filterServicesGlobalHero(q) { runSearch(q); }
 
         // Academy courses
-        const courses = [
+        let courses = [
             { t: "Computer Packages", fee: "KSh 3,000", img: "cpackages", c: "blue", ic: "fa-computer", d: "Get confident with everyday office software, from typing documents to managing data.", topics: ["Word", "Excel", "PowerPoint", "Internet & Email"] },
             { t: "Web Design", fee: "KSh 5,000", img: "webdesign", c: "red", ic: "fa-laptop-code", d: "Build fast, mobile-friendly websites from scratch and publish them online.", topics: ["HTML", "CSS", "JavaScript", "Responsive Sites"] },
             { t: "Graphic Design", fee: "KSh 4,000", img: "graphic", c: "yellow", ic: "fa-palette", d: "Design logos, posters, flyers and social media graphics that look professional.", topics: ["Canva", "Photoshop", "Logos", "Posters"] },
@@ -906,7 +939,7 @@
 
         function renderAcademy(q = '') {
             const s = q.trim().toLowerCase();
-            const list = courses.map((c, i) => ({ c, i })).filter(({ c }) => !s || (c.t + ' ' + c.d + ' ' + c.topics.join(' ')).toLowerCase().includes(s));
+            const list = courses.map((c, i) => ({ c, i })).filter(({ c }) => !s || (c.t + ' ' + c.d + ' ' + (c.topics || []).join(' ')).toLowerCase().includes(s));
             document.getElementById('academy').classList.toggle('hidden', !list.length);
             if (!list.length) return;
             if (!list.some(x => x.i === courseSel)) courseSel = list[0].i;
@@ -917,15 +950,16 @@
         let courseSel = 0;
         function selectCourse(i) { courseSel = i; renderAcademy(searchTerm); document.getElementById('courseDetail').scrollTop = 0; }
         function renderCourseDetail() {
-            const c = courses[courseSel], P = c.img && COURSE_PHOTOS[c.img];
+            const c = courses[courseSel]; if (!c) return;
+            const P = c.img && COURSE_PHOTOS[c.img];
             document.getElementById('courseDetail').innerHTML = `
                 ${P ? `<img src="${P.src}" alt="${esc(c.t)}" loading="lazy" class="crs-img ${P.fit === 'contain' ? 'object-contain' : 'object-cover'}" style="background:${P.bg};object-position:${P.pos}">`
-                    : `<div class="crs-img border flex items-center justify-center ${tones[c.c]}"><i class="fa-solid ${c.ic} text-3xl"></i></div>`}
+                    : `<div class="crs-img border flex items-center justify-center ${tones[c.c] || tones.green}"><i class="fa-solid ${iconClass(c.ic || 'fa-graduation-cap')} text-3xl"></i></div>`}
                 <h3 class="text-[.82rem] font-extrabold text-white mt-2 leading-tight">${esc(c.t)}</h3>
                 <p class="mt-0.5 text-yellow-400 text-[.72rem] font-extrabold">Course fee: ${esc(courseFee(c))}</p>
                 <p class="text-zinc-400 text-[.68rem] mt-1 leading-snug">${esc(c.d)}</p>
                 <p class="sp-sub">Pick your topics</p>
-                <div class="flex flex-wrap gap-1.5">${c.topics.map(t => `<label class="chip"><input type="checkbox" checked value="${esc(t)}" class="course-topic accent-green-500"><span>${esc(t)}</span></label>`).join('')}</div>
+                <div class="flex flex-wrap gap-1.5">${(c.topics || []).map(t => `<label class="chip"><input type="checkbox" checked value="${esc(t)}" class="course-topic accent-green-500"><span>${esc(t)}</span></label>`).join('')}</div>
                 <button type="button" onclick="enrollNow()" class="mt-3 w-full py-2.5 rounded-xl bg-green-600 hover:bg-green-500 text-white font-extrabold text-[.75rem] shadow-lg shadow-green-900/40 flex items-center justify-center gap-2">Enroll Now <i class="fa-solid fa-arrow-right"></i></button>`;
         }
         function enrollNow() {
@@ -1347,7 +1381,7 @@
             if(pin === '2006') {
                 document.getElementById('adminLoginView').classList.add('hidden');
                 document.getElementById('adminPanelView').classList.remove('hidden');
-                confetti(); renderAdminList();
+                confetti(); renderServiceCategoryOptions(); renderAdminList(); renderAdminCourseList();
             } else {
                 alert('Invalid Admin PIN');
             }
@@ -1390,13 +1424,14 @@
         function saveService() {
             const id = document.getElementById('editId').value;
             const title = document.getElementById('newServTitle').value.trim();
-            const category = document.getElementById('newServCat').value;
+            const category = document.getElementById('newServCat').value.trim();
             const price = document.getElementById('newServPrice').value.trim();
             const desc = document.getElementById('newServDesc').value.trim();
-            if (!title || !price || !desc) return alert('Please fill in the title, price and description.');
+            if (!title || !category || !price || !desc) return alert('Please fill in the title, category, price and description.');
             if (id) Object.assign(defaultServices.find(x => String(x.id) === id), { title, category, price, desc, img: pendingImg });
             else defaultServices.unshift({ id: Date.now(), category, title, price, desc, icon: 'fa-star', btnText: 'Order Now', img: pendingImg });
             persist(); cancelEdit();
+            renderServiceCategoryOptions();
             renderServices(currentCategory, searchTerm); renderAdminList();
         }
         function editService(id) {
@@ -1416,6 +1451,7 @@
             const i = defaultServices.findIndex(x => String(x.id) === String(id));
             if (i < 0 || !confirm('Remove "' + defaultServices[i].title + '"?')) return;
             defaultServices.splice(i, 1); persist();
+            renderServiceCategoryOptions();
             renderServices(currentCategory, searchTerm); renderAdminList();
         }
         function resetServices() {
@@ -1430,6 +1466,76 @@
                     <button onclick="editService('${s.id}')" class="px-2.5 py-1.5 rounded-lg bg-zinc-800 text-blue-400 text-[11px] font-bold">Edit</button>
                     <button onclick="deleteService('${s.id}')" class="px-2.5 py-1.5 rounded-lg bg-zinc-800 text-red-400 text-[11px] font-bold">Delete</button>
                 </div>`).join('');
+        }
+
+        function renderAdminCourseList() {
+            const list = document.getElementById('adminCourseList');
+            if (!list) return;
+            document.getElementById('adminCourseCount').innerText = courses.length;
+            list.innerHTML = courses.map((course, index) => `
+                <div class="flex items-center justify-between gap-2 bg-zinc-950 border border-zinc-800 rounded-xl p-2">
+                    <span class="text-[11px] text-white truncate"><b>${esc(course.t)}</b> · ${esc(courseFee(course))}</span>
+                    <span class="flex gap-1 shrink-0">
+                        <button onclick="admEditCourse(${index})" class="px-2.5 py-1.5 rounded-lg bg-zinc-800 text-blue-400 text-[11px] font-bold">Edit</button>
+                        <button onclick="admDeleteCourse(${index})" class="px-2.5 py-1.5 rounded-lg bg-zinc-800 text-red-400 text-[11px] font-bold">Delete</button>
+                    </span>
+                </div>`).join('');
+        }
+        function admSaveCourse() {
+            const title = document.getElementById('admCourseTitle').value.trim();
+            const fee = document.getElementById('admCourseFee').value.trim();
+            const desc = document.getElementById('admCourseDesc').value.trim();
+            const topics = document.getElementById('admCourseTopics').value.split(',').map(topic => topic.trim()).filter(Boolean);
+            const editIndex = document.getElementById('editCourseIndex').value;
+            if (!title || !fee || !desc || !topics.length) return alert('Enter a course name, fee, description and at least one topic.');
+            const duplicate = courses.findIndex((course, index) => course.t.toLowerCase() === title.toLowerCase() && String(index) !== editIndex);
+            if (duplicate >= 0) return alert('A course with that name already exists.');
+            const course = { t: title, fee, img: '', c: 'green', ic: 'fa-graduation-cap', d: desc, topics };
+            if (editIndex !== '') {
+                const index = Number(editIndex), previousTitle = courses[index] && courses[index].t;
+                if (!courses[index]) return alert('That course could not be found. Refresh and try again.');
+                courses[index] = { ...courses[index], ...course };
+                if (previousTitle !== title) {
+                    if (siteData.fees[previousTitle]) siteData.fees[title] = siteData.fees[previousTitle];
+                    delete siteData.fees[previousTitle];
+                }
+                siteData.fees[title] = fee;
+            } else {
+                courses.push(course);
+            }
+            siteData.courses = courses;
+            saveSite();
+            admCancelCourseEdit();
+            renderAcademy(searchTerm);
+            renderAdminCourseList();
+        }
+        function admEditCourse(index) {
+            const course = courses[index]; if (!course) return;
+            document.getElementById('editCourseIndex').value = index;
+            document.getElementById('admCourseTitle').value = course.t;
+            document.getElementById('admCourseFee').value = courseFee(course);
+            document.getElementById('admCourseTopics').value = (course.topics || []).join(', ');
+            document.getElementById('admCourseDesc').value = course.d || '';
+            document.getElementById('saveCourseButton').textContent = 'Save Course';
+            document.getElementById('cancelCourseButton').classList.remove('hidden');
+        }
+        function admCancelCourseEdit() {
+            ['editCourseIndex', 'admCourseTitle', 'admCourseFee', 'admCourseTopics', 'admCourseDesc'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('saveCourseButton').textContent = 'Add Course';
+            document.getElementById('cancelCourseButton').classList.add('hidden');
+        }
+        function admDeleteCourse(index) {
+            const course = courses[index];
+            if (!course || !confirm('Remove "' + course.t + '" from the Academy?')) return;
+            courses.splice(index, 1);
+            delete siteData.fees[course.t];
+            siteData.courses = courses;
+            if (courseSel === index) courseSel = Math.min(index, courses.length - 1);
+            else if (courseSel > index) courseSel--;
+            courseSel = Math.max(0, courseSel);
+            saveSite();
+            renderAcademy(searchTerm);
+            renderAdminCourseList();
         }
 
         // Live clock (Kenya time)
@@ -1524,16 +1630,29 @@
             ['youtube', 'YouTube', 'fa-brands fa-youtube', '#FF0000'],
             ['x', 'X (Twitter)', 'X', '#ffffff']
         ];
-        let siteData = { fees: {}, social: {}, corner: [] };
+        let siteData = { fees: {}, social: {}, corner: [], courses: [] };
         const okUrl = u => /^https?:\/\//i.test(String(u || '').trim());
         function courseFee(c) { return (siteData.fees && siteData.fees[c.t]) || c.fee || 'Ask us'; }
-        function saveSite() { try { localStorage.setItem('sita_site_data', JSON.stringify(siteData)); return true; } catch (e) { alert('Browser storage is full. Remove some uploaded files or use links instead.'); return false; } }
+        function saveSite() { siteData.courses = courses; try { localStorage.setItem('sita_site_data', JSON.stringify(siteData)); return true; } catch (e) { alert('Browser storage is full. Changes remain on this page only; download site-data.json from the Publish tab before leaving or reloading.'); return false; } }
         async function loadSiteData() {
             let pub = null, loc = null;
             if (location.protocol.startsWith('http')) { try { const r = await fetch('site-data.json?v=' + Date.now(), { cache: 'no-store' }); if (r.ok) pub = await r.json(); } catch (e) {} }
             try { loc = JSON.parse(localStorage.getItem('sita_site_data')); } catch (e) {}
             const src = loc || pub || {};
-            siteData = { fees: src.fees || {}, social: src.social || {}, corner: Array.isArray(src.corner) ? src.corner : [] };
+            siteData = { fees: src.fees || {}, social: src.social || {}, corner: Array.isArray(src.corner) ? src.corner : [], courses: Array.isArray(src.courses) ? src.courses : [] };
+            if (siteData.courses.length) {
+                courses = siteData.courses.filter(course => course && typeof course.t === 'string').map(course => ({
+                    ...course,
+                    topics: Array.isArray(course.topics) ? course.topics : [],
+                    fee: course.fee || 'Ask us',
+                    d: course.d || '',
+                    c: course.c || 'green',
+                    ic: course.ic || 'fa-graduation-cap'
+                }));
+                siteData.courses = courses;
+            } else {
+                siteData.courses = courses;
+            }
             if (!loc && pub && Array.isArray(pub.services) && !localStorage.getItem('sita_services')) {
                 defaultServices.splice(0, defaultServices.length, ...pub.services);
                 defaultServices.forEach(s => { if (s.img === undefined && DEFAULT_IMG[s.id]) s.img = DEFAULT_IMG[s.id]; });
@@ -1558,11 +1677,38 @@
         }
         let cornerTab = 'english';
         const CORNER_TYPES = [['english', 'English Setbooks', 'fa-book'], ['kiswahili', 'Kiswahili Setbooks', 'fa-book-bookmark'], ['novels', 'Novels', 'fa-book-open'], ['magazines', 'Magazines', 'fa-newspaper'], ['notes', 'Computer Notes', 'fa-laptop-code'], ['interview', 'Interview Questions', 'fa-user-tie']];
+        function cornerTypeKey(label) {
+            const value = String(label || '').trim();
+            const known = CORNER_TYPES.find(type => type[0].toLowerCase() === value.toLowerCase() || type[1].toLowerCase() === value.toLowerCase());
+            return known ? known[0] : value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        }
+        function cornerTypeLabel(type) {
+            const known = CORNER_TYPES.find(item => item[0] === type);
+            return known ? known[1] : String(type || '').split(/[-_]/).filter(Boolean).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        }
+        function getCornerTypes() {
+            const types = CORNER_TYPES.slice(), known = new Set(types.map(item => item[0]));
+            [...(siteData.corner || []), ...(window.cornerExtra || [])].forEach(item => {
+                const key = cornerTypeKey(item.type);
+                if (key && !known.has(key)) {
+                    known.add(key);
+                    types.push([key, cornerTypeLabel(key), 'fa-folder-open']);
+                }
+            });
+            return types;
+        }
+        function renderCornerCategoryOptions() {
+            const options = document.getElementById('cornerCategoryOptions');
+            if (options) options.innerHTML = getCornerTypes().map(([key, label]) => `<option value="${esc(label)}"></option>`).join('');
+        }
         function setCornerTab(t) { cornerTab = t; renderCorner(); }
         function renderCorner() {
             const list = document.getElementById('cornerList'); if (!list) return;
-            const cur = CORNER_TYPES.find(x => x[0] === cornerTab) || CORNER_TYPES[0];
-            document.getElementById('cornerRail').innerHTML = CORNER_TYPES.map(([t, l, ic]) => `<button type="button" class="sp-item${t === cornerTab ? ' on' : ''}" onclick="setCornerTab('${t}')"><i class="fa-solid ${ic}"></i><span class="sp-lbl">${l}</span></button>`).join('');
+            const types = getCornerTypes();
+            if (!types.some(type => type[0] === cornerTab)) cornerTab = types[0][0];
+            const cur = types.find(x => x[0] === cornerTab) || types[0];
+            document.getElementById('cornerRail').innerHTML = types.map(([t, l, ic]) => `<button type="button" class="sp-item${t === cornerTab ? ' on' : ''}" data-corner-type="${esc(t)}"><i class="fa-solid ${ic}"></i><span class="sp-lbl">${esc(l)}</span></button>`).join('');
+            document.querySelectorAll('#cornerRail [data-corner-type]').forEach(button => button.addEventListener('click', () => setCornerTab(button.dataset.cornerType)));
             const items = [...siteData.corner, ...(window.cornerExtra || [])].filter(i => i.type === cornerTab);
             document.getElementById('cornerSp').classList.toggle('compact', !items.length);
             list.innerHTML = items.length ? `<div class="crn-grid">` + items.map(i => `
@@ -1586,12 +1732,13 @@
 
         // ---------- Admin tabs ----------
         function admTab(n) {
-            ['services', 'fees', 'social', 'corner', 'publish'].forEach(t => document.getElementById('admTab-' + t).classList.toggle('hidden', t !== n));
+            ['services', 'courses', 'fees', 'social', 'corner', 'publish'].forEach(t => document.getElementById('admTab-' + t).classList.toggle('hidden', t !== n));
             document.querySelectorAll('#admTabBar button').forEach(b => b.className = 'px-3 py-1.5 rounded-full ' + (b.dataset.t === n ? 'bg-blue-600 text-white' : 'bg-zinc-800 text-zinc-300'));
             const I = 'w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white';
             if (n === 'fees') document.getElementById('admFeesList').innerHTML = courses.map(c => `<label class="block text-[11px] text-zinc-400">${esc(c.t)}<input data-course="${esc(c.t)}" value="${esc(courseFee(c))}" class="${I} mt-1"></label>`).join('');
+            if (n === 'courses') renderAdminCourseList();
             if (n === 'social') document.getElementById('admSocialList').innerHTML = SOCIAL_DEF.map(([k, l]) => `<label class="block text-[11px] text-zinc-400">${l}<input data-social="${k}" value="${esc(siteData.social[k] || '')}" placeholder="https://..." class="${I} mt-1"></label>`).join('');
-            if (n === 'corner') admRenderCorner();
+            if (n === 'corner') { renderCornerCategoryOptions(); admRenderCorner(); }
         }
         function admSaveFees() {
             document.querySelectorAll('#admFeesList input').forEach(i => { const v = i.value.trim(), c = courses.find(x => x.t === i.dataset.course); if (v && c && v !== c.fee) siteData.fees[c.t] = v; else delete siteData.fees[i.dataset.course]; });
@@ -1604,9 +1751,10 @@
             if (saveSite()) { renderSocial(); alert('Links saved. Open the Publish tab to show them to all visitors.'); }
         }
         function admRenderCorner() {
+            renderCornerCategoryOptions();
             document.getElementById('admCornerList').innerHTML = siteData.corner.length ? siteData.corner.map(i => `
                 <div class="flex items-center justify-between gap-2 bg-zinc-950 border border-zinc-800 rounded-xl p-2">
-                    <span class="text-[11px] text-white truncate"><b class="text-pink-400">${esc((CORNER_TYPES.find(x => x[0] === i.type) || [0, i.type])[1])}</b> · ${esc(i.title)}</span>
+                    <span class="text-[11px] text-white truncate"><b class="text-pink-400">${esc(cornerTypeLabel(i.type))}</b> · ${esc(i.title)}</span>
                     <button onclick="admRemoveCorner('${esc(i.id)}')" class="px-2.5 py-1.5 rounded-lg bg-zinc-800 text-red-400 text-[11px] font-bold">Remove</button>
                 </div>`).join('') : '<p class="text-[11px] text-zinc-500">Nothing uploaded yet.</p>';
         }
@@ -1614,16 +1762,20 @@
             const v = id => document.getElementById(id).value.trim(), file = document.getElementById('admCFile').files[0];
             if (!v('admCTitle')) { alert('Please enter a title.'); return; }
             if (!file && !okUrl(v('admCUrl'))) { alert('Add a link starting with https:// or choose a file.'); return; }
-            const item = { id: 'c' + Date.now(), type: v('admCType'), title: v('admCTitle'), desc: v('admCDesc') };
+            const type = cornerTypeKey(v('admCType'));
+            if (!type) { alert('Please enter a Student Corner category.'); return; }
+            const item = { id: 'c' + Date.now(), type, title: v('admCTitle'), desc: v('admCDesc') };
             const done = () => {
                 siteData.corner.unshift(item);
-                if (!saveSite()) { siteData.corner.shift(); return; }
+                cornerTab = type;
+                saveSite();
                 ['admCTitle', 'admCDesc', 'admCUrl', 'admCFile'].forEach(id => document.getElementById(id).value = '');
+                renderCornerCategoryOptions();
                 renderCorner(); admRenderCorner();
             };
             if (file) {
-                if (file.size > 1.5 * 1024 * 1024) { alert('File is too large (max 1.5 MB). Upload it to Google Drive and paste the link instead.'); return; }
-                const fr = new FileReader(); fr.onload = () => { item.fileData = fr.result; item.fileName = file.name; done(); }; fr.readAsDataURL(file);
+                if (file.size > 7 * 1024 * 1024) { alert('File is too large (max 7 MB). Upload it to Google Drive and paste the link instead.'); return; }
+                const fr = new FileReader(); fr.onload = () => { item.fileData = fr.result; item.fileName = file.name; done(); }; fr.onerror = () => alert('Could not read the selected file. Please try again.'); fr.readAsDataURL(file);
             } else { item.url = v('admCUrl'); done(); }
         }
         function admRemoveCorner(id) {
@@ -1631,7 +1783,7 @@
             siteData.corner.splice(i, 1); saveSite(); renderCorner(); admRenderCorner();
         }
         function admDownloadData() {
-            const blob = new Blob([JSON.stringify({ services: defaultServices, fees: siteData.fees, social: siteData.social, corner: siteData.corner })], { type: 'application/json' });
+            const blob = new Blob([JSON.stringify({ services: defaultServices, courses, fees: siteData.fees, social: siteData.social, corner: siteData.corner })], { type: 'application/json' });
             const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'site-data.json'; document.body.appendChild(a); a.click(); a.remove();
         }
         function admClearLocal() {
