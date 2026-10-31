@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Student Corner Manager | SITA-TECH</title>
+<style>
+*{box-sizing:border-box;margin:0}html{font-size:clamp(15px,11px + .6vw,22px)}
+body{font-family:Inter,system-ui,sans-serif;background:#0A0A0C;color:#e4e4e7;min-height:100vh}
+.w{max-width:44rem;margin:0 auto;padding:.75rem}.card{background:#121216;border:1px solid #27272a;border-radius:1rem;padding:.8rem;margin-top:.6rem}
+h1{font-size:1rem;color:#fff}h2{font-size:.85rem;color:#fff}p,label,td{font-size:.72rem;line-height:1.5;color:#a1a1aa}
+.in{width:100%;background:#09090b;border:1px solid #27272a;border-radius:.7rem;padding:.6rem;color:#fff;font-size:16px;margin-top:.4rem}
+.b{display:inline-flex;align-items:center;justify-content:center;padding:.55rem .8rem;border-radius:.7rem;background:#16a34a;color:#fff;font-weight:800;font-size:.72rem;border:0;cursor:pointer;text-decoration:none}
+.f{width:100%;margin-top:.5rem}.g{background:#27272a}.r{background:#b91c1c}.bl{background:#2563eb}.hide{display:none}
+table{width:100%;border-collapse:collapse}td{padding:.45rem .2rem;border-bottom:1px solid #27272a;vertical-align:middle}.tag{display:inline-block;padding:0 .35rem;border-radius:.3rem;background:#ec4899;color:#fff;font-size:.58rem;font-weight:800}
+</style></head><body><div class="w">
+<h1>Student Corner Manager</h1><p>Manage the Free Notes and Interview Questions shown on your website.</p>
+<div id="lg" class="card"><h2>Admin PIN</h2><input class="in" id="pin" type="password" placeholder="Enter PIN" onkeydown="if(event.key==='Enter')go()"><button class="b f" onclick="go()">Open</button></div>
+<div id="ap" class="hide">
+<div class="card"><h2>Add an item</h2>
+<select class="in" id="ty"><option value="notes">Free Notes</option><option value="interview">Interview Questions</option></select>
+<input class="in" id="ti" placeholder="Title, e.g. Excel Notes for Beginners"><input class="in" id="de" placeholder="Short description (optional)">
+<input class="in" id="ur" placeholder="Link (Google Drive, YouTube...) starting with https://">
+<p style="margin-top:.4rem">Or upload a small file (up to 1.5 MB):</p><input class="in" type="file" id="fi" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,image/*">
+<button class="b f" onclick="add()">Add to list</button></div>
+<div class="card"><h2>Items (<span id="n">0</span>)</h2><table id="ls"></table></div>
+<div class="card"><h2>Publish to your website</h2><p>Changes are saved on this device. Tap the button, then upload <b>corner-data.json</b> next to index.html on your website, replacing the old one. Visitors then see the new items in the Student corner.</p>
+<button class="b f bl" onclick="dl()">Download corner-data.json</button><button class="b f g" onclick="if(confirm('Discard changes on this device and reload the published list?')){localStorage.removeItem('corner_items');location.reload()}">Discard local changes</button></div>
+</div></div>
+<script>
+const PIN='64e3ed2a633dc635ec6a29e2e8552cb0e8915763fc36f7495abb474738347b29',$=i=>document.getElementById(i),E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let I=[];
+async function sha(s){return [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))].map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function go(){if(await sha('sita-corner|'+$('pin').value)!==PIN)return alert('Wrong PIN');$('lg').classList.add('hide');$('ap').classList.remove('hide');
+ const l=localStorage.getItem('corner_items');if(l){I=JSON.parse(l)}else if(location.protocol.startsWith('http')){try{const r=await fetch('corner-data.json?v='+Date.now(),{cache:'no-store'});if(r.ok)I=(await r.json()).items||[]}catch(e){}}draw()}
+function save(){try{localStorage.setItem('corner_items',JSON.stringify(I))}catch(e){alert('Storage is full. Use links instead of files.')}draw()}
+function draw(){$('n').textContent=I.length;$('ls').innerHTML=I.map(i=>'<tr><td><span class="tag">'+(i.type==='notes'?'NOTES':'INTERVIEW')+'</span> <b style="color:#fff">'+E(i.title)+'</b><br>'+E(i.desc||'')+'</td><td style="text-align:right"><button class="b r" onclick="rm(\''+i.id+'\')">Delete</button></td></tr>').join('')||'<tr><td>Nothing yet.</td></tr>'}
+function rm(id){if(confirm('Delete this item?')){I=I.filter(i=>i.id!==id);save()}}
+function add(){const t=$('ti').value.trim(),u=$('ur').value.trim(),f=$('fi').files[0];if(!t)return alert('Enter a title');
+ const it={id:'c'+Date.now(),type:$('ty').value,title:t,desc:$('de').value.trim()};
+ const fin=()=>{I.unshift(it);save();['ti','de','ur','fi'].forEach(x=>$(x).value='')};
+ if(u){if(!/^https?:\/\//i.test(u))return alert('The link must start with https://');it.url=u;fin()}
+ else if(f){if(f.size>1.5e6)return alert('File is too big. Upload it to Google Drive and paste the link.');const r=new FileReader();r.onload=()=>{it.fileData=r.result;it.fileName=f.name;fin()};r.readAsDataURL(f)}
+ else alert('Paste a link or choose a file')}
+function dl(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({items:I})],{type:'application/json'}));a.download='corner-data.json';a.click()}
+</script></body></html>
