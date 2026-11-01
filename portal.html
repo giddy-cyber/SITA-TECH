@@ -1,227 +1,506 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SITA-TECH Student Portal</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-*{box-sizing:border-box;margin:0}html{font-size:clamp(15px,11px + .6vw,22px)}
-body{font-family:Inter,system-ui,sans-serif;background:#0A0A0C;color:#e4e4e7;min-height:100vh;background-image:linear-gradient(rgba(37,99,235,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.07) 1px,transparent 1px);background-size:48px 48px}
-.w{max-width:44rem;margin:0 auto;padding:.75rem}.top{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.5rem 0}
-.brand{font-weight:900;font-size:1rem;color:#fff}.brand b{color:#22c55e}
-.card{background:rgba(18,18,22,.92);border:1px solid #27272a;border-radius:1rem;padding:.8rem;margin-top:.6rem}
-h2{font-size:.95rem;color:#fff;font-weight:800}h3{font-size:.8rem;color:#fff;font-weight:800}p,li,label{font-size:.72rem;line-height:1.5;color:#a1a1aa}
-.in{width:100%;background:#09090b;border:1px solid #27272a;border-radius:.7rem;padding:.6rem;color:#fff;font-size:16px;margin-top:.4rem}
-.b{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;padding:.55rem .8rem;border-radius:.7rem;background:#16a34a;color:#fff;font-weight:800;font-size:.72rem;border:0;cursor:pointer;text-decoration:none}
-.b.f{width:100%;margin-top:.5rem}.b.g{background:#27272a}.b.r{background:#b91c1c}.b.y{background:#ca8a04}
-.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:.3rem;margin-top:.4rem}.tabs button{padding:.5rem;border-radius:.6rem;background:#18181b;border:1px solid #27272a;color:#a1a1aa;font-weight:700;font-size:.68rem;cursor:pointer}.tabs button.on{background:rgba(34,197,94,.18);color:#fff;border-color:#22c55e}
-.les{display:flex;align-items:center;gap:.5rem;padding:.55rem;border:1px solid #27272a;border-radius:.7rem;margin-top:.35rem;background:#18181b;cursor:pointer;font-size:.72rem;color:#fff}.les.done i{color:#22c55e}
-.bar{height:.35rem;border-radius:9px;background:#27272a;margin-top:.4rem;overflow:hidden}.bar i{display:block;height:100%;background:#22c55e}
-.tx h4{color:#fff;font-size:.78rem;margin:.6rem 0 .2rem}.tx p,.tx li{color:#d4d4d8;margin-top:.25rem}.tx ul{padding-left:1.1rem}
-.live{border-color:#22c55e;box-shadow:0 0 12px rgba(34,197,94,.35)}.hide{display:none!important}.err{color:#f87171;font-size:.7rem;margin-top:.4rem}
-table{width:100%;border-collapse:collapse}td{font-size:.68rem;padding:.4rem .2rem;border-bottom:1px solid #27272a;vertical-align:middle}
-</style></head><body><div class="w">
-<div class="top"><div class="brand"><i class="fa-solid fa-graduation-cap" style="color:#22c55e"></i> SITA-TECH <b>Student Portal</b></div><div><a class="b g" href="index.html"><i class="fa-solid fa-house"></i> Site</a> <button class="b g hide" id="out" onclick="logout()">Log out</button></div></div>
-
-<div id="login" class="card"><h2><i class="fa-solid fa-lock" style="color:#22c55e"></i> Student login</h2>
-<p>Use the email and password for your SITA-TECH student account.</p>
-<input class="in" id="ln" type="email" placeholder="Email address" autocomplete="username"><input class="in" id="lp" type="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
-<button class="b f" onclick="login()">Log in</button><div class="err" id="le"></div>
-<button class="b f g" id="resetRequestButton" onclick="requestPasswordReset()">Forgot password?</button>
-<div class="err" id="resetMessage" role="status"></div>
-<p style="margin-top:.6rem">No login yet? <a href="enroll.html" style="color:#4ade80">Enroll for a course</a> and pay your fee. We confirm payment and send your login.</p></div>
-
-<div id="passwordReset" class="card hide"><h2>Choose a new password</h2>
-<p>Enter a new password for your student account.</p>
-<input class="in" id="newPassword" type="password" autocomplete="new-password" placeholder="New password (at least 8 characters)">
-<input class="in" id="confirmPassword" type="password" autocomplete="new-password" placeholder="Confirm new password" onkeydown="if(event.key==='Enter')saveNewPassword()">
-<button class="b f" onclick="saveNewPassword()">Save new password</button><div class="err" id="passwordResetMessage" role="status"></div></div>
-
-<div id="app" class="hide"><div class="card"><h2 id="hi"></h2><p id="sub"></p></div>
-<div class="err" id="portalError" role="status"></div>
-<div class="tabs"><button id="t1" class="on" onclick="tab(1)">My courses</button><button id="t2" onclick="tab(2)">Live classes</button></div>
-<div id="v1"></div><div id="v2" class="hide"></div></div>
-
-<script type="module">
-import { supabase } from './supabaseClient.js';
-const CO=[
-['comp','Computer Packages','fa-computer',[['Word: your first document','## Getting started\nOpen Word, choose Blank document and type. Save often with Ctrl+S.\n- Bold Ctrl+B, Italic Ctrl+I, Underline Ctrl+U\n- Use Heading styles for titles so a contents page can be made\n- Insert a table from Insert, then Table'],['Excel: formulas that matter','## Formulas\nEvery formula starts with =.\n- =SUM(A1:A10) adds a range\n- =AVERAGE(B1:B10) finds the average\n- =IF(C2>=50,"Pass","Fail") tests a condition\nUse Sort and Filter on the Data tab to organise lists.'],['PowerPoint: clear slides','## Good slides\nOne idea per slide, large text, few words. Use the Design tab for a theme and Insert for pictures. Press F5 to present.'],['Internet & Email','## Safe email\nWrite a clear subject, attach files with the paperclip, and check the address before sending. Never open attachments from people you do not know.']]],
-['web','Web Design','fa-laptop-code',[['HTML: the structure','## HTML\nHTML describes content using tags.\n- <h1> main heading, <p> paragraph\n- <a href="..."> link, <img src="..."> picture\n- <ul><li> lists\nSave a file as index.html and open it in a browser.'],['CSS: the style','## CSS\nCSS controls colour, size and layout.\n- color, background, font-size\n- margin outside, padding inside\n- display:flex lines items up in a row\nAdd it in a <style> tag or a .css file.'],['JavaScript: make it react','## JavaScript\nJavaScript runs when something happens.\n- document.querySelector finds an element\n- addEventListener("click", fn) reacts to a click\nStart by changing text when a button is pressed.'],['Responsive sites','## Responsive\nAdd <meta name="viewport" content="width=device-width, initial-scale=1"> and use percentages, rem and max-width so the page fits phones and computers.']]],
-['gfx','Graphic Design','fa-palette',[['Design basics','## Four rules\n- Contrast: make important things stand out\n- Repetition: reuse colours and fonts\n- Alignment: line things up\n- Space: leave breathing room'],['Canva: poster in 10 minutes','## Poster steps\nPick a template, change the text, replace images with your own, keep to two fonts and three colours, then Share and Download as PNG or PDF.'],['Logos that work','## Logo tips\nKeep it simple, make sure it works in one colour, and test it small. Save a PNG with a transparent background.']]],
-['hw','Computer Hardware & Repair','fa-screwdriver-wrench',[['Inside a computer','## Main parts\n- CPU: the brain\n- RAM: short-term memory\n- SSD or HDD: storage\n- Motherboard: connects everything\n- PSU: power supply'],['Diagnose a fault','## Method\nAsk when it started, check power and cables, listen for beeps, test with known-good parts, change one thing at a time.'],['Install Windows','## Steps\nBack up files, make a bootable USB with the official Windows tool, boot from it, choose the drive, install, then update drivers and install an antivirus.']]],
-['por','Digital Portal Skills','fa-landmark',[['Account basics','## Before you start\nUse your own email and phone, keep a strong password, and write down what you submit. Never share OTP codes with anyone.'],['Working with the portals','## Common portals\nKRA (iTax) for tax, eCitizen for government services, SHA for health cover and HELB for student loans. Always confirm the web address before logging in.'],['Helping others safely','## Good practice\nAgree the price first, never keep other people\'s passwords, and give the client a copy of what you submitted.']]],
-['vid','Video Editing & Content','fa-film',[['Plan your video','## Plan first\nWrite the goal, the hook (first 3 seconds), the main points and a call to action. Shoot in good light and keep sound clear.'],['CapCut basics','## Editing flow\nImport clips, trim, add captions, add music at low volume, then export in 1080p. Vertical 9:16 suits Reels and Shorts.'],['Thumbnails','## Thumbnails\nOne face or object, big readable words (3 or fewer), strong contrast.']]],
-['cyb','Cyber Safety & Security','fa-user-shield',[['Strong passwords','## Rules\n- Long beats complex: use a phrase of 4 words or more\n- Never reuse a password\n- Turn on two-step verification\n- Use a password manager'],['Spot phishing','## Warning signs\nUrgent threats, odd sender addresses, links that do not match the real site, requests for PINs or OTP. When unsure, go to the website yourself.'],['Secure your devices','## Habits\nInstall updates, lock your screen, back up important files, and avoid public Wi-Fi for banking.']]],
-['prog','Programming Basics','fa-code',[['Thinking like a programmer','## Logic\nBreak a problem into small steps. Write the steps in plain words first (pseudocode), then in code.'],['Python: first steps','## Python\nname = input("Name: ")\nprint("Hello", name)\n- Variables store values\n- if / else make decisions\n- for loops repeat'],['Mini project','## Try this\nBuild a number guessing game: pick a random number, ask for guesses, and say higher or lower until correct.']]]];
-/*
-const E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),Q=i=>document.getElementById(i);
-const sha=async s=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))].map(x=>x.toString(16).padStart(2,'0')).join('');
-const nm=n=>n.trim().toLowerCase().replace(/\s+/g,' ');
-let L={students:[],classes:[]},me=null,adm=false,fails=0,lock=0;
-try{L=JSON.parse(localStorage.getItem('pt_admin'))||L}catch(e){}
-async function load(){if(!localStorage.getItem('pt_admin')&&location.protocol.startsWith('http'))try{const r=await fetch('portal-data.json?v='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();L={students:(j.students||[]).map(s=>({id:s.id,h:s.h,courses:s.courses,active:s.active,name:'(hidden)'})),classes:j.classes||[]}}}catch(e){}}
-function txt(t){let o='',u=0;t.split('\n').forEach(l=>{if(l.startsWith('- ')){if(!u){o+='<ul>';u=1}o+='<li>'+E(l.slice(2))+'</li>'}else{if(u){o+='</ul>';u=0}o+=l.startsWith('## ')?'<h4>'+E(l.slice(3))+'</h4>':'<p>'+E(l)+'</p>'}});return o+(u?'</ul>':'')}
-async function login(){if(Date.now()<lock)return Q('le').textContent='Too many tries. Wait a minute.';const n=nm(Q('ln').value),p=Q('lp').value;if(!n||!p)return Q('le').textContent='Enter your full name and password.';
-const h=await sha(n+'|'+p),s=L.students.find(x=>x.h===h&&x.active!==false);if(!s){if(++fails>=5){lock=Date.now()+6e4;fails=0}return Q('le').textContent='Name or password is not correct.'}
-me=s;sessionStorage.setItem('pt_me',h);show(Q('ln').value.trim())}
-function show(name){Q('login').classList.add('hide');Q('app').classList.remove('hide');Q('out').classList.remove('hide');Q('hi').textContent='Welcome, '+name;
-Q('sub').textContent='You are enrolled in '+me.courses.map(c=>(CO.find(x=>x[0]===c)||[])[1]).filter(Boolean).join(', ');sessionStorage.setItem('pt_n',name);tab(1)}
-function logout(){sessionStorage.clear();location.reload()}
-const dn=()=>JSON.parse(localStorage.getItem('pt_done_'+me.h)||'{}');
-function tab(n){Q('t1').classList.toggle('on',n==1);Q('t2').classList.toggle('on',n==2);Q('v1').classList.toggle('hide',n!=1);Q('v2').classList.toggle('hide',n!=2);n==1?courses():classes()}
-function courses(){const d=dn();Q('v1').innerHTML=CO.filter(c=>me.courses.includes(c[0])).map(c=>{const t=c[3].length,k=c[3].filter((_,i)=>d[c[0]+i]).length;return'<div class="card"><h3><i class="fa-solid '+c[2]+'" style="color:#22c55e"></i> '+E(c[1])+'</h3><p>'+k+' of '+t+' lessons done</p><div class="bar"><i style="width:'+k/t*100+'%"></i></div>'+c[3].map((l,i)=>'<div class="les'+(d[c[0]+i]?' done':'')+'" onclick="les(\''+c[0]+'\','+i+')"><i class="fa-solid fa-circle-check"></i>'+E(l[0])+'</div>').join('')+'</div>'}).join('')||'<div class="card"><p>No courses assigned yet. Contact SITA-TECH.</p></div>'}
-function les(c,i){const C=CO.find(x=>x[0]===c),l=C[3][i],d=dn();Q('v1').innerHTML='<div class="card"><button class="b g" onclick="courses()"><i class="fa-solid fa-arrow-left"></i> Back</button><h2 style="margin-top:.5rem">'+E(l[0])+'</h2><div class="tx">'+txt(l[1])+'</div><button class="b f" onclick="done(\''+c+'\','+i+')">'+(d[c+i]?'Marked done. Back to list':'Mark as done')+'</button></div>'}
-function done(c,i){const d=dn();d[c+i]=1;localStorage.setItem('pt_done_'+me.h,JSON.stringify(d));courses()}
-function classes(){const now=Date.now(),l=L.classes.filter(c=>c.course==='all'||me.courses.includes(c.course)).sort((a,b)=>new Date(a.when)-new Date(b.when));
-Q('v2').innerHTML=l.map(c=>{const t=new Date(c.when).getTime(),on=now>t-18e5&&now<t+108e5;return'<div class="card'+(on?' live':'')+'"><h3>'+E(c.title)+'</h3><p>'+new Date(c.when).toLocaleString()+(t<now-108e5?' (finished)':'')+'</p><a class="b f '+(on?'':'y')+'" target="_blank" rel="noopener" href="'+E(c.link)+'"><i class="fa-solid fa-video"></i>'+(on?'Join class now':'Open class link')+'</a></div>'}).join('')||'<div class="card"><p>No live classes shared yet.</p></div>'}
-// ---- admin ----
-function openAdm(){const p=prompt('Admin PIN');if(!p)return;sha('sita-portal|'+p).then(h=>{if(h!==PIN)return alert('Wrong PIN');adm=true;['login','app'].forEach(i=>Q(i).classList.add('hide'));Q('adm').classList.remove('hide');Q('out').classList.remove('hide');Q('sc').innerHTML=CO.map(c=>'<label style="display:inline-block;margin:.15rem .5rem .15rem 0"><input type="checkbox" value="'+c[0]+'"> '+E(c[1])+'</label>').join('');Q('cc').innerHTML='<option value="all">All students</option>'+CO.map(c=>'<option value="'+c[0]+'">'+E(c[1])+'</option>').join('');rl()})}
-document.addEventListener('keydown',e=>{if(e.shiftKey&&e.code==='Digit0'&&!/INPUT|TEXTAREA/.test(e.target.tagName)){e.preventDefault();openAdm()}});let tp=0;Q('logo').onclick=()=>{if(++tp>=7){tp=0;openAdm()}};
-function at(n){[1,2,3].forEach(i=>Q('a'+i).classList.toggle('hide',i!=n))}
-const sv=()=>{localStorage.setItem('pt_admin',JSON.stringify(L));rl()};
-const pw=()=>{const a='abcdefghjkmnpqrstuvwxyz23456789';let o='';crypto.getRandomValues(new Uint8Array(8)).forEach(x=>o+=a[x%a.length]);return o};
-async function addStu(){const n=Q('sn').value.trim(),c=[...document.querySelectorAll('#sc input:checked')].map(x=>x.value);if(!n||!c.length)return alert('Enter the name and tick at least one course');if(!Q('sp').checked)return alert('Tick the box to confirm the fee payment first');
-const p=pw(),h=await sha(nm(n)+'|'+p);L.students=L.students.filter(s=>s.h!==h);L.students.push({id:Date.now(),name:n,phone:Q('sph').value.replace(/\D/g,''),h,courses:c,active:true});sv();
-const msg='Hello '+n+', your SITA-TECH Student Portal login is ready.\nUsername (full name): '+n+'\nPassword: '+p+'\nLogin: '+location.href.split('?')[0];
-const ph=Q('sph').value.replace(/\D/g,'').replace(/^0/,'254');Q('sres').innerHTML='Login created. Password: <b>'+p+'</b> (shown once) <a class="b" target="_blank" href="https://wa.me/'+ph+'?text='+encodeURIComponent(msg)+'">Send on WhatsApp</a>';Q('sn').value='';Q('sp').checked=false}
-function rl(){Q('sl').innerHTML='<table>'+L.students.map(s=>'<tr><td>'+E(s.name)+'<br><span style="color:#71717a">'+s.courses.map(c=>(CO.find(x=>x[0]===c)||[])[1]).join(', ')+'</span></td><td><button class="b g" onclick="tg('+s.id+')">'+(s.active===false?'Activate':'Block')+'</button> <button class="b r" onclick="rm('+s.id+')">X</button></td></tr>').join('')+'</table>';
-Q('cl2').innerHTML=L.classes.map((c,i)=>'<p>'+E(c.title)+' - '+new Date(c.when).toLocaleString()+' <button class="b r" onclick="L.classes.splice('+i+',1);sv()">X</button></p>').join('')}
-function tg(id){const s=L.students.find(x=>x.id===id);s.active=s.active===false;sv()}function rm(id){if(confirm('Delete this student?')){L.students=L.students.filter(x=>x.id!==id);sv()}}
-function addCls(){const t=Q('cn').value.trim(),w=Q('cd').value,l=Q('cl').value.trim();if(!t||!w||!/^https?:\/\//i.test(l))return alert('Add a title, date and a link starting with https://');L.classes.push({title:t,course:Q('cc').value,when:w,link:l});sv();['cn','cd','cl'].forEach(i=>Q(i).value='')}
-const pub=()=>JSON.stringify({students:L.students.map(s=>({id:s.id,h:s.h,courses:s.courses,active:s.active})),classes:L.classes});
-function dl(n,t){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'application/json'}));a.download=n;a.click()}
-load().then(async()=>{const h=sessionStorage.getItem('pt_me');if(h){const s=L.students.find(x=>x.h===h);if(s){me=s;show(sessionStorage.getItem('pt_n')||'student')}}});
-*/
-const E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),Q=i=>document.getElementById(i);
-let me=null,completed=new Set(),classSessions=[];
-let isPasswordRecovery=false;
-function txt(t){let o='',u=0;t.split('\n').forEach(l=>{if(l.startsWith('- ')){if(!u){o+='<ul>';u=1}o+='<li>'+E(l.slice(2))+'</li>'}else{if(u){o+='</ul>';u=0}o+=l.startsWith('## ')?'<h4>'+E(l.slice(3))+'</h4>':'<p>'+E(l)+'</p>'}});return o+(u?'</ul>':'')}
-function showError(message,target='portalError'){Q(target).textContent=message}
-function getSignInErrorMessage(error){
-    if(error.code==='invalid_credentials')return 'Email or password is incorrect. Check your email, or use Forgot password? to reset it.';
-    if(error.code==='email_not_confirmed')return 'Confirm your email using the link sent by Supabase, then try signing in again.';
-    if(error.status===401&&/api key/i.test(error.message||''))return 'Supabase rejected the frontend key. Verify it matches the project publishable key, then reload the deployed site.';
-    if(error.name==='AuthRetryableFetchError'||error instanceof TypeError)return 'Could not reach Supabase. Check your connection and try again.';
-    return 'Sign-in failed. Check your account details and try again.';
-}
-function getPasswordUpdateErrorMessage(error){
-    if(error.code==='weak_password')return error.message||'Choose a stronger password and try again.';
-    if(error.code==='session_not_found'||error.name==='AuthSessionMissingError')return 'This reset link is invalid or expired. Request a new reset email and open the newest link.';
-    if(error.code==='otp_expired'||error.code==='bad_code_verifier')return 'This reset link has expired or was already used. Request a new reset email.';
-    return 'Password update failed: '+(error.message||'Please request a new reset email and try again.');
-}
-function showPasswordReset(){
-    isPasswordRecovery=true;
-    Q('login').classList.add('hide');
-    Q('passwordReset').classList.remove('hide');
-}
-async function requestPasswordReset(){
-    const email=Q('ln').value.trim();
-    Q('resetMessage').textContent='';
-    if(!email){Q('resetMessage').textContent='Enter the student email address above first.';return}
-    try{
-        const {error}=await supabase.auth.resetPasswordForEmail(email,{
-            redirectTo:'https://sita-tech.co.ke/portal.html?mode=reset'
-        });
-        if(error)throw error;
-        Q('resetMessage').textContent='If that email belongs to a student account, a password reset link will be sent.';
-    }catch(error){
-        Q('resetMessage').textContent='Could not send the reset email. Please try again or contact SITA-TECH.';
-        console.error('Password reset request failed:',error);
-    }
-}
-async function saveNewPassword(){
-    const password=Q('newPassword').value,confirmation=Q('confirmPassword').value;
-    Q('passwordResetMessage').textContent='';
-    if(password.length<8){Q('passwordResetMessage').textContent='Use a password with at least 8 characters.';return}
-    if(password!==confirmation){Q('passwordResetMessage').textContent='The passwords do not match.';return}
-    try{
-        const {error}=await supabase.auth.updateUser({password});
-        if(error)throw error;
-        isPasswordRecovery=false;
-        Q('passwordReset').classList.add('hide');
-        Q('login').classList.remove('hide');
-        Q('lp').value='';
-        Q('passwordResetMessage').textContent='Password updated. Sign in with your new password.';
-        Q('le').textContent='Password updated. Sign in with your new password.';
-        const {error: signOutError}=await supabase.auth.signOut();
-        if(signOutError){
-            Q('passwordResetMessage').textContent='Password updated, but sign-out failed. Reload the page before signing in again.';
-            console.error('Sign-out after password update failed:',signOutError);
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITA-TECH Student Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0C;
+            overflow-x: hidden;
         }
-    }catch(error){
-        Q('passwordResetMessage').textContent=getPasswordUpdateErrorMessage(error);
-        console.error('Password update failed:',error);
-    }
-}
-async function loadAccount(user){
-    showError('');
-    const {data: enrollments,error: enrollmentError}=await supabase.from('sita_enrollments').select('course_code').eq('status','active');
-    if(enrollmentError)throw enrollmentError;
-    me={id:user.id,courses:enrollments.map(row=>row.course_code)};
-    const [{data: progress,error: progressError},{data: sessions,error: sessionsError}]=await Promise.all([
-        supabase.from('sita_module_progress').select('course_code,module_key'),
-        supabase.from('sita_class_sessions').select('title,course_code,starts_at,meeting_url').order('starts_at')
-    ]);
-    if(progressError)throw progressError;
-    if(sessionsError)throw sessionsError;
-    completed=new Set(progress.map(row=>row.course_code+row.module_key));
-    classSessions=sessions;
-    Q('login').classList.add('hide');
-    Q('app').classList.remove('hide');
-    Q('out').classList.remove('hide');
-    Q('hi').textContent='Welcome, '+(user.user_metadata.full_name||user.email||'student');
-    Q('sub').textContent='You are enrolled in '+me.courses.map(c=>(CO.find(x=>x[0]===c)||[])[1]).filter(Boolean).join(', ');
-    tab(1);
-}
-async function login(){
-    showError('', 'le');
-    const email=Q('ln').value.trim(),password=Q('lp').value;
-    if(!email||!password)return showError('Enter your email and password.', 'le');
-    let data,error;
-    try{
-        ({data,error}=await supabase.auth.signInWithPassword({email,password}));
-    }catch(requestError){
-        showError(getSignInErrorMessage(requestError),'le');
-        console.error('Student sign-in request failed:',requestError);
-        return;
-    }
-    if(error){showError(getSignInErrorMessage(error),'le');console.error('Student sign-in failed:',error);return}
-    try{await loadAccount(data.user)}
-    catch(loadError){
-        showError('Signed in, but student records could not be loaded. Verify the Supabase schema and enrollment setup, then try again.');
-        console.error('Student portal data load failed:',loadError);
-    }
-}
-async function logout(){
-    try{
-        const {error}=await supabase.auth.signOut();
-        if(error)throw error;
-        me=null;completed.clear();classSessions=[];
-        Q('login').classList.remove('hide');Q('app').classList.add('hide');Q('out').classList.add('hide');
-    }catch(error){showError('Could not sign out. Please try again.');console.error('Student sign-out failed:',error)}
-}
-function tab(n){Q('t1').classList.toggle('on',n===1);Q('t2').classList.toggle('on',n===2);Q('v1').classList.toggle('hide',n!==1);Q('v2').classList.toggle('hide',n!==2);n===1?courses():classes()}
-function courses(){Q('v1').innerHTML=CO.filter(c=>me&&me.courses.includes(c[0])).map(c=>{const t=c[3].length,k=c[3].filter((_,i)=>completed.has(c[0]+c[0]+i)).length;return'<div class="card"><h3><i class="fa-solid '+c[2]+'" style="color:#22c55e"></i> '+E(c[1])+'</h3><p>'+k+' of '+t+' lessons done</p><div class="bar"><i style="width:'+k/t*100+'%"></i></div>'+c[3].map((l,i)=>'<div class="les'+(completed.has(c[0]+c[0]+i)?' done':'')+'" onclick="les(\''+c[0]+'\','+i+')"><i class="fa-solid fa-circle-check"></i>'+E(l[0])+'</div>').join('')+'</div>'}).join('')||'<div class="card"><p>No courses assigned yet. Contact SITA-TECH.</p></div>'}
-function les(c,i){const C=CO.find(x=>x[0]===c),l=C[3][i],key=c+c+i;Q('v1').innerHTML='<div class="card"><button class="b g" onclick="courses()"><i class="fa-solid fa-arrow-left"></i> Back</button><h2 style="margin-top:.5rem">'+E(l[0])+'</h2><div class="tx">'+txt(l[1])+'</div><button class="b f" onclick="done(\''+c+'\','+i+')">'+(completed.has(key)?'Marked done. Back to list':'Mark as done')+'</button></div>'}
-async function done(c,i){
-    if(!me)return;
-    const key=c+c+i;
-    if(completed.has(key))return courses();
-    try{
-        const {error}=await supabase.from('sita_module_progress').upsert({student_id:me.id,course_code:c,module_key:c+i,completed_at:new Date().toISOString()},{onConflict:'student_id,course_code,module_key'});
-        if(error)throw error;
-        completed.add(key);showError('');courses();
-    }catch(error){showError('Could not save your lesson progress. Please try again.');console.error('Lesson progress update failed:',error)}
-}
-function classes(){const now=Date.now(),l=classSessions.filter(c=>c.course_code==='all'||me.courses.includes(c.course_code)).sort((a,b)=>new Date(a.starts_at)-new Date(b.starts_at));
-Q('v2').innerHTML=l.map(c=>{const t=new Date(c.starts_at).getTime(),on=now>t-18e5&&now<t+108e5;return'<div class="card'+(on?' live':'')+'"><h3>'+E(c.title)+'</h3><p>'+new Date(c.starts_at).toLocaleString()+(t<now-108e5?' (finished)':'')+'</p><a class="b f '+(on?'':'y')+'" target="_blank" rel="noopener" href="'+E(c.meeting_url)+'"><i class="fa-solid fa-video"></i>'+(on?'Join class now':'Open class link')+'</a></div>'}).join('')||'<div class="card"><p>No live classes shared yet.</p></div>'}
-Object.assign(window,{login,logout,tab,courses,les,done,requestPasswordReset,saveNewPassword});
-try{
-    const {data:{session},error}=await supabase.auth.getSession();
-    if(error)throw error;
-    if(new URLSearchParams(location.search).get('mode')==='reset'&&session)showPasswordReset();
-    else if(session)await loadAccount(session.user);
-}catch(error){showError('Could not restore your student session. Please sign in again.','le');console.error('Session restore failed:',error)}
-supabase.auth.onAuthStateChange((event)=>{
-    if(event==='PASSWORD_RECOVERY')showPasswordReset();
-});
-</script></body></html>
+
+        .animated-card {
+            background: rgba(18, 18, 22, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(34, 197, 94, 0.1);
+        }
+
+        /* Diagonal background split matching the video across all screen sizes */
+        .hero-panel {
+            background: linear-gradient(135deg, #052e16 0%, #15803d 50%, #22c55e 100%);
+            clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
+        }
+
+        .fade-slide-in {
+            animation: fadeSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px) scale(0.99);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .animated-input {
+            transition: all 0.2s ease;
+        }
+        .animated-input:focus {
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.25);
+        }
+
+        @media (max-width: 767px) { 
+            input, select, textarea { font-size: 11px !important; } 
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex flex-col justify-between relative selection:bg-green-500 selection:text-black">
+
+    <!-- Top Header Navigation -->
+    <header class="border-b border-zinc-800/80 bg-[#0A0A0C]/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-3 h-10 flex items-center justify-between">
+            <div class="font-black tracking-tight text-white text-xs sm:text-sm flex items-center gap-1">
+                <i class="fa-solid fa-graduation-cap text-green-500"></i>
+                SITA-TECH <span class="text-green-500 font-semibold text-[10px] sm:text-xs">Portal</span>
+            </div>
+            <div class="flex items-center gap-1">
+                <a class="px-2 py-1 rounded bg-zinc-800/90 hover:bg-zinc-700 text-white text-[10px] font-semibold transition-all flex items-center gap-1 border border-zinc-700/50" href="index.html">
+                    <i class="fa-solid fa-house text-[9px]"></i> <span>Site</span>
+                </a>
+                <button class="px-2 py-1 rounded bg-red-900/40 hover:bg-red-800/60 text-red-200 text-[10px] font-semibold transition-all hidden border border-red-800/50 flex items-center gap-1" id="out" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket text-[9px]"></i> Log out
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container: Top-aligned to start at top of mobile screen -->
+    <main class="max-w-xl mx-auto px-2 pt-2 sm:pt-4 pb-4 w-full flex-grow flex items-start justify-center z-10">
+
+        <!-- AUTHENTICATION CARD (Side-by-side partition across all screen sizes) -->
+        <div id="authContainer" class="w-full animated-card rounded-xl overflow-hidden grid grid-cols-12 fade-slide-in">
+            
+            <!-- Left Side Diagonal Panel (5 Columns) -->
+            <div class="col-span-5 hero-panel p-2.5 sm:p-5 flex flex-col justify-between relative overflow-hidden text-white">
+                <div class="relative z-10">
+                    <span class="inline-block px-1.5 py-0.5 rounded-full bg-black/20 text-green-200 text-[8px] sm:text-[9px] font-bold uppercase tracking-wider mb-1 border border-white/10">
+                        Academy Access
+                    </span>
+                    <h2 class="text-xs sm:text-xl font-black tracking-tight leading-tight">
+                        WELCOME BACK!
+                    </h2>
+                    <p class="mt-1 text-green-100/90 text-[9px] sm:text-xs leading-tight font-medium hidden xs:block">
+                        Log in to access active courses and classes.
+                    </p>
+                </div>
+
+                <div class="pt-2 border-t border-white/15 relative z-10 flex flex-col gap-1 text-[9px] text-green-100/80">
+                    <div class="flex items-center gap-1">
+                        <i class="fa-solid fa-circle-check text-green-300 text-[8px]"></i>
+                        <span class="truncate">Progress Tracker</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side Form Panel (7 Columns) -->
+            <div class="col-span-7 p-2.5 sm:p-5 flex flex-col justify-center">
+                
+                <!-- LOGIN FORM -->
+                <div id="login">
+                    <div class="mb-1.5 sm:mb-2.5">
+                        <span class="text-green-500 font-bold text-[8px] sm:text-[9px] uppercase tracking-widest flex items-center gap-1">
+                            <i class="fa-solid fa-lock"></i> Authentication
+                        </span>
+                        <h1 class="text-xs sm:text-lg font-black text-white mt-0">Student Login</h1>
+                    </div>
+
+                    <div class="space-y-1.5 sm:space-y-2">
+                        <div>
+                            <label class="block text-[9px] sm:text-[10px] font-semibold text-zinc-300 mb-0.5">Email address</label>
+                            <div class="relative">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-zinc-500 text-[9px]"><i class="fa-regular fa-envelope"></i></span>
+                                <input class="animated-input w-full bg-zinc-950/80 border border-zinc-800 focus:border-green-500 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white" id="ln" type="email" placeholder="you@example.com" autocomplete="username">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[9px] sm:text-[10px] font-semibold text-zinc-300 mb-0.5">Password</label>
+                            <div class="relative">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-zinc-500 text-[9px]"><i class="fa-solid fa-key"></i></span>
+                                <input class="animated-input w-full bg-zinc-950/80 border border-zinc-800 focus:border-green-500 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white" id="lp" type="password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
+                            </div>
+                        </div>
+
+                        <button class="w-full py-1.5 sm:py-2 rounded bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 text-white font-extrabold text-[10px] sm:text-xs shadow-md transition-all mt-0.5" onclick="login()">
+                            Log in
+                        </button>
+                        
+                        <div class="err text-[10px] text-red-400 bg-red-950/40 border border-red-800/50 p-1 rounded hidden" id="le"></div>
+
+                        <div class="pt-0.5 text-center">
+                            <button class="text-[9px] sm:text-[10px] font-medium text-zinc-400 hover:text-green-400 transition-colors" id="resetRequestButton" onclick="requestPasswordReset()">Forgot password?</button>
+                            <div class="err text-[9px] text-green-400 mt-0.5" id="resetMessage" role="status"></div>
+                        </div>
+
+                        <div class="border-t border-zinc-800/80 pt-1 text-center">
+                            <p class="text-[9px] text-zinc-400">No login? <a href="enroll.html" class="text-green-400 font-bold hover:underline">Enroll now</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASSWORD RESET FORM -->
+                <div id="passwordReset" class="hidden">
+                    <div class="mb-2">
+                        <span class="text-green-500 font-bold text-[8px] uppercase tracking-widest">Recovery</span>
+                        <h2 class="text-xs sm:text-sm font-black text-white mt-0.5">Choose new password</h2>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <div>
+                            <label class="block text-[9px] font-semibold text-zinc-300 mb-0.5">New Password</label>
+                            <input class="animated-input w-full bg-zinc-950/80 border border-zinc-800 focus:border-green-500 outline-none rounded py-1 px-2 text-[10px] sm:text-xs text-white" id="newPassword" type="password" autocomplete="new-password" placeholder="Min 8 chars">
+                        </div>
+
+                        <div>
+                            <label class="block text-[9px] font-semibold text-zinc-300 mb-0.5">Confirm Password</label>
+                            <input class="animated-input w-full bg-zinc-950/80 border border-zinc-800 focus:border-green-500 outline-none rounded py-1 px-2 text-[10px] sm:text-xs text-white" id="confirmPassword" type="password" autocomplete="new-password" placeholder="Re-enter" onkeydown="if(event.key==='Enter')saveNewPassword()">
+                        </div>
+
+                        <button class="w-full py-1.5 rounded bg-gradient-to-r from-green-600 to-emerald-500 text-white font-extrabold text-[10px] sm:text-xs shadow-md transition-all" onclick="saveNewPassword()">
+                            Save Password
+                        </button>
+                        
+                        <div class="err text-[10px] text-red-400 bg-red-950/40 border border-red-800/50 p-1 rounded mt-1" id="passwordResetMessage" role="status"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- LOGGED-IN PORTAL DASHBOARD -->
+        <div id="app" class="hidden w-full space-y-2 fade-slide-in">
+            <div class="animated-card p-2.5 rounded-xl border border-zinc-800">
+                <span class="text-green-500 font-bold text-[8px] uppercase tracking-widest">Student Dashboard</span>
+                <h2 class="text-xs sm:text-base font-black text-white mt-0.5" id="hi"></h2>
+                <p class="text-zinc-400 text-[10px] mt-0.5" id="sub"></p>
+            </div>
+
+            <div class="err text-[10px] text-red-400 bg-red-950/40 border border-red-800/50 p-1 rounded hidden" id="portalError" role="status"></div>
+
+            <div class="grid grid-cols-2 gap-1 bg-zinc-950/60 p-1 rounded border border-zinc-800/80">
+                <button id="t1" class="py-1 px-2 rounded text-[10px] font-bold transition-all text-white bg-green-600/20 border border-green-500/40" onclick="tab(1)">
+                    <i class="fa-solid fa-book-open mr-1"></i> Courses
+                </button>
+                <button id="t2" class="py-1 px-2 rounded text-[10px] font-bold transition-all text-zinc-400 hover:text-white" onclick="tab(2)">
+                    <i class="fa-solid fa-video mr-1"></i> Live classes
+                </button>
+            </div>
+
+            <div id="v1" class="space-y-1.5"></div>
+            <div id="v2" class="hidden space-y-1.5"></div>
+        </div>
+
+    </main>
+
+    <script type="module">
+        import { supabase } from './supabaseClient.js';
+        
+        const CO=[
+        ['comp','Computer Packages','fa-computer',[['Word: your first document','## Getting started\nOpen Word, choose Blank document and type. Save often with Ctrl+S.\n- Bold Ctrl+B, Italic Ctrl+I, Underline Ctrl+U\n- Use Heading styles for titles so a contents page can be made\n- Insert a table from Insert, then Table'],['Excel: formulas that matter','## Formulas\nEvery formula starts with =.\n- =SUM(A1:A10) adds a range\n- =AVERAGE(B1:B10) finds the average\n- =IF(C2>=50,"Pass","Fail") tests a condition\nUse Sort and Filter on the Data tab to organise lists.'],['PowerPoint: clear slides','## Good slides\nOne idea per slide, large text, few words. Use the Design tab for a theme and Insert for pictures. Press F5 to present.'],['Internet & Email','## Safe email\nWrite a clear subject, attach files with the paperclip, and check the address before sending. Never open attachments from people you do not know.']]],
+        ['web','Web Design','fa-laptop-code',[['HTML: the structure','## HTML\nHTML describes content using tags.\n- <h1> main heading, <p> paragraph\n- <a href="..."> link, <img src="..."> picture\n- <ul><li> lists\nSave a file as index.html and open it in a browser.'],['CSS: the style','## CSS\nCSS controls colour, size and layout.\n- color, background, font-size\n- margin outside, padding inside\n- display:flex lines items up in a row\nAdd it in a <style> tag or a .css file.'],['JavaScript: make it react','## JavaScript\nJavaScript runs when something happens.\n- document.querySelector finds an element\n- addEventListener("click", fn) reacts to a click\nStart by changing text when a button is pressed.'],['Responsive sites','## Responsive\nAdd <meta name="viewport" content="width=device-width, initial-scale=1"> and use percentages, rem and max-width so the page fits phones and computers.']]],
+        ['gfx','Graphic Design','fa-palette',[['Design basics','## Four rules\n- Contrast: make important things stand out\n- Repetition: reuse colours and fonts\n- Alignment: line things up\n- Space: leave breathing room'],['Canva: poster in 10 minutes','## Poster steps\nPick a template, change the text, replace images with your own, keep to two fonts and three colours, then Share and Download as PNG or PDF.'],['Logos that work','## Logo tips\nKeep it simple, make sure it works in one colour, and test it small. Save a PNG with a transparent background.']]],
+        ['hw','Computer Hardware & Repair','fa-screwdriver-wrench',[['Inside a computer','## Main parts\n- CPU: the brain\n- RAM: short-term memory\n- SSD or HDD: storage\n- Motherboard: connects everything\n- PSU: power supply'],['Diagnose a fault','## Method\nAsk when it started, check power and cables, listen for beeps, test with known-good parts, change one thing at a time.'],['Install Windows','## Steps\nBack up files, make a bootable USB with the official Windows tool, boot from it, choose the drive, install, then update drivers and install an antivirus.']]],
+        ['por','Digital Portal Skills','fa-landmark',[['Account basics','## Before you start\nUse your own email and phone, keep a strong password, and write down what you submit. Never share OTP codes with anyone.'],['Working with the portals','## Common portals\nKRA (iTax) for tax, eCitizen for government services, SHA for health cover and HELB for student loans. Always confirm the web address before logging in.'],['Helping others safely','## Good practice\nAgree the price first, never keep other people\'s passwords, and give the client a copy of what you submitted.']]],
+        ['vid','Video Editing & Content','fa-film',[['Plan your video','## Plan first\nWrite the goal, the hook (first 3 seconds), the main points and a call to action. Shoot in good light and keep sound clear.'],['CapCut basics','## Editing flow\nImport clips, trim, add captions, add music at low volume, then export in 1080p. Vertical 9:16 suits Reels and Shorts.'],['Thumbnails','## Thumbnails\nOne face or object, big readable words (3 or fewer), strong contrast.']]],
+        ['cyb','Cyber Safety & Security','fa-user-shield',[['Strong passwords','## Rules\n- Long beats complex: use a phrase of 4 words or more\n- Never reuse a password\n- Turn on two-step verification\n- Use a password manager'],['Spot phishing','## Warning signs\nUrgent threats, odd sender addresses, links that do not match the real site, requests for PINs or OTP. When unsure, go to the website yourself.'],['Secure your devices','## Habits\nInstall updates, lock your screen, back up important files, and avoid public Wi-Fi for banking.']]],
+        ['prog','Programming Basics','fa-code',[['Thinking like a programmer','## Logic\nBreak a problem into small steps. Write the steps in plain words first (pseudocode), then in code.'],['Python: first steps','## Python\nname = input("Name: ")\nprint("Hello", name)\n- Variables store values\n- if / else make decisions\n- for loops repeat'],['Mini project','## Try this\nBuild a number guessing game: pick a random number, ask for guesses, and say higher or lower until correct.']]]
+        ];
+
+        const E = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const Q = i => document.getElementById(i);
+        
+        let me = null, completed = new Set(), classSessions = [];
+        let isPasswordRecovery = false;
+
+        function txt(t) {
+            let o = '', u = 0;
+            t.split('\n').forEach(l => {
+                if (l.startsWith('- ')) {
+                    if (!u) { o += '<ul class="list-disc pl-3 my-0.5 space-y-0.5 text-zinc-300 text-[10px]">'; u = 1; }
+                    o += '<li>' + E(l.slice(2)) + '</li>';
+                } else {
+                    if (u) { o += '</ul>'; u = 0; }
+                    o += l.startsWith('## ') 
+                        ? '<h4 class="text-[11px] font-bold text-green-400 mt-1 mb-0.5">' + E(l.slice(3)) + '</h4>' 
+                        : '<p class="text-[10px] text-zinc-300 my-0.5 leading-snug">' + E(l) + '</p>';
+                }
+            });
+            return o + (u ? '</ul>' : '');
+        }
+
+        function showError(message, target = 'portalError') {
+            const el = Q(target);
+            if (!message) {
+                el.classList.add('hidden');
+                el.textContent = '';
+            } else {
+                el.textContent = message;
+                el.classList.remove('hidden');
+            }
+        }
+
+        function getSignInErrorMessage(error) {
+            if (error.code === 'invalid_credentials') return 'Email or password incorrect.';
+            if (error.code === 'email_not_confirmed') return 'Confirm email link first.';
+            if (error.status === 401 && /api key/i.test(error.message || '')) return 'Supabase rejected key.';
+            if (error.name === 'AuthRetryableFetchError' || error instanceof TypeError) return 'Connection error.';
+            return 'Sign-in failed.';
+        }
+
+        function getPasswordUpdateErrorMessage(error) {
+            if (error.code === 'weak_password') return error.message || 'Password too weak.';
+            if (error.code === 'session_not_found' || error.name === 'AuthSessionMissingError') return 'Link expired.';
+            if (error.code === 'otp_expired' || error.code === 'bad_code_verifier') return 'Link expired.';
+            return 'Password update failed.';
+        }
+
+        function showPasswordReset() {
+            isPasswordRecovery = true;
+            Q('login').classList.add('hidden');
+            Q('passwordReset').classList.remove('hidden');
+        }
+
+        async function requestPasswordReset() {
+            const email = Q('ln').value.trim();
+            Q('resetMessage').textContent = '';
+            if (!email) { Q('resetMessage').textContent = 'Enter email above first.'; return; }
+            try {
+                const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                    redirectTo: 'https://sita-tech.co.ke/portal.html?mode=reset'
+                });
+                if (error) throw error;
+                Q('resetMessage').textContent = 'Reset link sent if email exists.';
+            } catch (error) {
+                Q('resetMessage').textContent = 'Could not send reset link.';
+                console.error('Password reset failed:', error);
+            }
+        }
+
+        async function saveNewPassword() {
+            const password = Q('newPassword').value, confirmation = Q('confirmPassword').value;
+            showError('', 'passwordResetMessage');
+            if (password.length < 8) { showError('Use at least 8 chars.', 'passwordResetMessage'); return; }
+            if (password !== confirmation) { showError('Passwords do not match.', 'passwordResetMessage'); return; }
+            try {
+                const { error } = await supabase.auth.updateUser({ password });
+                if (error) throw error;
+                isPasswordRecovery = false;
+                Q('passwordReset').classList.add('hidden');
+                Q('login').classList.remove('hidden');
+                Q('lp').value = '';
+                showError('Password updated. Sign in now.', 'le');
+                await supabase.auth.signOut();
+            } catch (error) {
+                showError(getPasswordUpdateErrorMessage(error), 'passwordResetMessage');
+                console.error('Password update error:', error);
+            }
+        }
+
+        async function loadAccount(user) {
+            showError('');
+            const { data: enrollments, error: enrollmentError } = await supabase.from('sita_enrollments').select('course_code').eq('status', 'active');
+            if (enrollmentError) throw enrollmentError;
+            
+            me = { id: user.id, courses: enrollments.map(row => row.course_code) };
+            
+            const [{ data: progress, error: progressError }, { data: sessions, error: sessionsError }] = await Promise.all([
+                supabase.from('sita_module_progress').select('course_code,module_key'),
+                supabase.from('sita_class_sessions').select('title,course_code,starts_at,meeting_url').order('starts_at')
+            ]);
+            
+            if (progressError) throw progressError;
+            if (sessionsError) throw sessionsError;
+            
+            completed = new Set(progress.map(row => row.course_code + row.module_key));
+            classSessions = sessions;
+            
+            Q('authContainer').classList.add('hidden');
+            Q('app').classList.remove('hidden');
+            Q('out').classList.remove('hidden');
+            
+            Q('hi').textContent = 'Welcome, ' + (user.user_metadata.full_name || user.email || 'Student');
+            Q('sub').textContent = 'Enrolled in: ' + me.courses.map(c => (CO.find(x => x[0] === c) || [])[1]).filter(Boolean).join(', ');
+            tab(1);
+        }
+
+        async function login() {
+            showError('', 'le');
+            const email = Q('ln').value.trim(), password = Q('lp').value;
+            if (!email || !password) return showError('Enter email and password.', 'le');
+            
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+                if (error) throw error;
+                await loadAccount(data.user);
+            } catch (error) {
+                showError(getSignInErrorMessage(error), 'le');
+                console.error('Sign-in failed:', error);
+            }
+        }
+
+        async function logout() {
+            try {
+                const { error } = await supabase.auth.signOut();
+                if (error) throw error;
+                me = null; completed.clear(); classSessions = [];
+                Q('authContainer').classList.remove('hidden');
+                Q('app').classList.add('hidden');
+                Q('out').classList.add('hidden');
+            } catch (error) {
+                showError('Could not sign out.');
+                console.error('Sign-out failed:', error);
+            }
+        }
+
+        function tab(n) {
+            const btn1 = Q('t1'), btn2 = Q('t2');
+            if (n === 1) {
+                btn1.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-white bg-green-600/20 border border-green-500/40";
+                btn2.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-zinc-400 hover:text-white";
+                Q('v1').classList.remove('hidden');
+                Q('v2').classList.add('hidden');
+                courses();
+            } else {
+                btn2.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-white bg-green-600/20 border border-green-500/40";
+                btn1.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-zinc-400 hover:text-white";
+                Q('v2').classList.remove('hidden');
+                Q('v1').classList.add('hidden');
+                classes();
+            }
+        }
+
+        function courses() {
+            Q('v1').innerHTML = CO.filter(c => me && me.courses.includes(c[0])).map(c => {
+                const t = c[3].length;
+                const k = c[3].filter((_, i) => completed.has(c[0] + c[0] + i)).length;
+                const pct = Math.round((k / t) * 100);
+                
+                return `<div class="animated-card p-2.5 rounded-lg border border-zinc-800 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xs font-bold text-white flex items-center gap-1">
+                            <i class="fa-solid ${c[2]} text-green-500"></i> ${E(c[1])}
+                        </h3>
+                        <span class="text-[8px] font-bold px-1 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20">${pct}%</span>
+                    </div>
+                    
+                    <div class="h-1 rounded bg-zinc-950 overflow-hidden border border-zinc-800">
+                        <div class="h-full bg-gradient-to-r from-green-600 to-emerald-400 transition-all duration-300" style="width:${pct}%"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-1 pt-0.5">
+                        ${c[3].map((l, i) => {
+                            const isDone = completed.has(c[0] + c[0] + i);
+                            return `<div class="flex items-center justify-between p-1.5 rounded border ${isDone ? 'bg-zinc-900/60 border-green-500/30 text-green-300' : 'bg-zinc-950/80 border-zinc-800/80 text-zinc-300'} cursor-pointer" onclick="les('${c[0]}',${i})">
+                                <div class="flex items-center gap-1 text-[10px] font-medium">
+                                    <i class="fa-solid fa-circle-check ${isDone ? 'text-green-400' : 'text-zinc-600'}"></i>
+                                    <span>${E(l[0])}</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-[8px] text-zinc-600"></i>
+                            </div>`;
+                        }).join('')}
+                    </div>
+                </div>`;
+            }).join('') || '<div class="animated-card p-3 rounded-lg text-center"><p class="text-zinc-400 text-[10px]">No courses assigned.</p></div>';
+        }
+
+        function les(c, i) {
+            const C = CO.find(x => x[0] === c), l = C[3][i], key = c + c + i;
+            const isDone = completed.has(key);
+            
+            Q('v1').innerHTML = `
+                <div class="animated-card p-2.5 rounded-lg border border-zinc-800 space-y-2 fade-slide-in">
+                    <button class="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-white text-[9px] font-semibold transition-all flex items-center gap-1" onclick="courses()">
+                        <i class="fa-solid fa-arrow-left"></i> Back
+                    </button>
+                    
+                    <div class="border-b border-zinc-800/80 pb-1">
+                        <span class="text-[8px] text-green-500 font-bold uppercase tracking-wider">${E(C[1])}</span>
+                        <h2 class="text-xs font-black text-white mt-0.5">${E(l[0])}</h2>
+                    </div>
+
+                    <div class="bg-zinc-950/60 p-2 rounded border border-zinc-800/80 leading-snug">
+                        ${txt(l[1])}
+                    </div>
+
+                    <button class="w-full py-1.5 rounded ${isDone ? 'bg-zinc-800 text-green-400 border border-green-500/30' : 'bg-gradient-to-r from-green-600 to-emerald-500 text-white'} font-extrabold text-[10px] shadow-md transition-all" onclick="done('${c}',${i})">
+                        <i class="fa-solid ${isDone ? 'fa-check-double' : 'fa-check'} mr-1"></i> ${isDone ? 'Marked done' : 'Mark as done'}
+                    </button>
+                </div>
+            `;
+        }
+
+        async function done(c, i) {
+            if (!me) return;
+            const key = c + c + i;
+            if (completed.has(key)) return courses();
+            try {
+                const { error } = await supabase.from('sita_module_progress').upsert({
+                    student_id: me.id,
+                    course_code: c,
+                    module_key: c + i,
+                    completed_at: new Date().toISOString()
+                }, { onConflict: 'student_id,course_code,module_key' });
+                
+                if (error) throw error;
+                completed.add(key);
+                showError('');
+                courses();
+            } catch (error) {
+                showError('Could not save progress.');
+                console.error('Lesson progress update error:', error);
+            }
+        }
+
+        function classes() {
+            const now = Date.now();
+            const l = classSessions.filter(c => c.course_code === 'all' || me.courses.includes(c.course_code)).sort((a, b) => new Date(a.starts_at) - new Date(b.starts_at));
+            
+            Q('v2').innerHTML = l.map(c => {
+                const t = new Date(c.starts_at).getTime();
+                const on = now > t - 18e5 && now < t + 108e5;
+                const isPast = t < now - 108e5;
+
+                return `<div class="animated-card p-2.5 rounded-lg border ${on ? 'border-green-500' : 'border-zinc-800'} space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xs font-bold text-white">${E(c.title)}</h3>
+                        ${on ? '<span class="px-1 py-0.5 rounded bg-green-500/20 text-green-400 border border-green-500/40 text-[8px] font-black uppercase">● Live</span>' : ''}
+                    </div>
+                    <p class="text-[10px] text-zinc-400 flex items-center gap-1">
+                        <i class="fa-regular fa-clock text-green-500"></i> ${new Date(c.starts_at).toLocaleString()} ${isPast ? '(Finished)' : ''}
+                    </p>
+                    <a class="block w-full text-center py-1.5 rounded ${on ? 'bg-gradient-to-r from-green-600 to-emerald-500 text-white font-extrabold' : 'bg-zinc-800 text-zinc-200 font-bold'} text-[10px]" target="_blank" rel="noopener" href="${E(c.meeting_url)}">
+                        <i class="fa-solid fa-video mr-1"></i> ${on ? 'Join class now' : 'Open class link'}
+                    </a>
+                </div>`;
+            }).join('') || '<div class="animated-card p-3 rounded-lg text-center"><p class="text-zinc-400 text-[10px]">No live classes scheduled.</p></div>';
+        }
+
+        Object.assign(window, { login, logout, tab, courses, les, done, requestPasswordReset, saveNewPassword });
+
+        try {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if (error) throw error;
+            if (new URLSearchParams(location.search).get('mode') === 'reset' && session) showPasswordReset();
+            else if (session) await loadAccount(session.user);
+        } catch (error) {
+            showError('Could not restore session.', 'le');
+            console.error('Session restore failed:', error);
+        }
+
+        supabase.auth.onAuthStateChange((event) => {
+            if (event === 'PASSWORD_RECOVERY') showPasswordReset();
+        });
+    </script>
+</body>
+</html>
