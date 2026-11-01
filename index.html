@@ -1576,7 +1576,7 @@
             q('B').onchange = () => { q('O').value = q('B').value === 'clear' ? 'image/png' : 'image/jpeg'; };
             q('C').oninput = () => { q('B').value = 'custom'; q('O').value = 'image/jpeg'; };
             q('F').onchange = e => { const f = e.target.files[0]; if (!f) return; const im = new Image(); im.onload = () => {
-                const sc = Math.min(1, 1600 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * sc); c.height = Math.round(im.height * sc);
+                const sc = Math.min(1, 3200 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * sc); c.height = Math.round(im.height * sc);
                 c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); ST[k] = { src: c, cur: c }; if (!pass) { q('W').value = im.width; q('H').value = im.height; q('U').value = 'px'; } stShow(k); }; im.src = URL.createObjectURL(f); };
             if (pass) q('P').onchange(); else { q('P').onchange(); }
         }
@@ -1628,13 +1628,21 @@
                 const outputContext = output.getContext('2d', { willReadFrequently: true });
                 outputContext.drawImage(S.src, 0, 0);
                 const pixels = outputContext.getImageData(0, 0, W, H), softness = Number(document.getElementById(k + 'T').value) / 100;
-                const low = 0.5 - softness, high = 0.5 + softness;
+                const low = Math.max(0.12, 0.32 - softness * 0.5), high = Math.min(0.7, low + Math.max(0.12, softness));
                 let foregroundPixels = 0;
-                for (let i = 0; i < pixels.data.length; i += 4) {
-                    const confidence = mask[i] / 255, value = Math.max(0, Math.min(1, (confidence - low) / (high - low)));
+                for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+                    const i = (y * W + x) * 4, confidence = mask[i] / 255;
+                    const value = Math.max(0, Math.min(1, (confidence - low) / (high - low)));
                     const alpha = Math.round(pixels.data[i + 3] * value * value * (3 - 2 * value));
-                    pixels.data[i + 3] = alpha;
-                    if (alpha > 16) foregroundPixels++;
+                    let retainedAlpha = alpha;
+                    if (alpha < 16) {
+                        for (let oy = -1; oy <= 1 && retainedAlpha < 72; oy++) for (let ox = -1; ox <= 1 && retainedAlpha < 72; ox++) {
+                            const nx = x + ox, ny = y + oy;
+                            if ((ox || oy) && nx >= 0 && nx < W && ny >= 0 && ny < H && mask[(ny * W + nx) * 4] >= 166) retainedAlpha = 72;
+                        }
+                    }
+                    pixels.data[i + 3] = retainedAlpha;
+                    if (retainedAlpha > 16) foregroundPixels++;
                 }
                 if (foregroundPixels < W * H * 0.01) throw new Error('The AI could not identify a person in this photo. Try a clear, well-lit photo with the full subject visible.');
                 outputContext.putImageData(pixels, 0, 0);
@@ -1654,7 +1662,12 @@
             if (bg === 'clear') { bg = ''; type = 'image/png'; }
             else if (bg === 'custom') bg = q('C').value;
             else if (bg === 'keep') bg = type === 'image/jpeg' ? '#ffffff' : '';
-            const cv = S.cr.getCroppedCanvas({ width: w, height: h, fillColor: bg || undefined, imageSmoothingQuality: 'high' }), max = (+q('K').value || 0) * 1024;
+            const cropped = S.cr.getCroppedCanvas({ width: w, height: h, imageSmoothingQuality: 'high' });
+            const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+            const ctx = cv.getContext('2d');
+            if (bg) { ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h); }
+            ctx.drawImage(cropped, 0, 0, w, h);
+            const max = (+q('K').value || 0) * 1024;
             const toB = qa => new Promise(r => cv.toBlob(r, type, qa)); let blob = await toB(.95), qa = .95;
             if (max && type === 'image/jpeg') while (blob.size > max && qa > .1) { qa -= .07; blob = await toB(qa); }
             const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = (k === 'crop' ? 'passport-photo' : 'resized-image') + (type === 'image/png' ? '.png' : '.jpg'); a.click();
