@@ -6,48 +6,83 @@
     <title>SITA-TECH Student Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0A0A0C;
+            background-color: #050508;
             overflow-x: hidden;
         }
 
+        .hacker-font {
+            font-family: 'Share Tech Mono', monospace;
+        }
+
         .animated-card {
-            background: rgba(18, 18, 22, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(34, 197, 94, 0.1);
+            background: rgba(10, 15, 12, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            box-shadow: 0 0 35px rgba(34, 197, 94, 0.25), inset 0 0 20px rgba(34, 197, 94, 0.1);
         }
 
-        /* Diagonal background split matching the video across all screen sizes */
+        /* Hero Panel Container */
         .hero-panel {
-            background: linear-gradient(135deg, #052e16 0%, #15803d 50%, #22c55e 100%);
-            clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
         }
 
-        .fade-slide-in {
-            animation: fadeSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        /* Hacker Image Background Overlay & FX */
+        .hacker-img-bg {
+            background-image: url('download (45).jpg');
+            background-size: cover;
+            background-position: center;
+            filter: contrast(1.15) brightness(0.9);
+            animation: imgGlow 3s ease-in-out infinite alternate;
         }
 
-        @keyframes fadeSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-8px) scale(0.99);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        @keyframes imgGlow {
+            0% { filter: contrast(1.1) brightness(0.85); }
+            100% { filter: contrast(1.25) brightness(1.05) drop-shadow(0 0 15px rgba(34, 197, 94, 0.6)); }
+        }
+
+        /* Laser Scan Line */
+        .scan-line {
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 0.9; }
+            100% { transform: translateY(220%); opacity: 0; }
+        }
+
+        /* Cyberpunk Glitch Text */
+        .cyber-glitch {
+            animation: glitchText 2.5s infinite;
+        }
+
+        @keyframes glitchText {
+            0%, 100% { transform: translate(0); text-shadow: 0 0 8px rgba(34, 197, 94, 0.9); }
+            20% { transform: translate(-1px, 1px); text-shadow: -1px 0 #ef4444, 1px 0 #22c55e; }
+            40% { transform: translate(1px, -1px); text-shadow: 1px 0 #3b82f6, -1px 0 #22c55e; }
+            60% { transform: translate(0); }
         }
 
         .animated-input {
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
         }
         .animated-input:focus {
-            box-shadow: 0 0 8px rgba(34, 197, 94, 0.25);
+            box-shadow: 0 0 14px rgba(34, 197, 94, 0.5), inset 0 0 6px rgba(34, 197, 94, 0.25);
+            border-color: #22c55e;
+        }
+
+        .fade-slide-in {
+            animation: fadeSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         @media (max-width: 767px) { 
@@ -57,12 +92,11 @@
 </head>
 <body class="text-gray-100 min-h-screen flex flex-col justify-between relative selection:bg-green-500 selection:text-black">
 
-    <!-- Top Header Navigation -->
-    <header class="border-b border-zinc-800/80 bg-[#0A0A0C]/90 backdrop-blur-md sticky top-0 z-50">
+    <header class="border-b border-zinc-800/80 bg-[#050508]/90 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-5xl mx-auto px-3 h-10 flex items-center justify-between">
             <div class="font-black tracking-tight text-white text-xs sm:text-sm flex items-center gap-1">
                 <i class="fa-solid fa-graduation-cap text-green-500"></i>
-                SITA-TECH <span class="text-green-500 font-semibold text-[10px] sm:text-xs">Portal</span>
+                SITA-TECH <span class="text-green-500 hacker-font">[PORTAL]</span>
             </div>
             <div class="flex items-center gap-1">
                 <a class="px-2 py-1 rounded bg-zinc-800/90 hover:bg-zinc-700 text-white text-[10px] font-semibold transition-all flex items-center gap-1 border border-zinc-700/50" href="index.html">
@@ -75,42 +109,52 @@
         </div>
     </header>
 
-    <!-- Main Content Container: Top-aligned to start at top of mobile screen -->
     <main class="max-w-xl mx-auto px-2 pt-2 sm:pt-4 pb-4 w-full flex-grow flex items-start justify-center z-10">
 
-        <!-- AUTHENTICATION CARD (Side-by-side partition across all screen sizes) -->
-        <div id="authContainer" class="w-full animated-card rounded-xl overflow-hidden grid grid-cols-12 fade-slide-in">
+        <!-- AUTHENTICATION CARD -->
+        <div id="authContainer" class="w-full animated-card rounded-xl overflow-hidden grid grid-cols-12 fade-slide-in relative">
             
-            <!-- Left Side Diagonal Panel (5 Columns) -->
-            <div class="col-span-5 hero-panel p-2.5 sm:p-5 flex flex-col justify-between relative overflow-hidden text-white">
+            <!-- Left Side Panel with Hacker Image -->
+            <div class="col-span-5 hero-panel p-2.5 sm:p-4 flex flex-col justify-between relative overflow-hidden text-white">
+                
+                <!-- Hacker Image Background Overlay -->
+                <div class="absolute inset-0 hacker-img-bg pointer-events-none"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none"></div>
+                <div class="absolute inset-0 bg-green-500/10 mix-blend-color-dodge pointer-events-none"></div>
+
+                <!-- Laser Scan Line -->
+                <div class="absolute inset-0 bg-gradient-to-b from-green-400/0 via-green-400/40 to-green-400/0 scan-line pointer-events-none"></div>
+
                 <div class="relative z-10">
-                    <span class="inline-block px-1.5 py-0.5 rounded-full bg-black/20 text-green-200 text-[8px] sm:text-[9px] font-bold uppercase tracking-wider mb-1 border border-white/10">
-                        Academy Access
+                    <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-black/80 text-green-400 text-[8px] sm:text-[9px] hacker-font font-bold uppercase tracking-wider mb-1 border border-green-500/60 shadow-md shadow-green-500/40">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-ping"></span> TECH LMS
                     </span>
-                    <h2 class="text-xs sm:text-xl font-black tracking-tight leading-tight">
-                        WELCOME BACK!
+                    <h2 class="text-xs sm:text-xl font-black tracking-tight leading-tight cyber-glitch">
+                        AUTHENTICATE
                     </h2>
-                    <p class="mt-1 text-green-100/90 text-[9px] sm:text-xs leading-tight font-medium hidden xs:block">
-                        Log in to access active courses and classes.
-                    </p>
+                    
+                    <div class="hacker-font text-[7px] sm:text-[8px] text-green-300 mt-1 space-y-0.5 pointer-events-none select-none bg-black/60 p-1 rounded border border-green-500/30">
+                        <p class="truncate text-green-400">&gt; AUTH_KEY: READY</p>
+                        <p class="truncate text-emerald-300">&gt; RSA_4096_ACTIVE</p>
+                    </div>
                 </div>
 
-                <div class="pt-2 border-t border-white/15 relative z-10 flex flex-col gap-1 text-[9px] text-green-100/80">
-                    <div class="flex items-center gap-1">
-                        <i class="fa-solid fa-circle-check text-green-300 text-[8px]"></i>
-                        <span class="truncate">Progress Tracker</span>
+                <div class="pt-2 border-t border-green-500/40 relative z-10 flex flex-col gap-1 text-[9px] text-green-300 hacker-font bg-black/60 p-1 rounded">
+                    <div class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-terminal text-green-400 text-[9px] animate-pulse"></i>
+                        <span class="truncate">STUDENT PORTAL</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Side Form Panel (7 Columns) -->
+            <!-- Right Side Form Panel -->
             <div class="col-span-7 p-2.5 sm:p-5 flex flex-col justify-center">
                 
                 <!-- LOGIN FORM -->
                 <div id="login">
                     <div class="mb-1.5 sm:mb-2.5">
-                        <span class="text-green-500 font-bold text-[8px] sm:text-[9px] uppercase tracking-widest flex items-center gap-1">
-                            <i class="fa-solid fa-lock"></i> Authentication
+                        <span class="text-green-500 font-bold text-[8px] sm:text-[9px] uppercase tracking-widest flex items-center gap-1 hacker-font">
+                            <i class="fa-solid fa-user-shield text-green-400 animate-pulse"></i> Handshake Required
                         </span>
                         <h1 class="text-xs sm:text-lg font-black text-white mt-0">Student Login</h1>
                     </div>
@@ -119,32 +163,32 @@
                         <div>
                             <label class="block text-[9px] sm:text-[10px] font-semibold text-zinc-300 mb-0.5">Email address</label>
                             <div class="relative">
-                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-zinc-500 text-[9px]"><i class="fa-regular fa-envelope"></i></span>
-                                <input class="animated-input w-full bg-zinc-950/80 border border-zinc-800 focus:border-green-500 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white" id="ln" type="email" placeholder="you@example.com" autocomplete="username">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-green-500 text-[9px]"><i class="fa-regular fa-envelope"></i></span>
+                                <input class="animated-input w-full bg-zinc-950/90 border border-zinc-800 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white" id="ln" type="email" placeholder="you@example.com" autocomplete="username">
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-[9px] sm:text-[10px] font-semibold text-zinc-300 mb-0.5">Password</label>
                             <div class="relative">
-                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-zinc-500 text-[9px]"><i class="fa-solid fa-key"></i></span>
-                                <input class="animated-input w-full bg-zinc-950/80 border border-zinc-800 focus:border-green-500 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white" id="lp" type="password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-green-500 text-[9px]"><i class="fa-solid fa-key"></i></span>
+                                <input class="animated-input w-full bg-zinc-950/90 border border-zinc-800 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white" id="lp" type="password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
                             </div>
                         </div>
 
-                        <button class="w-full py-1.5 sm:py-2 rounded bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 text-white font-extrabold text-[10px] sm:text-xs shadow-md transition-all mt-0.5" onclick="login()">
-                            Log in
+                        <button class="w-full py-1.5 sm:py-2 rounded bg-gradient-to-r from-green-600 via-emerald-500 to-green-500 hover:from-green-500 hover:to-emerald-400 text-white font-black text-[10px] sm:text-xs shadow-lg shadow-green-900/50 active:scale-[0.98] transition-all duration-150 mt-0.5 hacker-font uppercase tracking-wider" onclick="login()">
+                            Decrypt &amp; Log In &gt;&gt;
                         </button>
                         
                         <div class="err text-[10px] text-red-400 bg-red-950/40 border border-red-800/50 p-1 rounded hidden" id="le"></div>
 
                         <div class="pt-0.5 text-center">
-                            <button class="text-[9px] sm:text-[10px] font-medium text-zinc-400 hover:text-green-400 transition-colors" id="resetRequestButton" onclick="requestPasswordReset()">Forgot password?</button>
+                            <button class="text-[9px] sm:text-[10px] font-medium text-zinc-400 hover:text-green-400 transition-colors hacker-font" id="resetRequestButton" onclick="requestPasswordReset()">[Forgot password?]</button>
                             <div class="err text-[9px] text-green-400 mt-0.5" id="resetMessage" role="status"></div>
                         </div>
 
                         <div class="border-t border-zinc-800/80 pt-1 text-center">
-                            <p class="text-[9px] text-zinc-400">No login? <a href="enroll.html" class="text-green-400 font-bold hover:underline">Enroll now</a></p>
+                            <p class="text-[9px] text-zinc-400">No login? <a href="enroll.html" class="text-green-400 font-bold hover:underline hacker-font">Enroll now</a></p>
                         </div>
                     </div>
                 </div>
@@ -152,23 +196,23 @@
                 <!-- PASSWORD RESET FORM -->
                 <div id="passwordReset" class="hidden">
                     <div class="mb-2">
-                        <span class="text-green-500 font-bold text-[8px] uppercase tracking-widest">Recovery</span>
+                        <span class="text-green-500 font-bold text-[8px] uppercase tracking-widest hacker-font">&gt; RECOVERY</span>
                         <h2 class="text-xs sm:text-sm font-black text-white mt-0.5">Choose new password</h2>
                     </div>
 
                     <div class="space-y-1.5">
                         <div>
                             <label class="block text-[9px] font-semibold text-zinc-300 mb-0.5">New Password</label>
-                            <input class="animated-input w-full bg-zinc-950/80 border border-zinc-800 focus:border-green-500 outline-none rounded py-1 px-2 text-[10px] sm:text-xs text-white" id="newPassword" type="password" autocomplete="new-password" placeholder="Min 8 chars">
+                            <input class="animated-input w-full bg-zinc-950/90 border border-zinc-800 outline-none rounded py-1 px-2 text-[10px] sm:text-xs text-white" id="newPassword" type="password" autocomplete="new-password" placeholder="Min 8 chars">
                         </div>
 
                         <div>
                             <label class="block text-[9px] font-semibold text-zinc-300 mb-0.5">Confirm Password</label>
-                            <input class="animated-input w-full bg-zinc-950/80 border border-zinc-800 focus:border-green-500 outline-none rounded py-1 px-2 text-[10px] sm:text-xs text-white" id="confirmPassword" type="password" autocomplete="new-password" placeholder="Re-enter" onkeydown="if(event.key==='Enter')saveNewPassword()">
+                            <input class="animated-input w-full bg-zinc-950/90 border border-zinc-800 outline-none rounded py-1 px-2 text-[10px] sm:text-xs text-white" id="confirmPassword" type="password" autocomplete="new-password" placeholder="Re-enter" onkeydown="if(event.key==='Enter')saveNewPassword()">
                         </div>
 
-                        <button class="w-full py-1.5 rounded bg-gradient-to-r from-green-600 to-emerald-500 text-white font-extrabold text-[10px] sm:text-xs shadow-md transition-all" onclick="saveNewPassword()">
-                            Save Password
+                        <button class="w-full py-1.5 rounded bg-gradient-to-r from-green-600 to-emerald-500 text-white font-extrabold text-[10px] sm:text-xs shadow-md transition-all hacker-font uppercase" onclick="saveNewPassword()">
+                            Update Key
                         </button>
                         
                         <div class="err text-[10px] text-red-400 bg-red-950/40 border border-red-800/50 p-1 rounded mt-1" id="passwordResetMessage" role="status"></div>
@@ -181,7 +225,7 @@
         <!-- LOGGED-IN PORTAL DASHBOARD -->
         <div id="app" class="hidden w-full space-y-2 fade-slide-in">
             <div class="animated-card p-2.5 rounded-xl border border-zinc-800">
-                <span class="text-green-500 font-bold text-[8px] uppercase tracking-widest">Student Dashboard</span>
+                <span class="text-green-500 font-bold text-[8px] uppercase tracking-widest hacker-font">&gt; STUDENT SESSION ACTIVE</span>
                 <h2 class="text-xs sm:text-base font-black text-white mt-0.5" id="hi"></h2>
                 <p class="text-zinc-400 text-[10px] mt-0.5" id="sub"></p>
             </div>
@@ -189,10 +233,10 @@
             <div class="err text-[10px] text-red-400 bg-red-950/40 border border-red-800/50 p-1 rounded hidden" id="portalError" role="status"></div>
 
             <div class="grid grid-cols-2 gap-1 bg-zinc-950/60 p-1 rounded border border-zinc-800/80">
-                <button id="t1" class="py-1 px-2 rounded text-[10px] font-bold transition-all text-white bg-green-600/20 border border-green-500/40" onclick="tab(1)">
+                <button id="t1" class="py-1 px-2 rounded text-[10px] font-bold transition-all text-white bg-green-600/20 border border-green-500/40 hacker-font" onclick="tab(1)">
                     <i class="fa-solid fa-book-open mr-1"></i> Courses
                 </button>
-                <button id="t2" class="py-1 px-2 rounded text-[10px] font-bold transition-all text-zinc-400 hover:text-white" onclick="tab(2)">
+                <button id="t2" class="py-1 px-2 rounded text-[10px] font-bold transition-all text-zinc-400 hover:text-white hacker-font" onclick="tab(2)">
                     <i class="fa-solid fa-video mr-1"></i> Live classes
                 </button>
             </div>
@@ -366,14 +410,14 @@
         function tab(n) {
             const btn1 = Q('t1'), btn2 = Q('t2');
             if (n === 1) {
-                btn1.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-white bg-green-600/20 border border-green-500/40";
-                btn2.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-zinc-400 hover:text-white";
+                btn1.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-white bg-green-600/20 border border-green-500/40 hacker-font";
+                btn2.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-zinc-400 hover:text-white hacker-font";
                 Q('v1').classList.remove('hidden');
                 Q('v2').classList.add('hidden');
                 courses();
             } else {
-                btn2.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-white bg-green-600/20 border border-green-500/40";
-                btn1.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-zinc-400 hover:text-white";
+                btn2.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-white bg-green-600/20 border border-green-500/40 hacker-font";
+                btn1.className = "py-1 px-2 rounded text-[10px] font-bold transition-all text-zinc-400 hover:text-white hacker-font";
                 Q('v2').classList.remove('hidden');
                 Q('v1').classList.add('hidden');
                 classes();
@@ -391,7 +435,7 @@
                         <h3 class="text-xs font-bold text-white flex items-center gap-1">
                             <i class="fa-solid ${c[2]} text-green-500"></i> ${E(c[1])}
                         </h3>
-                        <span class="text-[8px] font-bold px-1 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20">${pct}%</span>
+                        <span class="text-[8px] font-bold px-1 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20 hacker-font">${pct}%</span>
                     </div>
                     
                     <div class="h-1 rounded bg-zinc-950 overflow-hidden border border-zinc-800">
@@ -411,7 +455,7 @@
                         }).join('')}
                     </div>
                 </div>`;
-            }).join('') || '<div class="animated-card p-3 rounded-lg text-center"><p class="text-zinc-400 text-[10px]">No courses assigned.</p></div>';
+            }).join('') || '<div class="animated-card p-3 rounded-lg text-center"><p class="text-zinc-400 text-[10px] hacker-font">No courses assigned.</p></div>';
         }
 
         function les(c, i) {
@@ -420,12 +464,12 @@
             
             Q('v1').innerHTML = `
                 <div class="animated-card p-2.5 rounded-lg border border-zinc-800 space-y-2 fade-slide-in">
-                    <button class="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-white text-[9px] font-semibold transition-all flex items-center gap-1" onclick="courses()">
+                    <button class="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-white text-[9px] font-semibold transition-all flex items-center gap-1 hacker-font" onclick="courses()">
                         <i class="fa-solid fa-arrow-left"></i> Back
                     </button>
                     
                     <div class="border-b border-zinc-800/80 pb-1">
-                        <span class="text-[8px] text-green-500 font-bold uppercase tracking-wider">${E(C[1])}</span>
+                        <span class="text-[8px] text-green-500 font-bold uppercase tracking-wider hacker-font">${E(C[1])}</span>
                         <h2 class="text-xs font-black text-white mt-0.5">${E(l[0])}</h2>
                     </div>
 
@@ -433,7 +477,7 @@
                         ${txt(l[1])}
                     </div>
 
-                    <button class="w-full py-1.5 rounded ${isDone ? 'bg-zinc-800 text-green-400 border border-green-500/30' : 'bg-gradient-to-r from-green-600 to-emerald-500 text-white'} font-extrabold text-[10px] shadow-md transition-all" onclick="done('${c}',${i})">
+                    <button class="w-full py-1.5 rounded ${isDone ? 'bg-zinc-800 text-green-400 border border-green-500/30' : 'bg-gradient-to-r from-green-600 to-emerald-500 text-white'} font-black text-[10px] shadow-md transition-all hacker-font uppercase" onclick="done('${c}',${i})">
                         <i class="fa-solid ${isDone ? 'fa-check-double' : 'fa-check'} mr-1"></i> ${isDone ? 'Marked done' : 'Mark as done'}
                     </button>
                 </div>
@@ -474,16 +518,16 @@
                 return `<div class="animated-card p-2.5 rounded-lg border ${on ? 'border-green-500' : 'border-zinc-800'} space-y-1.5">
                     <div class="flex items-center justify-between">
                         <h3 class="text-xs font-bold text-white">${E(c.title)}</h3>
-                        ${on ? '<span class="px-1 py-0.5 rounded bg-green-500/20 text-green-400 border border-green-500/40 text-[8px] font-black uppercase">● Live</span>' : ''}
+                        ${on ? '<span class="px-1 py-0.5 rounded bg-green-500/20 text-green-400 border border-green-500/40 text-[8px] font-black uppercase hacker-font">● Live Stream</span>' : ''}
                     </div>
-                    <p class="text-[10px] text-zinc-400 flex items-center gap-1">
+                    <p class="text-[10px] text-zinc-400 flex items-center gap-1 hacker-font">
                         <i class="fa-regular fa-clock text-green-500"></i> ${new Date(c.starts_at).toLocaleString()} ${isPast ? '(Finished)' : ''}
                     </p>
-                    <a class="block w-full text-center py-1.5 rounded ${on ? 'bg-gradient-to-r from-green-600 to-emerald-500 text-white font-extrabold' : 'bg-zinc-800 text-zinc-200 font-bold'} text-[10px]" target="_blank" rel="noopener" href="${E(c.meeting_url)}">
-                        <i class="fa-solid fa-video mr-1"></i> ${on ? 'Join class now' : 'Open class link'}
+                    <a class="block w-full text-center py-1.5 rounded ${on ? 'bg-gradient-to-r from-green-600 to-emerald-500 text-white font-extrabold' : 'bg-zinc-800 text-zinc-200 font-bold'} text-[10px] hacker-font uppercase" target="_blank" rel="noopener" href="${E(c.meeting_url)}">
+                        <i class="fa-solid fa-video mr-1"></i> ${on ? 'Join stream now' : 'Open class link'}
                     </a>
                 </div>`;
-            }).join('') || '<div class="animated-card p-3 rounded-lg text-center"><p class="text-zinc-400 text-[10px]">No live classes scheduled.</p></div>';
+            }).join('') || '<div class="animated-card p-3 rounded-lg text-center"><p class="text-zinc-400 text-[10px] hacker-font">No live classes scheduled.</p></div>';
         }
 
         Object.assign(window, { login, logout, tab, courses, les, done, requestPasswordReset, saveNewPassword });

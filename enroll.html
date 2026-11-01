@@ -6,48 +6,83 @@
     <title>Enroll | SITA-TECH Academy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0A0A0C;
+            background-color: #050508;
             overflow-x: hidden;
         }
 
+        .hacker-font {
+            font-family: 'Share Tech Mono', monospace;
+        }
+
         .animated-card {
-            background: rgba(18, 18, 22, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(34, 197, 94, 0.1);
+            background: rgba(10, 15, 12, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            box-shadow: 0 0 35px rgba(34, 197, 94, 0.25), inset 0 0 20px rgba(34, 197, 94, 0.1);
         }
 
-        /* Diagonal background split matching the video across all screen sizes */
+        /* Hero Panel Container */
         .hero-panel {
-            background: linear-gradient(135deg, #052e16 0%, #15803d 50%, #22c55e 100%);
-            clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
         }
 
-        .fade-slide-in {
-            animation: fadeSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        /* Hacker Image Wrapper & FX */
+        .hacker-img-bg {
+            background-image: url('download (45).jpg');
+            background-size: cover;
+            background-position: center;
+            filter: contrast(1.15) brightness(0.9);
+            animation: imgGlow 3s ease-in-out infinite alternate;
         }
 
-        @keyframes fadeSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-8px) scale(0.99);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        @keyframes imgGlow {
+            0% { filter: contrast(1.1) brightness(0.85); }
+            100% { filter: contrast(1.25) brightness(1.05) drop-shadow(0 0 15px rgba(34, 197, 94, 0.6)); }
+        }
+
+        /* Scanning Laser Line */
+        .scan-line {
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 0.9; }
+            100% { transform: translateY(220%); opacity: 0; }
+        }
+
+        /* Cyberpunk Glitch Text */
+        .cyber-glitch {
+            animation: glitchText 2.5s infinite;
+        }
+
+        @keyframes glitchText {
+            0%, 100% { transform: translate(0); text-shadow: 0 0 8px rgba(34, 197, 94, 0.9); }
+            20% { transform: translate(-1px, 1px); text-shadow: -1px 0 #ef4444, 1px 0 #22c55e; }
+            40% { transform: translate(1px, -1px); text-shadow: 1px 0 #3b82f6, -1px 0 #22c55e; }
+            60% { transform: translate(0); }
         }
 
         .animated-input {
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
         }
         .animated-input:focus {
-            box-shadow: 0 0 8px rgba(34, 197, 94, 0.25);
+            box-shadow: 0 0 14px rgba(34, 197, 94, 0.5), inset 0 0 6px rgba(34, 197, 94, 0.25);
+            border-color: #22c55e;
+        }
+
+        .fade-slide-in {
+            animation: fadeSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         @media (max-width: 767px) { 
@@ -57,94 +92,103 @@
 </head>
 <body class="text-gray-100 min-h-screen flex flex-col justify-between relative selection:bg-green-500 selection:text-black">
 
-    <!-- Header Navigation -->
-    <header class="border-b border-zinc-800/80 bg-[#0A0A0C]/90 backdrop-blur-md sticky top-0 z-50">
+    <header class="border-b border-zinc-800/80 bg-[#050508]/90 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-5xl mx-auto px-3 h-10 flex items-center justify-between">
             <a href="index.html#academy" class="text-[10px] sm:text-xs font-semibold text-zinc-400 hover:text-white transition-colors flex items-center gap-1">
                 <i class="fa-solid fa-arrow-left"></i> Back to Academy
             </a>
-            <span class="font-black tracking-tight text-white text-xs sm:text-sm">SITA-TECH <span class="text-green-500">Academy</span></span>
+            <span class="font-black tracking-tight text-white text-xs sm:text-sm">SITA-TECH <span class="text-green-500 hacker-font">[ACADEMY]</span></span>
         </div>
     </header>
 
-    <!-- Main Content Container: Top-aligned to start at top of mobile screen -->
     <main class="max-w-xl mx-auto px-2 pt-2 sm:pt-4 pb-4 w-full flex-grow flex items-start justify-center z-10">
 
-        <!-- Horizontal Partitioned Card across ALL Screen Sizes -->
-        <div class="w-full animated-card rounded-xl overflow-hidden grid grid-cols-12 fade-slide-in">
+        <div class="w-full animated-card rounded-xl overflow-hidden grid grid-cols-12 fade-slide-in relative">
             
-            <!-- Left Side: Diagonal Hero Panel (5 columns) -->
-            <div class="col-span-5 hero-panel p-2.5 sm:p-5 flex flex-col justify-between relative overflow-hidden text-white">
+            <!-- Left Side: Live Hacker Image Hero Panel -->
+            <div class="col-span-5 hero-panel p-2.5 sm:p-4 flex flex-col justify-between relative overflow-hidden text-white">
+                
+                <!-- Hacker Image Background Overlay -->
+                <div class="absolute inset-0 hacker-img-bg pointer-events-none"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none"></div>
+                <div class="absolute inset-0 bg-green-500/10 mix-blend-color-dodge pointer-events-none"></div>
+
+                <!-- Laser Scan Line -->
+                <div class="absolute inset-0 bg-gradient-to-b from-green-400/0 via-green-400/40 to-green-400/0 scan-line pointer-events-none"></div>
+
                 <div class="relative z-10">
-                    <span class="inline-block px-1.5 py-0.5 rounded-full bg-black/20 text-green-200 text-[8px] sm:text-[9px] font-bold uppercase tracking-wider mb-1 border border-white/10">
-                        Student Portal
+                    <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-black/80 text-green-400 text-[8px] sm:text-[9px] hacker-font font-bold uppercase tracking-wider mb-1 border border-green-500/60 shadow-md shadow-green-500/40">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-ping"></span> TECH LMS
                     </span>
-                    <h2 class="text-xs sm:text-xl font-black tracking-tight leading-tight">
-                        WELCOME ABOARD!
+                    <h2 class="text-xs sm:text-xl font-black tracking-tight leading-tight cyber-glitch">
+                        ENROLLMENT
                     </h2>
-                    <p class="mt-1 text-green-100/90 text-[9px] sm:text-xs leading-tight font-medium hidden xs:block">
-                        Reserve your spot for full course access.
-                    </p>
+                    
+                    <div class="hacker-font text-[7px] sm:text-[8px] text-green-300 mt-1 space-y-0.5 pointer-events-none select-none bg-black/60 p-1 rounded border border-green-500/30">
+                        <p class="truncate text-green-400">&gt; SYSTEM.INIT(0x92F)</p>
+                        <p class="truncate text-emerald-300">&gt; ENCRYPTED_SSL_OK</p>
+                    </div>
                 </div>
 
-                <div class="pt-2 border-t border-white/15 relative z-10 flex flex-col gap-1 text-[9px] text-green-100/80">
-                    <div class="flex items-center gap-1">
-                        <i class="fa-solid fa-shield-halved text-green-300 text-[8px]"></i>
-                        <span class="truncate">Verified Registration</span>
+                <div class="pt-2 border-t border-green-500/40 relative z-10 flex flex-col gap-1 text-[9px] text-green-300 hacker-font bg-black/60 p-1 rounded">
+                    <div class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-user-shield text-green-400 text-[9px] animate-pulse"></i>
+                        <span class="truncate">SECURE TERMINAL</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Side: Form Panel (7 columns) -->
+            <!-- Right Side: Form Panel -->
             <div class="col-span-7 p-2.5 sm:p-5 flex flex-col justify-center">
                 
                 <div id="formView">
                     <div class="mb-1.5 sm:mb-2.5">
-                        <span class="text-green-500 font-bold text-[8px] sm:text-[9px] uppercase tracking-widest">Application</span>
+                        <span class="text-green-500 font-bold text-[8px] sm:text-[9px] uppercase tracking-widest flex items-center gap-1 hacker-font">
+                            <i class="fa-solid fa-code text-green-400 animate-pulse"></i> Initializing Payload
+                        </span>
                         <h1 class="text-xs sm:text-lg font-black text-white mt-0">Enroll Now</h1>
                     </div>
 
                     <form id="enrollForm" class="space-y-1.5 sm:space-y-2">
                         <div>
                             <label for="course" class="block text-[9px] sm:text-[10px] font-semibold text-zinc-300 mb-0.5">Course</label>
-                            <input id="course" name="Course" type="text" readonly class="w-full bg-zinc-950/80 border border-zinc-800 rounded py-1 px-2 text-[10px] sm:text-xs text-green-400 font-bold outline-none">
+                            <input id="course" name="Course" type="text" readonly class="w-full bg-zinc-950/90 border border-zinc-800 rounded py-1 px-2 text-[10px] sm:text-xs text-green-400 font-bold hacker-font outline-none">
                         </div>
 
                         <div id="topicsWrap" class="hidden">
                             <label for="topics" class="block text-[9px] sm:text-[10px] font-semibold text-zinc-300 mb-0.5">Topics</label>
-                            <input id="topics" name="Topics" type="text" readonly class="w-full bg-zinc-950/80 border border-zinc-800 rounded py-1 px-2 text-[10px] sm:text-xs text-zinc-300 outline-none">
+                            <input id="topics" name="Topics" type="text" readonly class="w-full bg-zinc-950/90 border border-zinc-800 rounded py-1 px-2 text-[10px] sm:text-xs text-zinc-300 outline-none">
                         </div>
 
                         <div>
                             <label for="fullName" class="block text-[9px] sm:text-[10px] font-semibold text-zinc-300 mb-0.5">Full Name</label>
                             <div class="relative">
-                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-zinc-500 text-[9px]"><i class="fa-regular fa-user"></i></span>
-                                <input id="fullName" name="Official Name" type="text" required autocomplete="name" placeholder="As on ID" class="animated-input w-full bg-zinc-950/80 border border-zinc-800 focus:border-green-500 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-green-500 text-[9px]"><i class="fa-solid fa-user-ninja"></i></span>
+                                <input id="fullName" name="Official Name" type="text" required autocomplete="name" placeholder="As on ID" class="animated-input w-full bg-zinc-950/90 border border-zinc-800 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white">
                             </div>
                         </div>
 
                         <div>
                             <label for="email" class="block text-[9px] sm:text-[10px] font-semibold text-zinc-300 mb-0.5">Email</label>
                             <div class="relative">
-                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-zinc-500 text-[9px]"><i class="fa-regular fa-envelope"></i></span>
-                                <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" class="animated-input w-full bg-zinc-950/80 border border-zinc-800 focus:border-green-500 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-green-500 text-[9px]"><i class="fa-regular fa-envelope"></i></span>
+                                <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" class="animated-input w-full bg-zinc-950/90 border border-zinc-800 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white">
                             </div>
                         </div>
 
                         <div>
                             <label for="phone" class="block text-[9px] sm:text-[10px] font-semibold text-zinc-300 mb-0.5">Phone</label>
                             <div class="relative">
-                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-zinc-500 text-[9px]"><i class="fa-solid fa-phone"></i></span>
-                                <input id="phone" name="Phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="07XX XXX XXX" class="animated-input w-full bg-zinc-950/80 border border-zinc-800 focus:border-green-500 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-green-500 text-[9px]"><i class="fa-solid fa-phone"></i></span>
+                                <input id="phone" name="Phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="07XX XXX XXX" class="animated-input w-full bg-zinc-950/90 border border-zinc-800 outline-none rounded py-1 pl-6 pr-2 text-[10px] sm:text-xs text-white">
                             </div>
                         </div>
 
-                        <!-- Honeypot field for spam protection -->
                         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden">
                         <p id="errorMsg" class="hidden text-[10px] text-red-400 bg-red-950/40 border border-red-800/50 p-1.5 rounded"></p>
 
-                        <button id="submitBtn" type="submit" class="w-full py-1.5 sm:py-2 rounded bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 text-white font-extrabold text-[10px] sm:text-xs shadow-md transition-all mt-0.5">
-                            Submit Enrolment
+                        <button id="submitBtn" type="submit" class="w-full py-1.5 sm:py-2 rounded bg-gradient-to-r from-green-600 via-emerald-500 to-green-500 hover:from-green-500 hover:to-emerald-400 text-white font-black text-[10px] sm:text-xs shadow-lg shadow-green-900/50 active:scale-[0.98] transition-all duration-150 mt-0.5 hacker-font uppercase tracking-wider">
+                            Execute Enrolment &gt;&gt;
                         </button>
                     </form>
                 </div>
@@ -153,7 +197,7 @@
                     <div class="w-8 h-8 sm:w-12 sm:h-12 mx-auto rounded-full bg-green-500/20 border border-green-500/50 flex items-center justify-center text-green-400 text-sm sm:text-xl animate-bounce">
                         <i class="fa-solid fa-check"></i>
                     </div>
-                    <h2 class="text-xs sm:text-lg font-black text-white mt-1.5">You're enrolled!</h2>
+                    <h2 class="text-xs sm:text-lg font-black text-white mt-1.5 hacker-font">PAYLOAD DELIVERED!</h2>
                     <p id="doneText" class="text-zinc-400 text-[9px] sm:text-xs mt-0.5 leading-snug">
                         Thank you. SITA-TECH will contact you soon.
                     </p>
@@ -187,7 +231,7 @@
             
             err.classList.add('hidden');
             btn.disabled = true;
-            btn.textContent = 'Submitting...';
+            btn.textContent = 'EXECUTING...';
 
             const data = new FormData(this);
 
@@ -224,7 +268,7 @@
                 }
                 err.classList.remove('hidden');
                 btn.disabled = false;
-                btn.textContent = 'Submit Enrolment';
+                btn.textContent = 'Execute Enrolment >>';
             }
         });
     </script>
