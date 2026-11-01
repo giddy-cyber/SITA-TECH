@@ -1,0 +1,68 @@
+{
+  "_help": "Edit this file to manage your shop. price is in KSh. Set stock to 0 for Sold out. img is optional (a link to a photo). icon is a Font Awesome name used when there is no photo.",
+  "products": [
+    {
+      "id": "p1",
+      "name": "Flash Disk 32GB",
+      "price": 900,
+      "cat": "Computer Accessories",
+      "desc": "Fast, reliable USB flash disk for files, documents and backups.",
+      "icon": "fa-usb",
+      "stock": 20
+    },
+    {
+      "id": "p2",
+      "name": "Wireless Mouse",
+      "price": 700,
+      "cat": "Computer Accessories",
+      "desc": "Comfortable wireless mouse with USB receiver.",
+      "icon": "fa-computer-mouse",
+      "stock": 15
+    },
+    {
+      "id": "p3",
+      "name": "USB Keyboard",
+      "price": 1200,
+      "cat": "Computer Accessories",
+      "desc": "Full-size wired keyboard, plug and type.",
+      "icon": "fa-keyboard",
+      "stock": 10
+    },
+    {
+      "id": "p4",
+      "name": "Phone Charger & Cable",
+      "price": 800,
+      "cat": "Phone Accessories",
+      "desc": "Fast-charging adapter with a durable cable.",
+      "icon": "fa-plug",
+      "stock": 25
+    },
+    {
+      "id": "p5",
+      "name": "Earphones",
+      "price": 500,
+      "cat": "Phone Accessories",
+      "desc": "Clear sound earphones with built-in mic.",
+      "icon": "fa-headphones",
+      "stock": 30
+    },
+    {
+      "id": "p6",
+      "name": "A4 Printing Paper (Ream)",
+      "price": 700,
+      "cat": "Stationery",
+      "desc": "500 sheets of quality white A4 paper.",
+      "icon": "fa-file",
+      "stock": 40
+    },
+    {
+      "id": "p7",
+      "name": "Notebook (A5)",
+      "price": 150,
+      "cat": "Stationery",
+      "desc": "Ruled A5 notebook for class, work and notes.",
+      "icon": "fa-book",
+      "stock": 50
+    }
+  ]
+}
