@@ -32,6 +32,6 @@ New Academy listings appear on the website and enrollment form. To give a new co
 
 ## Browser tools
 
-The home page's photo tools use MediaPipe Selfie Segmentation to remove the background locally in the browser. The segmentation library and model are downloaded from jsDelivr on first use; photos are not sent to the CDN. A clear, well-lit photo with the subject visible gives the best result. The converter handles common image formats, PDF, DOCX, XLSX, CSV, JSON, HTML and text formats. PDF-to-Word extracts selectable text and does not preserve the original layout; scanned PDFs need OCR.
+Free utilities are available as a dedicated page at [`free-tools.html`](./free-tools.html), linked from the home page. The home page's photo tools use MediaPipe Selfie Segmentation to remove the background locally in the browser. The segmentation library and model are downloaded from jsDelivr on first use; photos are not sent to the CDN. A clear, well-lit photo with the subject visible gives the best result. The converter handles common image formats, PDF, DOCX, XLSX, CSV, JSON, HTML and text formats. PDF-to-Word extracts selectable text and does not preserve the original layout; scanned PDFs need OCR.
 
 This site is deployed as a static frontend, so Java conversion code would not run on the site by itself. A Java converter would require a separately hosted backend service; the current converter instead runs in the visitor's browser.
