@@ -1576,7 +1576,7 @@
             q('B').onchange = () => { q('O').value = q('B').value === 'clear' ? 'image/png' : 'image/jpeg'; };
             q('C').oninput = () => { q('B').value = 'custom'; q('O').value = 'image/jpeg'; };
             q('F').onchange = e => { const f = e.target.files[0]; if (!f) return; const im = new Image(); im.onload = () => {
-                const sc = Math.min(1, 3200 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * sc); c.height = Math.round(im.height * sc);
+                const sc = Math.min(1, 2048 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * sc); c.height = Math.round(im.height * sc);
                 c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); ST[k] = { src: c, cur: c }; if (!pass) { q('W').value = im.width; q('H').value = im.height; q('U').value = 'px'; } stShow(k); }; im.src = URL.createObjectURL(f); };
             if (pass) q('P').onchange(); else { q('P').onchange(); }
         }
@@ -1630,19 +1630,15 @@
                 const pixels = outputContext.getImageData(0, 0, W, H), softness = Number(document.getElementById(k + 'T').value) / 100;
                 const low = Math.max(0.12, 0.32 - softness * 0.5), high = Math.min(0.7, low + Math.max(0.12, softness));
                 let foregroundPixels = 0;
-                for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-                    const i = (y * W + x) * 4, confidence = mask[i] / 255;
-                    const value = Math.max(0, Math.min(1, (confidence - low) / (high - low)));
-                    const alpha = Math.round(pixels.data[i + 3] * value * value * (3 - 2 * value));
-                    let retainedAlpha = alpha;
-                    if (alpha < 16) {
-                        for (let oy = -1; oy <= 1 && retainedAlpha < 72; oy++) for (let ox = -1; ox <= 1 && retainedAlpha < 72; ox++) {
-                            const nx = x + ox, ny = y + oy;
-                            if ((ox || oy) && nx >= 0 && nx < W && ny >= 0 && ny < H && mask[(ny * W + nx) * 4] >= 166) retainedAlpha = 72;
-                        }
+                for (let y = 0; y < H; y++) {
+                    for (let x = 0; x < W; x++) {
+                        const i = (y * W + x) * 4, confidence = mask[i] / 255;
+                        const value = Math.max(0, Math.min(1, (confidence - low) / (high - low)));
+                        const alpha = Math.round(pixels.data[i + 3] * value * value * (3 - 2 * value));
+                        pixels.data[i + 3] = alpha;
+                        if (alpha > 16) foregroundPixels++;
                     }
-                    pixels.data[i + 3] = retainedAlpha;
-                    if (retainedAlpha > 16) foregroundPixels++;
+                    if (y % 32 === 31) await new Promise(resolve => setTimeout(resolve, 0));
                 }
                 if (foregroundPixels < W * H * 0.01) throw new Error('The AI could not identify a person in this photo. Try a clear, well-lit photo with the full subject visible.');
                 outputContext.putImageData(pixels, 0, 0);
