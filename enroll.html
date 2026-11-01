@@ -14,7 +14,6 @@
             overflow-x: hidden;
         }
 
-        /* Glassmorphic Container */
         .animated-card {
             background: rgba(18, 18, 22, 0.92);
             backdrop-filter: blur(12px);
@@ -23,20 +22,20 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(34, 197, 94, 0.1);
         }
 
-        /* Split Panel Diagonal Cutout (matching video exactly across all devices) */
+        /* Diagonal background split matching the video across all screen sizes */
         .hero-panel {
             background: linear-gradient(135deg, #052e16 0%, #15803d 50%, #22c55e 100%);
             clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
         }
 
         .fade-slide-in {
-            animation: fadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fadeSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         @keyframes fadeSlideIn {
             from {
                 opacity: 0;
-                transform: translateY(10px) scale(0.99);
+                transform: translateY(-8px) scale(0.99);
             }
             to {
                 opacity: 1;
@@ -59,7 +58,7 @@
 <body class="text-gray-100 min-h-screen flex flex-col justify-between relative selection:bg-green-500 selection:text-black">
 
     <!-- Header Navigation -->
-    <header class="border-b border-zinc-800/80 bg-[#0A0A0C]/80 backdrop-blur-md sticky top-0 z-50">
+    <header class="border-b border-zinc-800/80 bg-[#0A0A0C]/90 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-5xl mx-auto px-3 h-10 flex items-center justify-between">
             <a href="index.html#academy" class="text-[10px] sm:text-xs font-semibold text-zinc-400 hover:text-white transition-colors flex items-center gap-1">
                 <i class="fa-solid fa-arrow-left"></i> Back to Academy
@@ -68,8 +67,8 @@
         </div>
     </header>
 
-    <!-- Main Content Container: Constrained Height for Mobile -->
-    <main class="max-w-xl mx-auto px-2 py-2 sm:py-4 w-full flex-grow flex items-center justify-center">
+    <!-- Main Content Container: Top-aligned to start at top of mobile screen -->
+    <main class="max-w-xl mx-auto px-2 pt-2 sm:pt-4 pb-4 w-full flex-grow flex items-start justify-center z-10">
 
         <!-- Horizontal Partitioned Card across ALL Screen Sizes -->
         <div class="w-full animated-card rounded-xl overflow-hidden grid grid-cols-12 fade-slide-in">
@@ -100,12 +99,12 @@
             <div class="col-span-7 p-2.5 sm:p-5 flex flex-col justify-center">
                 
                 <div id="formView">
-                    <div class="mb-1.5 sm:mb-3">
+                    <div class="mb-1.5 sm:mb-2.5">
                         <span class="text-green-500 font-bold text-[8px] sm:text-[9px] uppercase tracking-widest">Application</span>
                         <h1 class="text-xs sm:text-lg font-black text-white mt-0">Enroll Now</h1>
                     </div>
 
-                    <form id="enrollForm" class="space-y-1.5 sm:space-y-2.5">
+                    <form id="enrollForm" class="space-y-1.5 sm:space-y-2">
                         <div>
                             <label for="course" class="block text-[9px] sm:text-[10px] font-semibold text-zinc-300 mb-0.5">Course</label>
                             <input id="course" name="Course" type="text" readonly class="w-full bg-zinc-950/80 border border-zinc-800 rounded py-1 px-2 text-[10px] sm:text-xs text-green-400 font-bold outline-none">
@@ -140,10 +139,11 @@
                             </div>
                         </div>
 
+                        <!-- Honeypot field for spam protection -->
                         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden">
                         <p id="errorMsg" class="hidden text-[10px] text-red-400 bg-red-950/40 border border-red-800/50 p-1.5 rounded"></p>
 
-                        <button id="submitBtn" type="submit" class="w-full py-1.5 sm:py-2 rounded bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 text-white font-extrabold text-[10px] sm:text-xs shadow-md transition-all mt-1">
+                        <button id="submitBtn" type="submit" class="w-full py-1.5 sm:py-2 rounded bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 text-white font-extrabold text-[10px] sm:text-xs shadow-md transition-all mt-0.5">
                             Submit Enrolment
                         </button>
                     </form>
