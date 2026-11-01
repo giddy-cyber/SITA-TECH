@@ -140,7 +140,7 @@
         .st-in { width:100%; background:#09090b; border:1px solid #27272a; border-radius:.75rem; padding:.55rem; font-size:.75rem; color:#fff; }
         .st-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.4rem; margin-top:.4rem; }
         .st-btn { padding:.6rem; border-radius:.75rem; font-size:.75rem; font-weight:800; color:#fff; background:#2563eb; width:100%; margin-top:.4rem; }
-        .st-stage { margin-top:.5rem; background:repeating-conic-gradient(#27272a 0 25%,#18181b 0 50%) 0 0/16px 16px; border-radius:.75rem; overflow:hidden; max-height:20rem; display:flex; justify-content:center; }
+        .st-stage { margin-top:.5rem; background:#fff; border-radius:.75rem; overflow:hidden; max-height:20rem; display:flex; justify-content:center; }
         .st-stage img { max-width:100%; display:block; }
 
         #cbBtn{position:fixed;right:.75rem;bottom:.75rem;z-index:55;width:3rem;height:3rem;border-radius:50%;background:linear-gradient(135deg,#2563eb,#16a34a);color:#fff;font-size:1.3rem;box-shadow:0 4px 18px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;cursor:pointer;border:0}
@@ -1557,15 +1557,13 @@
         function studio(k) {
             const box = document.getElementById(k + 'ToolContent'), pass = k === 'crop', d = pass ? '35,45,mm' : '1080,1080,px';
             box.innerHTML = `<h3 class="text-lg font-bold text-white mb-1">${pass ? 'Passport Photo Maker' : 'Image Resizer'}</h3>
-              <p class="text-xs text-zinc-400 mb-3">AI identifies the person and keeps the face and body while removing the background. Choose a background colour below. Your photo is processed on this device and is not uploaded.</p>
+              <p class="text-xs text-zinc-400 mb-3">AI keeps the person and removes the background. Photos use a white background and are processed on this device.</p>
               <input type="file" accept="image/*" id="${k}F" class="w-full text-xs text-zinc-400">
               <div class="st-row"><select class="st-in" id="${k}P" style="grid-column:1/4">${STP[k].map(([l,v]) => `<option value="${v}"${v===d?' selected':''}>${l}</option>`).join('')}<option value="">Custom size</option></select>
                 <input class="st-in" id="${k}W" type="number" min="1" placeholder="Width"><input class="st-in" id="${k}H" type="number" min="1" placeholder="Height">
                 <select class="st-in" id="${k}U"><option>px</option><option>mm</option><option>cm</option><option>in</option></select></div>
               <p id="${k}Px" class="text-[11px] text-zinc-500 mt-1"></p>
-              <div class="st-row"><select class="st-in" id="${k}B"><option value="#ffffff" selected>White background</option><option value="#1e5bd6">Blue</option><option value="#d62828">Red</option><option value="#d4d4d8">Light grey</option><option value="custom">Custom colour</option><option value="keep">Keep original</option><option value="clear">Transparent (PNG)</option></select>
-                <input type="color" id="${k}C" value="#ffffff" aria-label="Choose custom background colour" class="st-in">
-                <label class="text-[11px] text-zinc-400" style="grid-column:1/4">Mask edge softness (lower keeps edges sharper) <input type="range" id="${k}T" min="5" max="30" value="12" class="w-full"></label></div>
+                            <div class="st-row"><label class="text-[11px] text-zinc-400" style="grid-column:1/4">Mask edge softness (lower keeps edges sharper) <input type="range" id="${k}T" min="5" max="30" value="12" class="w-full"></label></div>
               <div class="st-row" style="grid-template-columns:1fr 1fr"><button id="${k}EraseBtn" class="st-btn" style="background:#7c3aed" onclick="stErase('${k}')">AI erase background</button><button class="st-btn" style="background:#3f3f46" onclick="stUndo('${k}')">Undo erase</button></div>
               <div class="st-stage"><img id="${k}I" class="hidden"></div>
               <div class="st-row" style="grid-template-columns:1fr 1fr"><input class="st-in" id="${k}K" type="number" min="5" placeholder="Max size KB (optional)"><select class="st-in" id="${k}O"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option></select></div>
@@ -1573,8 +1571,6 @@
             const q = x => document.getElementById(k + x);
             q('P').onchange = () => { if (q('P').value) { const [w,h,u] = q('P').value.split(','); q('W').value = w; q('H').value = h; q('U').value = u; } stDim(k); };
             q('W').oninput = q('H').oninput = q('U').onchange = () => { if (!pass && ST[k] && ST[k].lock !== false && event && event.target.id === k + 'W') q('H').value = Math.round(q('W').value * ST[k].cur.height / ST[k].cur.width); stDim(k); };
-            q('B').onchange = () => { q('O').value = q('B').value === 'clear' ? 'image/png' : 'image/jpeg'; };
-            q('C').oninput = () => { q('B').value = 'custom'; q('O').value = 'image/jpeg'; };
             q('F').onchange = e => { const f = e.target.files[0]; if (!f) return; const im = new Image(); im.onload = () => {
                 const sc = Math.min(1, 2048 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * sc); c.height = Math.round(im.height * sc);
                 c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); ST[k] = { src: c, cur: c }; if (!pass) { q('W').value = im.width; q('H').value = im.height; q('U').value = 'px'; } stShow(k); }; im.src = URL.createObjectURL(f); };
@@ -1654,14 +1650,11 @@
         async function stSave(k) {
             const S = ST[k], q = x => document.getElementById(k + x); if (!S || !S.cr) return alert('Choose a photo first');
             const [w, h] = stPx(k); if (!w || !h) return alert('Type a width and height');
-            let bg = q('B').value, type = q('O').value;
-            if (bg === 'clear') { bg = ''; type = 'image/png'; }
-            else if (bg === 'custom') bg = q('C').value;
-            else if (bg === 'keep') bg = type === 'image/jpeg' ? '#ffffff' : '';
+            const type = q('O').value;
             const cropped = S.cr.getCroppedCanvas({ width: w, height: h, imageSmoothingQuality: 'high' });
             const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
             const ctx = cv.getContext('2d');
-            if (bg) { ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h); }
+            ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, w, h);
             ctx.drawImage(cropped, 0, 0, w, h);
             const max = (+q('K').value || 0) * 1024;
             const toB = qa => new Promise(r => cv.toBlob(r, type, qa)); let blob = await toB(.95), qa = .95;
