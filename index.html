@@ -159,9 +159,9 @@
         .st-stage { margin-top:.5rem; background:repeating-conic-gradient(#27272a 0 25%,#18181b 0 50%) 0 0/16px 16px; border-radius:.75rem; overflow:hidden; max-height:20rem; display:flex; justify-content:center; }
         .st-stage img { max-width:100%; display:block; }
 
-        #cbBtn{position:fixed;right:.75rem;bottom:4.3rem;z-index:55;width:3rem;height:3rem;border-radius:50%;background:linear-gradient(135deg,#2563eb,#16a34a);color:#fff;font-size:1.3rem;box-shadow:0 4px 18px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;cursor:pointer;border:0}
+        #cbBtn{position:fixed;right:.75rem;bottom:.75rem;z-index:55;width:3rem;height:3rem;border-radius:50%;background:linear-gradient(135deg,#2563eb,#16a34a);color:#fff;font-size:1.3rem;box-shadow:0 4px 18px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;cursor:pointer;border:0}
         #cbBtn span{position:absolute;top:-.2rem;right:-.2rem;width:.7rem;height:.7rem;border-radius:50%;background:#ef4444;animation:cbp 1.5s infinite}@keyframes cbp{50%{opacity:.3}}
-        #cbBox{position:fixed;right:.75rem;bottom:4.3rem;z-index:56;width:min(24rem,calc(100vw - 1.5rem));height:min(32rem,calc(100dvh - 6rem));display:none;flex-direction:column;background:#121216;border:1px solid #3f3f46;border-radius:1rem;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.8)}
+        #cbBox{position:fixed;right:.75rem;bottom:.75rem;z-index:56;width:min(22rem,calc(100vw - 1.5rem));height:min(22rem,calc(100dvh - 1.5rem));display:none;flex-direction:column;background:#121216;border:1px solid #3f3f46;border-radius:1rem;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.8)}
         #cbBox.on{display:flex}.cbh{padding:.6rem .8rem;background:linear-gradient(90deg,#1d4ed8,#15803d);color:#fff;font-weight:800;font-size:.8rem;display:flex;justify-content:space-between;align-items:center}
         #cbMsgs{flex:1;overflow-y:auto;padding:.6rem;display:flex;flex-direction:column;gap:.4rem}.cbm{max-width:86%;padding:.45rem .65rem;border-radius:.8rem;font-size:.74rem;line-height:1.45;white-space:pre-wrap}
         .cbm.b{background:#27272a;color:#e4e4e7;align-self:flex-start}.cbm.u{background:#2563eb;color:#fff;align-self:flex-end}.cbm a{color:#4ade80;text-decoration:underline}
@@ -252,7 +252,6 @@
         <span id="promoText">Get Canva Pro for only KSh 250 per month. Message us on WhatsApp!</span>
         <button type="button" onclick="document.getElementById('promoBar').remove()" class="absolute right-2 top-1/2 -translate-y-1/2 text-black/70 hover:text-black" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20help." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="fixed bottom-3 right-3 z-40 w-11 h-11 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center shadow-lg shadow-black/50"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
 
 
     <!-- Particle Background -->
@@ -452,6 +451,7 @@
                     <input type="text" id="qrInputText" placeholder="Enter text or URL..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white">
                     <button onclick="generateQRCode()" class="w-full py-3 rounded-xl bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-xs">Generate QR Code</button>
                     <div id="qrContainer" class="flex justify-center py-4 bg-white rounded-xl hidden"></div>
+                    <button id="qrDownloadBtn" type="button" onclick="downloadQRCode()" class="hidden w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs"><i class="fa-solid fa-download mr-1"></i>Download QR Code</button>
                 </div>
             </div>
 
@@ -461,7 +461,7 @@
             <!-- File Size Converter Tool Content -->
             <div id="convToolContent" class="tool-view hidden">
                 <h3 class="text-lg font-bold text-white mb-1"><i class="fa-solid fa-arrows-rotate text-pink-400 mr-2"></i>File Format Converter</h3>
-                <p class="text-xs text-zinc-400 mb-4">Upload a file, pick the new format, convert and download. Your file never leaves your device.</p>
+                <p class="text-xs text-zinc-400 mb-4">Convert images, PDF, Word (.docx), Excel (.xlsx), text, CSV, JSON and HTML in your browser. Files stay on your device; some formatting may change.</p>
                 <div class="space-y-3">
                     <label class="block w-full border-2 border-dashed border-zinc-700 hover:border-pink-500 rounded-xl p-5 text-center cursor-pointer text-xs text-zinc-300">
                         <i class="fa-solid fa-cloud-arrow-up text-xl text-pink-400 block mb-1"></i>
@@ -477,7 +477,7 @@
                     </div>
                     <p id="convMsg" class="text-[11px] text-zinc-400"></p>
                     <div id="convResults" class="space-y-2"></div>
-                    <p class="text-[10px] text-zinc-500 leading-snug">Works for: images (PNG, JPG, WEBP, GIF, BMP, SVG) to other images or PDF; PDF to images or text; text, CSV, JSON and HTML files to PDF, TXT, CSV or JSON. Word, Excel, PowerPoint, audio and video need a different tool, <a class="text-green-400 underline" target="_blank" href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20a%20file%20converted">ask us on WhatsApp</a>.</p>
+                    <p class="text-[10px] text-zinc-500 leading-snug">Supports images to images/PDF, PDF to images/text/Word, Word to PDF/text/HTML, Excel to CSV/JSON, and text/CSV/JSON/HTML to PDF, TXT, Word or Excel. PDF-to-Word extracts selectable text and does not preserve the original layout; scanned PDFs need OCR. PowerPoint, audio, video and other unsupported formats require dedicated software.</p>
                 </div>
             </div>
 
@@ -506,18 +506,23 @@
             </div>
 
             <div id="cvToolContent" class="tool-view hidden">
-                <h3 class="text-lg font-bold text-white mb-1"><i class="fa-solid fa-file-lines text-sky-400 mr-2"></i>CV Builder</h3>
-                <p class="text-xs text-zinc-400 mb-4">Fill in your details and download a clean CV as a PDF. Nothing is uploaded.</p>
+                <h3 class="text-lg font-bold text-white mb-1"><i class="fa-solid fa-file-lines text-sky-400 mr-2"></i>Advanced CV Builder</h3>
+                <p class="text-xs text-zinc-400 mb-4">Add your work history, education, skills, certifications and projects, then download a styled multi-page CV as a PDF. Nothing is uploaded.</p>
                 <div class="space-y-2">
                     <input id="cvName" placeholder="Full name" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white">
                     <input id="cvTitle" placeholder="Job title or career goal" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white">
                     <div class="grid grid-cols-2 gap-2"><input id="cvPhone" placeholder="Phone" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white"><input id="cvEmail" placeholder="Email" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white"></div>
                     <input id="cvLoc" placeholder="Location (e.g. Eldoret, Kenya)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white">
+                    <div class="grid grid-cols-2 gap-2"><input id="cvWebsite" placeholder="Website or portfolio" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white"><input id="cvLinkedin" placeholder="LinkedIn profile" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white"></div>
                     <textarea id="cvSummary" placeholder="Short profile (2-3 sentences)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white h-20"></textarea>
                     <textarea id="cvExp" placeholder="Work experience: one line each, e.g. Cashier, ABC Shop, 2023-2025" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white h-24"></textarea>
                     <textarea id="cvEdu" placeholder="Education: one line each, e.g. BSc Agriculture, Moi University, 2022" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white h-20"></textarea>
                     <input id="cvSkills" placeholder="Skills, separated by commas" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white">
+                    <textarea id="cvCerts" placeholder="Certifications and training: one per line" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white h-20"></textarea>
+                    <textarea id="cvProjects" placeholder="Projects and achievements: one per line" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white h-20"></textarea>
+                    <input id="cvLanguages" placeholder="Languages (e.g. English, Kiswahili)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white">
                     <textarea id="cvRef" placeholder="Referees: one line each (name, role, phone)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white h-16"></textarea>
+                    <label class="block text-[11px] text-zinc-400">CV accent colour <input id="cvAccent" type="color" value="#1d4ed8" class="ml-2 h-8 w-12 align-middle rounded border border-zinc-700 bg-zinc-950"></label>
                     <button onclick="cvRun()" id="cvBtn" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs">Create CV (PDF)</button>
                     <p id="cvMsg" class="text-[11px] text-zinc-400"></p><div id="cvResults" class="space-y-2"></div>
                     <p class="text-[10px] text-zinc-500">Want a professionally designed CV? <a class="text-green-400 underline" target="_blank" href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20a%20professionally%20designed%20CV">Ask SITA-TECH on WhatsApp</a>.</p>
@@ -982,12 +987,15 @@
         let convFiles = [];
         const CONV_IMG = ['png','jpg','jpeg','webp','gif','bmp','svg'];
         const CONV_TXT = ['txt','md','csv','json','html','htm','log','xml'];
+        const convScripts = {};
         const convExt = f => (f.name.split('.').pop() || '').toLowerCase();
         const convBase = f => f.name.replace(/\.[^.]+$/, '');
         function convKind(f) {
             const e = convExt(f);
             if (f.type.startsWith('image/') || CONV_IMG.includes(e)) return 'image';
             if (e === 'pdf' || f.type === 'application/pdf') return 'pdf';
+            if (e === 'docx') return 'docx';
+            if (e === 'xlsx') return 'spreadsheet';
             if (CONV_TXT.includes(e) || f.type.startsWith('text/') || f.type === 'application/json') return 'text';
             return 'other';
         }
@@ -1002,16 +1010,18 @@
             if (kinds.length > 1 || kinds[0] === 'other') {
                 opts.classList.add('hidden');
                 msg.textContent = kinds[0] === 'other' || kinds.includes('other')
-                    ? 'Sorry, this file type cannot be converted here. Word, Excel, PowerPoint, audio and video need special software. Message us on WhatsApp and we will convert it for you.'
-                    : 'Please choose files of one kind at a time (all images, all PDFs, or all text files).';
+                    ? 'This file type is not supported here. The browser converter supports common images, PDF, Word (.docx), Excel (.xlsx), text, CSV, JSON and HTML; other formats need dedicated software.'
+                    : 'Please choose files from one format family at a time.';
                 return;
             }
             const k = kinds[0], e = convExt(convFiles[0]);
             let o = [];
             if (k === 'image') o = [['png','PNG image'],['jpg','JPG image'],['webp','WEBP image'],['pdf','PDF (one page per image)']].filter(x => x[0] !== (e === 'jpeg' ? 'jpg' : e));
-            if (k === 'pdf') o = [['png','PNG images (each page)'],['jpg','JPG images (each page)'],['txt','Text (TXT)']];
+            if (k === 'pdf') o = [['png','PNG images (each page)'],['jpg','JPG images (each page)'],['txt','Text (TXT)'],['docx','Word document (.docx)']];
+            if (k === 'docx') o = [['pdf','PDF'],['txt','Plain text (TXT)'],['html','HTML']];
+            if (k === 'spreadsheet') o = [['csv','CSV (first worksheet)'],['json','JSON (all worksheets)']];
             if (k === 'text') {
-                o = [['pdf','PDF'],['txt','Plain text (TXT)']];
+                o = [['pdf','PDF'],['txt','Plain text (TXT)'],['docx','Word document (.docx)'],['xlsx','Excel workbook (.xlsx)']];
                 if (e === 'csv') o.push(['json','JSON']);
                 if (e === 'json') o.push(['csv','CSV']);
                 if (e === 'html' || e === 'htm') o.push(['txt','Text without tags (TXT)']);
@@ -1020,7 +1030,12 @@
             opts.classList.remove('hidden');
         }
         function convLoadScript(src) {
-            return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = () => rej(new Error('Could not load converter library. Check your internet connection.')); document.head.appendChild(s); });
+            if (!convScripts[src]) convScripts[src] = new Promise((res, rej) => {
+                const s = document.createElement('script'); s.src = src; s.onload = res;
+                s.onerror = () => { delete convScripts[src]; rej(new Error('Could not load converter library. Check your internet connection.')); };
+                document.head.appendChild(s);
+            });
+            return convScripts[src];
         }
         function convAddResult(blob, name) {
             const url = URL.createObjectURL(blob);
@@ -1034,9 +1049,30 @@
             return new Promise((res, rej) => { const u = URL.createObjectURL(f), im = new Image(); im.onload = () => res({ im, u }); im.onerror = () => rej(new Error('Could not read ' + f.name)); im.src = u; });
         }
         function convCanvasBlob(c, type, q) { return new Promise(res => c.toBlob(res, type, q || 0.92)); }
+        async function convPdfText(pdf) {
+            let text = '';
+            for (let p = 1; p <= pdf.numPages; p++) {
+                const content = await (await pdf.getPage(p)).getTextContent();
+                text += content.items.map(item => typeof item.str === 'string' ? item.str : '').filter(Boolean).join(' ') + '\n\n';
+            }
+            return text.trim();
+        }
+        async function convMakeDocx(text) {
+            if (!window.docx) await convLoadScript('https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js');
+            if (!window.docx || !window.docx.Document || !window.docx.Packer) throw new Error('Could not load the Word document converter.');
+            const paragraphs = String(text).split(/\r?\n/).map(line => new window.docx.Paragraph({ text: line || ' ' }));
+            const doc = new window.docx.Document({ sections: [{ children: paragraphs }] });
+            return window.docx.Packer.toBlob(doc);
+        }
+        async function convWordText(file) {
+            if (!window.mammoth) await convLoadScript('https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js');
+            if (!window.mammoth) throw new Error('Could not load the Word document reader.');
+            return window.mammoth.extractRawText({ arrayBuffer: await file.arrayBuffer() });
+        }
         async function convRun() {
             const target = document.getElementById('convTarget').value, msg = document.getElementById('convMsg'), btn = document.getElementById('convBtn');
             document.getElementById('convResults').innerHTML = '';
+            if (!convFiles.length) { msg.textContent = 'Please choose a file first.'; return; }
             btn.disabled = true; btn.textContent = 'Converting...'; msg.textContent = '';
             try {
                 const kind = convKind(convFiles[0]);
@@ -1072,9 +1108,12 @@
                     for (const f of convFiles) {
                         const pdf = await pdfjsLib.getDocument({ data: await f.arrayBuffer() }).promise;
                         if (target === 'txt') {
-                            let t = '';
-                            for (let p = 1; p <= pdf.numPages; p++) { const tc = await (await pdf.getPage(p)).getTextContent(); t += tc.items.map(i => i.str).join(' ') + '\n\n'; }
+                            const t = await convPdfText(pdf);
                             convAddResult(new Blob([t], { type: 'text/plain' }), convBase(f) + '.txt');
+                        } else if (target === 'docx') {
+                            const t = await convPdfText(pdf);
+                            if (!t) throw new Error('No selectable text was found. Scanned PDFs need OCR before they can be converted to Word.');
+                            convAddResult(await convMakeDocx(t), convBase(f) + '.docx');
                         } else {
                             const pages = Math.min(pdf.numPages, 30);
                             for (let p = 1; p <= pages; p++) {
@@ -1085,6 +1124,38 @@
                                 convAddResult(await convCanvasBlob(c, target === 'jpg' ? 'image/jpeg' : 'image/png'), convBase(f) + '-page' + p + '.' + target);
                             }
                             if (pdf.numPages > 30) msg.textContent = 'Only the first 30 pages were converted.';
+                        }
+                    }
+                } else if (kind === 'docx') {
+                    for (const f of convFiles) {
+                        const result = await convWordText(f);
+                        if (target === 'txt') convAddResult(new Blob([result.value], { type: 'text/plain' }), convBase(f) + '.txt');
+                        else if (target === 'html') {
+                            const html = await window.mammoth.convertToHtml({ arrayBuffer: await f.arrayBuffer() });
+                            convAddResult(new Blob([html.value], { type: 'text/html' }), convBase(f) + '.html');
+                        } else {
+                            if (!window.jspdf) await convLoadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+                            if (!result.value.trim()) throw new Error('This Word document contains no readable text.');
+                            const pdf = new window.jspdf.jsPDF({ unit: 'pt', format: 'a4' });
+                            pdf.setFontSize(11); let y = 40;
+                            for (const line of pdf.splitTextToSize(result.value, 515)) {
+                                if (y > 802) { pdf.addPage(); y = 40; }
+                                pdf.text(line, 40, y); y += 15;
+                            }
+                            convAddResult(pdf.output('blob'), convBase(f) + '.pdf');
+                        }
+                    }
+                } else if (kind === 'spreadsheet') {
+                    if (!window.XLSX) await convLoadScript('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js');
+                    if (!window.XLSX) throw new Error('Could not load the Excel workbook converter.');
+                    for (const f of convFiles) {
+                        const book = window.XLSX.read(await f.arrayBuffer(), { type: 'array' });
+                        if (target === 'json') {
+                            const sheets = Object.fromEntries(book.SheetNames.map(name => [name, window.XLSX.utils.sheet_to_json(book.Sheets[name], { header: 1, defval: '' })]));
+                            convAddResult(new Blob([JSON.stringify(sheets, null, 2)], { type: 'application/json' }), convBase(f) + '.json');
+                        } else {
+                            const sheet = book.Sheets[book.SheetNames[0]];
+                            convAddResult(new Blob([window.XLSX.utils.sheet_to_csv(sheet)], { type: 'text/csv' }), convBase(f) + '.csv');
                         }
                     }
                 } else if (kind === 'text') {
@@ -1099,6 +1170,30 @@
                             convAddResult(pdf.output('blob'), convBase(f) + '.pdf');
                         } else if (target === 'txt') {
                             convAddResult(new Blob([(e === 'html' || e === 'htm') ? convHtmlText(t) : t], { type: 'text/plain' }), convBase(f) + '.txt');
+                        } else if (target === 'docx') {
+                            if (e === 'html' || e === 'htm') t = convHtmlText(t);
+                            convAddResult(await convMakeDocx(t), convBase(f) + '.docx');
+                        } else if (target === 'xlsx') {
+                            if (!window.XLSX) await convLoadScript('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js');
+                            if (!window.XLSX) throw new Error('Could not load the Excel workbook converter.');
+                            let rows;
+                            if (e === 'csv') rows = convParseCsv(t);
+                            else if (e === 'json') {
+                                const data = JSON.parse(t);
+                                rows = Array.isArray(data) ? data : [data];
+                                if (rows.some(row => row === null || typeof row !== 'object')) rows = rows.map(value => [value]);
+                            } else if (e === 'html' || e === 'htm') {
+                                const doc = new DOMParser().parseFromString(t, 'text/html'), table = doc.querySelector('table');
+                                rows = table
+                                    ? [...table.querySelectorAll('tr')].map(row => [...row.querySelectorAll('th,td')].map(cell => cell.textContent.trim()))
+                                    : convHtmlText(t).split(/\r?\n/).filter(Boolean).map(line => [line]);
+                            } else {
+                                rows = t.split(/\r?\n/).map(line => [line]);
+                            }
+                            const sheet = rows.length && Array.isArray(rows[0]) ? window.XLSX.utils.aoa_to_sheet(rows) : window.XLSX.utils.json_to_sheet(rows);
+                            const book = window.XLSX.utils.book_new();
+                            window.XLSX.utils.book_append_sheet(book, sheet, 'Sheet1');
+                            convAddResult(new Blob([window.XLSX.write(book, { bookType: 'xlsx', type: 'array' })], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), convBase(f) + '.xlsx');
                         } else if (target === 'json') {
                             const rows = convParseCsv(t), head = rows.shift() || [];
                             convAddResult(new Blob([JSON.stringify(rows.map(r => Object.fromEntries(head.map((h, i) => [h, r[i] ?? '']))), null, 2)], { type: 'application/json' }), convBase(f) + '.json');
@@ -1196,25 +1291,39 @@
             if (!v('cvName')) { msg.textContent = 'Please enter your full name.'; return; }
             try {
                 if (!window.jspdf) await convLoadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
-                const pdf = new window.jspdf.jsPDF({ unit: 'pt', format: 'a4' }), L = 50, W = 495; let y = 60;
-                const need = n => { if (y + n > 790) { pdf.addPage(); y = 60; } };
-                pdf.setFont('helvetica', 'bold'); pdf.setFontSize(24); pdf.setTextColor(20, 40, 90); pdf.text(v('cvName').toUpperCase(), L, y); y += 22;
-                if (v('cvTitle')) { pdf.setFont('helvetica', 'normal'); pdf.setFontSize(12); pdf.setTextColor(80); pdf.text(v('cvTitle'), L, y); y += 18; }
-                const contact = [v('cvPhone'), v('cvEmail'), v('cvLoc')].filter(Boolean).join('   |   ');
-                if (contact) { pdf.setFontSize(10); pdf.setTextColor(60); pdf.text(contact, L, y); y += 10; }
-                pdf.setDrawColor(20, 40, 90); pdf.setLineWidth(1.5); pdf.line(L, y, L + W, y); y += 22;
+                const pdf = new window.jspdf.jsPDF({ unit: 'pt', format: 'a4' }), L = 48, W = 499;
+                const hex = v('cvAccent').replace('#', ''), accent = [0, 2, 4].map(i => parseInt(hex.slice(i, i + 2), 16));
+                let y = 58;
+                const page = () => { pdf.addPage(); y = 48; };
+                const write = (text, size, color, bold, indent) => {
+                    if (!text) return;
+                    pdf.setFont('helvetica', bold ? 'bold' : 'normal'); pdf.setFontSize(size); pdf.setTextColor(...color);
+                    pdf.splitTextToSize(text, W - (indent || 0)).forEach(line => {
+                        if (y > 790) page();
+                        pdf.text(line, L + (indent || 0), y); y += size + 4;
+                    });
+                };
+                pdf.setFont('helvetica', 'bold'); pdf.setFontSize(24); pdf.setTextColor(...accent);
+                pdf.text(v('cvName').toUpperCase(), L, y); y += 28;
+                write(v('cvTitle'), 12, [70, 70, 70], false);
+                const contact = [v('cvPhone'), v('cvEmail'), v('cvLoc'), v('cvWebsite'), v('cvLinkedin')].filter(Boolean).join('  |  ');
+                write(contact, 9.5, [70, 70, 70], false);
+                y += 6; pdf.setDrawColor(...accent); pdf.setLineWidth(1.5); pdf.line(L, y, L + W, y); y += 22;
                 const section = (title, text, bullets) => {
-                    if (!text) return; need(50);
-                    pdf.setFont('helvetica', 'bold'); pdf.setFontSize(12); pdf.setTextColor(20, 40, 90); pdf.text(title.toUpperCase(), L, y); y += 16;
-                    pdf.setFont('helvetica', 'normal'); pdf.setFontSize(10.5); pdf.setTextColor(30);
+                    if (!text) return;
+                    if (y > 755) page();
+                    write(title.toUpperCase(), 11, accent, true);
                     const lines = bullets ? text.split('\n').map(t => t.trim()).filter(Boolean) : [text];
-                    lines.forEach(l => { pdf.splitTextToSize((bullets ? '•  ' : '') + l, W).forEach(t => { need(16); pdf.text(t, L, y); y += 15; }); });
-                    y += 10;
+                    lines.forEach(line => write((bullets ? '- ' : '') + line, 10, [35, 35, 35], false, bullets ? 4 : 0));
+                    y += 7;
                 };
                 section('Profile', v('cvSummary'), false);
                 section('Work Experience', v('cvExp'), true);
                 section('Education', v('cvEdu'), true);
                 section('Skills', v('cvSkills'), false);
+                section('Certifications & Training', v('cvCerts'), true);
+                section('Projects & Achievements', v('cvProjects'), true);
+                section('Languages', v('cvLanguages'), false);
                 section('Referees', v('cvRef'), true);
                 toolAddResult('cvResults', pdf.output('blob'), v('cvName').replace(/\s+/g, '-') + '-CV.pdf');
                 msg.textContent = 'Done! Tap Download to save your CV.';
@@ -1281,10 +1390,21 @@
         function generateQRCode() {
             const txt = document.getElementById('qrInputText').value.trim();
             const container = document.getElementById('qrContainer');
+            const download = document.getElementById('qrDownloadBtn');
             container.innerHTML = '';
-            if(!txt) return;
+            download.classList.add('hidden');
+            if (!txt) { container.classList.add('hidden'); return; }
             container.classList.remove('hidden');
             new QRCode(container, { text: txt, width: 140, height: 140 });
+            download.classList.remove('hidden');
+        }
+
+        function downloadQRCode() {
+            const container = document.getElementById('qrContainer');
+            const canvas = container.querySelector('canvas'), image = container.querySelector('img');
+            const url = canvas ? canvas.toDataURL('image/png') : image && image.src;
+            if (!url) { alert('Generate a QR code first.'); return; }
+            const a = document.createElement('a'); a.href = url; a.download = 'sita-tech-qr-code.png'; a.click();
         }
 
         // ---------- Passport Maker & Image Resizer: any size, background eraser ----------
@@ -1294,14 +1414,15 @@
         function studio(k) {
             const box = document.getElementById(k + 'ToolContent'), pass = k === 'crop', d = pass ? '35,45,mm' : '1080,1080,px';
             box.innerHTML = `<h3 class="text-lg font-bold text-white mb-1">${pass ? 'Passport Photo Maker' : 'Image Resizer'}</h3>
-              <p class="text-xs text-zinc-400 mb-3">Choose a photo, type any size you want, erase the background if needed, then download. Nothing is uploaded.</p>
+              <p class="text-xs text-zinc-400 mb-3">Choose a photo, set its size and background, then download. The edge-based eraser avoids enclosed subject areas; lower its strength or use Undo if it touches the subject. Nothing is uploaded.</p>
               <input type="file" accept="image/*" id="${k}F" class="w-full text-xs text-zinc-400">
               <div class="st-row"><select class="st-in" id="${k}P" style="grid-column:1/4">${STP[k].map(([l,v]) => `<option value="${v}"${v===d?' selected':''}>${l}</option>`).join('')}<option value="">Custom size</option></select>
                 <input class="st-in" id="${k}W" type="number" min="1" placeholder="Width"><input class="st-in" id="${k}H" type="number" min="1" placeholder="Height">
                 <select class="st-in" id="${k}U"><option>px</option><option>mm</option><option>cm</option><option>in</option></select></div>
               <p id="${k}Px" class="text-[11px] text-zinc-500 mt-1"></p>
-              <div class="st-row"><select class="st-in" id="${k}B"><option value="">Keep background</option><option value="#ffffff">White</option><option value="#1e5bd6">Blue</option><option value="#d62828">Red</option><option value="#d4d4d8">Light grey</option><option value="clear">Transparent (PNG)</option></select>
-                <label class="text-[11px] text-zinc-400" style="grid-column:2/4">Eraser strength <input type="range" id="${k}T" min="10" max="90" value="40" class="w-full"></label></div>
+              <div class="st-row"><select class="st-in" id="${k}B"><option value="#ffffff" selected>White background</option><option value="#1e5bd6">Blue</option><option value="#d62828">Red</option><option value="#d4d4d8">Light grey</option><option value="custom">Custom colour</option><option value="keep">Keep original</option><option value="clear">Transparent (PNG)</option></select>
+                <input type="color" id="${k}C" value="#ffffff" aria-label="Choose custom background colour" class="st-in">
+                <label class="text-[11px] text-zinc-400" style="grid-column:1/4">Eraser strength (use a lower value to protect similar-coloured subject areas) <input type="range" id="${k}T" min="5" max="45" value="12" class="w-full"></label></div>
               <div class="st-row" style="grid-template-columns:1fr 1fr"><button class="st-btn" style="background:#7c3aed" onclick="stErase('${k}')">Erase background</button><button class="st-btn" style="background:#3f3f46" onclick="stUndo('${k}')">Undo erase</button></div>
               <div class="st-stage"><img id="${k}I" class="hidden"></div>
               <div class="st-row" style="grid-template-columns:1fr 1fr"><input class="st-in" id="${k}K" type="number" min="5" placeholder="Max size KB (optional)"><select class="st-in" id="${k}O"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option></select></div>
@@ -1310,6 +1431,7 @@
             q('P').onchange = () => { if (q('P').value) { const [w,h,u] = q('P').value.split(','); q('W').value = w; q('H').value = h; q('U').value = u; } stDim(k); };
             q('W').oninput = q('H').oninput = q('U').onchange = () => { if (!pass && ST[k] && ST[k].lock !== false && event && event.target.id === k + 'W') q('H').value = Math.round(q('W').value * ST[k].cur.height / ST[k].cur.width); stDim(k); };
             q('B').onchange = () => { q('O').value = q('B').value === 'clear' ? 'image/png' : 'image/jpeg'; };
+            q('C').oninput = () => { q('B').value = 'custom'; q('O').value = 'image/jpeg'; };
             q('F').onchange = e => { const f = e.target.files[0]; if (!f) return; const im = new Image(); im.onload = () => {
                 const sc = Math.min(1, 1600 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * sc); c.height = Math.round(im.height * sc);
                 c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); ST[k] = { src: c, cur: c }; if (!pass) { q('W').value = im.width; q('H').value = im.height; q('U').value = 'px'; } stShow(k); }; im.src = URL.createObjectURL(f); };
@@ -1327,20 +1449,50 @@
         function stErase(k) {
             const S = ST[k]; if (!S) return alert('Choose a photo first');
             const c = document.createElement('canvas'); c.width = S.src.width; c.height = S.src.height; const x = c.getContext('2d'); x.drawImage(S.src, 0, 0);
-            const im = x.getImageData(0, 0, c.width, c.height), d = im.data, W = c.width, H = c.height, t = (document.getElementById(k + 'T').value * 3) ** 2;
-            let r = 0, g = 0, b = 0, n = 0; [[0,0],[W-12,0],[0,H-12],[W-12,H-12]].forEach(([ox, oy]) => { for (let y = oy; y < oy + 12; y++) for (let xx = ox; xx < ox + 12; xx++) { const i = (y * W + xx) * 4; r += d[i]; g += d[i+1]; b += d[i+2]; n++; } });
-            r /= n; g /= n; b /= n;
-            const bgm = new Uint8Array(W * H), st = []; const near = p => { const i = p * 4; return (d[i]-r)**2 + (d[i+1]-g)**2 + (d[i+2]-b)**2 <= t; };
-            for (let xx = 0; xx < W; xx++) { st.push(xx, (H-1)*W + xx); } for (let y = 0; y < H; y++) { st.push(y*W, y*W + W-1); }
-            while (st.length) { const p = st.pop(); if (bgm[p] || !near(p)) continue; bgm[p] = 1; const px = p % W; if (px > 0) st.push(p-1); if (px < W-1) st.push(p+1); if (p >= W) st.push(p-W); if (p < W*(H-1)) st.push(p+W); }
-            for (let p = 0; p < W * H; p++) { if (bgm[p]) d[p*4+3] = 0; else { const px = p % W; if ((px > 0 && bgm[p-1]) || (px < W-1 && bgm[p+1]) || (p >= W && bgm[p-W]) || (p < W*(H-1) && bgm[p+W])) d[p*4+3] = 120; } }
+            const im = x.getImageData(0, 0, c.width, c.height), d = im.data, W = c.width, H = c.height;
+            const samples = [], step = Math.max(1, Math.floor(Math.max(W, H) / 160));
+            const sample = p => { const i = p * 4; samples.push([d[i], d[i + 1], d[i + 2]]); };
+            for (let xx = 0; xx < W; xx += step) { sample(xx); sample((H - 1) * W + xx); }
+            for (let yy = 0; yy < H; yy += step) { sample(yy * W); sample(yy * W + W - 1); }
+            const median = channel => {
+                const values = samples.map(color => color[channel]).sort((a, b) => a - b);
+                return values[Math.floor(values.length / 2)];
+            };
+            const r = median(0), g = median(1), b = median(2);
+            const tolerance = Number(document.getElementById(k + 'T').value) * 2, limit = tolerance * tolerance;
+            const bgm = new Uint8Array(W * H), stack = new Uint32Array(W * H); let top = 0;
+            const near = p => { const i = p * 4; return (d[i] - r) ** 2 + (d[i + 1] - g) ** 2 + (d[i + 2] - b) ** 2 <= limit; };
+            const push = p => { if (!bgm[p] && near(p)) { bgm[p] = 1; stack[top++] = p; } };
+            for (let xx = 0; xx < W; xx++) { push(xx); push((H - 1) * W + xx); }
+            for (let yy = 0; yy < H; yy++) { push(yy * W); push(yy * W + W - 1); }
+            while (top) {
+                const p = stack[--top], px = p % W;
+                if (px > 0) push(p - 1);
+                if (px < W - 1) push(p + 1);
+                if (p >= W) push(p - W);
+                if (p < W * (H - 1)) push(p + W);
+            }
+            for (let p = 0; p < W * H; p++) {
+                const i = p * 4;
+                if (bgm[p]) d[i + 3] = 0;
+                else {
+                    const px = p % W, edge = (px > 0 && bgm[p - 1]) || (px < W - 1 && bgm[p + 1]) || (p >= W && bgm[p - W]) || (p < W * (H - 1) && bgm[p + W]);
+                    if (edge) {
+                        const distance = Math.sqrt((d[i] - r) ** 2 + (d[i + 1] - g) ** 2 + (d[i + 2] - b) ** 2);
+                        if (distance < tolerance * 1.6) d[i + 3] = Math.min(d[i + 3], Math.round(255 * Math.max(0.25, (distance - tolerance * 0.5) / (tolerance * 1.1))));
+                    }
+                }
+            }
             x.putImageData(im, 0, 0); S.cur = c; stShow(k); document.getElementById(k + 'M').textContent = 'Background erased. Pick a new colour above or choose Transparent.';
         }
         function stUndo(k) { if (ST[k]) { ST[k].cur = ST[k].src; stShow(k); } }
         async function stSave(k) {
             const S = ST[k], q = x => document.getElementById(k + x); if (!S || !S.cr) return alert('Choose a photo first');
             const [w, h] = stPx(k); if (!w || !h) return alert('Type a width and height');
-            let bg = q('B').value, type = q('O').value; if (bg === 'clear') { bg = ''; type = 'image/png'; } else if (!bg && S.cur !== S.src) bg = '#ffffff'; else if (!bg) bg = '#ffffff';
+            let bg = q('B').value, type = q('O').value;
+            if (bg === 'clear') { bg = ''; type = 'image/png'; }
+            else if (bg === 'custom') bg = q('C').value;
+            else if (bg === 'keep') bg = type === 'image/jpeg' ? '#ffffff' : '';
             const cv = S.cr.getCroppedCanvas({ width: w, height: h, fillColor: bg || undefined, imageSmoothingQuality: 'high' }), max = (+q('K').value || 0) * 1024;
             const toB = qa => new Promise(r => cv.toBlob(r, type, qa)); let blob = await toB(.95), qa = .95;
             if (max && type === 'image/jpeg') while (blob.size > max && qa > .1) { qa -= .07; blob = await toB(qa); }
@@ -1822,7 +1974,7 @@
 <button id="cbBtn" onclick="cbToggle()" aria-label="Chat with SITA-TECH assistant"><i class="fa-solid fa-comment-dots"></i><span></span></button>
 <div id="cbBox"><div class="cbh"><div><i class="fa-solid fa-robot"></i> SITA-TECH Assistant</div><button onclick="cbToggle()" style="color:#fff;background:none;border:0;cursor:pointer" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div>
 <div id="cbMsgs"></div><div id="cbQ"></div>
-<form id="cbF" onsubmit="cbSend(event)"><input id="cbI" placeholder="Ask about services, courses, fees..." autocomplete="off"><button aria-label="Send"><i class="fa-solid fa-paper-plane"></i></button></form></div>
+<form id="cbF" onsubmit="cbSend(event)"><input id="cbI" placeholder="Ask about services, courses, tools or the site..." autocomplete="off"><button aria-label="Send"><i class="fa-solid fa-paper-plane"></i></button></form></div>
 <script>
 (function(){
 const WA='https://wa.me/254795609046?text=', $=i=>document.getElementById(i);
@@ -1840,20 +1992,38 @@ const K=[
 function find(q){const w=q.toLowerCase().split(/\W+/).filter(x=>x.length>2);if(!w.length)return null;
  let best=null,bs=0;(window.defaultServices||defaultServices).forEach(s=>{const t=(s.title+' '+s.desc+' '+s.category).toLowerCase();let n=0;w.forEach(x=>{if(t.includes(x))n++});if(n>bs){bs=n;best=['s',s]}});
  courses.forEach(c=>{const t=(c.t+' '+c.d+' '+c.topics.join(' ')).toLowerCase();let n=0;w.forEach(x=>{if(t.includes(x))n++});if(n>bs){bs=n;best=['c',c]}});
+ (siteData.corner||[]).forEach(item=>{const t=(item.title+' '+(item.desc||'')+' '+(item.category||'')).toLowerCase();let n=0;w.forEach(x=>{if(t.includes(x))n++});if(n>bs){bs=n;best=['corner',item]}});
  return bs?best:null}
+function siteSearch(q){const skip=new Set(['what','where','when','which','that','this','with','from','your','about','does','have','tell','please','could','would','should','into','near','more','some','much','many','want','need','help','site','website','sita','tech']);
+ const terms=q.toLowerCase().split(/\W+/).filter(x=>x.length>2&&!skip.has(x));if(!terms.length)return '';
+ const chunks=[...document.querySelectorAll('section h2,section h3,section p,section li,footer h2,footer p')].map(el=>(el.textContent||'').trim()).filter(t=>t.length>18);
+ const ranked=chunks.map(text=>({text,score:terms.reduce((n,term)=>n+(text.toLowerCase().includes(term)?1:0),0)})).filter(item=>item.score>0).sort((a,b)=>b.score-a.score);
+ if(!ranked.length||ranked[0].score<Math.min(2,terms.length))return '';
+ return 'Website information:\n'+ranked.slice(0,2).map(item=>item.text.slice(0,260)).join('\n');
+}
 function answer(q){const l=q.toLowerCase();
+ if(/about (?:sita(?:-tech)?|(?:(?:this|the|your|our) )?(?:website|site))|what is (?:sita(?:-tech)?|this website|this site)|who are you|what do you do|all information|website information/.test(l)){
+  const categories=[...new Set((window.defaultServices||defaultServices).map(s=>s.category))].join(', ');
+  return 'SITA-TECH is a cyber and digital services hub in Kenya, with computer training and a free Student Corner. Services include '+categories+'. The Academy offers '+courses.length+' listed courses. The site also has free tools for QR codes, passport photos, resizing, file conversion, compression, PDFs, CVs and word counts. Contact: 0795609046 or sitatech3@gmail.com. Ask me about a service, course, fee or tool for current details.';
+ }
+ if(/what services|list (all )?services|services do you offer/.test(l)){
+  const categories=[...new Set((window.defaultServices||defaultServices).map(s=>s.category))];
+  return 'SITA-TECH service categories: '+categories.join(', ')+'. Ask for a service name to see its current price and details.';
+ }
  if(/course|academy|learn|train|class|fee|study/.test(l)&&!find(q.replace(/course|academy|learn|fee|study|class/gi,''))) return 'Academy courses:\n'+courses.map(c=>'- '+c.t+': '+courseFee(c)).join('\n')+'\nTap a course in the Academy section and press Enroll Now.';
  const f=find(q);
  if(f&&f[0]==='c')return f[1].t+' ('+courseFee(f[1])+')\n'+f[1].d+'\nTopics: '+f[1].topics.join(', ')+'.\nEnroll from the Academy section.';
+ if(f&&f[0]==='corner')return f[1].title+(f[1].desc?'\n'+f[1].desc:'')+'\nFind it in the Student Corner section.';
  if(/price|cost|how much|charge/.test(l)&&f&&f[0]==='s')return f[1].title+': '+f[1].price+'.\n'+f[1].desc;
  for(const [r,a] of K)if(r.test(l))return a();
  if(f&&f[0]==='s')return f[1].title+' ('+f[1].price+')\n'+f[1].desc+'\nTap the green WhatsApp button on the service to order.';
- if(/price|cost|how much|service|offer|do you/.test(l))return 'We offer CCTV and repair, printing, SHA, KRA, eCitizen, NTSA, NSSF, HELB, business registration, CV and design, web services and the Academy. Tell me which one you want and I will give the price.';
+ const pageInfo=siteSearch(q);if(pageInfo)return pageInfo;
+ if(/price|cost|how much|service|offer|do you/.test(l))return 'We offer '+[...new Set((window.defaultServices||defaultServices).map(s=>s.category))].join(', ')+', plus the Academy. Tell me a service or course name and I will look up its current details.';
  return null}
 function add(t,c,html){const d=document.createElement('div');d.className='cbm '+c;if(html)d.innerHTML=t;else d.textContent=t;$('cbMsgs').appendChild(d);$('cbMsgs').scrollTop=1e9}
 function ask(q){add(q,'u');const a=answer(q);setTimeout(()=>{if(a)add(a,'b');else add('I am not sure about that one. Ask us directly and we will answer fast: <a target="_blank" rel="noopener" href="'+WA+encodeURIComponent('Hello SITA-TECH, '+q)+'">Chat on WhatsApp</a>','b',1)},350)}
 window.cbSend=e=>{e.preventDefault();const v=$('cbI').value.trim();if(v){$('cbI').value='';ask(v)}};
-window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.display=o?'none':'flex';if(o&&!$('cbMsgs').children.length){add('Hello! I am the SITA-TECH assistant. What would you like to know?','b');
+window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.display=o?'none':'flex';if(o&&!$('cbMsgs').children.length){add('Hello! I can help with SITA-TECH services, courses, fees, the Student Corner and website tools.','b');
  $('cbQ').innerHTML=['Services & prices','Academy courses','How to pay','Where are you?','Student Portal','Free tools'].map(x=>'<button type="button">'+x+'</button>').join('');$('cbQ').querySelectorAll('button').forEach(b=>b.onclick=()=>ask({'Services & prices':'what services do you offer','Academy courses':'academy courses and fees','How to pay':'how do I pay','Where are you?':'where are you located','Student Portal':'student portal login','Free tools':'free tools'}[b.textContent]))}}
 })();
 </script>
