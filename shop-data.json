@@ -1,5 +1,6 @@
 {
-  "_help": "Edit this file to manage your shop. price is in KSh. Set stock to 0 for Sold out. img is optional (a link to a photo). icon is a Font Awesome name used when there is no photo.",
+  "_help": "Shop items and offers. Easiest way to edit: open the site admin (tap the copyright line 7 times) > Shop tab, then Publish > Download shop-data.json and upload it here. price/offer are in KSh. stock 0 = Sold out. offerEnds is a date like 2026-12-31.",
+  "banner": "",
   "products": [
     {
       "id": "p1",
@@ -14,6 +15,8 @@
       "id": "p2",
       "name": "Wireless Mouse",
       "price": 700,
+      "offer": 550,
+      "offerLabel": "Weekend deal",
       "cat": "Computer Accessories",
       "desc": "Comfortable wireless mouse with USB receiver.",
       "icon": "fa-computer-mouse",
@@ -41,6 +44,8 @@
       "id": "p5",
       "name": "Earphones",
       "price": 500,
+      "offer": 400,
+      "offerLabel": "Limited offer",
       "cat": "Phone Accessories",
       "desc": "Clear sound earphones with built-in mic.",
       "icon": "fa-headphones",
