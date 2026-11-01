@@ -29,3 +29,9 @@ Open the home page and press **Shift+0** to open the admin panel. Admins can add
 Changes are saved in that browser only. Use the **Publish** tab to download `site-data.json`, then upload it beside `index.html` in the website repository to publish the changes to visitors. The separate `corner-admin.html` also supports custom Student Corner categories; publish its changes by downloading `corner-data.json` and uploading it beside `index.html`.
 
 New Academy listings appear on the website and enrollment form. To give a new course student-portal lessons and progress tracking, it also needs a course code in `sita_courses` and lesson content in `portal.html`; adding a listing alone does not create portal lessons.
+
+## Browser tools
+
+The home page's photo tools use MediaPipe Selfie Segmentation to remove the background locally in the browser. The segmentation library and model are downloaded from jsDelivr on first use; photos are not sent to the CDN. A clear, well-lit photo with the subject visible gives the best result. The converter handles common image formats, PDF, DOCX, XLSX, CSV, JSON, HTML and text formats. PDF-to-Word extracts selectable text and does not preserve the original layout; scanned PDFs need OCR.
+
+This site is deployed as a static frontend, so Java conversion code would not run on the site by itself. A Java converter would require a separately hosted backend service; the current converter instead runs in the visitor's browser.
