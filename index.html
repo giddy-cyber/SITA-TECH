@@ -1557,14 +1557,14 @@
         function studio(k) {
             const box = document.getElementById(k + 'ToolContent'), pass = k === 'crop', d = pass ? '35,45,mm' : '1080,1080,px';
             box.innerHTML = `<h3 class="text-lg font-bold text-white mb-1">${pass ? 'Passport Photo Maker' : 'Image Resizer'}</h3>
-              <p class="text-xs text-zinc-400 mb-3">AI keeps the person and removes the background. Photos use a white background and are processed on this device.</p>
+              <p class="text-xs text-zinc-400 mb-3">${pass ? 'Choose a passport photo size, crop your photo, and download it at the selected dimensions.' : 'AI keeps the person and removes the background. Photos use a white background and are processed on this device.'}</p>
               <input type="file" accept="image/*" id="${k}F" class="w-full text-xs text-zinc-400">
               <div class="st-row"><select class="st-in" id="${k}P" style="grid-column:1/4">${STP[k].map(([l,v]) => `<option value="${v}"${v===d?' selected':''}>${l}</option>`).join('')}<option value="">Custom size</option></select>
                 <input class="st-in" id="${k}W" type="number" min="1" placeholder="Width"><input class="st-in" id="${k}H" type="number" min="1" placeholder="Height">
                 <select class="st-in" id="${k}U"><option>px</option><option>mm</option><option>cm</option><option>in</option></select></div>
               <p id="${k}Px" class="text-[11px] text-zinc-500 mt-1"></p>
-                            <div class="st-row"><label class="text-[11px] text-zinc-400" style="grid-column:1/4">Mask edge softness (lower keeps edges sharper) <input type="range" id="${k}T" min="5" max="30" value="12" class="w-full"></label></div>
-              <div class="st-row" style="grid-template-columns:1fr 1fr"><button id="${k}EraseBtn" class="st-btn" style="background:#7c3aed" onclick="stErase('${k}')">AI erase background</button><button class="st-btn" style="background:#3f3f46" onclick="stUndo('${k}')">Undo erase</button></div>
+                              ${pass ? '' : `<div class="st-row"><label class="text-[11px] text-zinc-400" style="grid-column:1/4">Mask edge softness (lower keeps edges sharper) <input type="range" id="${k}T" min="5" max="30" value="12" class="w-full"></label></div>
+                              <div class="st-row" style="grid-template-columns:1fr 1fr"><button id="${k}EraseBtn" class="st-btn" style="background:#7c3aed" onclick="stErase('${k}')">AI erase background</button><button class="st-btn" style="background:#3f3f46" onclick="stUndo('${k}')">Undo erase</button></div>`}
               <div class="st-stage"><img id="${k}I" class="hidden"></div>
               <div class="st-row" style="grid-template-columns:1fr 1fr"><input class="st-in" id="${k}K" type="number" min="5" placeholder="Max size KB (optional)"><select class="st-in" id="${k}O"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option></select></div>
               <button class="st-btn" style="background:#16a34a" onclick="stSave('${k}')">Download</button><p id="${k}M" class="text-[11px] text-zinc-400 mt-1"></p>`;
