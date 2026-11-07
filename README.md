@@ -24,9 +24,9 @@ The student portal now requires Supabase Auth. Existing portal accounts and brow
 
 ## Managing site content
 
-Open the home page and press **Shift+0** to open the admin panel. Admins can add services under existing or new categories, add/edit/remove Academy course listings, and add Student Corner links or files under existing or new categories. Student Corner uploads are limited to 7 MB.
+Open the home page and press **Shift+0** to open the admin panel. Admins can add services under existing or new categories, add/edit/remove Academy course listings, manage the Gallery, replace the photo used for each section tab icon, and manage section photo cards. Gallery is included in the tab icon and section photo controls. Student Corner links or files can be added under existing or new categories; uploads are limited to 7 MB.
 
-Changes are saved in that browser only. Use the **Publish** tab to download `site-data.json`, then upload it beside `index.html` in the website repository to publish the changes to visitors. The separate `corner-admin.html` also supports custom Student Corner categories; publish its changes by downloading `corner-data.json` and uploading it beside `index.html`.
+Changes are saved in that browser only. Use the **Publish** tab to download `site-data.json`, `gallery-data.json`, or `tab-photos.json` as appropriate, then upload the downloaded file beside `index.html` in the website repository to publish the changes to visitors. The separate `corner-admin.html` also supports custom Student Corner categories; publish its changes by downloading `corner-data.json` and uploading it beside `index.html`. The **Review us on Google** button opens the Google review form directly.
 
 New Academy listings appear on the website and enrollment form. To give a new course student-portal lessons and progress tracking, it also needs a course code in `sita_courses` and lesson content in `portal.html`; adding a listing alone does not create portal lessons.
 

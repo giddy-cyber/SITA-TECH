@@ -250,16 +250,7 @@
         .review-text { display: -webkit-box; margin-top: .12rem; overflow: hidden; color: #e4e4e7; font-size: .62rem; line-height: 1.3; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
         .review-byline { margin-top: .12rem; color: #a1a1aa; font-size: .54rem; }
         .review-empty { display: flex; align-items: center; min-height: 2.8rem; color: #d4d4d8; font-size: .65rem; }
-        .review-open { flex: none; padding: .5rem .65rem; border: 1px solid #3f3f46; border-radius: .7rem; background: #18181b; color: #facc15; font-size: .6rem; font-weight: 800; }
-        #reviewsModal { width: min(24rem, calc(100vw - 1.5rem)); max-width: none; max-height: calc(100dvh - 2rem); margin: auto; padding: 0; overflow: auto; border: 1px solid #3f3f46; border-radius: 1rem; background: #121216; color: #fff; box-shadow: 0 12px 48px rgba(0,0,0,.7); }
-        #reviewsModal::backdrop { background: rgba(0,0,0,.75); }
-        .review-modal-head { display: flex; align-items: center; justify-content: space-between; padding: .7rem .85rem; border-bottom: 1px solid #27272a; font-size: .85rem; font-weight: 800; }
-        .review-modal-head button { width: 2rem; height: 2rem; color: #a1a1aa; }
-        .review-form { padding: .75rem .85rem 1rem; }
-        .review-form label { display: block; margin: .55rem 0 .25rem; color: #d4d4d8; font-size: .65rem; font-weight: 700; }
-        .review-form input, .review-form select, .review-form textarea { width: 100%; padding: .55rem .65rem; border: 1px solid #3f3f46; border-radius: .65rem; background: #09090b; color: #fff; font-size: 16px; }
-        .review-form textarea { min-height: 5rem; resize: vertical; }
-        .review-submit { width: 100%; margin-top: .75rem; padding: .65rem; border-radius: .7rem; background: #16a34a; color: #fff; font-size: .72rem; font-weight: 800; }
+        .review-open { display: inline-flex; flex: none; align-items: center; justify-content: center; padding: .5rem .65rem; border: 1px solid #3f3f46; border-radius: .7rem; background: #18181b; color: #facc15; font-size: .6rem; font-weight: 800; text-decoration: none; }
         @media (prefers-reduced-motion: reduce) { .reviews-track { scroll-behavior: auto; } }
 
         .navbar { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .35rem; padding-top: .1rem; padding-bottom: .45rem; }
@@ -564,7 +555,7 @@
     <section class="reviews-strip" aria-label="Customer reviews">
         <div class="wrap">
             <div class="reviews-track" id="reviewsTrack" aria-live="off"></div>
-            <button type="button" class="review-open" id="openReviewModal">Leave a review</button>
+            <a class="review-open" id="googleReviewLink" href="https://g.page/r/CbuO1-8iiG8gEBM/review" target="_blank" rel="noopener noreferrer">Review us on Google</a>
         </div>
     </section>
 
@@ -618,28 +609,6 @@
         <button type="button" id="dismissInstallPill" aria-label="Close install app prompt"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
     </div>
     <div id="offlineToast" class="offline-toast" role="status" aria-live="polite" hidden></div>
-
-    <dialog id="reviewsModal" aria-labelledby="reviewModalTitle">
-        <div class="review-modal-head">
-            <h2 id="reviewModalTitle">Leave a review</h2>
-            <button type="button" id="closeReviewModal" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
-        </div>
-        <form class="review-form" id="reviewForm">
-            <label for="reviewName">Name</label>
-            <input id="reviewName" name="name" type="text" maxlength="60" autocomplete="name" required>
-            <label for="reviewRating">Rating</label>
-            <select id="reviewRating" name="rating" required>
-                <option value="5">5 stars</option>
-                <option value="4">4 stars</option>
-                <option value="3">3 stars</option>
-                <option value="2">2 stars</option>
-                <option value="1">1 star</option>
-            </select>
-            <label for="reviewComment">Short comment</label>
-            <textarea id="reviewComment" name="comment" maxlength="240" required></textarea>
-            <button class="review-submit" type="submit">Send review on WhatsApp</button>
-        </form>
-    </dialog>
 
     <!-- SHOP CHECKOUT -->
     <div id="shopModal" class="shop-ov" hidden onclick="if(event.target===this)shopCloseCart()">
@@ -822,7 +791,7 @@
                     <button data-t="corner" onclick="admTab('corner')" class="px-3 py-1.5 rounded-full">Student Corner</button>
                     <button data-t="shop" onclick="admTab('shop')" class="px-3 py-1.5 rounded-full">Shop</button>
                     <button data-t="gallery" onclick="admTab('gallery')" class="px-3 py-1.5 rounded-full">Gallery</button>
-                    <button data-t="tabPhotos" onclick="admTab('tabPhotos')" class="px-3 py-1.5 rounded-full">Tab Photos</button>
+                    <button data-t="tabPhotos" onclick="admTab('tabPhotos')" class="px-3 py-1.5 rounded-full">Tab Photos &amp; Icons</button>
                     <button data-t="tips" onclick="admTab('tips')" class="px-3 py-1.5 rounded-full">Tips</button>
                     <button data-t="visitFaq" onclick="admTab('visitFaq')" class="px-3 py-1.5 rounded-full">Visit &amp; FAQ</button>
                     <button data-t="publish" onclick="admTab('publish')" class="px-3 py-1.5 rounded-full">Publish</button>
@@ -945,8 +914,31 @@
                 </div>
 
                 <div id="admTab-tabPhotos" class="hidden">
-                    <h3 class="text-lg font-bold text-white mb-1">Photos on website tabs</h3>
-                    <p class="text-[11px] text-zinc-400 mb-3">Add, change, or remove photos shown in the selected tab. Each image can be up to 12 MB. Changes save on this device; download tab-photos.json in Publish and upload it beside index.html to publish.</p>
+                    <h3 class="text-lg font-bold text-white mb-1">Tab icon photos</h3>
+                    <p class="text-[11px] text-zinc-400 mb-3">Replace the single icon photo shown on each website tab. This changes the tab icon; it does not add another tab or photo card. Each image can be up to 12 MB. Changes save on this device; download tab-photos.json in Publish and upload it beside index.html to publish.</p>
+                    <label class="block text-[11px] text-zinc-400">Website tab
+                        <select id="admTabIconSection" onchange="admRenderTabIconEditor()" class="mt-1 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                            <option value="servicesGrid">Services</option>
+                            <option value="studentCorner">Student Corner</option>
+                            <option value="academy">Academy</option>
+                            <option value="freeTools">Free Tools</option>
+                            <option value="shop">Shop</option>
+                            <option value="gallery">Gallery</option>
+                            <option value="tips">Tips</option>
+                            <option value="visitFaq">Visit &amp; FAQ</option>
+                        </select>
+                    </label>
+                    <div class="flex items-center gap-3 mt-3">
+                        <img id="admTabIconPreview" alt="Current tab icon photo preview" class="hidden w-14 h-14 rounded-xl object-cover border border-zinc-700">
+                        <p id="admTabIconStatus" class="text-[11px] text-zinc-400">This tab is using its default icon.</p>
+                    </div>
+                    <label class="block mt-2 text-[11px] text-zinc-400">Choose replacement photo<input id="admTabIconFile" type="file" accept="image/*" class="mt-1 w-full text-xs text-zinc-400"></label>
+                    <div class="flex gap-2 mt-2">
+                        <button onclick="admSaveTabIconPhoto()" class="flex-1 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs">Replace tab icon photo</button>
+                        <button id="admTabIconRemove" onclick="admRemoveTabIconPhoto()" class="hidden px-4 rounded-xl bg-zinc-800 text-red-400 text-xs font-bold">Remove photo</button>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mt-6 mb-1">Photos inside website sections</h3>
+                    <p class="text-[11px] text-zinc-400 mb-3">These are optional photo cards inside a section, separate from its tab icon. Add, change, or remove photos shown in the selected section.</p>
                     <label class="block text-[11px] text-zinc-400">Website tab
                         <select id="admTabPhotoSection" onchange="admRenderTabPhotoList()" class="mt-1 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
                             <option value="servicesGrid">Services</option>
@@ -954,6 +946,7 @@
                             <option value="academy">Academy</option>
                             <option value="freeTools">Free Tools</option>
                             <option value="shop">Shop</option>
+                            <option value="gallery">Gallery</option>
                             <option value="tips">Tips</option>
                             <option value="visitFaq">Visit &amp; FAQ</option>
                         </select>
@@ -2412,11 +2405,17 @@
             { id: 'academy', label: 'Academy' },
             { id: 'freeTools', label: 'Free Tools' },
             { id: 'shop', label: 'Shop' },
+            { id: 'gallery', label: 'Gallery' },
             { id: 'tips', label: 'Tips' },
             { id: 'visitFaq', label: 'Visit & FAQ' }
         ];
         let tabPhotos = Object.fromEntries(TAB_PHOTO_SECTIONS.map(section => [section.id, []]));
+        let tabIconPhotos = Object.fromEntries(TAB_PHOTO_SECTIONS.map(section => [section.id, '']));
         let tabPhotoEditingId = null;
+        const defaultTabIcons = new Map(Array.from(document.querySelectorAll('#secNav button[data-s]'), button => [
+            button.dataset.s,
+            button.querySelector('.nv')?.cloneNode(true)
+        ]));
         const MAX_GALLERY_FILE_SIZE = 12 * 1024 * 1024;
         const galleryDb = new Promise((resolve, reject) => {
             if (!window.indexedDB) { reject(new Error('This browser does not support gallery storage.')); return; }
@@ -2465,10 +2464,39 @@
                 && photo.src.startsWith('data:image/');
         }
         function normalizeTabPhotos(data) {
+            const sections = data && data.sections && typeof data.sections === 'object' ? data.sections : data;
             return Object.fromEntries(TAB_PHOTO_SECTIONS.map(({ id }) => [
                 id,
-                Array.isArray(data && data[id]) ? data[id].filter(isValidTabPhoto) : []
+                Array.isArray(sections && sections[id]) ? sections[id].filter(isValidTabPhoto) : []
             ]));
+        }
+        function normalizeTabIconPhotos(data) {
+            const icons = data && data.icons && typeof data.icons === 'object' ? data.icons : {};
+            return Object.fromEntries(TAB_PHOTO_SECTIONS.map(({ id }) => [
+                id,
+                typeof icons[id] === 'string' && icons[id].startsWith('data:image/') ? icons[id] : ''
+            ]));
+        }
+        function renderTabIconPhotos() {
+            TAB_PHOTO_SECTIONS.forEach(({ id }) => {
+                const button = document.querySelector('#secNav button[data-s="' + id + '"]');
+                if (!button) return;
+                const current = button.querySelector('.nv');
+                const src = tabIconPhotos[id];
+                if (src) {
+                    const image = current && current.tagName === 'IMG' ? current : document.createElement('img');
+                    image.className = 'nv';
+                    image.alt = '';
+                    image.src = src;
+                    if (current !== image) {
+                        if (current) current.replaceWith(image);
+                        else button.insertBefore(image, button.firstChild);
+                    }
+                } else {
+                    const original = defaultTabIcons.get(id);
+                    if (original && current) current.replaceWith(original.cloneNode(true));
+                }
+            });
         }
         function renderTabPhotos() {
             TAB_PHOTO_SECTIONS.forEach(({ id, label }) => {
@@ -2520,7 +2548,9 @@
                 const local = await tabPhotoReadLocal();
                 if (local && typeof local === 'object' && !Array.isArray(local)) {
                     tabPhotos = normalizeTabPhotos(local);
+                    tabIconPhotos = normalizeTabIconPhotos(local);
                     renderTabPhotos();
+                    renderTabIconPhotos();
                     return;
                 }
             } catch (error) {
@@ -2533,13 +2563,56 @@
                         if (!response.ok) throw new Error('tab-photos.json returned HTTP ' + response.status);
                         const data = await response.json();
                         if (!data || !data.sections || typeof data.sections !== 'object') throw new Error('tab-photos.json must contain a sections object');
-                        tabPhotos = normalizeTabPhotos(data.sections);
+                        tabPhotos = normalizeTabPhotos(data);
+                        tabIconPhotos = normalizeTabIconPhotos(data);
                     }
                 } catch (error) {
                     console.warn('SITA-TECH could not load tab-photos.json:', error);
                 }
             }
             renderTabPhotos();
+            renderTabIconPhotos();
+        }
+        function admRenderTabIconEditor() {
+            const sectionId = document.getElementById('admTabIconSection').value;
+            const src = tabIconPhotos[sectionId];
+            const preview = document.getElementById('admTabIconPreview');
+            preview.classList.toggle('hidden', !src);
+            if (src) preview.src = src;
+            document.getElementById('admTabIconStatus').textContent = src
+                ? 'Current custom icon photo for ' + (TAB_PHOTO_SECTIONS.find(section => section.id === sectionId)?.label || 'this tab') + '.'
+                : 'This tab is using its default icon.';
+            document.getElementById('admTabIconRemove').classList.toggle('hidden', !src);
+            document.getElementById('admTabIconFile').value = '';
+        }
+        async function admSaveTabIconPhoto() {
+            const sectionId = document.getElementById('admTabIconSection').value;
+            const file = document.getElementById('admTabIconFile').files[0];
+            if (!file) { alert('Choose a photo to replace this tab icon.'); return; }
+            if (!file.type.startsWith('image/')) { alert('Choose an image file.'); return; }
+            if (file.size > MAX_GALLERY_FILE_SIZE) { alert('Each photo must be 12 MB or smaller.'); return; }
+            try {
+                tabIconPhotos = { ...tabIconPhotos, [sectionId]: await admReadTabPhoto(file) };
+                await tabPhotoWriteLocal({ sections: tabPhotos, icons: tabIconPhotos });
+                renderTabIconPhotos();
+                admRenderTabIconEditor();
+            } catch (error) {
+                console.error('SITA-TECH could not replace tab icon photo:', error);
+                alert(error.message || 'Could not save this tab icon photo. Check available device storage and try again.');
+            }
+        }
+        async function admRemoveTabIconPhoto() {
+            const sectionId = document.getElementById('admTabIconSection').value;
+            if (!tabIconPhotos[sectionId] || !confirm('Remove the custom icon photo for this tab?')) return;
+            try {
+                tabIconPhotos = { ...tabIconPhotos, [sectionId]: '' };
+                await tabPhotoWriteLocal({ sections: tabPhotos, icons: tabIconPhotos });
+                renderTabIconPhotos();
+                admRenderTabIconEditor();
+            } catch (error) {
+                console.error('SITA-TECH could not remove tab icon photo:', error);
+                alert(error.message || 'Could not remove this tab icon photo.');
+            }
         }
         function admRenderTabPhotoList() {
             const sectionId = document.getElementById('admTabPhotoSection').value;
@@ -2624,7 +2697,7 @@
                 };
                 const next = old ? current.map(photo => photo.id === old.id ? item : photo) : [item, ...current];
                 tabPhotos = { ...tabPhotos, [sectionId]: next };
-                await tabPhotoWriteLocal(tabPhotos);
+                await tabPhotoWriteLocal({ sections: tabPhotos, icons: tabIconPhotos });
                 renderTabPhotos();
                 admRenderTabPhotoList();
                 admCancelTabPhotoEdit();
@@ -2640,7 +2713,7 @@
             if (!item || !confirm('Remove "' + item.title + '" from this tab?')) return;
             try {
                 tabPhotos = { ...tabPhotos, [sectionId]: current.filter(photo => photo.id !== id) };
-                await tabPhotoWriteLocal(tabPhotos);
+                await tabPhotoWriteLocal({ sections: tabPhotos, icons: tabIconPhotos });
                 renderTabPhotos();
                 admRenderTabPhotoList();
                 if (tabPhotoEditingId === id) admCancelTabPhotoEdit();
@@ -2652,8 +2725,10 @@
         async function admDownloadTabPhotos() {
             try {
                 const local = await tabPhotoReadLocal();
-                const sections = normalizeTabPhotos(local || tabPhotos);
-                const blob = new Blob([JSON.stringify({ sections }, null, 2)], { type: 'application/json' });
+                const data = local || { sections: tabPhotos, icons: tabIconPhotos };
+                const sections = normalizeTabPhotos(data);
+                const icons = normalizeTabIconPhotos(data);
+                const blob = new Blob([JSON.stringify({ sections, icons }, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
                 const link = document.createElement('a');
                 link.href = url;
@@ -2915,7 +2990,10 @@
             if (n === 'courses') renderAdminCourseList();
             if (n === 'shop') admShopRender();
             if (n === 'gallery') admRenderGalleryList();
-            if (n === 'tabPhotos') admRenderTabPhotoList();
+            if (n === 'tabPhotos') {
+                admRenderTabIconEditor();
+                admRenderTabPhotoList();
+            }
             if (n === 'social') document.getElementById('admSocialList').innerHTML = SOCIAL_DEF.map(([k, l]) => `<label class="block text-[11px] text-zinc-400">${l}<input data-social="${k}" value="${esc(siteData.social[k] || '')}" placeholder="https://..." class="${I} mt-1"></label>`).join('');
             if (n === 'corner') { renderCornerCategoryOptions(); admRenderCorner(); }
             if (n === 'tips') {
@@ -3333,16 +3411,7 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
         'times': 'mara',
         'Customer reviews': 'Maoni ya wateja',
         'Happy with SITA-TECH? Be our first reviewer.': 'Umeridhika na SITA-TECH? Kuwa wa kwanza kutoa maoni.',
-        'Leave a review': 'Acha maoni',
-        'Name': 'Jina',
-        'Rating': 'Ukadiriaji',
-        'Short comment': 'Maoni mafupi',
-        'Send review on WhatsApp': 'Tuma maoni kupitia WhatsApp',
-        '5 stars': 'Nyota 5',
-        '4 stars': 'Nyota 4',
-        '3 stars': 'Nyota 3',
-        '2 stars': 'Nyota 2',
-        '1 star': 'Nyota 1',
+        'Review us on Google': 'Tupe ukadiriaji kwenye Google',
         'Student Corner': 'Kona ya Wanafunzi',
         'Academy': 'Akademi',
         'Free Tools': 'Zana za Bure',
@@ -4051,10 +4120,7 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
 <script>
 (() => {
     const track = document.getElementById('reviewsTrack');
-    const modal = document.getElementById('reviewsModal');
-    const form = document.getElementById('reviewForm');
     const REVIEWS_URL = './reviews.json';
-    const WHATSAPP = '254795609046';
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let reviews = [];
     let currentIndex = 0;
@@ -4130,27 +4196,6 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
     track.addEventListener('touchend', () => { interactionPaused = false; }, { passive: true });
     track.addEventListener('touchcancel', () => { interactionPaused = false; }, { passive: true });
     window.setInterval(advanceReviews, 4500);
-
-    document.getElementById('openReviewModal').addEventListener('click', () => {
-        modal.showModal();
-        document.getElementById('reviewName').focus();
-    });
-    document.getElementById('closeReviewModal').addEventListener('click', () => modal.close());
-    modal.addEventListener('click', event => {
-        if (event.target === modal) modal.close();
-    });
-    form.addEventListener('submit', event => {
-        event.preventDefault();
-        if (!form.reportValidity()) return;
-        const name = form.elements.name.value.trim();
-        const rating = Number(form.elements.rating.value);
-        const comment = form.elements.comment.value.trim();
-        if (!name || !comment || !Number.isInteger(rating) || rating < 1 || rating > 5) return;
-        const message = 'SITA-TECH review\nName: ' + name + '\nRating: ' + rating + '/5\nComment: ' + comment;
-        window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(message), '_blank', 'noopener');
-        modal.close();
-        form.reset();
-    });
 
     new MutationObserver(renderReviews).observe(document.documentElement, {
         attributes: true,
@@ -4350,8 +4395,8 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
             track('menu_item_click:' + (menuItem.dataset.menuItem || menuItem.textContent.trim()));
             return;
         }
-        if (target.closest('#openReviewModal')) {
-            track('review_open');
+        if (target.closest('#googleReviewLink')) {
+            track('google_review_click');
             return;
         }
         if (target.closest('#installPillLink, #footerInstallLink')) {
@@ -4395,9 +4440,6 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
         if (menuLink) track('menu_item_click:' + (menuLink.dataset.menuItem || menuLink.textContent.trim()));
     }, true);
 
-    document.addEventListener('submit', event => {
-        if (event.target && event.target.id === 'reviewForm') track('review_submit');
-    }, true);
     window.addEventListener('appinstalled', () => track('app_installed'));
 
     renderActivity();
