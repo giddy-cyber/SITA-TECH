@@ -387,6 +387,13 @@
         .tips-actions a, .tips-actions button { display: inline-flex; align-items: center; justify-content: center; gap: .35rem; min-height: 2rem; padding: .45rem .65rem; border: 1px solid #3f3f46; border-radius: .65rem; color: #fff; font-size: .62rem; font-weight: 800; }
         .tips-actions a { border-color: #15803d; background: #166534; }
         .tips-actions button { background: #27272a; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: .65rem; }
+        .gallery-card { min-width: 0; overflow: hidden; border: 1px solid #27272a; border-radius: .85rem; background: rgba(24,24,27,.9); }
+        .gallery-card img, .gallery-card video { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #09090b; }
+        .gallery-card figcaption { padding: .6rem .7rem; }
+        .gallery-card h3 { color: #fff; font-size: .75rem; font-weight: 800; }
+        .gallery-card p { margin-top: .2rem; color: #a1a1aa; font-size: .62rem; line-height: 1.4; white-space: pre-wrap; }
+        .gallery-empty { grid-column: 1 / -1; padding: 1rem; border: 1px dashed #3f3f46; border-radius: .8rem; color: #a1a1aa; font-size: .7rem; text-align: center; }
     </style>
     <style id="tw-static">*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, system-ui, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.left-3{left:0.75rem}.right-2{right:0.5rem}.right-4{right:1rem}.top-0{top:0px}.top-1\/2{top:50%}.top-4{top:1rem}.-bottom-3{bottom:-0.75rem}.-right-2{right:-0.5rem}.z-10{z-index:10}.z-50{z-index:50}.z-\[60\]{z-index:60}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.ml-2{margin-left:0.5rem}.mr-1{margin-right:0.25rem}.mr-1\.5{margin-right:0.375rem}.mr-2{margin-right:0.5rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-5{margin-top:1.25rem}.mt-0\.5{margin-top:0.125rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.aspect-square{aspect-ratio:1 / 1}.h-1\.5{height:0.375rem}.h-12{height:3rem}.h-16{height:4rem}.h-20{height:5rem}.h-24{height:6rem}.h-28{height:7rem}.h-40{height:10rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-10{height:2.5rem}.h-32{height:8rem}.max-h-\[90vh\]{max-height:90vh}.max-h-56{max-height:14rem}.max-h-64{max-height:16rem}.min-h-screen{min-height:100vh}.w-1\.5{width:0.375rem}.w-12{width:3rem}.w-16{width:4rem}.w-9{width:2.25rem}.w-auto{width:auto}.w-full{width:100%}.w-10{width:2.5rem}.min-w-0{min-width:0px}.max-w-lg{max-width:32rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;user-select:none}.resize{resize:both}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(5, minmax(0, 1fr))}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-1{gap:0.25rem}.gap-x-2{column-gap:0.5rem}.gap-x-3{column-gap:0.75rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.overflow-x-hidden{overflow-x:hidden}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.break-words{overflow-wrap:break-word}.rounded{border-radius:0.25rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-blue-500\/60{border-color:rgb(59 130 246 / 0.6)}.border-emerald-500\/40{border-color:rgb(16 185 129 / 0.4)}.border-zinc-700{--tw-border-opacity:1;border-color:rgb(63 63 70 / var(--tw-border-opacity, 1))}.border-zinc-800{--tw-border-opacity:1;border-color:rgb(39 39 42 / var(--tw-border-opacity, 1))}.border-zinc-800\/80{border-color:rgb(39 39 42 / 0.8)}.border-zinc-900{--tw-border-opacity:1;border-color:rgb(24 24 27 / var(--tw-border-opacity, 1))}.border-blue-500\/30{border-color:rgb(59 130 246 / 0.3)}.border-green-500\/30{border-color:rgb(34 197 94 / 0.3)}.border-red-500\/30{border-color:rgb(239 68 68 / 0.3)}.border-yellow-500\/30{border-color:rgb(234 179 8 / 0.3)}.bg-\[\#0A0A0C\]{--tw-bg-opacity:1;background-color:rgb(10 10 12 / var(--tw-bg-opacity, 1))}.bg-\[\#0A0A0C\]\/90{background-color:rgb(10 10 12 / 0.9)}.bg-amber-600{--tw-bg-opacity:1;background-color:rgb(217 119 6 / var(--tw-bg-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-black\/80{background-color:rgb(0 0 0 / 0.8)}.bg-black\/90{background-color:rgb(0 0 0 / 0.9)}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-emerald-600\/15{background-color:rgb(5 150 105 / 0.15)}.bg-pink-600{--tw-bg-opacity:1;background-color:rgb(219 39 119 / var(--tw-bg-opacity, 1))}.bg-red-600{--tw-bg-opacity:1;background-color:rgb(220 38 38 / var(--tw-bg-opacity, 1))}.bg-sky-600{--tw-bg-opacity:1;background-color:rgb(2 132 199 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-yellow-500{--tw-bg-opacity:1;background-color:rgb(234 179 8 / var(--tw-bg-opacity, 1))}.bg-zinc-800{--tw-bg-opacity:1;background-color:rgb(39 39 42 / var(--tw-bg-opacity, 1))}.bg-zinc-900{--tw-bg-opacity:1;background-color:rgb(24 24 27 / var(--tw-bg-opacity, 1))}.bg-zinc-950{--tw-bg-opacity:1;background-color:rgb(9 9 11 / var(--tw-bg-opacity, 1))}.bg-green-600{--tw-bg-opacity:1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.bg-blue-500\/10{background-color:rgb(59 130 246 / 0.1)}.bg-green-500\/10{background-color:rgb(34 197 94 / 0.1)}.bg-red-500\/10{background-color:rgb(239 68 68 / 0.1)}.bg-yellow-500\/10{background-color:rgb(234 179 8 / 0.1)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-amber-500{--tw-gradient-from:#f59e0b var(--tw-gradient-from-position);--tw-gradient-to:rgb(245 158 11 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-blue-900\/20{--tw-gradient-from:rgb(30 58 138 / 0.2) var(--tw-gradient-from-position);--tw-gradient-to:rgb(30 58 138 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-lime-500{--tw-gradient-from:#84cc16 var(--tw-gradient-from-position);--tw-gradient-to:rgb(132 204 22 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-yellow-500{--tw-gradient-from:#eab308 var(--tw-gradient-from-position);--tw-gradient-to:rgb(234 179 8 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-blue-600\/40{--tw-gradient-from:rgb(37 99 235 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(37 99 235 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-cyan-600\/40{--tw-gradient-from:rgb(8 145 178 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(8 145 178 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-green-600\/40{--tw-gradient-from:rgb(22 163 74 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(22 163 74 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-orange-600\/40{--tw-gradient-from:rgb(234 88 12 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(234 88 12 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-pink-600\/40{--tw-gradient-from:rgb(219 39 119 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(219 39 119 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-purple-600\/40{--tw-gradient-from:rgb(147 51 234 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(147 51 234 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-red-600\/40{--tw-gradient-from:rgb(220 38 38 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(220 38 38 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-yellow-500\/40{--tw-gradient-from:rgb(234 179 8 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(234 179 8 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-orange-500{--tw-gradient-to:rgb(249 115 22 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #f97316 var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-red-900\/20{--tw-gradient-to:rgb(127 29 29 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), rgb(127 29 29 / 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-green-700{--tw-gradient-to:#15803d var(--tw-gradient-to-position)}.to-green-900\/20{--tw-gradient-to:rgb(20 83 45 / 0.2) var(--tw-gradient-to-position)}.to-pink-600{--tw-gradient-to:#db2777 var(--tw-gradient-to-position)}.to-rose-600{--tw-gradient-to:#e11d48 var(--tw-gradient-to-position)}.to-blue-500\/20{--tw-gradient-to:rgb(59 130 246 / 0.2) var(--tw-gradient-to-position)}.to-cyan-500\/20{--tw-gradient-to:rgb(6 182 212 / 0.2) var(--tw-gradient-to-position)}.to-emerald-500\/20{--tw-gradient-to:rgb(16 185 129 / 0.2) var(--tw-gradient-to-position)}.to-orange-500\/20{--tw-gradient-to:rgb(249 115 22 / 0.2) var(--tw-gradient-to-position)}.to-pink-500\/20{--tw-gradient-to:rgb(236 72 153 / 0.2) var(--tw-gradient-to-position)}.to-red-500\/20{--tw-gradient-to:rgb(239 68 68 / 0.2) var(--tw-gradient-to-position)}.to-yellow-500\/20{--tw-gradient-to:rgb(234 179 8 / 0.2) var(--tw-gradient-to-position)}.object-contain{object-fit:contain}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-1{padding:0.25rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-4{padding-left:1rem;padding-right:1rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.pb-3{padding-bottom:0.75rem}.pl-8{padding-left:2rem}.pr-3{padding-right:0.75rem}.pt-2{padding-top:0.5rem}.pt-3{padding-top:0.75rem}.pr-1{padding-right:0.25rem}.text-center{text-align:center}.align-middle{vertical-align:middle}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[\.58rem\]{font-size:.58rem}.text-\[\.62rem\]{font-size:.62rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[\.68rem\]{font-size:.68rem}.text-\[\.72rem\]{font-size:.72rem}.text-\[\.75rem\]{font-size:.75rem}.text-\[\.82rem\]{font-size:.82rem}.text-2xl{font-size:1.5rem;line-height:2rem}.text-6xl{font-size:3.75rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.leading-relaxed{line-height:1.625}.tracking-wider{letter-spacing:0.05em}.\!text-zinc-300{--tw-text-opacity:1 !important;color:rgb(212 212 216 / var(--tw-text-opacity, 1)) !important}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-black\/70{color:rgb(0 0 0 / 0.7)}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-gray-100{--tw-text-opacity:1;color:rgb(243 244 246 / var(--tw-text-opacity, 1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-lime-400{--tw-text-opacity:1;color:rgb(163 230 53 / var(--tw-text-opacity, 1))}.text-pink-400{--tw-text-opacity:1;color:rgb(244 114 182 / var(--tw-text-opacity, 1))}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.text-sky-400{--tw-text-opacity:1;color:rgb(56 189 248 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-400{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.text-yellow-500{--tw-text-opacity:1;color:rgb(234 179 8 / var(--tw-text-opacity, 1))}.text-zinc-300{--tw-text-opacity:1;color:rgb(212 212 216 / var(--tw-text-opacity, 1))}.text-zinc-400{--tw-text-opacity:1;color:rgb(161 161 170 / var(--tw-text-opacity, 1))}.text-zinc-500{--tw-text-opacity:1;color:rgb(113 113 122 / var(--tw-text-opacity, 1))}.text-zinc-600{--tw-text-opacity:1;color:rgb(82 82 91 / var(--tw-text-opacity, 1))}.text-white\/10{color:rgb(255 255 255 / 0.1)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.placeholder-zinc-300::placeholder{--tw-placeholder-opacity:1;color:rgb(212 212 216 / var(--tw-placeholder-opacity, 1))}.accent-green-500{accent-color:#22c55e}.shadow-\[0_0_14px_rgba\(37\2c 99\2c 235\2c 0\.35\)\]{--tw-shadow:0 0 14px rgba(37,99,235,0.35);--tw-shadow-colored:0 0 14px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-green-900\/40{--tw-shadow-color:rgb(20 83 45 / 0.4);--tw-shadow:var(--tw-shadow-colored)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}.hover\:border-amber-500:hover{--tw-border-opacity:1;border-color:rgb(245 158 11 / var(--tw-border-opacity, 1))}.hover\:border-emerald-500:hover{--tw-border-opacity:1;border-color:rgb(16 185 129 / var(--tw-border-opacity, 1))}.hover\:border-pink-500:hover{--tw-border-opacity:1;border-color:rgb(236 72 153 / var(--tw-border-opacity, 1))}.hover\:border-red-500:hover{--tw-border-opacity:1;border-color:rgb(239 68 68 / var(--tw-border-opacity, 1))}.hover\:bg-amber-500:hover{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.hover\:bg-blue-500:hover{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-600:hover{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.hover\:bg-pink-500:hover{--tw-bg-opacity:1;background-color:rgb(236 72 153 / var(--tw-bg-opacity, 1))}.hover\:bg-red-500:hover{--tw-bg-opacity:1;background-color:rgb(239 68 68 / var(--tw-bg-opacity, 1))}.hover\:bg-sky-500:hover{--tw-bg-opacity:1;background-color:rgb(14 165 233 / var(--tw-bg-opacity, 1))}.hover\:bg-yellow-600:hover{--tw-bg-opacity:1;background-color:rgb(202 138 4 / var(--tw-bg-opacity, 1))}.hover\:bg-zinc-700:hover{--tw-bg-opacity:1;background-color:rgb(63 63 70 / var(--tw-bg-opacity, 1))}.hover\:bg-green-500:hover{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.hover\:text-black:hover{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.hover\:text-blue-400:hover{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.hover\:text-red-400:hover{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.focus\:border-yellow-400:focus{--tw-border-opacity:1;border-color:rgb(250 204 21 / var(--tw-border-opacity, 1))}.focus\:shadow-\[0_0_16px_rgba\(234\2c 179\2c 8\2c 0\.45\)\]:focus{--tw-shadow:0 0 16px rgba(234,179,8,0.45);--tw-shadow-colored:0 0 16px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:h-20{height:5rem}}</style>
 </head>
@@ -433,6 +440,7 @@
             <button type="button" role="tab" id="tab-academy" aria-controls="academy" aria-selected="false" data-s="academy" onclick="showTab('academy')" class="navchip"><img class="nv" alt="" src="data:image/webp;base64,UklGRsQFAABXRUJQVlA4ILgFAABwGgCdASpgAGAAPpVCmkklo6IhKrQM+LASiWIA1IAVUJtVAmj4usz6q/zdvWv5H6J/2Q9bLzt76WrwHF9z+h71NfBxPRTo9N2agqlGr+VT62O2m4HlusDcl5IbXHCl8L9bdZZBGOBmjk/Cfmo4CKNeF7Xw/w/Vikwa094Wj33OWPUiM/+9t/fQrSUv5VeUdP6CGVxV0dYZPrcxkrfAlqx3ejT/0Tb/qMegAYyzvod8hS98J/SJEhNsaQx5AlB/8tDX1ZMQCTx+a1Fc87k3H8WrCmM/uSHvqRDikfNAAP77hE7QjWCXTyn5rd1w2oN9q00dhFf4XjBudboFPm8Tp25jXiXD8HqKq7J+5JVuvIFU5qIAHrYmnOvFdGU+lFI3EITaQV+EL9kZGTGBympar62NY0C+2FeN4QoQ30yE9C1Qyc7h4vhoyrvOEuDAHVmH6e+vRxpFviEPFwWSjbDtee0sw1sjlb9EKfFvl6MZWuWgiwPABhTzdVrLSQ/+FeboxM3O+TyzFL7OxegBSPdoi6T1APA5hskzcOni09Y/LZ1trbo0AfoFpMSXe+4hBsfpbLaa88HgV5J1FBHAicAbGMiDTkL2zUQ8lhDMoUEpCfYEiSDOugXHE/RbfnlVW+51zQVx+QjPxmZ5tGyWFTyUsjL3htWFH3AAG7VUeIESrbXl/77aNuKuzBu8O5Hu6Drr0Hf25I17awW6vrzWnl8ISJ1b3tPLma5mxHz8zAv0k5De9hMwKkdkRPtEl7JnMiJasZyBfBVi17BBSv7z/x7rh7LLYDzh2fxVcp4Qa0+tIeHUoKM8ShPKHe8AwSwcFv29EcCOl/KzdLMgbANbv/qFRWsfIC97ylgdhbgQvh6QgW/HyQWtRa1VXv2MU7lkPBNFETQxBI1pxs7jn+vWjpjBPKp2fk2unvILGb3NJjhK/kRWQST9eLSKYTc0hBUgRENxMYJXAP/FWy9HLroyzWFxwxWTXoL23gLTlWI/3n5Q+0fk/n+VZYVKamdV9lXEQkdUtHFMPuD6PxAT42tdUmOB9/qPoTI2586Cd0a1r6J4o23leJsbpPTCW593P2HvfN5Cj1E3J1iUMzwPV2wjx9Nn5R+SntL6/+FZQ0Qshh8B1ulsYdCbn8j2sGzzjUyq03xXc5vzdXhiDkeTg0mYu3VdMfw+ZdgGpcJo2mWiVnHVf37Qt4l27ziQ2RQgldJr8vjygGR+ll2/Ph7rXKAdV/p9va97nbJ8itSipf8pS87+2zQiO1RKWeNwNRP92UtH7IOpp9/OxwHFnDih5XzFUPy5HyI9bKddbUn9X2T7o0laATIFmYC0YlRwMiZQBoPg0F6cQ8dFX75pMvJbXloXBNca2N2aFE6voBwA+kivxrWGLjXCkXv8BqofZX5i5IxsU+Ti1tSsul0maJxZKMC6vGeu9LuePbvb7Fgvv40cHE/xXDKmI9+SnnB6nmU9OL+Xfz3OUpBrXJYpvFIMK6F46YAXw8Yzq+h5pBMtRJJKab68X2r2ejGnGbQ6h5M14F3lenUTjhqxg7rV3RdH0d38wpaOH22mQ2Q+l+maK+5yQnmiYYi0LXeuxANB6fyGcrZhc9tSlWZRtLc8B7YbZ33G898XY+jIF4G95E3D0+ZWY0z2NumboluZRrEraw6CDdsdpKMgBXeqdKn7EWa33OoxRRBWG9rUb749lx99tbz6JxdcEhjocfvEn7vgXrdOKDzJ3cqbVBoMN4EbxE0bbe2RATZUpGslXvS+pSrlGV/LZdNAhJsBBuYwGMCwTCU4IZME7Nor7lA4u4XKd/cK1oHV4f/9e8LPyhiwA3SMP/UrywLB6AS40joPmvDPa37aer/IdoAhGsMi3Kjs3il0b9r2uNDHtdJDGj6UhisFTCNxvT6jLqboA0SKIYQOXOTUauamFgjMGtbQkgLZDyMYmE3Wl7f9I+gNrGPszPdwAAA="><span class="tb-t">Academy</span><span class="tb-s">Courses & training</span></button>
             <button type="button" role="tab" id="tab-freeTools" aria-controls="freeTools" aria-selected="false" data-s="freeTools" onclick="showTab('freeTools')" class="navchip"><img class="nv" alt="" src="data:image/webp;base64,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"><span class="tb-t">Free Tools</span><span class="tb-s">QR, CV, PDF & more</span></button>
             <button type="button" role="tab" id="tab-shop" aria-controls="shop" aria-selected="false" data-s="shop" onclick="showTab('shop')" class="navchip"><img class="nv shop-logo" alt="" src="data:image/webp;base64,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"><span class="tb-t">Shop</span><span class="shop-new">NEW</span><span class="shop-cnt" id="shopNavCnt" hidden>0</span></button>
+            <button type="button" role="tab" id="tab-gallery" aria-controls="gallery" aria-selected="false" data-s="gallery" onclick="showTab('gallery')" class="navchip"><i class="fa-solid fa-images nv" aria-hidden="true"></i><span class="tb-t">Gallery</span><span class="tb-s">Our client work</span></button>
             <button type="button" role="tab" id="tab-tips" aria-controls="tips" aria-selected="false" data-s="tips" onclick="showTab('tips')" class="navchip"><span class="nv tip-nav-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span><span class="tb-t">Tips</span><span class="tb-s">KRA, SHA, eCitizen</span></button>
             <button type="button" role="tab" id="tab-visitFaq" aria-controls="visitFaq" aria-selected="false" data-s="visitFaq" onclick="showTab('visitFaq')" class="navchip"><i class="fa-solid fa-location-dot nv" aria-hidden="true"></i><span class="tb-t">Visit &amp; FAQ</span><span class="tb-s">Location, questions</span></button>
         </nav>
@@ -500,6 +508,13 @@
         </div>
     </section>
 
+    <section id="gallery" class="sec tab-pane" role="tabpanel" aria-labelledby="tab-gallery">
+        <div class="wrap">
+            <div class="sec-h"><span class="text-purple-400">Our work</span><h2>Recent work for our clients</h2></div>
+            <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
+        </div>
+    </section>
+
     <!-- TIPS: short practical guides with a post list and reading panel -->
     <section id="tips" class="sec tab-pane" role="tabpanel" aria-labelledby="tab-tips">
         <div class="wrap">
@@ -514,7 +529,7 @@
     <!-- VISIT US & FAQ -->
     <section id="visitFaq" class="sec tab-pane" role="tabpanel">
         <div class="wrap">
-            <div class="sec-h"><span class="text-yellow-500">Visit us &amp; FAQ</span><h2>Find us, pay, and common questions</h2></div>
+            <div class="sec-h"><h2>Find us, pay, and common questions</h2></div>
             <div class="sp gold fit">
                 <div class="sp-rail" id="visitRail">
                     <button type="button" class="sp-item on" data-k="visit" onclick="setVisit('visit')"><i class="fa-solid fa-location-dot"></i><span class="sp-lbl">Visit us</span></button>
@@ -526,21 +541,21 @@
                 </div>
                 <div class="sp-panel" id="visitPanel">
                     <div class="vf on" data-k="visit">
-                        <h3>SITA-TECH CYBER&amp; Digital Hub</h3>
-                        <p>Cyber café, printing, repairs, online services and training, near Moi University, Eldoret.</p>
-                        <p class="!text-zinc-300"><i class="fa-solid fa-location-dot text-red-400 mr-1.5"></i>Moi University, Kesses, Eldoret</p>
-                        <p class="!text-zinc-300"><i class="fa-solid fa-phone text-green-400 mr-1.5"></i>0795609046</p>
+                        <h3 data-faq-title="visit">SITA-TECH CYBER&amp; Digital Hub</h3>
+                        <p data-faq-answer="visit">Cyber café, printing, repairs, online services and training, near Moi University, Eldoret.</p>
+                        <p class="!text-zinc-300"><i class="fa-solid fa-location-dot text-red-400 mr-1.5"></i><span data-faq-address>Moi University, Kesses, Eldoret</span></p>
+                        <p class="!text-zinc-300"><i class="fa-solid fa-phone text-green-400 mr-1.5"></i><span data-faq-phone>0795609046</span></p>
                         <div class="flex gap-1.5 mt-2">
-                            <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Moi+University+Kesses+Eldoret" class="btn bg-blue-600 hover:bg-blue-500"><i class="fa-solid fa-map-location-dot"></i>Maps</a>
-                            <a href="tel:+254795609046" class="btn bg-zinc-800 hover:bg-zinc-700"><i class="fa-solid fa-phone"></i>Call</a>
+                            <a data-faq-map target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Moi+University+Kesses+Eldoret" class="btn bg-blue-600 hover:bg-blue-500"><i class="fa-solid fa-map-location-dot"></i>Maps</a>
+                            <a data-faq-call href="tel:+254795609046" class="btn bg-zinc-800 hover:bg-zinc-700"><i class="fa-solid fa-phone"></i>Call</a>
                         </div>
                         <iframe title="SITA-TECH location" loading="lazy" class="w-full h-28 rounded-xl border border-zinc-800 mt-2" src="https://www.google.com/maps?q=Moi+University+Kesses+Eldoret&amp;output=embed"></iframe>
                     </div>
-                    <div class="vf" data-k="pay"><h3>How do I pay?</h3><p>Pay by M-Pesa to Till Number <span class="text-yellow-400 font-bold">6807927</span>. Message us on WhatsApp first so we confirm the price.</p></div>
-                    <div class="vf" data-k="order"><h3>How do I order a service?</h3><p>Tap the green WhatsApp button on any service. It opens WhatsApp with your request already written.</p></div>
-                    <div class="vf" data-k="acad"><h3>Do I need experience to join the Academy?</h3><p>No. The courses are beginner-friendly. Tap a course, pick the topics you want and enrol online.</p></div>
-                    <div class="vf" data-k="tools"><h3>Are the free tools safe to use?</h3><p>Yes. The converter, compressor, CV builder and other tools work on your own device. Your files are not uploaded to our site.</p></div>
-                    <div class="vf" data-k="missing"><h3>What if my service is not listed?</h3><p>Message us on WhatsApp and ask. If we can help, we will tell you the price before you pay.</p></div>
+                    <div class="vf" data-k="pay"><h3 data-faq-title="pay">How do I pay?</h3><p data-faq-answer="pay">Pay by M-Pesa to Till Number 6807927. Message us on WhatsApp first so we confirm the price.</p></div>
+                    <div class="vf" data-k="order"><h3 data-faq-title="order">How do I order a service?</h3><p data-faq-answer="order">Tap the green WhatsApp button on any service. It opens WhatsApp with your request already written.</p></div>
+                    <div class="vf" data-k="acad"><h3 data-faq-title="acad">Do I need experience to join the Academy?</h3><p data-faq-answer="acad">No. The courses are beginner-friendly. Tap a course, pick the topics you want and enrol online.</p></div>
+                    <div class="vf" data-k="tools"><h3 data-faq-title="tools">Are the free tools safe to use?</h3><p data-faq-answer="tools">Yes. The converter, compressor, CV builder and other tools work on your own device. Your files are not uploaded to our site.</p></div>
+                    <div class="vf" data-k="missing"><h3 data-faq-title="missing">What if my service is not listed?</h3><p data-faq-answer="missing">Message us on WhatsApp and ask. If we can help, we will tell you the price before you pay.</p></div>
                 </div>
             </div>
         </div>
@@ -806,6 +821,10 @@
                     <button data-t="social" onclick="admTab('social')" class="px-3 py-1.5 rounded-full">Social Links</button>
                     <button data-t="corner" onclick="admTab('corner')" class="px-3 py-1.5 rounded-full">Student Corner</button>
                     <button data-t="shop" onclick="admTab('shop')" class="px-3 py-1.5 rounded-full">Shop</button>
+                    <button data-t="gallery" onclick="admTab('gallery')" class="px-3 py-1.5 rounded-full">Gallery</button>
+                    <button data-t="tabPhotos" onclick="admTab('tabPhotos')" class="px-3 py-1.5 rounded-full">Tab Photos</button>
+                    <button data-t="tips" onclick="admTab('tips')" class="px-3 py-1.5 rounded-full">Tips</button>
+                    <button data-t="visitFaq" onclick="admTab('visitFaq')" class="px-3 py-1.5 rounded-full">Visit &amp; FAQ</button>
                     <button data-t="publish" onclick="admTab('publish')" class="px-3 py-1.5 rounded-full">Publish</button>
                 </div>
                 <div id="admTab-services">
@@ -910,10 +929,93 @@
                     <div id="saList" class="max-h-64 overflow-y-auto space-y-2 pr-1"></div>
                 </div>
 
+                <div id="admTab-gallery" class="hidden">
+                    <h3 class="text-lg font-bold text-white mb-1">Gallery Manager</h3>
+                    <p class="text-[11px] text-zinc-400 mb-3">Upload photos or videos of completed work (up to 12 MB each). Add a title and optional description. Save changes on this device, then download gallery-data.json in Publish and upload it beside index.html to publish.</p>
+                    <label class="block text-[11px] text-zinc-400">Photo or video<input id="admGalleryFile" type="file" accept="image/*,video/*" class="mt-1 w-full text-xs text-zinc-400"></label>
+                    <input id="admGalleryTitle" maxlength="100" placeholder="Work title (e.g. CCTV installation)" class="mt-2 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                    <textarea id="admGalleryDescription" maxlength="500" placeholder="Description, client or location (optional)" class="mt-2 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white h-20"></textarea>
+                    <div class="flex gap-2 mt-2">
+                        <button onclick="admSaveGalleryItem()" class="flex-1 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs">Add to gallery</button>
+                        <button id="admGalleryCancel" onclick="admCancelGalleryEdit()" class="hidden px-4 rounded-xl bg-zinc-800 text-zinc-300 text-xs font-bold">Cancel edit</button>
+                    </div>
+                    <h4 class="text-white font-bold text-xs mt-5 mb-2">Gallery items (<span id="admGalleryCount">0</span>)</h4>
+                    <div id="admGalleryList" class="max-h-64 overflow-y-auto space-y-2 pr-1"></div>
+                    <button onclick="admDownloadGallery()" class="mt-3 w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs">Download gallery-data.json</button>
+                </div>
+
+                <div id="admTab-tabPhotos" class="hidden">
+                    <h3 class="text-lg font-bold text-white mb-1">Photos on website tabs</h3>
+                    <p class="text-[11px] text-zinc-400 mb-3">Add, change, or remove photos shown in the selected tab. Each image can be up to 12 MB. Changes save on this device; download tab-photos.json in Publish and upload it beside index.html to publish.</p>
+                    <label class="block text-[11px] text-zinc-400">Website tab
+                        <select id="admTabPhotoSection" onchange="admRenderTabPhotoList()" class="mt-1 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                            <option value="servicesGrid">Services</option>
+                            <option value="studentCorner">Student Corner</option>
+                            <option value="academy">Academy</option>
+                            <option value="freeTools">Free Tools</option>
+                            <option value="shop">Shop</option>
+                            <option value="tips">Tips</option>
+                            <option value="visitFaq">Visit &amp; FAQ</option>
+                        </select>
+                    </label>
+                    <label class="block mt-2 text-[11px] text-zinc-400">Photo<input id="admTabPhotoFile" type="file" accept="image/*" class="mt-1 w-full text-xs text-zinc-400"></label>
+                    <input id="admTabPhotoTitle" maxlength="100" placeholder="Photo title" class="mt-2 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                    <textarea id="admTabPhotoDescription" maxlength="500" placeholder="Optional caption" class="mt-2 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white h-20"></textarea>
+                    <div class="flex gap-2 mt-2">
+                        <button id="admTabPhotoSave" onclick="admSaveTabPhoto()" class="flex-1 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs">Add photo</button>
+                        <button id="admTabPhotoCancel" onclick="admCancelTabPhotoEdit()" class="hidden px-4 rounded-xl bg-zinc-800 text-zinc-300 text-xs font-bold">Cancel edit</button>
+                    </div>
+                    <h4 class="text-white font-bold text-xs mt-5 mb-2">Photos in this tab (<span id="admTabPhotoCount">0</span>)</h4>
+                    <div id="admTabPhotoList" class="max-h-64 overflow-y-auto space-y-2 pr-1"></div>
+                </div>
+
+                <div id="admTab-tips" class="hidden">
+                    <h3 class="text-lg font-bold text-white mb-1">Tips Manager</h3>
+                    <p class="text-[11px] text-zinc-400 mb-3">Select a tip to edit it, or add a new one. Enter each paragraph on a separate line. Changes save on this device; download blog.json to publish them for visitors.</p>
+                    <div class="flex gap-2">
+                        <select id="admTipSelect" onchange="admSelectTip()" class="flex-1 bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white"></select>
+                        <button onclick="admNewTip()" class="px-3 rounded-xl bg-zinc-800 text-white text-xs font-bold">New tip</button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-3">
+                        <input id="admTipId" placeholder="Unique ID (e.g. phone-safety)" class="bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                        <input id="admTipIcon" placeholder="Icon (e.g. fa-lightbulb)" class="bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                        <input id="admTipDate" placeholder="Date shown" class="bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                        <input id="admTipMinutes" type="number" min="1" step="1" placeholder="Reading time (minutes)" class="bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                    </div>
+                    <h4 class="text-white font-bold text-xs mt-4 mb-2">English</h4>
+                    <div class="space-y-2">
+                        <input id="admTipEnShort" placeholder="Short title" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                        <input id="admTipEnTitle" placeholder="Article title" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                        <textarea id="admTipEnParagraphs" placeholder="Paragraphs (one per line)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white h-24"></textarea>
+                        <textarea id="admTipEnNote" placeholder="Optional note" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white h-16"></textarea>
+                    </div>
+                    <h4 class="text-white font-bold text-xs mt-4 mb-2">Kiswahili</h4>
+                    <div class="space-y-2">
+                        <input id="admTipSwShort" placeholder="Kichwa kifupi" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                        <input id="admTipSwTitle" placeholder="Kichwa cha makala" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
+                        <textarea id="admTipSwParagraphs" placeholder="Aya (moja kwa kila mstari)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white h-24"></textarea>
+                        <textarea id="admTipSwNote" placeholder="Maelezo ya ziada (si lazima)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white h-16"></textarea>
+                    </div>
+                    <div class="flex gap-2 mt-3">
+                        <button onclick="admSaveTips()" class="flex-1 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs">Save tips</button>
+                        <button onclick="admDeleteTip()" class="px-4 rounded-xl bg-zinc-800 text-red-400 text-xs font-bold">Delete tip</button>
+                    </div>
+                    <button onclick="admDownloadTips()" class="mt-2 w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs">Download blog.json to publish</button>
+                </div>
+
+                <div id="admTab-visitFaq" class="hidden">
+                    <h3 class="text-lg font-bold text-white mb-1">Visit &amp; FAQ Manager</h3>
+                    <p class="text-[11px] text-zinc-400 mb-3">Edit the title and answer shown in each Visit &amp; FAQ panel. Changes save on this device and are included in site-data.json.</p>
+                    <div id="admVisitFaqFields" class="space-y-3"></div>
+                    <button onclick="admSaveVisitFaq()" class="mt-2 w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs">Save Visit &amp; FAQ</button>
+                </div>
+
                 <div id="admTab-publish" class="hidden">
                     <h3 class="text-lg font-bold text-white mb-1">Publish your changes</h3>
-                    <p class="text-[11px] text-zinc-400 leading-relaxed mb-3">Your edits are saved in this browser only. To show them to every visitor: tap the button, then upload the downloaded file <b class="text-white">site-data.json</b> to the same place as index.html (for example your GitHub repository, replacing the old one).</p>
+                    <p class="text-[11px] text-zinc-400 leading-relaxed mb-3">Your edits are saved in this browser only. Download and publish <b class="text-white">site-data.json</b> for FAQs, courses and links, <b class="text-white">tab-photos.json</b> for tab photos, and <b class="text-white">blog.json</b> for Tips. Upload each file next to index.html in your website repository, replacing the old file.</p>
                     <button onclick="admDownloadData()" class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs"><i class="fa-solid fa-download mr-1"></i>Download site-data.json</button>
+                    <button onclick="admDownloadTabPhotos()" class="mt-2 w-full py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs"><i class="fa-solid fa-images mr-1"></i>Download tab-photos.json</button>
+                    <button onclick="admDownloadGallery()" class="mt-2 w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs"><i class="fa-solid fa-images mr-1"></i>Download gallery-data.json</button>
                     <button onclick="admShopDownload()" class="mt-2 w-full py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs"><i class="fa-solid fa-download mr-1"></i>Download shop-data.json (shop items &amp; offers)</button>
                     <button onclick="admClearLocal()" class="mt-2 w-full py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-red-400 font-bold text-xs">Clear changes saved in this browser</button>
                     <section class="mt-5 border-t border-zinc-800 pt-4" aria-labelledby="activityTitle">
@@ -1217,7 +1319,7 @@
             location.href = 'enroll.html?course=' + encodeURIComponent(c.t) + '&topics=' + encodeURIComponent(picked.join(', ')) + '&fee=' + encodeURIComponent(courseFee(c));
         }
 
-        const TAB_IDS = ['servicesGrid', 'studentCorner', 'academy', 'freeTools', 'shop', 'tips', 'visitFaq'];
+        const TAB_IDS = ['servicesGrid', 'studentCorner', 'academy', 'freeTools', 'shop', 'gallery', 'tips', 'visitFaq'];
         function showTab(id, opts) {
             if (!TAB_IDS.includes(id)) id = 'servicesGrid';
             TAB_IDS.forEach(t => { const p = document.getElementById(t); if (p) p.classList.toggle('active', t === id); });
@@ -2159,16 +2261,59 @@
             ['youtube', 'YouTube', 'fa-brands fa-youtube', '#FF0000'],
             ['x', 'X (Twitter)', 'X', '#ffffff']
         ];
-        let siteData = { fees: {}, social: {}, corner: [], courses: [] };
+        const VISIT_FAQ_DEFAULT = {
+            visit: { title: 'SITA-TECH CYBER& Digital Hub', answer: 'Cyber café, printing, repairs, online services and training, near Moi University, Eldoret.', address: 'Moi University, Kesses, Eldoret', phone: '0795609046', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Moi+University+Kesses+Eldoret' },
+            pay: { title: 'How do I pay?', answer: 'Pay by M-Pesa to Till Number 6807927. Message us on WhatsApp first so we confirm the price.' },
+            order: { title: 'How do I order a service?', answer: 'Tap the green WhatsApp button on any service. It opens WhatsApp with your request already written.' },
+            acad: { title: 'Do I need experience to join the Academy?', answer: 'No. The courses are beginner-friendly. Tap a course, pick the topics you want and enrol online.' },
+            tools: { title: 'Are the free tools safe to use?', answer: 'Yes. The converter, compressor, CV builder and other tools work on your own device. Your files are not uploaded to our site.' },
+            missing: { title: 'What if my service is not listed?', answer: 'Message us on WhatsApp and ask. If we can help, we will tell you the price before you pay.' }
+        };
+        let siteData = { fees: {}, social: {}, corner: [], courses: [], visitFaq: null };
         const okUrl = u => /^https?:\/\//i.test(String(u || '').trim());
         function courseFee(c) { return (siteData.fees && siteData.fees[c.t]) || c.fee || 'Ask us'; }
         function saveSite() { siteData.courses = courses; try { localStorage.setItem('sita_site_data', JSON.stringify(siteData)); return true; } catch (e) { alert('Browser storage is full. Changes remain on this page only; download site-data.json from the Publish tab before leaving or reloading.'); return false; } }
+        function visitFaqData() {
+            return Object.fromEntries(Object.entries(VISIT_FAQ_DEFAULT).map(([id, fallback]) => {
+                const saved = siteData.visitFaq && siteData.visitFaq[id];
+                const item = { title: saved && typeof saved.title === 'string' ? saved.title : fallback.title, answer: saved && typeof saved.answer === 'string' ? saved.answer : fallback.answer };
+                if (id === 'visit') {
+                    item.address = saved && typeof saved.address === 'string' ? saved.address : fallback.address;
+                    item.phone = saved && typeof saved.phone === 'string' ? saved.phone : fallback.phone;
+                    item.mapUrl = saved && typeof saved.mapUrl === 'string' && okUrl(saved.mapUrl) ? saved.mapUrl : fallback.mapUrl;
+                }
+                return [id, item];
+            }));
+        }
+        function renderVisitFaq() {
+            const data = visitFaqData();
+            Object.entries(data).forEach(([id, item]) => {
+                const title = document.querySelector(`[data-faq-title="${id}"]`);
+                const answer = document.querySelector(`[data-faq-answer="${id}"]`);
+                if (title) title.textContent = item.title;
+                if (answer) answer.textContent = item.answer;
+            });
+            const visit = data.visit;
+            const address = document.querySelector('[data-faq-address]');
+            const phone = document.querySelector('[data-faq-phone]');
+            const map = document.querySelector('[data-faq-map]');
+            const call = document.querySelector('[data-faq-call]');
+            const mapFrame = document.querySelector('#visitPanel iframe');
+            if (address) address.textContent = visit.address;
+            if (phone) phone.textContent = visit.phone;
+            if (map) map.href = visit.mapUrl;
+            if (call) {
+                const digits = visit.phone.replace(/\D/g, '');
+                call.href = 'tel:' + (digits.startsWith('0') ? '+254' + digits.slice(1) : '+' + digits);
+            }
+            if (mapFrame) mapFrame.src = 'https://www.google.com/maps?q=' + encodeURIComponent(visit.address) + '&output=embed';
+        }
         async function loadSiteData() {
             let pub = null, loc = null;
             if (location.protocol.startsWith('http')) { try { const r = await fetch('site-data.json?v=' + Date.now(), { cache: 'no-store' }); if (r.ok) pub = await r.json(); } catch (e) {} }
             try { loc = JSON.parse(localStorage.getItem('sita_site_data')); } catch (e) {}
             const src = loc || pub || {};
-            siteData = { fees: src.fees || {}, social: src.social || {}, corner: Array.isArray(src.corner) ? src.corner : [], courses: Array.isArray(src.courses) ? src.courses : [] };
+            siteData = { fees: src.fees || {}, social: src.social || {}, corner: Array.isArray(src.corner) ? src.corner : [], courses: Array.isArray(src.courses) ? src.courses : [], visitFaq: src.visitFaq && typeof src.visitFaq === 'object' ? src.visitFaq : null };
             if (siteData.courses.length) {
                 courses = siteData.courses.filter(course => course && typeof course.t === 'string').map(course => ({
                     ...course,
@@ -2189,7 +2334,7 @@
             if (location.protocol.startsWith('http')) { try { const r = await fetch('corner-data.json?v=' + Date.now(), { cache: 'no-store' }); if (r.ok) { const j = await r.json(); window.cornerExtra = Array.isArray(j.items) ? j.items : []; } } catch (e) {} }
             renderSiteData();
         }
-        function renderSiteData() { renderServices(currentCategory, searchTerm); renderAcademy(); renderSocial(); renderCorner(); }
+        function renderSiteData() { renderServices(currentCategory, searchTerm); renderAcademy(); renderSocial(); renderCorner(); renderVisitFaq(); }
         function renderSocial() {
             const el = document.getElementById('socialRow'); if (!el) return;
             const base = 'w-9 h-9 rounded-full flex items-center justify-center text-base border ';
@@ -2260,15 +2405,563 @@
         function secretTap() { secretTaps++; clearTimeout(secretTimer); secretTimer = setTimeout(() => secretTaps = 0, 2500); if (secretTaps >= 7) { secretTaps = 0; openAdminModal(); } }
 
         // ---------- Admin tabs ----------
+        let galleryItems = [], galleryEditingId = null;
+        const TAB_PHOTO_SECTIONS = [
+            { id: 'servicesGrid', label: 'Services' },
+            { id: 'studentCorner', label: 'Student Corner' },
+            { id: 'academy', label: 'Academy' },
+            { id: 'freeTools', label: 'Free Tools' },
+            { id: 'shop', label: 'Shop' },
+            { id: 'tips', label: 'Tips' },
+            { id: 'visitFaq', label: 'Visit & FAQ' }
+        ];
+        let tabPhotos = Object.fromEntries(TAB_PHOTO_SECTIONS.map(section => [section.id, []]));
+        let tabPhotoEditingId = null;
+        const MAX_GALLERY_FILE_SIZE = 12 * 1024 * 1024;
+        const galleryDb = new Promise((resolve, reject) => {
+            if (!window.indexedDB) { reject(new Error('This browser does not support gallery storage.')); return; }
+            const request = indexedDB.open('sita-tech-gallery', 1);
+            request.onupgradeneeded = () => {
+                if (!request.result.objectStoreNames.contains('gallery')) request.result.createObjectStore('gallery');
+            };
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error || new Error('Could not open gallery storage.'));
+        });
+        function galleryReadLocal() {
+            return galleryDb.then(db => new Promise((resolve, reject) => {
+                const request = db.transaction('gallery', 'readonly').objectStore('gallery').get('items');
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error || new Error('Could not read gallery storage.'));
+            }));
+        }
+        function galleryWriteLocal(items) {
+            return galleryDb.then(db => new Promise((resolve, reject) => {
+                const transaction = db.transaction('gallery', 'readwrite');
+                transaction.objectStore('gallery').put(items, 'items');
+                transaction.oncomplete = () => resolve();
+                transaction.onerror = () => reject(transaction.error || new Error('Could not save gallery changes.'));
+                transaction.onabort = () => reject(transaction.error || new Error('Gallery save was cancelled.'));
+            }));
+        }
+        function tabPhotoReadLocal() {
+            return galleryDb.then(db => new Promise((resolve, reject) => {
+                const request = db.transaction('gallery', 'readonly').objectStore('gallery').get('tabPhotos');
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error || new Error('Could not read tab photo storage.'));
+            }));
+        }
+        function tabPhotoWriteLocal(items) {
+            return galleryDb.then(db => new Promise((resolve, reject) => {
+                const transaction = db.transaction('gallery', 'readwrite');
+                transaction.objectStore('gallery').put(items, 'tabPhotos');
+                transaction.oncomplete = () => resolve();
+                transaction.onerror = () => reject(transaction.error || new Error('Could not save tab photos.'));
+                transaction.onabort = () => reject(transaction.error || new Error('Tab photo save was cancelled.'));
+            }));
+        }
+        function isValidTabPhoto(photo) {
+            return photo && typeof photo.id === 'string' && typeof photo.title === 'string'
+                && typeof photo.description === 'string' && typeof photo.src === 'string'
+                && photo.src.startsWith('data:image/');
+        }
+        function normalizeTabPhotos(data) {
+            return Object.fromEntries(TAB_PHOTO_SECTIONS.map(({ id }) => [
+                id,
+                Array.isArray(data && data[id]) ? data[id].filter(isValidTabPhoto) : []
+            ]));
+        }
+        function renderTabPhotos() {
+            TAB_PHOTO_SECTIONS.forEach(({ id, label }) => {
+                const section = document.getElementById(id);
+                const wrap = section && section.querySelector('.wrap');
+                if (!wrap) return;
+                let area = document.getElementById('tabPhotos-' + id);
+                if (!area) {
+                    area = document.createElement('div');
+                    area.id = 'tabPhotos-' + id;
+                    area.className = 'tab-photos mt-6 hidden';
+                    const heading = document.createElement('h3');
+                    heading.className = 'text-sm font-extrabold text-white mb-3';
+                    heading.textContent = label + ' photos';
+                    const grid = document.createElement('div');
+                    grid.id = 'tabPhotosGrid-' + id;
+                    grid.className = 'gallery-grid';
+                    area.append(heading, grid);
+                    wrap.append(area);
+                }
+                const grid = document.getElementById('tabPhotosGrid-' + id);
+                const items = tabPhotos[id] || [];
+                area.classList.toggle('hidden', items.length === 0);
+                grid.replaceChildren();
+                items.forEach(item => {
+                    const card = document.createElement('figure');
+                    card.className = 'gallery-card';
+                    const image = document.createElement('img');
+                    image.src = item.src;
+                    image.alt = item.title;
+                    image.loading = 'lazy';
+                    image.decoding = 'async';
+                    const caption = document.createElement('figcaption');
+                    const title = document.createElement('h3');
+                    title.textContent = item.title;
+                    caption.append(title);
+                    if (item.description) {
+                        const description = document.createElement('p');
+                        description.textContent = item.description;
+                        caption.append(description);
+                    }
+                    card.append(image, caption);
+                    grid.append(card);
+                });
+            });
+        }
+        async function loadTabPhotos() {
+            try {
+                const local = await tabPhotoReadLocal();
+                if (local && typeof local === 'object' && !Array.isArray(local)) {
+                    tabPhotos = normalizeTabPhotos(local);
+                    renderTabPhotos();
+                    return;
+                }
+            } catch (error) {
+                console.warn('SITA-TECH could not read local tab photo storage:', error);
+            }
+            if (location.protocol.startsWith('http')) {
+                try {
+                    const response = await fetch('./tab-photos.json?v=' + Date.now(), { cache: 'no-store' });
+                    if (response.status !== 404) {
+                        if (!response.ok) throw new Error('tab-photos.json returned HTTP ' + response.status);
+                        const data = await response.json();
+                        if (!data || !data.sections || typeof data.sections !== 'object') throw new Error('tab-photos.json must contain a sections object');
+                        tabPhotos = normalizeTabPhotos(data.sections);
+                    }
+                } catch (error) {
+                    console.warn('SITA-TECH could not load tab-photos.json:', error);
+                }
+            }
+            renderTabPhotos();
+        }
+        function admRenderTabPhotoList() {
+            const sectionId = document.getElementById('admTabPhotoSection').value;
+            const items = tabPhotos[sectionId] || [];
+            const list = document.getElementById('admTabPhotoList');
+            document.getElementById('admTabPhotoCount').textContent = String(items.length);
+            list.replaceChildren();
+            if (!items.length) {
+                const empty = document.createElement('p');
+                empty.className = 'text-[11px] text-zinc-500';
+                empty.textContent = 'No photos in this tab yet.';
+                list.append(empty);
+                return;
+            }
+            items.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center gap-2 bg-zinc-950 border border-zinc-800 rounded-xl p-2';
+                const image = document.createElement('img');
+                image.src = item.src;
+                image.alt = '';
+                image.className = 'w-10 h-10 rounded-lg object-cover shrink-0';
+                const title = document.createElement('span');
+                title.className = 'text-[11px] text-white truncate flex-1';
+                title.textContent = item.title;
+                const edit = document.createElement('button');
+                edit.type = 'button';
+                edit.className = 'px-2.5 py-1.5 rounded-lg bg-zinc-800 text-blue-300 text-[11px] font-bold';
+                edit.textContent = 'Edit';
+                edit.addEventListener('click', () => admEditTabPhoto(item.id));
+                const remove = document.createElement('button');
+                remove.type = 'button';
+                remove.className = 'px-2.5 py-1.5 rounded-lg bg-zinc-800 text-red-400 text-[11px] font-bold';
+                remove.textContent = 'Remove';
+                remove.addEventListener('click', () => admRemoveTabPhoto(item.id));
+                row.append(image, title, edit, remove);
+                list.append(row);
+            });
+        }
+        function admEditTabPhoto(id) {
+            const sectionId = document.getElementById('admTabPhotoSection').value;
+            const item = (tabPhotos[sectionId] || []).find(photo => photo.id === id);
+            if (!item) return;
+            tabPhotoEditingId = item.id;
+            document.getElementById('admTabPhotoTitle').value = item.title;
+            document.getElementById('admTabPhotoDescription').value = item.description;
+            document.getElementById('admTabPhotoFile').value = '';
+            document.getElementById('admTabPhotoSave').textContent = 'Save photo changes';
+            document.getElementById('admTabPhotoCancel').classList.remove('hidden');
+        }
+        function admCancelTabPhotoEdit() {
+            tabPhotoEditingId = null;
+            document.getElementById('admTabPhotoTitle').value = '';
+            document.getElementById('admTabPhotoDescription').value = '';
+            document.getElementById('admTabPhotoFile').value = '';
+            document.getElementById('admTabPhotoSave').textContent = 'Add photo';
+            document.getElementById('admTabPhotoCancel').classList.add('hidden');
+        }
+        function admReadTabPhoto(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = () => reject(new Error('Could not read the selected photo.'));
+                reader.readAsDataURL(file);
+            });
+        }
+        async function admSaveTabPhoto() {
+            const sectionId = document.getElementById('admTabPhotoSection').value;
+            const title = document.getElementById('admTabPhotoTitle').value.trim();
+            const description = document.getElementById('admTabPhotoDescription').value.trim();
+            const file = document.getElementById('admTabPhotoFile').files[0];
+            const current = tabPhotos[sectionId] || [];
+            const old = current.find(item => item.id === tabPhotoEditingId);
+            if (!title) { alert('Please enter a title for this photo.'); return; }
+            if (!old && !file) { alert('Choose a photo to upload.'); return; }
+            if (file && !file.type.startsWith('image/')) { alert('Choose an image file.'); return; }
+            if (file && file.size > MAX_GALLERY_FILE_SIZE) { alert('Each photo must be 12 MB or smaller.'); return; }
+            try {
+                const item = {
+                    id: old ? old.id : 'tp-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+                    title, description,
+                    src: file ? await admReadTabPhoto(file) : old.src
+                };
+                const next = old ? current.map(photo => photo.id === old.id ? item : photo) : [item, ...current];
+                tabPhotos = { ...tabPhotos, [sectionId]: next };
+                await tabPhotoWriteLocal(tabPhotos);
+                renderTabPhotos();
+                admRenderTabPhotoList();
+                admCancelTabPhotoEdit();
+            } catch (error) {
+                console.error('SITA-TECH could not save tab photo:', error);
+                alert(error.message || 'Could not save this photo. Check available device storage and try again.');
+            }
+        }
+        async function admRemoveTabPhoto(id) {
+            const sectionId = document.getElementById('admTabPhotoSection').value;
+            const current = tabPhotos[sectionId] || [];
+            const item = current.find(photo => photo.id === id);
+            if (!item || !confirm('Remove "' + item.title + '" from this tab?')) return;
+            try {
+                tabPhotos = { ...tabPhotos, [sectionId]: current.filter(photo => photo.id !== id) };
+                await tabPhotoWriteLocal(tabPhotos);
+                renderTabPhotos();
+                admRenderTabPhotoList();
+                if (tabPhotoEditingId === id) admCancelTabPhotoEdit();
+            } catch (error) {
+                console.error('SITA-TECH could not remove tab photo:', error);
+                alert(error.message || 'Could not remove this photo.');
+            }
+        }
+        async function admDownloadTabPhotos() {
+            try {
+                const local = await tabPhotoReadLocal();
+                const sections = normalizeTabPhotos(local || tabPhotos);
+                const blob = new Blob([JSON.stringify({ sections }, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'tab-photos.json';
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+            } catch (error) {
+                console.error('SITA-TECH could not export tab photos:', error);
+                alert(error.message || 'Could not download tab-photos.json.');
+            }
+        }
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            if (!grid) return;
+            if (!galleryItems.length) {
+                const empty = document.createElement('p');
+                empty.className = 'gallery-empty';
+                empty.textContent = 'Our completed work will appear here soon.';
+                grid.replaceChildren(empty);
+                return;
+            }
+            const fragment = document.createDocumentFragment();
+            galleryItems.forEach(item => {
+                const card = document.createElement('figure');
+                card.className = 'gallery-card';
+                const media = document.createElement(item.kind === 'video' ? 'video' : 'img');
+                media.src = item.src;
+                if (item.kind === 'video') {
+                    media.controls = true;
+                    media.preload = 'metadata';
+                    media.playsInline = true;
+                } else {
+                    media.alt = item.title;
+                    media.loading = 'lazy';
+                    media.decoding = 'async';
+                }
+                const caption = document.createElement('figcaption');
+                const title = document.createElement('h3');
+                title.textContent = item.title;
+                caption.append(title);
+                if (item.description) {
+                    const description = document.createElement('p');
+                    description.textContent = item.description;
+                    caption.append(description);
+                }
+                card.append(media, caption);
+                fragment.append(card);
+            });
+            grid.replaceChildren(fragment);
+        }
+        function admRenderGalleryList() {
+            const list = document.getElementById('admGalleryList');
+            document.getElementById('admGalleryCount').textContent = String(galleryItems.length);
+            list.innerHTML = galleryItems.map(item => `
+                <div class="flex items-center justify-between gap-2 bg-zinc-950 border border-zinc-800 rounded-xl p-2">
+                    <span class="text-[11px] text-white truncate"><b class="text-purple-400">${item.kind === 'video' ? 'VIDEO' : 'PHOTO'}</b> · ${esc(item.title)}</span>
+                    <span class="flex shrink-0 gap-1">
+                        <button onclick="admEditGalleryItem('${esc(item.id)}')" class="px-2.5 py-1.5 rounded-lg bg-zinc-800 text-blue-300 text-[11px] font-bold">Edit</button>
+                        <button onclick="admRemoveGalleryItem('${esc(item.id)}')" class="px-2.5 py-1.5 rounded-lg bg-zinc-800 text-red-400 text-[11px] font-bold">Remove</button>
+                    </span>
+                </div>`).join('') || '<p class="text-[11px] text-zinc-500">No gallery items yet.</p>';
+        }
+        async function loadGalleryData() {
+            try {
+                const local = await galleryReadLocal();
+                if (Array.isArray(local)) {
+                    galleryItems = local.filter(isValidGalleryItem);
+                    renderGallery();
+                    return;
+                }
+            } catch (error) {
+                console.warn('SITA-TECH could not read local gallery storage:', error);
+            }
+            if (location.protocol.startsWith('http')) {
+                try {
+                    const response = await fetch('./gallery-data.json?v=' + Date.now(), { cache: 'no-store' });
+                    if (response.status !== 404) {
+                        if (!response.ok) throw new Error('gallery-data.json returned HTTP ' + response.status);
+                        const data = await response.json();
+                        if (!data || !Array.isArray(data.items)) throw new Error('gallery-data.json must contain an items array');
+                        galleryItems = data.items.filter(isValidGalleryItem);
+                    }
+                } catch (error) {
+                    console.warn('SITA-TECH could not load gallery-data.json:', error);
+                }
+            }
+            renderGallery();
+        }
+        function isValidGalleryItem(item) {
+            return item && typeof item.id === 'string' && typeof item.title === 'string'
+                && typeof item.description === 'string' && ['image', 'video'].includes(item.kind)
+                && typeof item.src === 'string' && item.src.startsWith('data:' + item.kind + '/');
+        }
+        function admEditGalleryItem(id) {
+            const item = galleryItems.find(entry => entry.id === id);
+            if (!item) return;
+            galleryEditingId = item.id;
+            document.getElementById('admGalleryTitle').value = item.title;
+            document.getElementById('admGalleryDescription').value = item.description;
+            document.getElementById('admGalleryFile').value = '';
+            document.getElementById('admGalleryFile').required = false;
+            document.querySelector('#admTab-gallery [onclick="admSaveGalleryItem()"]').textContent = 'Save gallery changes';
+            document.getElementById('admGalleryCancel').classList.remove('hidden');
+        }
+        function admCancelGalleryEdit() {
+            galleryEditingId = null;
+            document.getElementById('admGalleryTitle').value = '';
+            document.getElementById('admGalleryDescription').value = '';
+            document.getElementById('admGalleryFile').value = '';
+            document.getElementById('admGalleryFile').required = true;
+            document.querySelector('#admTab-gallery [onclick="admSaveGalleryItem()"]').textContent = 'Add to gallery';
+            document.getElementById('admGalleryCancel').classList.add('hidden');
+        }
+        function admReadGalleryFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = () => reject(new Error('Could not read the selected media file.'));
+                reader.readAsDataURL(file);
+            });
+        }
+        async function admSaveGalleryItem() {
+            const title = document.getElementById('admGalleryTitle').value.trim();
+            const description = document.getElementById('admGalleryDescription').value.trim();
+            const file = document.getElementById('admGalleryFile').files[0];
+            if (!title) { alert('Please enter a title for this gallery item.'); return; }
+            if (!galleryEditingId && !file) { alert('Choose a photo or video to upload.'); return; }
+            if (file && !file.type.startsWith('image/') && !file.type.startsWith('video/')) { alert('Choose an image or video file.'); return; }
+            if (file && file.size > MAX_GALLERY_FILE_SIZE) { alert('Each photo or video must be 12 MB or smaller.'); return; }
+            try {
+                const old = galleryItems.find(item => item.id === galleryEditingId);
+                const item = {
+                    id: old ? old.id : 'g' + Date.now(),
+                    title, description,
+                    kind: file ? (file.type.startsWith('video/') ? 'video' : 'image') : old.kind,
+                    src: file ? await admReadGalleryFile(file) : old.src
+                };
+                const next = old ? galleryItems.map(entry => entry.id === old.id ? item : entry) : [item, ...galleryItems];
+                await galleryWriteLocal(next);
+                galleryItems = next;
+                renderGallery();
+                admRenderGalleryList();
+                admCancelGalleryEdit();
+            } catch (error) {
+                console.error('SITA-TECH could not save gallery item:', error);
+                alert(error.message || 'Could not save this gallery item. Check available device storage and try again.');
+            }
+        }
+        async function admRemoveGalleryItem(id) {
+            const item = galleryItems.find(entry => entry.id === id);
+            if (!item || !confirm('Remove "' + item.title + '" from the gallery?')) return;
+            const next = galleryItems.filter(entry => entry.id !== id);
+            try {
+                await galleryWriteLocal(next);
+                galleryItems = next;
+                renderGallery();
+                admRenderGalleryList();
+                if (galleryEditingId === id) admCancelGalleryEdit();
+            } catch (error) {
+                console.error('SITA-TECH could not remove gallery item:', error);
+                alert(error.message || 'Could not remove this gallery item.');
+            }
+        }
+        async function admDownloadGallery() {
+            try {
+                const local = await galleryReadLocal();
+                const items = Array.isArray(local) ? local.filter(isValidGalleryItem) : galleryItems;
+                const blob = new Blob([JSON.stringify({ items }, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url; link.download = 'gallery-data.json'; document.body.appendChild(link); link.click(); link.remove();
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+            } catch (error) {
+                console.error('SITA-TECH could not export gallery data:', error);
+                alert(error.message || 'Could not download gallery-data.json.');
+            }
+        }
+        let adminTipPosts = [], adminSelectedTipId = '';
+        const TIP_EDITOR_FIELDS = ['id', 'icon', 'date', 'minutes', 'enShort', 'enTitle', 'enParagraphs', 'enNote', 'swShort', 'swTitle', 'swParagraphs', 'swNote'];
+        function admTipValue(id) { return document.getElementById('admTip' + id).value; }
+        function admFillTipEditor(post) {
+            const values = {
+                id: post.id, icon: post.icon, date: post.date, minutes: post.minutes,
+                enShort: post.en.shortTitle, enTitle: post.en.title, enParagraphs: post.en.paragraphs.join('\n'), enNote: post.en.note || '',
+                swShort: post.sw.shortTitle, swTitle: post.sw.title, swParagraphs: post.sw.paragraphs.join('\n'), swNote: post.sw.note || ''
+            };
+            TIP_EDITOR_FIELDS.forEach(key => { document.getElementById('admTip' + key[0].toUpperCase() + key.slice(1)).value = values[key]; });
+        }
+        function admCollectTip() {
+            const post = adminTipPosts.find(item => item.id === adminSelectedTipId);
+            if (!post) return;
+            post.id = admTipValue('Id').trim();
+            post.icon = admTipValue('Icon').trim();
+            post.date = admTipValue('Date').trim();
+            post.minutes = Number(admTipValue('Minutes'));
+            post.en = {
+                shortTitle: admTipValue('EnShort').trim(), title: admTipValue('EnTitle').trim(),
+                paragraphs: admTipValue('EnParagraphs').split(/\r?\n/).map(line => line.trim()).filter(Boolean), note: admTipValue('EnNote').trim()
+            };
+            post.sw = {
+                shortTitle: admTipValue('SwShort').trim(), title: admTipValue('SwTitle').trim(),
+                paragraphs: admTipValue('SwParagraphs').split(/\r?\n/).map(line => line.trim()).filter(Boolean), note: admTipValue('SwNote').trim()
+            };
+            adminSelectedTipId = post.id;
+        }
+        function admRenderTipOptions() {
+            const select = document.getElementById('admTipSelect');
+            select.innerHTML = adminTipPosts.map(post => `<option value="${esc(post.id)}">${esc(post.en.shortTitle)} · ${esc(post.id)}</option>`).join('');
+            select.value = adminSelectedTipId;
+        }
+        function admSelectTip() {
+            admCollectTip();
+            adminSelectedTipId = document.getElementById('admTipSelect').value;
+            const post = adminTipPosts.find(item => item.id === adminSelectedTipId);
+            if (post) admFillTipEditor(post);
+        }
+        function admNewTip() {
+            admCollectTip();
+            const id = 'new-tip-' + Date.now();
+            adminTipPosts.push({
+                id, icon: 'fa-lightbulb', date: new Date().toLocaleDateString('en-GB'), minutes: 1,
+                en: { shortTitle: '', title: '', paragraphs: [''], note: '' },
+                sw: { shortTitle: '', title: '', paragraphs: [''], note: '' }
+            });
+            adminSelectedTipId = id;
+            admRenderTipOptions();
+            admFillTipEditor(adminTipPosts[adminTipPosts.length - 1]);
+        }
+        function admDeleteTip() {
+            if (adminTipPosts.length < 2) { alert('Keep at least one tip on the site.'); return; }
+            const post = adminTipPosts.find(item => item.id === adminSelectedTipId);
+            if (!post || !confirm('Delete "' + post.en.shortTitle + '"?')) return;
+            adminTipPosts = adminTipPosts.filter(item => item.id !== adminSelectedTipId);
+            adminSelectedTipId = adminTipPosts[0].id;
+            admRenderTipOptions();
+            admFillTipEditor(adminTipPosts[0]);
+        }
+        function admRenderVisitFaqEditor() {
+            const data = visitFaqData();
+            const labels = { visit: 'Visit us', pay: 'How to pay', order: 'How to order', acad: 'Academy', tools: 'Free tools', missing: 'Not listed?' };
+            document.getElementById('admVisitFaqFields').innerHTML = Object.entries(data).map(([id, item]) => `
+                <fieldset class="rounded-xl border border-zinc-800 p-2.5">
+                    <legend class="px-1 text-[11px] font-bold text-yellow-400">${labels[id]}</legend>
+                    <label class="block text-[11px] text-zinc-400">Title<input id="admFaqTitle-${id}" value="${esc(item.title)}" class="mt-1 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white"></label>
+                    <label class="block mt-2 text-[11px] text-zinc-400">Answer<textarea id="admFaqAnswer-${id}" class="mt-1 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white h-20">${esc(item.answer)}</textarea></label>
+                    ${id === 'visit' ? `
+                    <label class="block mt-2 text-[11px] text-zinc-400">Address<input id="admFaqAddress" value="${esc(item.address)}" class="mt-1 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white"></label>
+                    <label class="block mt-2 text-[11px] text-zinc-400">Phone<input id="admFaqPhone" value="${esc(item.phone)}" class="mt-1 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white"></label>
+                    <label class="block mt-2 text-[11px] text-zinc-400">Google Maps link<input id="admFaqMapUrl" value="${esc(item.mapUrl)}" class="mt-1 w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white"></label>` : ''}
+                </fieldset>`).join('');
+        }
         function admTab(n) {
-            ['services', 'courses', 'fees', 'social', 'corner', 'shop', 'publish'].forEach(t => document.getElementById('admTab-' + t).classList.toggle('hidden', t !== n));
+            ['services', 'courses', 'fees', 'social', 'corner', 'shop', 'gallery', 'tabPhotos', 'tips', 'visitFaq', 'publish'].forEach(t => document.getElementById('admTab-' + t).classList.toggle('hidden', t !== n));
             document.querySelectorAll('#admTabBar button').forEach(b => b.className = 'px-3 py-1.5 rounded-full ' + (b.dataset.t === n ? 'bg-blue-600 text-white' : 'bg-zinc-800 text-zinc-300'));
             const I = 'w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white';
             if (n === 'fees') document.getElementById('admFeesList').innerHTML = courses.map(c => `<label class="block text-[11px] text-zinc-400">${esc(c.t)}<input data-course="${esc(c.t)}" value="${esc(courseFee(c))}" class="${I} mt-1"></label>`).join('');
             if (n === 'courses') renderAdminCourseList();
             if (n === 'shop') admShopRender();
+            if (n === 'gallery') admRenderGalleryList();
+            if (n === 'tabPhotos') admRenderTabPhotoList();
             if (n === 'social') document.getElementById('admSocialList').innerHTML = SOCIAL_DEF.map(([k, l]) => `<label class="block text-[11px] text-zinc-400">${l}<input data-social="${k}" value="${esc(siteData.social[k] || '')}" placeholder="https://..." class="${I} mt-1"></label>`).join('');
             if (n === 'corner') { renderCornerCategoryOptions(); admRenderCorner(); }
+            if (n === 'tips') {
+                if (!window.sitaTips) { alert('Tips are still loading. Please reopen the Tips tab in a moment.'); return; }
+                adminTipPosts = window.sitaTips.getPosts();
+                adminSelectedTipId = adminTipPosts[0]?.id || '';
+                admRenderTipOptions();
+                if (adminTipPosts[0]) admFillTipEditor(adminTipPosts[0]);
+            }
+            if (n === 'visitFaq') admRenderVisitFaqEditor();
+        }
+        function admSaveTips() {
+            admCollectTip();
+            try { window.sitaTips.setPosts(adminTipPosts); }
+            catch (error) { alert(error.message || 'Tips could not be saved. Check each tip and try again.'); return; }
+            adminTipPosts = window.sitaTips.getPosts();
+            admRenderTipOptions();
+            alert('Tips saved on this device. Download blog.json from this tab and publish it for all visitors.');
+        }
+        function admDownloadTips() {
+            if (!window.sitaTips) { alert('Tips are still loading. Please try again in a moment.'); return; }
+            admCollectTip();
+            try { window.sitaTips.setPosts(adminTipPosts); }
+            catch (error) { alert(error.message || 'Tips could not be downloaded. Check each tip and try again.'); return; }
+            adminTipPosts = window.sitaTips.getPosts();
+            admRenderTipOptions();
+            const blob = new Blob([JSON.stringify({ managed: true, posts: window.sitaTips.getPosts() }, null, 2)], { type: 'application/json' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'blog.json'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        }
+        function admSaveVisitFaq() {
+            const ids = Object.keys(VISIT_FAQ_DEFAULT);
+            const visitFaq = Object.fromEntries(ids.map(id => [id, {
+                title: document.getElementById('admFaqTitle-' + id).value.trim(),
+                answer: document.getElementById('admFaqAnswer-' + id).value.trim()
+            }]));
+            visitFaq.visit.address = document.getElementById('admFaqAddress').value.trim();
+            visitFaq.visit.phone = document.getElementById('admFaqPhone').value.trim();
+            visitFaq.visit.mapUrl = document.getElementById('admFaqMapUrl').value.trim();
+            if (ids.some(id => !visitFaq[id].title || !visitFaq[id].answer) || !visitFaq.visit.address || !/^[+()\d\s-]{7,20}$/.test(visitFaq.visit.phone) || !okUrl(visitFaq.visit.mapUrl)) {
+                alert('Please fill in every title and answer, a valid phone number, address, and Google Maps link starting with https://.'); return;
+            }
+            siteData.visitFaq = visitFaq;
+            if (saveSite()) {
+                renderVisitFaq();
+                alert('Visit & FAQ saved on this device. Download site-data.json in the Publish tab to publish for all visitors.');
+            }
         }
         function admSaveFees() {
             document.querySelectorAll('#admFeesList input').forEach(i => { const v = i.value.trim(), c = courses.find(x => x.t === i.dataset.course); if (v && c && v !== c.fee) siteData.fees[c.t] = v; else delete siteData.fees[i.dataset.course]; });
@@ -2313,11 +3006,26 @@
             siteData.corner.splice(i, 1); saveSite(); renderCorner(); admRenderCorner();
         }
         function admDownloadData() {
-            const blob = new Blob([JSON.stringify({ services: defaultServices, courses, fees: siteData.fees, social: siteData.social, corner: siteData.corner })], { type: 'application/json' });
+            const blob = new Blob([JSON.stringify({ services: defaultServices, courses, fees: siteData.fees, social: siteData.social, corner: siteData.corner, visitFaq: siteData.visitFaq }, null, 2)], { type: 'application/json' });
             const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'site-data.json'; document.body.appendChild(a); a.click(); a.remove();
         }
-        function admClearLocal() {
-            if (confirm('Clear all changes saved in this browser (services, fees, links, student corner)? The published site-data.json will be shown instead.')) { ['sita_site_data', 'sita_services', 'sita_shop'].forEach(k => localStorage.removeItem(k)); location.reload(); }
+        async function admClearLocal() {
+            if (!confirm('Clear all changes saved in this browser (services, fees, links, student corner, tips, FAQs, gallery, tab photos and shop)? The published website files will be shown instead.')) return;
+            try {
+                await galleryDb.then(db => new Promise((resolve, reject) => {
+                    const transaction = db.transaction('gallery', 'readwrite');
+                    transaction.objectStore('gallery').delete('items');
+                    transaction.objectStore('gallery').delete('tabPhotos');
+                    transaction.oncomplete = resolve;
+                    transaction.onerror = () => reject(transaction.error || new Error('Could not clear local gallery data.'));
+                    transaction.onabort = () => reject(transaction.error || new Error('Could not clear local gallery data.'));
+                }));
+                ['sita_site_data', 'sita_services', 'sita_shop', 'sita_blog_posts'].forEach(k => localStorage.removeItem(k));
+                location.reload();
+            } catch (error) {
+                console.error('SITA-TECH could not clear local changes:', error);
+                alert(error.message || 'Could not clear local changes.');
+            }
         }
         function setTool(k) {
             document.querySelectorAll('#toolRail .sp-item').forEach(b => b.classList.toggle('on', b.dataset.k === k));
@@ -2376,6 +3084,8 @@
             document.querySelectorAll('.footerLogo').forEach(i => i.src = document.getElementById('siteLogo').src);
             drawParticles();
             initNavSpy();
+            loadGalleryData();
+            loadTabPhotos();
             openDeepLink();
             loadSiteData().then(openDeepLink);
         };
@@ -3157,6 +3867,7 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
     const article = document.getElementById('tipsArticle');
     const WHATSAPP = '254795609046';
     let extraPosts = [];
+    let managedPosts = null;
     let selectedTipId = POSTS[0].id;
 
     function currentLanguage() {
@@ -3164,7 +3875,10 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
     }
 
     function allPosts() {
-        return [...extraPosts, ...POSTS];
+        if (managedPosts) return managedPosts;
+        const overrides = new Map(extraPosts.map(post => [post.id, post]));
+        const builtInIds = new Set(POSTS.map(post => post.id));
+        return [...extraPosts.filter(post => !builtInIds.has(post.id)), ...POSTS.map(post => overrides.get(post.id) || post)];
     }
 
     function element(tag, className, text) {
@@ -3259,16 +3973,32 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
 
     function isValidPost(post) {
         const validVersion = version => version && typeof version.shortTitle === 'string'
-            && typeof version.title === 'string' && Array.isArray(version.paragraphs)
+            && version.shortTitle.trim() && typeof version.title === 'string' && version.title.trim()
+            && Array.isArray(version.paragraphs) && version.paragraphs.length > 0
             && version.paragraphs.every(paragraph => typeof paragraph === 'string')
             && (version.note === undefined || typeof version.note === 'string');
         return post && typeof post.id === 'string' && /^[\w-]{1,80}$/.test(post.id)
             && typeof post.icon === 'string' && /^fa-[\w-]+$/.test(post.icon)
-            && typeof post.date === 'string' && Number.isFinite(Number(post.minutes))
+            && typeof post.date === 'string' && post.date.trim() && Number.isFinite(Number(post.minutes))
             && Number(post.minutes) > 0 && validVersion(post.en) && validVersion(post.sw);
     }
 
     async function loadExtraPosts() {
+        try {
+            const local = localStorage.getItem('sita_blog_posts');
+            if (local) {
+                const posts = JSON.parse(local);
+                if (!Array.isArray(posts) || posts.some(post => !isValidPost(post)) || new Set(posts.map(post => post.id)).size !== posts.length) {
+                    throw new Error('Saved tips must be a unique array of valid posts.');
+                }
+                managedPosts = posts;
+                if (managedPosts.length) selectedTipId = managedPosts[0].id;
+                renderTipList();
+                return;
+            }
+        } catch (error) {
+            console.warn('SITA-TECH could not load locally saved tips:', error);
+        }
         try {
             const response = await fetch('./blog.json');
             if (response.status === 404) return;
@@ -3277,18 +4007,38 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
             if (!data || !Array.isArray(data.posts)) throw new Error('blog.json must contain a posts array');
             const validPosts = data.posts.filter(isValidPost);
             if (validPosts.length !== data.posts.length) console.warn('SITA-TECH skipped invalid entries in blog.json.');
-            const ids = new Set(POSTS.map(post => post.id));
+            const ids = new Set();
             extraPosts = validPosts.filter(post => {
                 if (ids.has(post.id)) return false;
                 ids.add(post.id);
                 return true;
             });
-            if (extraPosts.length) selectedTipId = extraPosts[0].id;
+            if (data.managed === true) {
+                managedPosts = extraPosts;
+                extraPosts = [];
+            }
+            if (allPosts().length) selectedTipId = allPosts()[0].id;
             renderTipList();
         } catch (error) {
             console.warn('SITA-TECH could not load optional blog.json:', error);
         }
     }
+
+    window.sitaTips = {
+        getPosts: () => allPosts().map(post => JSON.parse(JSON.stringify(post))),
+        setPosts(posts) {
+            if (!Array.isArray(posts) || !posts.length || posts.some(post => !isValidPost(post)) || new Set(posts.map(post => post.id)).size !== posts.length) {
+                throw new Error('Each tip needs a unique id, icon, date, reading time, and English and Swahili content.');
+            }
+            const saved = JSON.stringify(posts);
+            try { localStorage.setItem('sita_blog_posts', saved); }
+            catch (error) { throw new Error('Browser storage is full. Tips could not be saved on this device.'); }
+            managedPosts = JSON.parse(saved);
+            extraPosts = [];
+            if (!allPosts().some(post => post.id === selectedTipId)) selectedTipId = allPosts()[0]?.id;
+            renderTipList();
+        }
+    };
 
     renderTipList();
     new MutationObserver(() => renderTipList()).observe(document.documentElement, {
