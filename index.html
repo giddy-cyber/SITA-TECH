@@ -204,6 +204,10 @@
         .crn-grid .crn .ic { width: 2rem; height: 2rem; border-radius: .6rem; background: rgba(236,72,153,.16); color: #f472b6; display: flex; align-items: center; justify-content: center; font-size: .85rem; }
         .crn-grid .crn h3 { overflow-wrap: anywhere; }
         .crn-grid .crn .go { width: auto; height: auto; padding: .35rem .6rem; border-radius: .6rem; gap: .3rem; font-size: .62rem; font-weight: 700; margin-top: auto; }
+        .crn-thumb { display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid #27272a; border-radius: .55rem; background: #09090b; }
+        .crn-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .crn-category { display: inline-flex; margin: .25rem 0 .1rem; padding: .12rem .35rem; border-radius: .3rem; background: rgba(236,72,153,.16); color: #f9a8d4; font-size: .52rem; font-weight: 800; }
+        .crn-featured { margin-left: .25rem; color: #facc15; font-size: .52rem; font-weight: 800; }
         .crn { display: flex; align-items: center; gap: .5rem; margin: .4rem .5rem; padding: .5rem; border: 1px solid #27272a; border-radius: .8rem; background: #18181b; }
         .crn h3 { font-size: .72rem; font-weight: 700; color: #fff; line-height: 1.15; }
         .crn p { font-size: .62rem; color: #a1a1aa; margin-top: .15rem; line-height: 1.25; }
@@ -472,7 +476,7 @@
             <div class="sec-h"><span class="text-pink-400">Student corner</span><h2>Setbooks, novels, notes &amp; interview prep</h2></div>
             <div class="sp pink corner" id="cornerSp">
                 <div class="sp-rail" id="cornerRail"></div>
-                <div class="sp-panel" id="cornerList"></div>
+                <div class="sp-panel" id="cornerList" aria-live="polite" aria-busy="true"><p class="sp-empty" role="status">Loading Student Corner resources...</p></div>
             </div>
         </div>
     </section>
@@ -2263,6 +2267,9 @@
             missing: { title: 'What if my service is not listed?', answer: 'Message us on WhatsApp and ask. If we can help, we will tell you the price before you pay.' }
         };
         let siteData = { fees: {}, social: {}, corner: [], courses: [], visitFaq: null };
+        const CORNER_FEED_URL = 'https://script.google.com/macros/s/AKfycbzvohtTtHMjsh5tylThBkaCu1pi9vOhOom8jX55aN7Vxmk56s4SAs7Y9sKB4PfLqdPXYg/exec';
+        window.cornerLive = [];
+        window.cornerFeedStatus = 'loading';
         const okUrl = u => /^https?:\/\//i.test(String(u || '').trim());
         function courseFee(c) { return (siteData.fees && siteData.fees[c.t]) || c.fee || 'Ask us'; }
         function saveSite() { siteData.courses = courses; try { localStorage.setItem('sita_site_data', JSON.stringify(siteData)); return true; } catch (e) { alert('Browser storage is full. Changes remain on this page only; download site-data.json from the Publish tab before leaving or reloading.'); return false; } }
@@ -2325,6 +2332,26 @@
                 defaultServices.forEach(s => { if (s.img === undefined && DEFAULT_IMG[s.id]) s.img = DEFAULT_IMG[s.id]; });
             }
             if (location.protocol.startsWith('http')) { try { const r = await fetch('corner-data.json?v=' + Date.now(), { cache: 'no-store' }); if (r.ok) { const j = await r.json(); window.cornerExtra = Array.isArray(j.items) ? j.items : []; } } catch (e) {} }
+            try {
+                const response = await fetch(CORNER_FEED_URL, { cache: 'no-store' });
+                if (!response.ok) throw new Error('Student Corner feed request failed.');
+                const feed = await response.json();
+                if (!Array.isArray(feed)) throw new Error('Student Corner feed did not return a list.');
+                window.cornerLive = feed.filter(item => item && typeof item === 'object').map((item, index) => ({
+                    id: 'sheet-' + index,
+                    type: cornerTypeKey(item.Category),
+                    title: String(item.Title || '').trim(),
+                    desc: String(item.Description || '').trim(),
+                    url: String(item.File_URL || '').trim(),
+                    thumbnail: String(item.Thumbnail_URL || '').trim(),
+                    featured: ['true', 'yes', '1', 'featured'].includes(String(item.Featured_Status || '').trim().toLowerCase()),
+                    live: true
+                })).filter(item => item.title && item.type && okUrl(item.url));
+                if (feed.length && !window.cornerLive.length) throw new Error('Student Corner feed fields do not match the expected format.');
+                window.cornerFeedStatus = 'ready';
+            } catch (e) {
+                window.cornerFeedStatus = 'error';
+            }
             renderSiteData();
         }
         function renderSiteData() { renderServices(currentCategory, searchTerm); renderAcademy(); renderSocial(); renderCorner(); renderVisitFaq(); }
@@ -2353,9 +2380,18 @@
             const known = CORNER_TYPES.find(item => item[0] === type);
             return known ? known[1] : String(type || '').split(/[-_]/).filter(Boolean).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
         }
+        function allCornerItems() {
+            const items = [...(siteData.corner || []), ...(window.cornerExtra || []), ...(window.cornerLive || [])], seen = new Set();
+            return items.filter(item => {
+                const key = item.url ? 'url:' + String(item.url).trim().toLowerCase() : 'item:' + String(item.type || '').toLowerCase() + ':' + String(item.title || '').trim().toLowerCase();
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+        }
         function getCornerTypes() {
             const types = CORNER_TYPES.slice(), known = new Set(types.map(item => item[0]));
-            [...(siteData.corner || []), ...(window.cornerExtra || [])].forEach(item => {
+            allCornerItems().forEach(item => {
                 const key = cornerTypeKey(item.type);
                 if (key && !known.has(key)) {
                     known.add(key);
@@ -2376,20 +2412,22 @@
             const cur = types.find(x => x[0] === cornerTab) || types[0];
             document.getElementById('cornerRail').innerHTML = types.map(([t, l, ic]) => `<button type="button" class="sp-item${t === cornerTab ? ' on' : ''}" data-corner-type="${esc(t)}"><i class="fa-solid ${ic}"></i><span class="sp-lbl">${esc(l)}</span></button>`).join('');
             document.querySelectorAll('#cornerRail [data-corner-type]').forEach(button => button.addEventListener('click', () => setCornerTab(button.dataset.cornerType)));
-            const items = [...siteData.corner, ...(window.cornerExtra || [])].filter(i => i.type === cornerTab);
+            const items = allCornerItems().filter(i => i.type === cornerTab);
             document.getElementById('cornerSp').classList.toggle('compact', !items.length);
+            list.setAttribute('aria-busy', window.cornerFeedStatus === 'loading' ? 'true' : 'false');
             list.innerHTML = items.length ? `<div class="crn-grid">` + items.map(i => `
                 <div class="crn">
-                    <span class="ic"><i class="fa-solid ${cur[2]}"></i></span>
-                    <div class="min-w-0 flex-1"><h3>${esc(i.title)}</h3>${i.desc ? `<p>${esc(i.desc)}</p>` : ''}</div>
-                    ${okUrl(i.url)
-                        ? `<a href="${esc(i.url)}" target="_blank" rel="noopener" class="go" aria-label="View ${esc(i.title)}"><i class="fa-solid fa-arrow-up-right-from-square"></i>View</a>`
+                    ${i.thumbnail && okUrl(i.thumbnail) ? `<div class="crn-thumb"><img src="${esc(i.thumbnail)}" alt="${esc(i.title)}" loading="lazy" decoding="async" onerror="this.hidden=true"></div>` : `<span class="ic"><i class="fa-solid ${cur[2]}"></i></span>`}
+                    <div class="min-w-0 flex-1"><span class="crn-category">${esc(cornerTypeLabel(i.type))}</span>${i.featured ? '<span class="crn-featured">FEATURED</span>' : ''}<h3>${esc(i.title)}</h3>${i.desc ? `<p>${esc(i.desc)}</p>` : ''}</div>
+                    ${i.live && okUrl(i.url)
+                        ? `<a href="${esc(i.url)}" download target="_blank" rel="noopener" class="go" aria-label="Download ${esc(i.title)}"><i class="fa-solid fa-download"></i>Download</a>`
+                        : okUrl(i.url) ? `<a href="${esc(i.url)}" target="_blank" rel="noopener" class="go" aria-label="View ${esc(i.title)}"><i class="fa-solid fa-arrow-up-right-from-square"></i>View</a>`
                         : `<button type="button" onclick="downloadCorner('${esc(i.id)}')" class="go" aria-label="Download ${esc(i.title)}"><i class="fa-solid fa-download"></i>Download</button>`}
                 </div>`).join('') + `</div>`
-                : `<p class="sp-empty">${cur[1]} coming soon. Follow our social pages for updates.</p>`;
+                : `<p class="sp-empty" role="status">${window.cornerFeedStatus === 'error' ? 'Student Corner resources could not be loaded. Please try again later.' : `${cur[1]} coming soon. Follow our social pages for updates.`}</p>`;
         }
         async function downloadCorner(id) {
-            const i = [...siteData.corner, ...(window.cornerExtra || [])].find(x => x.id === id); if (!i || !i.fileData) return;
+            const i = allCornerItems().find(x => x.id === id); if (!i || !i.fileData) return;
             const b = await (await fetch(i.fileData)).blob(), a = document.createElement('a');
             a.href = URL.createObjectURL(b); a.download = i.fileName || i.title; document.body.appendChild(a); a.click(); a.remove();
         }
