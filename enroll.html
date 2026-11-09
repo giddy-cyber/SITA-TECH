@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./site-config.js"></script>
     <title>Enroll | SITA-TECH Academy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -264,7 +265,7 @@
                 } else if (error.message === 'Spam submission rejected') {
                     err.textContent = 'Submission could not be accepted. Please reload the form and try again.';
                 } else {
-                    err.textContent = 'Could not send your details (' + (error.code || 'network error') + '). Please try again or call 0795609046.';
+                    err.textContent = 'Could not send your details (' + (error.code || 'network error') + '). Please try again or call ' + window.SITA_CONFIG.phone + '.';
                 }
                 err.classList.remove('hidden');
                 btn.disabled = false;

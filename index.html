@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>if(new URLSearchParams(location.search).has('tools'))document.documentElement.classList.add('tools-only');</script>
+    <script src="./site-config.js"></script>
+    <script>if (new URLSearchParams(location.search).has('tools')) document.documentElement.classList.add('tools-only');</script>
     <link rel="icon" href="./favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="48x48" href="./favicon-48x48.png">
     <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
@@ -14,13 +15,13 @@
     <meta name="theme-color" content="#0A0A0C">
     <meta name="application-name" content="SITA-TECH">
     <meta name="apple-mobile-web-app-title" content="SITA-TECH">
-    <meta name="description" content="SITA-TECH cyber and digital services hub in Nairobi: CCTV, repairs, printing, KRA, SHA, eCitizen, BRS, web design, computer training, plus free student notes, setbooks and interview questions.">
+    <meta name="description" content="SITA-TECH cyber and digital services hub in Eldoret: CCTV, repairs, printing, KRA, SHA, eCitizen, BRS, web design, computer training, plus free student notes, setbooks and interview questions.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="SITA-TECH">
-    <meta property="og:title" content="SITA-TECH  Cyber &amp; Digital Services Hub">
+    <meta property="og:title" content="SITA-TECH - Cyber &amp; Digital Services Hub">
     <meta property="og:description" content="Digital services, computer training and a free Students Corner with setbooks, novels, magazines, computer notes and interview questions.">
     <meta property="og:image" content="./icon-512.png">
-    <title>SITA-TECH  Cyber & Digital Services Hub</title>
+    <title>SITA-TECH - Cyber & Digital Services Hub</title>
 
     <!-- Tailwind CSS CDN -->
 
@@ -389,6 +390,15 @@
         .gallery-card h3 { color: #fff; font-size: .75rem; font-weight: 800; }
         .gallery-card p { margin-top: .2rem; color: #a1a1aa; font-size: .62rem; line-height: 1.4; white-space: pre-wrap; }
         .gallery-empty { grid-column: 1 / -1; padding: 1rem; border: 1px dashed #3f3f46; border-radius: .8rem; color: #a1a1aa; font-size: .7rem; text-align: center; }
+        .help-switch { display: flex; width: fit-content; max-width: 100%; gap: .2rem; margin: 0 0 .45rem .15rem; padding: .2rem; border: 1px solid #27272a; border-radius: .7rem; background: #09090b; }
+        .help-switch button { padding: .4rem .65rem; border-radius: .5rem; color: #a1a1aa; font-size: .62rem; font-weight: 800; }
+        .help-switch button[aria-pressed="true"] { background: #27272a; color: #fff; }
+        .global-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: .5rem; }
+        .global-result { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; gap: .25rem; padding: .65rem; border: 1px solid #27272a; border-radius: .7rem; background: rgba(24,24,27,.9); text-align: left; }
+        .global-result:hover, .global-result:focus-visible { border-color: #3b82f6; outline: none; }
+        .global-result small { color: #facc15; font-size: .55rem; font-weight: 800; text-transform: uppercase; }
+        .global-result strong { color: #fff; font-size: .7rem; }
+        .global-result span { color: #a1a1aa; font-size: .62rem; line-height: 1.35; }
     </style>
     <style id="tw-static">*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, system-ui, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.left-3{left:0.75rem}.right-2{right:0.5rem}.right-4{right:1rem}.top-0{top:0px}.top-1\/2{top:50%}.top-4{top:1rem}.-bottom-3{bottom:-0.75rem}.-right-2{right:-0.5rem}.z-10{z-index:10}.z-50{z-index:50}.z-\[60\]{z-index:60}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.ml-2{margin-left:0.5rem}.mr-1{margin-right:0.25rem}.mr-1\.5{margin-right:0.375rem}.mr-2{margin-right:0.5rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-5{margin-top:1.25rem}.mt-0\.5{margin-top:0.125rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.aspect-square{aspect-ratio:1 / 1}.h-1\.5{height:0.375rem}.h-12{height:3rem}.h-16{height:4rem}.h-20{height:5rem}.h-24{height:6rem}.h-28{height:7rem}.h-40{height:10rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-10{height:2.5rem}.h-32{height:8rem}.max-h-\[90vh\]{max-height:90vh}.max-h-56{max-height:14rem}.max-h-64{max-height:16rem}.min-h-screen{min-height:100vh}.w-1\.5{width:0.375rem}.w-12{width:3rem}.w-16{width:4rem}.w-9{width:2.25rem}.w-auto{width:auto}.w-full{width:100%}.w-10{width:2.5rem}.min-w-0{min-width:0px}.max-w-lg{max-width:32rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;user-select:none}.resize{resize:both}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(5, minmax(0, 1fr))}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-1{gap:0.25rem}.gap-x-2{column-gap:0.5rem}.gap-x-3{column-gap:0.75rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.overflow-x-hidden{overflow-x:hidden}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.break-words{overflow-wrap:break-word}.rounded{border-radius:0.25rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-blue-500\/60{border-color:rgb(59 130 246 / 0.6)}.border-emerald-500\/40{border-color:rgb(16 185 129 / 0.4)}.border-zinc-700{--tw-border-opacity:1;border-color:rgb(63 63 70 / var(--tw-border-opacity, 1))}.border-zinc-800{--tw-border-opacity:1;border-color:rgb(39 39 42 / var(--tw-border-opacity, 1))}.border-zinc-800\/80{border-color:rgb(39 39 42 / 0.8)}.border-zinc-900{--tw-border-opacity:1;border-color:rgb(24 24 27 / var(--tw-border-opacity, 1))}.border-blue-500\/30{border-color:rgb(59 130 246 / 0.3)}.border-green-500\/30{border-color:rgb(34 197 94 / 0.3)}.border-red-500\/30{border-color:rgb(239 68 68 / 0.3)}.border-yellow-500\/30{border-color:rgb(234 179 8 / 0.3)}.bg-\[\#0A0A0C\]{--tw-bg-opacity:1;background-color:rgb(10 10 12 / var(--tw-bg-opacity, 1))}.bg-\[\#0A0A0C\]\/90{background-color:rgb(10 10 12 / 0.9)}.bg-amber-600{--tw-bg-opacity:1;background-color:rgb(217 119 6 / var(--tw-bg-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-black\/80{background-color:rgb(0 0 0 / 0.8)}.bg-black\/90{background-color:rgb(0 0 0 / 0.9)}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-emerald-600\/15{background-color:rgb(5 150 105 / 0.15)}.bg-pink-600{--tw-bg-opacity:1;background-color:rgb(219 39 119 / var(--tw-bg-opacity, 1))}.bg-red-600{--tw-bg-opacity:1;background-color:rgb(220 38 38 / var(--tw-bg-opacity, 1))}.bg-sky-600{--tw-bg-opacity:1;background-color:rgb(2 132 199 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-yellow-500{--tw-bg-opacity:1;background-color:rgb(234 179 8 / var(--tw-bg-opacity, 1))}.bg-zinc-800{--tw-bg-opacity:1;background-color:rgb(39 39 42 / var(--tw-bg-opacity, 1))}.bg-zinc-900{--tw-bg-opacity:1;background-color:rgb(24 24 27 / var(--tw-bg-opacity, 1))}.bg-zinc-950{--tw-bg-opacity:1;background-color:rgb(9 9 11 / var(--tw-bg-opacity, 1))}.bg-green-600{--tw-bg-opacity:1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.bg-blue-500\/10{background-color:rgb(59 130 246 / 0.1)}.bg-green-500\/10{background-color:rgb(34 197 94 / 0.1)}.bg-red-500\/10{background-color:rgb(239 68 68 / 0.1)}.bg-yellow-500\/10{background-color:rgb(234 179 8 / 0.1)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-amber-500{--tw-gradient-from:#f59e0b var(--tw-gradient-from-position);--tw-gradient-to:rgb(245 158 11 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-blue-900\/20{--tw-gradient-from:rgb(30 58 138 / 0.2) var(--tw-gradient-from-position);--tw-gradient-to:rgb(30 58 138 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-lime-500{--tw-gradient-from:#84cc16 var(--tw-gradient-from-position);--tw-gradient-to:rgb(132 204 22 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-yellow-500{--tw-gradient-from:#eab308 var(--tw-gradient-from-position);--tw-gradient-to:rgb(234 179 8 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-blue-600\/40{--tw-gradient-from:rgb(37 99 235 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(37 99 235 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-cyan-600\/40{--tw-gradient-from:rgb(8 145 178 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(8 145 178 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-green-600\/40{--tw-gradient-from:rgb(22 163 74 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(22 163 74 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-orange-600\/40{--tw-gradient-from:rgb(234 88 12 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(234 88 12 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-pink-600\/40{--tw-gradient-from:rgb(219 39 119 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(219 39 119 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-purple-600\/40{--tw-gradient-from:rgb(147 51 234 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(147 51 234 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-red-600\/40{--tw-gradient-from:rgb(220 38 38 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(220 38 38 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-yellow-500\/40{--tw-gradient-from:rgb(234 179 8 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(234 179 8 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-orange-500{--tw-gradient-to:rgb(249 115 22 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #f97316 var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-red-900\/20{--tw-gradient-to:rgb(127 29 29 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), rgb(127 29 29 / 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-green-700{--tw-gradient-to:#15803d var(--tw-gradient-to-position)}.to-green-900\/20{--tw-gradient-to:rgb(20 83 45 / 0.2) var(--tw-gradient-to-position)}.to-pink-600{--tw-gradient-to:#db2777 var(--tw-gradient-to-position)}.to-rose-600{--tw-gradient-to:#e11d48 var(--tw-gradient-to-position)}.to-blue-500\/20{--tw-gradient-to:rgb(59 130 246 / 0.2) var(--tw-gradient-to-position)}.to-cyan-500\/20{--tw-gradient-to:rgb(6 182 212 / 0.2) var(--tw-gradient-to-position)}.to-emerald-500\/20{--tw-gradient-to:rgb(16 185 129 / 0.2) var(--tw-gradient-to-position)}.to-orange-500\/20{--tw-gradient-to:rgb(249 115 22 / 0.2) var(--tw-gradient-to-position)}.to-pink-500\/20{--tw-gradient-to:rgb(236 72 153 / 0.2) var(--tw-gradient-to-position)}.to-red-500\/20{--tw-gradient-to:rgb(239 68 68 / 0.2) var(--tw-gradient-to-position)}.to-yellow-500\/20{--tw-gradient-to:rgb(234 179 8 / 0.2) var(--tw-gradient-to-position)}.object-contain{object-fit:contain}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-1{padding:0.25rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-4{padding-left:1rem;padding-right:1rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.pb-3{padding-bottom:0.75rem}.pl-8{padding-left:2rem}.pr-3{padding-right:0.75rem}.pt-2{padding-top:0.5rem}.pt-3{padding-top:0.75rem}.pr-1{padding-right:0.25rem}.text-center{text-align:center}.align-middle{vertical-align:middle}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[\.58rem\]{font-size:.58rem}.text-\[\.62rem\]{font-size:.62rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[\.68rem\]{font-size:.68rem}.text-\[\.72rem\]{font-size:.72rem}.text-\[\.75rem\]{font-size:.75rem}.text-\[\.82rem\]{font-size:.82rem}.text-2xl{font-size:1.5rem;line-height:2rem}.text-6xl{font-size:3.75rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.leading-relaxed{line-height:1.625}.tracking-wider{letter-spacing:0.05em}.\!text-zinc-300{--tw-text-opacity:1 !important;color:rgb(212 212 216 / var(--tw-text-opacity, 1)) !important}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-black\/70{color:rgb(0 0 0 / 0.7)}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-gray-100{--tw-text-opacity:1;color:rgb(243 244 246 / var(--tw-text-opacity, 1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-lime-400{--tw-text-opacity:1;color:rgb(163 230 53 / var(--tw-text-opacity, 1))}.text-pink-400{--tw-text-opacity:1;color:rgb(244 114 182 / var(--tw-text-opacity, 1))}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.text-sky-400{--tw-text-opacity:1;color:rgb(56 189 248 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-400{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.text-yellow-500{--tw-text-opacity:1;color:rgb(234 179 8 / var(--tw-text-opacity, 1))}.text-zinc-300{--tw-text-opacity:1;color:rgb(212 212 216 / var(--tw-text-opacity, 1))}.text-zinc-400{--tw-text-opacity:1;color:rgb(161 161 170 / var(--tw-text-opacity, 1))}.text-zinc-500{--tw-text-opacity:1;color:rgb(113 113 122 / var(--tw-text-opacity, 1))}.text-zinc-600{--tw-text-opacity:1;color:rgb(82 82 91 / var(--tw-text-opacity, 1))}.text-white\/10{color:rgb(255 255 255 / 0.1)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.placeholder-zinc-300::placeholder{--tw-placeholder-opacity:1;color:rgb(212 212 216 / var(--tw-placeholder-opacity, 1))}.accent-green-500{accent-color:#22c55e}.shadow-\[0_0_14px_rgba\(37\2c 99\2c 235\2c 0\.35\)\]{--tw-shadow:0 0 14px rgba(37,99,235,0.35);--tw-shadow-colored:0 0 14px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-green-900\/40{--tw-shadow-color:rgb(20 83 45 / 0.4);--tw-shadow:var(--tw-shadow-colored)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}.hover\:border-amber-500:hover{--tw-border-opacity:1;border-color:rgb(245 158 11 / var(--tw-border-opacity, 1))}.hover\:border-emerald-500:hover{--tw-border-opacity:1;border-color:rgb(16 185 129 / var(--tw-border-opacity, 1))}.hover\:border-pink-500:hover{--tw-border-opacity:1;border-color:rgb(236 72 153 / var(--tw-border-opacity, 1))}.hover\:border-red-500:hover{--tw-border-opacity:1;border-color:rgb(239 68 68 / var(--tw-border-opacity, 1))}.hover\:bg-amber-500:hover{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.hover\:bg-blue-500:hover{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-600:hover{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.hover\:bg-pink-500:hover{--tw-bg-opacity:1;background-color:rgb(236 72 153 / var(--tw-bg-opacity, 1))}.hover\:bg-red-500:hover{--tw-bg-opacity:1;background-color:rgb(239 68 68 / var(--tw-bg-opacity, 1))}.hover\:bg-sky-500:hover{--tw-bg-opacity:1;background-color:rgb(14 165 233 / var(--tw-bg-opacity, 1))}.hover\:bg-yellow-600:hover{--tw-bg-opacity:1;background-color:rgb(202 138 4 / var(--tw-bg-opacity, 1))}.hover\:bg-zinc-700:hover{--tw-bg-opacity:1;background-color:rgb(63 63 70 / var(--tw-bg-opacity, 1))}.hover\:bg-green-500:hover{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.hover\:text-black:hover{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.hover\:text-blue-400:hover{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.hover\:text-red-400:hover{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.focus\:border-yellow-400:focus{--tw-border-opacity:1;border-color:rgb(250 204 21 / var(--tw-border-opacity, 1))}.focus\:shadow-\[0_0_16px_rgba\(234\2c 179\2c 8\2c 0\.45\)\]:focus{--tw-shadow:0 0 16px rgba(234,179,8,0.45);--tw-shadow-colored:0 0 16px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:h-20{height:5rem}}</style>
 </head>
@@ -407,7 +417,7 @@
     <!-- Top info bar -->
     <div class="bg-gradient-to-r from-blue-900/20 via-red-900/20 to-green-900/20 border-b border-zinc-800 text-[.62rem] py-1 px-3 text-center flex items-center justify-center gap-x-2 relative z-10">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-        <span class="font-bold text-white">0795609046</span>
+        <span class="font-bold text-white" data-business-value="phone"></span>
         <span class="text-zinc-600">|</span>
         <span class="font-bold text-yellow-400 tabular-nums"><i class="fa-regular fa-clock mr-1"></i><span id="liveClock">--:--:--</span></span>
     </div>
@@ -420,9 +430,9 @@
             </a>
             <div class="relative flex-1 min-w-0">
                 <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-blue-400 text-xs"></i>
-                <input type="text" id="headerSearch" oninput="filterServicesGlobal(this.value)" placeholder="Search services…" style="font-size:16px!important" class="w-full h-9 pl-8 pr-3 bg-zinc-800 border-2 border-blue-500/60 rounded-full text-white placeholder-zinc-300 shadow-[0_0_14px_rgba(37,99,235,0.35)] focus:outline-none focus:border-yellow-400 focus:shadow-[0_0_16px_rgba(234,179,8,0.45)] transition-all">
+                <input type="search" id="headerSearch" oninput="runSearch(this.value)" aria-label="Search all site content" placeholder="Search services, courses, shop and help..." style="font-size:16px!important" class="w-full h-9 pl-8 pr-3 bg-zinc-800 border-2 border-blue-500/60 rounded-full text-white placeholder-zinc-300 shadow-[0_0_14px_rgba(37,99,235,0.35)] focus:outline-none focus:border-yellow-400 focus:shadow-[0_0_16px_rgba(234,179,8,0.45)] transition-all">
             </div>
-            <a href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20assistance%20with%20your%20services." target="_blank" rel="noopener" aria-label="WhatsApp SITA-TECH" class="shrink-0 w-9 h-9 rounded-full bg-emerald-600/15 text-emerald-400 border border-emerald-500/40 flex items-center justify-center"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+            <a data-business-whatsapp href="#" target="_blank" rel="noopener" aria-label="WhatsApp SITA-TECH" class="shrink-0 w-9 h-9 rounded-full bg-emerald-600/15 text-emerald-400 border border-emerald-500/40 flex items-center justify-center"><i class="fa-brands fa-whatsapp text-lg"></i></a>
             <div class="lang-switch" aria-label="Choose language">
                 <button type="button" id="languageEnglish" aria-pressed="true">EN</button>
                 <span class="lang-divider" aria-hidden="true">|</span>
@@ -435,9 +445,8 @@
             <button type="button" role="tab" id="tab-academy" aria-controls="academy" aria-selected="false" data-s="academy" onclick="showTab('academy')" class="navchip"><img class="nv" alt="" src="data:image/webp;base64,UklGRsQFAABXRUJQVlA4ILgFAABwGgCdASpgAGAAPpVCmkklo6IhKrQM+LASiWIA1IAVUJtVAmj4usz6q/zdvWv5H6J/2Q9bLzt76WrwHF9z+h71NfBxPRTo9N2agqlGr+VT62O2m4HlusDcl5IbXHCl8L9bdZZBGOBmjk/Cfmo4CKNeF7Xw/w/Vikwa094Wj33OWPUiM/+9t/fQrSUv5VeUdP6CGVxV0dYZPrcxkrfAlqx3ejT/0Tb/qMegAYyzvod8hS98J/SJEhNsaQx5AlB/8tDX1ZMQCTx+a1Fc87k3H8WrCmM/uSHvqRDikfNAAP77hE7QjWCXTyn5rd1w2oN9q00dhFf4XjBudboFPm8Tp25jXiXD8HqKq7J+5JVuvIFU5qIAHrYmnOvFdGU+lFI3EITaQV+EL9kZGTGBympar62NY0C+2FeN4QoQ30yE9C1Qyc7h4vhoyrvOEuDAHVmH6e+vRxpFviEPFwWSjbDtee0sw1sjlb9EKfFvl6MZWuWgiwPABhTzdVrLSQ/+FeboxM3O+TyzFL7OxegBSPdoi6T1APA5hskzcOni09Y/LZ1trbo0AfoFpMSXe+4hBsfpbLaa88HgV5J1FBHAicAbGMiDTkL2zUQ8lhDMoUEpCfYEiSDOugXHE/RbfnlVW+51zQVx+QjPxmZ5tGyWFTyUsjL3htWFH3AAG7VUeIESrbXl/77aNuKuzBu8O5Hu6Drr0Hf25I17awW6vrzWnl8ISJ1b3tPLma5mxHz8zAv0k5De9hMwKkdkRPtEl7JnMiJasZyBfBVi17BBSv7z/x7rh7LLYDzh2fxVcp4Qa0+tIeHUoKM8ShPKHe8AwSwcFv29EcCOl/KzdLMgbANbv/qFRWsfIC97ylgdhbgQvh6QgW/HyQWtRa1VXv2MU7lkPBNFETQxBI1pxs7jn+vWjpjBPKp2fk2unvILGb3NJjhK/kRWQST9eLSKYTc0hBUgRENxMYJXAP/FWy9HLroyzWFxwxWTXoL23gLTlWI/3n5Q+0fk/n+VZYVKamdV9lXEQkdUtHFMPuD6PxAT42tdUmOB9/qPoTI2586Cd0a1r6J4o23leJsbpPTCW593P2HvfN5Cj1E3J1iUMzwPV2wjx9Nn5R+SntL6/+FZQ0Qshh8B1ulsYdCbn8j2sGzzjUyq03xXc5vzdXhiDkeTg0mYu3VdMfw+ZdgGpcJo2mWiVnHVf37Qt4l27ziQ2RQgldJr8vjygGR+ll2/Ph7rXKAdV/p9va97nbJ8itSipf8pS87+2zQiO1RKWeNwNRP92UtH7IOpp9/OxwHFnDih5XzFUPy5HyI9bKddbUn9X2T7o0laATIFmYC0YlRwMiZQBoPg0F6cQ8dFX75pMvJbXloXBNca2N2aFE6voBwA+kivxrWGLjXCkXv8BqofZX5i5IxsU+Ti1tSsul0maJxZKMC6vGeu9LuePbvb7Fgvv40cHE/xXDKmI9+SnnB6nmU9OL+Xfz3OUpBrXJYpvFIMK6F46YAXw8Yzq+h5pBMtRJJKab68X2r2ejGnGbQ6h5M14F3lenUTjhqxg7rV3RdH0d38wpaOH22mQ2Q+l+maK+5yQnmiYYi0LXeuxANB6fyGcrZhc9tSlWZRtLc8B7YbZ33G898XY+jIF4G95E3D0+ZWY0z2NumboluZRrEraw6CDdsdpKMgBXeqdKn7EWa33OoxRRBWG9rUb749lx99tbz6JxdcEhjocfvEn7vgXrdOKDzJ3cqbVBoMN4EbxE0bbe2RATZUpGslXvS+pSrlGV/LZdNAhJsBBuYwGMCwTCU4IZME7Nor7lA4u4XKd/cK1oHV4f/9e8LPyhiwA3SMP/UrywLB6AS40joPmvDPa37aer/IdoAhGsMi3Kjs3il0b9r2uNDHtdJDGj6UhisFTCNxvT6jLqboA0SKIYQOXOTUauamFgjMGtbQkgLZDyMYmE3Wl7f9I+gNrGPszPdwAAA="><span class="tb-t">Academy</span><span class="tb-s">Courses & training</span></button>
             <button type="button" role="tab" id="tab-freeTools" aria-controls="freeTools" aria-selected="false" data-s="freeTools" onclick="showTab('freeTools')" class="navchip"><img class="nv" alt="" src="data:image/webp;base64,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"><span class="tb-t">Free Tools</span><span class="tb-s">QR, CV, PDF & more</span></button>
             <button type="button" role="tab" id="tab-shop" aria-controls="shop" aria-selected="false" data-s="shop" onclick="showTab('shop')" class="navchip"><img class="nv shop-logo" alt="" src="data:image/webp;base64,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"><span class="tb-t">Shop</span><span class="shop-new">NEW</span><span class="shop-cnt" id="shopNavCnt" hidden>0</span></button>
-            <button type="button" role="tab" id="tab-gallery" aria-controls="gallery" aria-selected="false" data-s="gallery" onclick="showTab('gallery')" class="navchip"><i class="fa-solid fa-images nv" aria-hidden="true"></i><span class="tb-t">Gallery</span><span class="tb-s">Our client work</span></button>
-            <button type="button" role="tab" id="tab-tips" aria-controls="tips" aria-selected="false" data-s="tips" onclick="showTab('tips')" class="navchip"><span class="nv tip-nav-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span><span class="tb-t">Tips</span><span class="tb-s">KRA, SHA, eCitizen</span></button>
-            <button type="button" role="tab" id="tab-visitFaq" aria-controls="visitFaq" aria-selected="false" data-s="visitFaq" onclick="showTab('visitFaq')" class="navchip"><i class="fa-solid fa-location-dot nv" aria-hidden="true"></i><span class="tb-t">Visit &amp; FAQ</span><span class="tb-s">Location, questions</span></button>
+            <button type="button" role="tab" id="tab-gallery" aria-controls="gallery" aria-selected="false" data-s="gallery" onclick="showTab('gallery')" class="navchip"><i class="fa-solid fa-images nv" aria-hidden="true"></i><span class="tb-t">Our Work</span><span class="tb-s">Recent client work</span></button>
+            <button type="button" role="tab" id="tab-tips" aria-controls="tips" aria-selected="false" data-s="tips" onclick="openHelp('guides')" class="navchip"><span class="nv tip-nav-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span><span class="tb-t">Help</span><span class="tb-s">Guides &amp; answers</span></button>
         </nav>
     </header>
 
@@ -445,8 +454,11 @@
     <section id="home" class="relative z-10 hero-slim">
         <div class="wrap">
             <h1><span class="full-rgb-text">Your digital services, sorted fast.</span></h1>
-            <button type="button" onclick="showTab('visitFaq')" class="hero-link"><i class="fa-solid fa-location-dot"></i> Visit us &amp; FAQ</button>
+            <button type="button" onclick="openHelp('faq')" class="hero-link"><i class="fa-solid fa-location-dot"></i> Visit us &amp; FAQ</button>
         </div>
+    </section>
+    <section id="globalResults" class="sec tab-pane" role="region" aria-label="Search results">
+        <div class="wrap"><div class="sec-h"><span class="text-blue-400">Search</span><h2 id="globalResultsTitle">Search results</h2></div><div id="globalResultsList" class="global-results" aria-live="polite"></div></div>
     </section>
     <!-- SERVICES: categories on the left, full list opens on the right -->
     <section id="servicesGrid" class="sec tab-pane" role="tabpanel">
@@ -510,21 +522,21 @@
         </div>
     </section>
 
-    <!-- TIPS: short practical guides with a post list and reading panel -->
+    <!-- HELP: guides and FAQs share one top-level tab -->
     <section id="tips" class="sec tab-pane" role="tabpanel" aria-labelledby="tab-tips">
         <div class="wrap">
-            <div class="sec-h"><span class="text-yellow-500">SITA-TECH Tips</span><h2>Helpful guides for everyday services.</h2></div>
-            <div class="sp tips-layout">
-                <div class="sp-rail" id="tipsRail" aria-label="Tips articles"></div>
-                <article class="sp-panel tips-content" id="tipsArticle" aria-live="polite"></article>
+            <div class="sec-h"><span class="text-yellow-500">SITA-TECH Help</span><h2>Guides, location &amp; common questions.</h2></div>
+            <div class="help-switch" role="group" aria-label="Help views">
+                <button type="button" id="helpGuidesBtn" aria-pressed="true" onclick="setHelpView('guides')">Guides</button>
+                <button type="button" id="helpFaqBtn" aria-pressed="false" onclick="setHelpView('faq')">Visit &amp; FAQ</button>
             </div>
-        </div>
-    </section>
-
-    <!-- VISIT US & FAQ -->
-    <section id="visitFaq" class="sec tab-pane" role="tabpanel">
-        <div class="wrap">
-            <div class="sec-h"><h2>Find us, pay, and common questions</h2></div>
+            <div id="helpTipsView">
+                <div class="sp tips-layout">
+                    <div class="sp-rail" id="tipsRail" aria-label="Tips articles"></div>
+                    <article class="sp-panel tips-content" id="tipsArticle" aria-live="polite"></article>
+                </div>
+            </div>
+            <div id="helpFaqView" class="hidden">
             <div class="sp gold fit">
                 <div class="sp-rail" id="visitRail">
                     <button type="button" class="sp-item on" data-k="visit" onclick="setVisit('visit')"><i class="fa-solid fa-location-dot"></i><span class="sp-lbl">Visit us</span></button>
@@ -536,22 +548,23 @@
                 </div>
                 <div class="sp-panel" id="visitPanel">
                     <div class="vf on" data-k="visit">
-                        <h3 data-faq-title="visit">SITA-TECH CYBER&amp; Digital Hub</h3>
+                        <h3 data-faq-title="visit">SITA-TECH CYBER &amp; Digital Hub</h3>
                         <p data-faq-answer="visit">Cyber café, printing, repairs, online services and training, near Moi University, Eldoret.</p>
                         <p class="!text-zinc-300"><i class="fa-solid fa-location-dot text-red-400 mr-1.5"></i><span data-faq-address>Moi University, Kesses, Eldoret</span></p>
-                        <p class="!text-zinc-300"><i class="fa-solid fa-phone text-green-400 mr-1.5"></i><span data-faq-phone>0795609046</span></p>
+                        <p class="!text-zinc-300"><i class="fa-solid fa-phone text-green-400 mr-1.5"></i><span data-faq-phone></span></p>
                         <div class="flex gap-1.5 mt-2">
                             <a data-faq-map target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Moi+University+Kesses+Eldoret" class="btn bg-blue-600 hover:bg-blue-500"><i class="fa-solid fa-map-location-dot"></i>Maps</a>
-                            <a data-faq-call href="tel:+254795609046" class="btn bg-zinc-800 hover:bg-zinc-700"><i class="fa-solid fa-phone"></i>Call</a>
+                            <a data-faq-call href="#" class="btn bg-zinc-800 hover:bg-zinc-700"><i class="fa-solid fa-phone"></i>Call</a>
                         </div>
                         <iframe title="SITA-TECH location" loading="lazy" class="w-full h-28 rounded-xl border border-zinc-800 mt-2" src="https://www.google.com/maps?q=Moi+University+Kesses+Eldoret&amp;output=embed"></iframe>
                     </div>
-                    <div class="vf" data-k="pay"><h3 data-faq-title="pay">How do I pay?</h3><p data-faq-answer="pay">Pay by M-Pesa to Till Number 6807927. Message us on WhatsApp first so we confirm the price.</p></div>
+                    <div class="vf" data-k="pay"><h3 data-faq-title="pay">How do I pay?</h3><p data-faq-answer="pay"></p></div>
                     <div class="vf" data-k="order"><h3 data-faq-title="order">How do I order a service?</h3><p data-faq-answer="order">Tap the green WhatsApp button on any service. It opens WhatsApp with your request already written.</p></div>
                     <div class="vf" data-k="acad"><h3 data-faq-title="acad">Do I need experience to join the Academy?</h3><p data-faq-answer="acad">No. The courses are beginner-friendly. Tap a course, pick the topics you want and enrol online.</p></div>
                     <div class="vf" data-k="tools"><h3 data-faq-title="tools">Are the free tools safe to use?</h3><p data-faq-answer="tools">Yes. The converter, compressor, CV builder and other tools work on your own device. Your files are not uploaded to our site.</p></div>
                     <div class="vf" data-k="missing"><h3 data-faq-title="missing">What if my service is not listed?</h3><p data-faq-answer="missing">Message us on WhatsApp and ask. If we can help, we will tell you the price before you pay.</p></div>
                 </div>
+            </div>
             </div>
         </div>
     </section>
@@ -588,16 +601,16 @@
                         <li><a href="#academy" class="hover:text-blue-400">Academy</a></li>
                         <li><a href="#studentCorner" class="hover:text-blue-400">Student Corner</a></li>
                         <li><a href="#freeTools" class="hover:text-blue-400">Free Utilities</a></li>
-                        <li><a href="#tips" class="hover:text-blue-400">Tips</a></li>
+                        <li><a href="#tips" class="hover:text-blue-400">Help</a></li>
                         <li><a href="#install-app" id="footerInstallLink" class="hover:text-blue-400">Install app</a></li>
                         <li><a href="https://sita-tech.co.ke" target="_blank" rel="noopener" class="hover:text-blue-400">sita-tech.co.ke</a></li>
                     </ul>
                 </div>
                 <div class="min-w-0">
                     <h4 class="text-white font-bold mb-1.5 uppercase tracking-wider text-[.58rem]">Contact</h4>
-                    <p>Phone: <span class="text-white font-bold">0795609046</span></p>
+                    <p>Phone: <span class="text-white font-bold" data-business-value="phone"></span></p>
                     <p class="mt-1">Email: <span class="text-white font-bold">sitatech3@gmail.com</span></p>
-                    <p class="mt-1">Till: <span class="text-yellow-400 font-bold">6807927</span></p>
+                    <p class="mt-1">Till: <span class="text-yellow-400 font-bold" data-business-value="till"></span></p>
                     <p id="visitorCounter" class="mt-1" hidden></p>
                 </div>
             </div>
@@ -634,7 +647,7 @@
                 <h3 class="text-lg font-bold text-white mb-1"><i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i>WhatsApp Link Generator</h3>
                 <p class="text-xs text-zinc-400 mb-4">Generate a direct chat link with your customized message.</p>
                 <div class="space-y-3">
-                    <input type="text" id="waPhone" placeholder="Phone Number (e.g., 0795609046)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white">
+                    <input type="text" id="waPhone" placeholder="Phone Number" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white">
                     <textarea id="waMsg" placeholder="Your pre-filled message..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-white h-24"></textarea>
                     <button onclick="generateWaLink()" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs">Generate Link</button>
                     <div id="waOutput" class="hidden pt-2">
@@ -726,7 +739,7 @@
                     <label class="block text-[11px] text-zinc-400">CV accent colour <input id="cvAccent" type="color" value="#1d4ed8" class="ml-2 h-8 w-12 align-middle rounded border border-zinc-700 bg-zinc-950"></label>
                     <button onclick="cvRun()" id="cvBtn" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs">Create CV (PDF)</button>
                     <p id="cvMsg" class="text-[11px] text-zinc-400"></p><div id="cvResults" class="space-y-2"></div>
-                    <p class="text-[10px] text-zinc-500">Want a professionally designed CV? <a class="text-green-400 underline" target="_blank" href="https://wa.me/254795609046?text=Hello%20SITA-TECH,%20I%20need%20a%20professionally%20designed%20CV">Ask SITA-TECH on WhatsApp</a>.</p>
+                    <p class="text-[10px] text-zinc-500">Want a professionally designed CV? <a class="text-green-400 underline" target="_blank" data-business-whatsapp="Hello SITA-TECH, I need a professionally designed CV" href="#">Ask SITA-TECH on WhatsApp</a>.</p>
                 </div>
             </div>
 
@@ -1113,6 +1126,21 @@
 
         function iconClass(i) { return /fa-(solid|brands|regular)/.test(i) ? i : 'fa-solid ' + i; }
         function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+        const BUSINESS = window.SITA_CONFIG;
+        function businessText(value) {
+            return String(value || '').replaceAll('{{phone}}', BUSINESS.phone)
+                .replaceAll('{{whatsapp}}', BUSINESS.whatsapp)
+                .replaceAll('{{phoneIntl}}', '+' + BUSINESS.whatsapp)
+                .replaceAll('{{till}}', BUSINESS.till);
+        }
+        function applyBusinessConfig() {
+            document.querySelectorAll('[data-business-value]').forEach(node => { node.textContent = BUSINESS[node.dataset.businessValue] || ''; });
+            document.querySelectorAll('[data-business-whatsapp]').forEach(link => {
+                const message = link.dataset.businessWhatsapp || 'Hello SITA-TECH, I need assistance with your services.';
+                link.href = 'https://wa.me/' + BUSINESS.whatsapp + '?text=' + encodeURIComponent(message);
+            });
+        }
+        applyBusinessConfig();
         const gradients = { Hardware: 'from-blue-600/40 to-cyan-500/20', SHA: 'from-red-600/40 to-pink-500/20', Government: 'from-green-600/40 to-emerald-500/20', Business: 'from-yellow-500/40 to-orange-500/20', Documents: 'from-purple-600/40 to-blue-500/20', Design: 'from-pink-600/40 to-yellow-500/20', Web: 'from-cyan-600/40 to-blue-500/20', Printing: 'from-orange-600/40 to-red-500/20' };
         const PHOTOS = {"kuccps": {"src": "images/svc-kuccps.webp", "fit": "contain", "bg": "#ffffff"}, "nssf": {"src": "images/svc-nssf.webp", "fit": "contain", "bg": "#ffc313"}, "ecitizen": {"src": "images/svc-ecitizen.webp", "fit": "contain", "bg": "#ffffff"}, "itax": {"src": "images/svc-itax.webp", "fit": "contain", "bg": "#ffffff"}, "ntsa": {"src": "images/svc-ntsa.webp", "fit": "contain", "bg": "#ffffff"}, "windows": {"src": "images/svc-windows.webp", "fit": "cover", "bg": "#5e93c9"}, "printer": {"src": "images/svc-printer.webp", "fit": "cover", "bg": "#515149"}, "wifi": {"src": "images/svc-wifi.webp", "fit": "cover", "bg": "#000004"}, "repair": {"src": "images/svc-repair.webp", "fit": "cover", "bg": "#e0e3e8"}};
         const DEFAULT_IMG = {"55": "kuccps", "15": "nssf", "12": "ecitizen", "13": "itax", "14": "ntsa", "103": "windows", "102": "repair", "52": "wifi", "201": "printer", "202": "printer"};
@@ -1208,7 +1236,7 @@
 
         function svcRow(s) {
             const pop = [1, 12, 13, 28].includes(Number(s.id));
-            const wa = 'https://wa.me/254795609046?text=' + encodeURIComponent('Hello SITA-TECH, I am interested in ' + s.title);
+            const wa = 'https://wa.me/' + BUSINESS.whatsapp + '?text=' + encodeURIComponent('Hello SITA-TECH, I am interested in ' + s.title);
             return `<div class="svc" data-id="${esc(s.id)}">
                 <div class="svc-main" onclick="toggleSvc(this.parentNode)">
                     ${svcThumb(s)}
@@ -1260,11 +1288,65 @@
             searchTerm = q;
             document.querySelectorAll('#headerSearch,#mobileSearch,#heroQueryInput').forEach(i => { if (i.value !== q) i.value = q; });
             renderServices(q.trim() ? 'All' : currentCategory, q);
-            renderAcademy(q);
-            if (q.trim()) showTab('servicesGrid', { keepScroll: true });
+            renderAcademy();
+            if (q.trim()) {
+                renderGlobalSearch(q.trim());
+                showTab('globalResults', { keepScroll: true });
+            } else {
+                showTab('servicesGrid', { keepScroll: true });
+            }
         }
         function filterServicesGlobal(q) { runSearch(q); }
         function filterServicesGlobalHero(q) { runSearch(q); }
+
+        function renderGlobalSearch(query) {
+            const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+            const results = [];
+            const add = (kind, id, type, title, detail, haystack) => {
+                const text = String(haystack || (title + ' ' + detail)).toLowerCase();
+                if (terms.every(term => text.includes(term))) results.push({ kind, id, type, title, detail });
+            };
+            defaultServices.forEach(item => add('service', item.id, item.category, item.title, item.desc, item.title + ' ' + item.category + ' ' + item.desc));
+            courses.forEach((item, index) => add('course', index, 'Course', item.t, item.d + ' ' + (item.topics || []).join(', ') + ' ' + courseFee(item), item.t + ' ' + item.d + ' ' + (item.topics || []).join(' ') + ' ' + courseFee(item)));
+            (shopData.products || []).forEach(item => add('shop', item.id, 'Shop', item.name, item.desc + ' · ' + item.cat + ' · ' + shopMoney(shopPrice(item)), item.name + ' ' + item.desc + ' ' + item.cat + ' ' + item.offerLabel));
+            (window.sitaTips ? window.sitaTips.getPosts() : []).forEach(item => {
+                const content = ['en', 'sw'].flatMap(lang => [item[lang].shortTitle, item[lang].title, ...item[lang].paragraphs, item[lang].note || '']).join(' ');
+                add('tip', item.id, 'Guide', item.en.shortTitle, item.en.title, content);
+            });
+            Object.entries(visitFaqData()).forEach(([id, item]) => add('faq', id, 'Help', item.title, item.answer, item.title + ' ' + item.answer));
+            allCornerItems().forEach(item => add('corner', item.id, 'Student Corner', item.title, item.desc, item.title + ' ' + item.desc + ' ' + item.type));
+            document.getElementById('globalResultsTitle').textContent = `Results for “${query}” · ${results.length}`;
+            document.getElementById('globalResultsList').innerHTML = results.length ? results.map(item => `
+                <button type="button" class="global-result" data-search-kind="${esc(item.kind)}" data-search-id="${esc(item.id)}">
+                    <small>${esc(item.type)}</small><strong>${esc(item.title)}</strong><span>${esc(item.detail)}</span>
+                </button>`).join('') : '<p class="sp-empty">No matching items found across services, courses, shop and help.</p>';
+        }
+        document.getElementById('globalResultsList').addEventListener('click', event => {
+            const result = event.target.closest('[data-search-kind]');
+            if (result) openGlobalResult(result.dataset.searchKind, result.dataset.searchId);
+        });
+        function openGlobalResult(kind, id) {
+            if (kind === 'service') {
+                const item = defaultServices.find(service => String(service.id) === String(id));
+                if (!item) return;
+                currentCategory = 'All'; showTab('servicesGrid'); renderServices('All', searchTerm);
+                const card = [...document.querySelectorAll('#servicesContainer .svc')].find(node => node.dataset.id === String(id));
+                if (card) { toggleSvc(card); card.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+            } else if (kind === 'course') {
+                showTab('academy'); courseSel = Number(id); renderAcademy();
+            } else if (kind === 'shop') {
+                const item = shopFind(id); if (!item) return;
+                showTab('shop'); shopCat = item.cat; shopRender();
+                [...document.querySelectorAll('[data-product-id]')].find(node => node.dataset.productId === String(id))?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            } else if (kind === 'tip') {
+                openHelp('guides'); if (window.sitaTips) window.sitaTips.openPost(id);
+            } else if (kind === 'faq') {
+                openHelp('faq'); setVisit(id);
+            } else if (kind === 'corner') {
+                const item = allCornerItems().find(resource => String(resource.id) === String(id));
+                if (item) { showTab('studentCorner'); setCornerTab(item.type); }
+            }
+        }
 
         // Academy courses
         let courses = [
@@ -1286,10 +1368,8 @@
         };
 
         function renderAcademy(q = '') {
-            const s = q.trim().toLowerCase();
-            const list = courses.map((c, i) => ({ c, i })).filter(({ c }) => !s || (c.t + ' ' + c.d + ' ' + (c.topics || []).join(' ')).toLowerCase().includes(s));
-            document.getElementById('academy').classList.toggle('hidden', !list.length);
-            if (!list.length) return;
+            const list = courses.map((c, i) => ({ c, i }));
+            document.getElementById('academy').classList.remove('hidden');
             if (!list.some(x => x.i === courseSel)) courseSel = list[0].i;
             document.getElementById('courseRail').innerHTML = list.map(({ c, i }) =>
                 `<button type="button" class="sp-item${i === courseSel ? ' on' : ''}" onclick="selectCourse(${i})"><i class="fa-solid ${c.ic}"></i><span class="sp-lbl">${esc(c.t)}</span></button>`).join('') + `<button type="button" class="sp-item" onclick="location.href='portal.html'" style="color:#facc15"><i class="fa-solid fa-lock"></i><span class="sp-lbl">Student Portal</span></button>`;
@@ -1316,12 +1396,23 @@
             location.href = 'enroll.html?course=' + encodeURIComponent(c.t) + '&topics=' + encodeURIComponent(picked.join(', ')) + '&fee=' + encodeURIComponent(courseFee(c));
         }
 
-        const TAB_IDS = ['servicesGrid', 'studentCorner', 'academy', 'freeTools', 'shop', 'gallery', 'tips', 'visitFaq'];
+        const TAB_IDS = ['servicesGrid', 'studentCorner', 'academy', 'freeTools', 'shop', 'gallery', 'tips', 'globalResults'];
+        function setHelpView(view) {
+            const faq = view === 'faq';
+            document.getElementById('helpTipsView').classList.toggle('hidden', faq);
+            document.getElementById('helpFaqView').classList.toggle('hidden', !faq);
+            document.getElementById('helpGuidesBtn').setAttribute('aria-pressed', String(!faq));
+            document.getElementById('helpFaqBtn').setAttribute('aria-pressed', String(faq));
+        }
+        function openHelp(view) { setHelpView(view); showTab('tips'); }
+        let lastMainTab = 'servicesGrid';
         function showTab(id, opts) {
+            if (id === 'visitFaq') { id = 'tips'; setHelpView('faq'); }
             if (!TAB_IDS.includes(id)) id = 'servicesGrid';
+            if (id !== 'globalResults') lastMainTab = id;
             TAB_IDS.forEach(t => { const p = document.getElementById(t); if (p) p.classList.toggle('active', t === id); });
             document.querySelectorAll('#secNav button').forEach(b => {
-                const on = b.dataset.s === id;
+                const on = b.dataset.s === (id === 'globalResults' ? lastMainTab : id);
                 b.classList.toggle('on', on);
                 b.setAttribute('aria-selected', on ? 'true' : 'false');
                 if (on) {
@@ -1329,7 +1420,7 @@
                     nav.scrollTo({ left: b.offsetLeft - nav.offsetLeft, behavior: 'smooth' });
                 }
             });
-            try { sessionStorage.setItem('sitaTab', id); } catch (e) {}
+            if (id !== 'globalResults') { try { sessionStorage.setItem('sitaTab', id); } catch (e) {} }
             if (!(opts && opts.keepScroll)) window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         function scrollToSection(id) { showTab(id); }
@@ -1824,7 +1915,7 @@
         }
 
         function generateWaLink() {
-            const phone = document.getElementById('waPhone').value.trim() || '0795609046';
+            const phone = document.getElementById('waPhone').value.trim() || BUSINESS.phone;
             const msg = encodeURIComponent(document.getElementById('waMsg').value.trim());
             const url = `https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${msg}`;
             document.getElementById('waGeneratedUrl').value = url;
@@ -2259,8 +2350,8 @@
             ['x', 'X (Twitter)', 'X', '#ffffff']
         ];
         const VISIT_FAQ_DEFAULT = {
-            visit: { title: 'SITA-TECH CYBER& Digital Hub', answer: 'Cyber café, printing, repairs, online services and training, near Moi University, Eldoret.', address: 'Moi University, Kesses, Eldoret', phone: '0795609046', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Moi+University+Kesses+Eldoret' },
-            pay: { title: 'How do I pay?', answer: 'Pay by M-Pesa to Till Number 6807927. Message us on WhatsApp first so we confirm the price.' },
+            visit: { title: 'SITA-TECH CYBER & Digital Hub', answer: 'Cyber café, printing, repairs, online services and training, near Moi University, Eldoret.', address: 'Moi University, Kesses, Eldoret', phone: '{{phone}}', mapUrl: 'https://www.google.com/maps/search/?api=1&query=Moi+University+Kesses+Eldoret' },
+            pay: { title: 'How do I pay?', answer: 'Pay by M-Pesa to Till Number {{till}}. Message us on WhatsApp first so we confirm the price.' },
             order: { title: 'How do I order a service?', answer: 'Tap the green WhatsApp button on any service. It opens WhatsApp with your request already written.' },
             acad: { title: 'Do I need experience to join the Academy?', answer: 'No. The courses are beginner-friendly. Tap a course, pick the topics you want and enrol online.' },
             tools: { title: 'Are the free tools safe to use?', answer: 'Yes. The converter, compressor, CV builder and other tools work on your own device. Your files are not uploaded to our site.' },
@@ -2291,7 +2382,7 @@
                 const title = document.querySelector(`[data-faq-title="${id}"]`);
                 const answer = document.querySelector(`[data-faq-answer="${id}"]`);
                 if (title) title.textContent = item.title;
-                if (answer) answer.textContent = item.answer;
+                if (answer) answer.textContent = businessText(item.answer);
             });
             const visit = data.visit;
             const address = document.querySelector('[data-faq-address]');
@@ -2300,11 +2391,10 @@
             const call = document.querySelector('[data-faq-call]');
             const mapFrame = document.querySelector('#visitPanel iframe');
             if (address) address.textContent = visit.address;
-            if (phone) phone.textContent = visit.phone;
+            if (phone) phone.textContent = businessText(visit.phone);
             if (map) map.href = visit.mapUrl;
             if (call) {
-                const digits = visit.phone.replace(/\D/g, '');
-                call.href = 'tel:' + (digits.startsWith('0') ? '+254' + digits.slice(1) : '+' + digits);
+                call.href = 'tel:+' + BUSINESS.whatsapp;
             }
             if (mapFrame) mapFrame.src = 'https://www.google.com/maps?q=' + encodeURIComponent(visit.address) + '&output=embed';
         }
@@ -3155,7 +3245,8 @@
             // restore the tab from the link (#academy, #studentCorner…) or the last one used
             let start = 'servicesGrid';
             const h = location.hash.replace('#', '');
-            if (TAB_IDS.includes(h)) start = h;
+            if (h === 'visitFaq') { start = 'tips'; setHelpView('faq'); }
+            else if (TAB_IDS.includes(h)) start = h;
             else if (/^service-\d+$/.test(h)) start = 'servicesGrid';
             else { try { const s = sessionStorage.getItem('sitaTab'); if (TAB_IDS.includes(s)) start = s; } catch (e) {} }
             if (new URLSearchParams(location.search).has('tools')) start = 'freeTools';
@@ -3165,7 +3256,7 @@
                 const a = e.target.closest && e.target.closest('a[href^="#"]');
                 if (!a) return;
                 const id = a.getAttribute('href').slice(1);
-                if (TAB_IDS.includes(id)) { e.preventDefault(); showTab(id); }
+                if (TAB_IDS.includes(id) || id === 'visitFaq') { e.preventDefault(); showTab(id); }
             });
             // arrow keys move between tabs
             document.getElementById('secNav').addEventListener('keydown', e => {
@@ -3210,7 +3301,7 @@
 
 <script>
 // ======== SITA-TECH SHOP (items + offers). Manage from the site admin > Shop tab ========
-const SHOP_WA = '254795609046', SHOP_TILL = '6807927';
+const SHOP_WA = window.SITA_CONFIG.whatsapp, SHOP_TILL = window.SITA_CONFIG.till;
 const SHOP_DEFAULT = {"banner":"","products":[{"id":"p1","name":"Flash Disk 32GB","price":900,"cat":"Computer Accessories","desc":"Fast, reliable USB flash disk for files, documents and backups.","icon":"fa-usb","stock":20},{"id":"p2","name":"Wireless Mouse","price":700,"offer":550,"offerLabel":"Weekend deal","cat":"Computer Accessories","desc":"Comfortable wireless mouse with USB receiver.","icon":"fa-computer-mouse","stock":15},{"id":"p3","name":"USB Keyboard","price":1200,"cat":"Computer Accessories","desc":"Full-size wired keyboard, plug and type.","icon":"fa-keyboard","stock":10},{"id":"p4","name":"Phone Charger & Cable","price":800,"cat":"Phone Accessories","desc":"Fast-charging adapter with a durable cable.","icon":"fa-plug","stock":25},{"id":"p5","name":"Earphones","price":500,"offer":400,"offerLabel":"Limited offer","cat":"Phone Accessories","desc":"Clear sound earphones with built-in mic.","icon":"fa-headphones","stock":30},{"id":"p6","name":"A4 Printing Paper (Ream)","price":700,"cat":"Stationery","desc":"500 sheets of quality white A4 paper.","icon":"fa-file","stock":40},{"id":"p7","name":"Notebook (A5)","price":150,"cat":"Stationery","desc":"Ruled A5 notebook for class, work and notes.","icon":"fa-book","stock":50}]};
 let shopData = JSON.parse(JSON.stringify(SHOP_DEFAULT)), shopCat = 'All', shopCart = {}, shopStep = 'cart', saImg = '';
 const shopMoney = n => 'KSh ' + Number(n || 0).toLocaleString('en-KE');
@@ -3252,7 +3343,7 @@ function shopRender() {
         const q = shopCart[p.id] || 0, out = p.stock === 0;
         const th = p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy" decoding="async">` : `<i class="fa-solid ${esc(p.icon || 'fa-box')}"></i>`;
         const ctl = out ? `<button class="shop-add" disabled>Sold out</button>` : q ? `<span class="shop-qty"><button type="button" aria-label="Less" onclick="shopSet('${esc(p.id)}',${q - 1})">&minus;</button><span>${q}</span><button type="button" aria-label="More" onclick="shopSet('${esc(p.id)}',${q + 1})">+</button></span>` : `<button type="button" class="shop-add" onclick="shopSet('${esc(p.id)}',1)">Add</button>`;
-        return `<div class="shop-card"><div class="shop-th">${th}</div><div class="min-w-0 flex-1"><div class="shop-nm">${esc(p.name)}</div>${p.desc ? `<div class="shop-ds">${esc(p.desc)}</div>` : ''}${shopPriceHtml(p)}</div>${ctl}</div>`;
+        return `<div class="shop-card" data-product-id="${esc(p.id)}"><div class="shop-th">${th}</div><div class="min-w-0 flex-1"><div class="shop-nm">${esc(p.name)}</div>${p.desc ? `<div class="shop-ds">${esc(p.desc)}</div>` : ''}${shopPriceHtml(p)}</div>${ctl}</div>`;
       }).join('') : '<p class="sp-empty">No items here yet. Message us on WhatsApp for what you need.</p>') +
       `<div class="shop-bar"><div><b>${n} item${n === 1 ? '' : 's'}</b><small>${shopMoney(shopTotal())}</small></div><button type="button" class="shop-go" onclick="shopOpenCart()"${n ? '' : ' disabled'}>View cart &amp; order</button></div>`;
     const hc = document.getElementById('shopHdrCnt'); if (hc) hc.textContent = n;
@@ -3386,19 +3477,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 <form id="cbF" onsubmit="cbSend(event)"><input id="cbI" placeholder="Ask about services, courses, tools or the site..." autocomplete="off"><button aria-label="Send"><i class="fa-solid fa-paper-plane"></i></button></form></div>
 <script>
 (function(){
-const WA='https://wa.me/254795609046?text=', $=i=>document.getElementById(i);
+const WA='https://wa.me/'+window.SITA_CONFIG.whatsapp+'?text=', $=i=>document.getElementById(i);
 const K=[
-[/\bshop\b|\bbuy\b|\bbuying\b|order (an? )?item|products?\b|\bcart\b|\bdeliver/,()=>'Open the Shop tab to browse items, add them to your cart and send your order on WhatsApp. You can pick up or ask for delivery. Pay by M-Pesa Till 6807927 after we confirm.'],
-[/pay|till|mpesa|m-pesa|lipa|how much do i pay/,()=>'You can pay by M-Pesa to Till Number 6807927. Message us on WhatsApp first so we confirm the price, then pay.'],
-[/where|location|visit|address|find you|office|directions|map/,()=>'We are at Moi University, Kesses, Eldoret. Open the "Visit us" section for the map, or call 0795609046.'],
-[/phone|call|contact|email|reach|number|whatsapp/,()=>'Phone/WhatsApp: 0795609046\nEmail: sitatech3@gmail.com\nTill: 6807927'],
+[/\bshop\b|\bbuy\b|\bbuying\b|order (an? )?item|products?\b|\bcart\b|\bdeliver/,()=>`Open the Shop tab to browse items, add them to your cart and send your order on WhatsApp. You can pick up or ask for delivery. Pay by M-Pesa Till ${window.SITA_CONFIG.till} after we confirm.`],
+[/pay|till|mpesa|m-pesa|lipa|how much do i pay/,()=>`You can pay by M-Pesa to Till Number ${window.SITA_CONFIG.till}. Message us on WhatsApp first so we confirm the price, then pay.`],
+[/where|location|visit|address|find you|office|directions|map/,()=>`We are at Moi University, Kesses, Eldoret. Open the "Visit us" section for the map, or call ${window.SITA_CONFIG.phone}.`],
+[/phone|call|contact|email|reach|number|whatsapp/,()=>`Phone/WhatsApp: ${window.SITA_CONFIG.phone}\nEmail: sitatech3@gmail.com\nTill: ${window.SITA_CONFIG.till}`],
 [/portal|login|log in|password|username|student account/,()=>'The Student Portal is at portal.html (yellow button beside the Academy title). Log in with your full name and the password we send after your fee payment is confirmed. To get one, enroll first.'],
 [/enrol|enroll|join|register for|sign up|how do i start/,()=>'Open the Academy section, pick a course and topics, then tap "Enroll Now". Pay the fee, we confirm the payment and send your portal login.'],
 [/free notes|notes|interview/,()=>'Setbooks (English and Kiswahili), novels, magazines, computer notes and interview questions are in the "Student corner" section. New items are added regularly.'],
 [/tool|passport|resize|resizer|background|qr|convert|compress|pdf|cv builder|word count|photo sheet/,()=>'Free tools (in the Free utilities section): WhatsApp link, QR code, Passport Maker, Image Resizer (any size + background eraser), file size, converter, compressor, PDF merge/split, CV builder, passport photo sheet and word counter. Your files stay on your device.'],
 [/hello|hi\b|hey|good (morning|afternoon|evening)|jambo|habari/,()=>'Hello! I am the SITA-TECH assistant. Ask me about our services, prices, Academy courses, free tools or how to pay.'],
 [/thank|asante/,()=>'You are welcome! Anything else I can help with?'],
-[/hour|open|close|time/,()=>'For opening hours please message us on WhatsApp on 0795609046 so we give you the exact times.']];
+[/hour|open|close|time/,()=>`For opening hours please message us on WhatsApp on ${window.SITA_CONFIG.phone} so we give you the exact times.`]];
 function find(q){const w=q.toLowerCase().split(/\W+/).filter(x=>x.length>2);if(!w.length)return null;
  let best=null,bs=0;(window.defaultServices||defaultServices).forEach(s=>{const t=(s.title+' '+s.desc+' '+s.category).toLowerCase();let n=0;w.forEach(x=>{if(t.includes(x))n++});if(n>bs){bs=n;best=['s',s]}});
  courses.forEach(c=>{const t=(c.t+' '+c.d+' '+c.topics.join(' ')).toLowerCase();let n=0;w.forEach(x=>{if(t.includes(x))n++});if(n>bs){bs=n;best=['c',c]}});
@@ -3414,7 +3505,7 @@ function siteSearch(q){const skip=new Set(['what','where','when','which','that',
 function answer(q){const l=q.toLowerCase();
  if(/about (?:sita(?:-tech)?|(?:(?:this|the|your|our) )?(?:website|site))|what is (?:sita(?:-tech)?|this website|this site)|who are you|what do you do|all information|website information/.test(l)){
   const categories=[...new Set((window.defaultServices||defaultServices).map(s=>s.category))].join(', ');
-  return 'SITA-TECH is a cyber and digital services hub in Kenya, with computer training and a free Student Corner. Services include '+categories+'. The Academy offers '+courses.length+' listed courses. The site also has free tools for QR codes, passport photos, resizing, file conversion, compression, PDFs, CVs and word counts. Contact: 0795609046 or sitatech3@gmail.com. Ask me about a service, course, fee or tool for current details.';
+    return 'SITA-TECH is a cyber and digital services hub in Eldoret, with computer training and a free Student Corner. Services include '+categories+'. The Academy offers '+courses.length+' listed courses. The site also has free tools for QR codes, passport photos, resizing, file conversion, compression, PDFs, CVs and word counts. Contact: '+window.SITA_CONFIG.phone+' or sitatech3@gmail.com. Ask me about a service, course, fee or tool for current details.';
  }
  if(/what services|list (all )?services|services do you offer/.test(l)){
   const categories=[...new Set((window.defaultServices||defaultServices).map(s=>s.category))];
@@ -3607,7 +3698,7 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
         'Sentences': 'Sentensi',
         'Min read': 'Dakika za kusoma',
         'Your pre-filled message...': 'Ujumbe wako ulioandaliwa...',
-        'Phone Number (e.g., 0795609046)': 'Nambari ya simu (kwa mfano 0795609046)',
+        'Phone Number': 'Nambari ya simu',
         'Enter Value...': 'Weka thamani...',
         'Order online. Pick up or get it delivered.': 'Agiza mtandaoni. Chukua au uletewe.',
         'All items': 'Bidhaa zote',
@@ -3626,14 +3717,14 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
         'How to order': 'Jinsi ya kuagiza',
         'Free tools': 'Zana za bure',
         'Not listed?': 'Haijaorodheshwa?',
-        'SITA-TECH CYBER& Digital Hub': 'Kituo cha Huduma za Kidijitali cha SITA-TECH',
+        'SITA-TECH CYBER & Digital Hub': 'Kituo cha Huduma za Kidijitali cha SITA-TECH',
         'Cyber café, printing, repairs, online services and training, near Moi University, Eldoret.': 'Cyber, uchapishaji, ukarabati, huduma za mtandaoni na mafunzo karibu na Chuo Kikuu cha Moi, Eldoret.',
         'Moi University, Kesses, Eldoret': 'Chuo Kikuu cha Moi, Kesses, Eldoret',
         'Maps': 'Ramani',
         'Call': 'Piga simu',
         'Find us, pay, and common questions': 'Mahali tulipo, malipo na maswali ya kawaida',
         'How do I pay?': 'Nitalipaje?',
-        'Pay by M-Pesa to Till Number 6807927. Message us on WhatsApp first so we confirm the price.': 'Lipa kwa M-Pesa kupitia Nambari ya Till 6807927. Tutumie ujumbe WhatsApp kwanza ili tuthibitishe bei.',
+        [`Pay by M-Pesa to Till Number ${BUSINESS.till}. Message us on WhatsApp first so we confirm the price.`]: `Lipa kwa M-Pesa kupitia Nambari ya Till ${BUSINESS.till}. Tutumie ujumbe WhatsApp kwanza ili tuthibitishe bei.`,
         'How do I order a service?': 'Nitaagizaje huduma?',
         'Tap the green WhatsApp button on any service. It opens WhatsApp with your request already written.': 'Gusa kitufe cha kijani cha WhatsApp kwenye huduma yoyote. WhatsApp itafunguka na ombi lako tayari limeandikwa.',
         'Do I need experience to join the Academy?': 'Je, nahitaji uzoefu ili kujiunga na Akademi?',
@@ -3935,7 +4026,7 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
                 shortTitle: 'Avoid online scams', title: 'Simple ways to avoid online scams',
                 paragraphs: [
                     'Never share your M-Pesa PIN, one-time password, or verification codes with anyone. Do not approve a payment you did not start.',
-                    'Government websites use the .go.ke domain. For SITA-TECH services, pay only through our official Till Number, 6807927, after confirming the service.'
+                    'Government websites use the .go.ke domain. For SITA-TECH services, pay only through our official Till Number, {{till}}, after confirming the service.'
                 ],
                 note: 'Check the official government website before sharing details or making a payment.'
             },
@@ -3943,7 +4034,7 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
                 shortTitle: 'Jihadhari na utapeli', title: 'Njia rahisi za kujiepusha na utapeli mtandaoni',
                 paragraphs: [
                     'Usishiriki PIN yako ya M-Pesa, nenosiri la matumizi moja, au misimbo ya uthibitishaji na mtu yeyote. Usiidhinishe malipo ambayo hukuanzisha.',
-                    'Tovuti za serikali hutumia kikoa cha .go.ke. Kwa huduma za SITA-TECH, lipa kupitia Nambari yetu rasmi ya Till pekee, 6807927, baada ya kuthibitisha huduma.'
+                    'Tovuti za serikali hutumia kikoa cha .go.ke. Kwa huduma za SITA-TECH, lipa kupitia Nambari yetu rasmi ya Till pekee, {{till}}, baada ya kuthibitisha huduma.'
                 ],
                 note: 'Angalia tovuti rasmi ya serikali kabla ya kushiriki maelezo au kufanya malipo.'
             }
@@ -3972,7 +4063,7 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
     ];
     const rail = document.getElementById('tipsRail');
     const article = document.getElementById('tipsArticle');
-    const WHATSAPP = '254795609046';
+    const WHATSAPP = window.SITA_CONFIG.whatsapp;
     let extraPosts = [];
     let managedPosts = null;
     let selectedTipId = POSTS[0].id;
@@ -4027,8 +4118,8 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
         icon.setAttribute('aria-hidden', 'true');
         const meta = element('div', 'tips-meta', post.date + ' · ' + post.minutes + (lang === 'sw' ? ' dakika kusoma' : ' min read'));
         const heading = element('h3', '', post[lang].title);
-        const paragraphs = post[lang].paragraphs.map(text => element('p', '', text));
-        const note = post[lang].note ? element('div', 'tips-note', post[lang].note) : null;
+        const paragraphs = post[lang].paragraphs.map(text => element('p', '', businessText(text)));
+        const note = post[lang].note ? element('div', 'tips-note', businessText(post[lang].note)) : null;
         const actions = element('div', 'tips-actions');
         const ask = element('a');
         ask.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(
@@ -4133,6 +4224,13 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
 
     window.sitaTips = {
         getPosts: () => allPosts().map(post => JSON.parse(JSON.stringify(post))),
+        openPost(id) {
+            const post = allPosts().find(item => item.id === id);
+            if (!post) return false;
+            selectedTipId = id;
+            renderTipList();
+            return true;
+        },
         setPosts(posts) {
             if (!Array.isArray(posts) || !posts.length || posts.some(post => !isValidPost(post)) || new Set(posts.map(post => post.id)).size !== posts.length) {
                 throw new Error('Each tip needs a unique id, icon, date, reading time, and English and Swahili content.');
@@ -4245,7 +4343,7 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
 </script>
 <script>
 (() => {
-    const SETTINGS = { goatcounter: '', ga4: '', wa: '254795609046' };
+    const SETTINGS = { goatcounter: '', ga4: '', wa: window.SITA_CONFIG.whatsapp };
     const ACTIVITY_KEY = 'sita_private_activity';
     const activityList = document.getElementById('activityList');
     let activityCounts = {};
