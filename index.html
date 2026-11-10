@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./site-config.js"></script>
+    <script>window.SITA_CONFIG = Object.assign({ phone: '0795609046', whatsapp: '254795609046', till: '6807927', email: 'sitatech3@gmail.com' }, window.SITA_CONFIG || {});</script>
     <script>if (new URLSearchParams(location.search).has('tools')) document.documentElement.classList.add('tools-only');</script>
     <link rel="icon" href="./favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="48x48" href="./favicon-48x48.png">
@@ -20,8 +21,14 @@
     <meta property="og:site_name" content="SITA-TECH">
     <meta property="og:title" content="SITA-TECH - Cyber &amp; Digital Services Hub">
     <meta property="og:description" content="Digital services, computer training and a free Students Corner with setbooks, novels, magazines, computer notes and interview questions.">
-    <meta property="og:image" content="./icon-512.png">
+    <meta property="og:image" content="https://sita-tech.co.ke/icon-512.png">
+    <meta property="og:url" content="https://sita-tech.co.ke/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="SITA-TECH - Cyber &amp; Digital Services Hub">
+    <meta name="twitter:description" content="Cyber and digital services, computer training and free student resources near Moi University, Eldoret.">
     <title>SITA-TECH - Cyber & Digital Services Hub</title>
+    <link rel="canonical" href="https://sita-tech.co.ke/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"SITA-TECH Cyber & Digital Hub","url":"https://sita-tech.co.ke/","telephone":"+254795609046","email":"sitatech3@gmail.com","image":"https://sita-tech.co.ke/icon-512.png","priceRange":"KSh","paymentAccepted":"M-Pesa","address":{"@type":"PostalAddress","streetAddress":"Moi University, Kesses","addressLocality":"Eldoret","addressRegion":"Uasin Gishu","addressCountry":"KE"}}</script>
 
     <!-- Tailwind CSS CDN -->
 
@@ -354,7 +361,7 @@
         .rgb-card:hover { animation: none; }
         img { content-visibility: auto; }
         /* ===== Same layout on phone and computer: 4 equal tabs, icon over label ===== */
-        .navbar { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+        .navbar { grid-template-columns: repeat(7, minmax(0, 1fr)); }
         button.navchip { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; text-align: center !important; gap: .15rem !important; padding: .4rem .2rem .45rem !important; }
         button.navchip .nv { grid-row: auto !important; }
         button.navchip .tb-s { display: none !important; }
@@ -399,6 +406,7 @@
         .global-result small { color: #facc15; font-size: .55rem; font-weight: 800; text-transform: uppercase; }
         .global-result strong { color: #fff; font-size: .7rem; }
         .global-result span { color: #a1a1aa; font-size: .62rem; line-height: 1.35; }
+        #waFloat { position: fixed; right: .75rem; bottom: 4.2rem; z-index: 55; width: 3rem; height: 3rem; border-radius: 50%; background: #16a34a; color: #fff; font-size: 1.6rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 18px rgba(0,0,0,.6); }
     </style>
     <style id="tw-static">*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, system-ui, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.left-3{left:0.75rem}.right-2{right:0.5rem}.right-4{right:1rem}.top-0{top:0px}.top-1\/2{top:50%}.top-4{top:1rem}.-bottom-3{bottom:-0.75rem}.-right-2{right:-0.5rem}.z-10{z-index:10}.z-50{z-index:50}.z-\[60\]{z-index:60}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.ml-2{margin-left:0.5rem}.mr-1{margin-right:0.25rem}.mr-1\.5{margin-right:0.375rem}.mr-2{margin-right:0.5rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-5{margin-top:1.25rem}.mt-0\.5{margin-top:0.125rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.aspect-square{aspect-ratio:1 / 1}.h-1\.5{height:0.375rem}.h-12{height:3rem}.h-16{height:4rem}.h-20{height:5rem}.h-24{height:6rem}.h-28{height:7rem}.h-40{height:10rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-10{height:2.5rem}.h-32{height:8rem}.max-h-\[90vh\]{max-height:90vh}.max-h-56{max-height:14rem}.max-h-64{max-height:16rem}.min-h-screen{min-height:100vh}.w-1\.5{width:0.375rem}.w-12{width:3rem}.w-16{width:4rem}.w-9{width:2.25rem}.w-auto{width:auto}.w-full{width:100%}.w-10{width:2.5rem}.min-w-0{min-width:0px}.max-w-lg{max-width:32rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;user-select:none}.resize{resize:both}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(5, minmax(0, 1fr))}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-1{gap:0.25rem}.gap-x-2{column-gap:0.5rem}.gap-x-3{column-gap:0.75rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.overflow-x-hidden{overflow-x:hidden}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.break-words{overflow-wrap:break-word}.rounded{border-radius:0.25rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-blue-500\/60{border-color:rgb(59 130 246 / 0.6)}.border-emerald-500\/40{border-color:rgb(16 185 129 / 0.4)}.border-zinc-700{--tw-border-opacity:1;border-color:rgb(63 63 70 / var(--tw-border-opacity, 1))}.border-zinc-800{--tw-border-opacity:1;border-color:rgb(39 39 42 / var(--tw-border-opacity, 1))}.border-zinc-800\/80{border-color:rgb(39 39 42 / 0.8)}.border-zinc-900{--tw-border-opacity:1;border-color:rgb(24 24 27 / var(--tw-border-opacity, 1))}.border-blue-500\/30{border-color:rgb(59 130 246 / 0.3)}.border-green-500\/30{border-color:rgb(34 197 94 / 0.3)}.border-red-500\/30{border-color:rgb(239 68 68 / 0.3)}.border-yellow-500\/30{border-color:rgb(234 179 8 / 0.3)}.bg-\[\#0A0A0C\]{--tw-bg-opacity:1;background-color:rgb(10 10 12 / var(--tw-bg-opacity, 1))}.bg-\[\#0A0A0C\]\/90{background-color:rgb(10 10 12 / 0.9)}.bg-amber-600{--tw-bg-opacity:1;background-color:rgb(217 119 6 / var(--tw-bg-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-black\/80{background-color:rgb(0 0 0 / 0.8)}.bg-black\/90{background-color:rgb(0 0 0 / 0.9)}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-emerald-600\/15{background-color:rgb(5 150 105 / 0.15)}.bg-pink-600{--tw-bg-opacity:1;background-color:rgb(219 39 119 / var(--tw-bg-opacity, 1))}.bg-red-600{--tw-bg-opacity:1;background-color:rgb(220 38 38 / var(--tw-bg-opacity, 1))}.bg-sky-600{--tw-bg-opacity:1;background-color:rgb(2 132 199 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-yellow-500{--tw-bg-opacity:1;background-color:rgb(234 179 8 / var(--tw-bg-opacity, 1))}.bg-zinc-800{--tw-bg-opacity:1;background-color:rgb(39 39 42 / var(--tw-bg-opacity, 1))}.bg-zinc-900{--tw-bg-opacity:1;background-color:rgb(24 24 27 / var(--tw-bg-opacity, 1))}.bg-zinc-950{--tw-bg-opacity:1;background-color:rgb(9 9 11 / var(--tw-bg-opacity, 1))}.bg-green-600{--tw-bg-opacity:1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.bg-blue-500\/10{background-color:rgb(59 130 246 / 0.1)}.bg-green-500\/10{background-color:rgb(34 197 94 / 0.1)}.bg-red-500\/10{background-color:rgb(239 68 68 / 0.1)}.bg-yellow-500\/10{background-color:rgb(234 179 8 / 0.1)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-amber-500{--tw-gradient-from:#f59e0b var(--tw-gradient-from-position);--tw-gradient-to:rgb(245 158 11 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-blue-900\/20{--tw-gradient-from:rgb(30 58 138 / 0.2) var(--tw-gradient-from-position);--tw-gradient-to:rgb(30 58 138 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-lime-500{--tw-gradient-from:#84cc16 var(--tw-gradient-from-position);--tw-gradient-to:rgb(132 204 22 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-yellow-500{--tw-gradient-from:#eab308 var(--tw-gradient-from-position);--tw-gradient-to:rgb(234 179 8 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-blue-600\/40{--tw-gradient-from:rgb(37 99 235 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(37 99 235 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-cyan-600\/40{--tw-gradient-from:rgb(8 145 178 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(8 145 178 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-green-600\/40{--tw-gradient-from:rgb(22 163 74 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(22 163 74 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-orange-600\/40{--tw-gradient-from:rgb(234 88 12 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(234 88 12 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-pink-600\/40{--tw-gradient-from:rgb(219 39 119 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(219 39 119 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-purple-600\/40{--tw-gradient-from:rgb(147 51 234 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(147 51 234 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-red-600\/40{--tw-gradient-from:rgb(220 38 38 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(220 38 38 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-yellow-500\/40{--tw-gradient-from:rgb(234 179 8 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(234 179 8 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-orange-500{--tw-gradient-to:rgb(249 115 22 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #f97316 var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-red-900\/20{--tw-gradient-to:rgb(127 29 29 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), rgb(127 29 29 / 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-green-700{--tw-gradient-to:#15803d var(--tw-gradient-to-position)}.to-green-900\/20{--tw-gradient-to:rgb(20 83 45 / 0.2) var(--tw-gradient-to-position)}.to-pink-600{--tw-gradient-to:#db2777 var(--tw-gradient-to-position)}.to-rose-600{--tw-gradient-to:#e11d48 var(--tw-gradient-to-position)}.to-blue-500\/20{--tw-gradient-to:rgb(59 130 246 / 0.2) var(--tw-gradient-to-position)}.to-cyan-500\/20{--tw-gradient-to:rgb(6 182 212 / 0.2) var(--tw-gradient-to-position)}.to-emerald-500\/20{--tw-gradient-to:rgb(16 185 129 / 0.2) var(--tw-gradient-to-position)}.to-orange-500\/20{--tw-gradient-to:rgb(249 115 22 / 0.2) var(--tw-gradient-to-position)}.to-pink-500\/20{--tw-gradient-to:rgb(236 72 153 / 0.2) var(--tw-gradient-to-position)}.to-red-500\/20{--tw-gradient-to:rgb(239 68 68 / 0.2) var(--tw-gradient-to-position)}.to-yellow-500\/20{--tw-gradient-to:rgb(234 179 8 / 0.2) var(--tw-gradient-to-position)}.object-contain{object-fit:contain}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-1{padding:0.25rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-4{padding-left:1rem;padding-right:1rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.pb-3{padding-bottom:0.75rem}.pl-8{padding-left:2rem}.pr-3{padding-right:0.75rem}.pt-2{padding-top:0.5rem}.pt-3{padding-top:0.75rem}.pr-1{padding-right:0.25rem}.text-center{text-align:center}.align-middle{vertical-align:middle}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[\.58rem\]{font-size:.58rem}.text-\[\.62rem\]{font-size:.62rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[\.68rem\]{font-size:.68rem}.text-\[\.72rem\]{font-size:.72rem}.text-\[\.75rem\]{font-size:.75rem}.text-\[\.82rem\]{font-size:.82rem}.text-2xl{font-size:1.5rem;line-height:2rem}.text-6xl{font-size:3.75rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.leading-relaxed{line-height:1.625}.tracking-wider{letter-spacing:0.05em}.\!text-zinc-300{--tw-text-opacity:1 !important;color:rgb(212 212 216 / var(--tw-text-opacity, 1)) !important}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-black\/70{color:rgb(0 0 0 / 0.7)}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-gray-100{--tw-text-opacity:1;color:rgb(243 244 246 / var(--tw-text-opacity, 1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-lime-400{--tw-text-opacity:1;color:rgb(163 230 53 / var(--tw-text-opacity, 1))}.text-pink-400{--tw-text-opacity:1;color:rgb(244 114 182 / var(--tw-text-opacity, 1))}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.text-sky-400{--tw-text-opacity:1;color:rgb(56 189 248 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-400{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.text-yellow-500{--tw-text-opacity:1;color:rgb(234 179 8 / var(--tw-text-opacity, 1))}.text-zinc-300{--tw-text-opacity:1;color:rgb(212 212 216 / var(--tw-text-opacity, 1))}.text-zinc-400{--tw-text-opacity:1;color:rgb(161 161 170 / var(--tw-text-opacity, 1))}.text-zinc-500{--tw-text-opacity:1;color:rgb(113 113 122 / var(--tw-text-opacity, 1))}.text-zinc-600{--tw-text-opacity:1;color:rgb(82 82 91 / var(--tw-text-opacity, 1))}.text-white\/10{color:rgb(255 255 255 / 0.1)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.placeholder-zinc-300::placeholder{--tw-placeholder-opacity:1;color:rgb(212 212 216 / var(--tw-placeholder-opacity, 1))}.accent-green-500{accent-color:#22c55e}.shadow-\[0_0_14px_rgba\(37\2c 99\2c 235\2c 0\.35\)\]{--tw-shadow:0 0 14px rgba(37,99,235,0.35);--tw-shadow-colored:0 0 14px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-green-900\/40{--tw-shadow-color:rgb(20 83 45 / 0.4);--tw-shadow:var(--tw-shadow-colored)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}.hover\:border-amber-500:hover{--tw-border-opacity:1;border-color:rgb(245 158 11 / var(--tw-border-opacity, 1))}.hover\:border-emerald-500:hover{--tw-border-opacity:1;border-color:rgb(16 185 129 / var(--tw-border-opacity, 1))}.hover\:border-pink-500:hover{--tw-border-opacity:1;border-color:rgb(236 72 153 / var(--tw-border-opacity, 1))}.hover\:border-red-500:hover{--tw-border-opacity:1;border-color:rgb(239 68 68 / var(--tw-border-opacity, 1))}.hover\:bg-amber-500:hover{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.hover\:bg-blue-500:hover{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-600:hover{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.hover\:bg-pink-500:hover{--tw-bg-opacity:1;background-color:rgb(236 72 153 / var(--tw-bg-opacity, 1))}.hover\:bg-red-500:hover{--tw-bg-opacity:1;background-color:rgb(239 68 68 / var(--tw-bg-opacity, 1))}.hover\:bg-sky-500:hover{--tw-bg-opacity:1;background-color:rgb(14 165 233 / var(--tw-bg-opacity, 1))}.hover\:bg-yellow-600:hover{--tw-bg-opacity:1;background-color:rgb(202 138 4 / var(--tw-bg-opacity, 1))}.hover\:bg-zinc-700:hover{--tw-bg-opacity:1;background-color:rgb(63 63 70 / var(--tw-bg-opacity, 1))}.hover\:bg-green-500:hover{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.hover\:text-black:hover{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.hover\:text-blue-400:hover{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.hover\:text-red-400:hover{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.focus\:border-yellow-400:focus{--tw-border-opacity:1;border-color:rgb(250 204 21 / var(--tw-border-opacity, 1))}.focus\:shadow-\[0_0_16px_rgba\(234\2c 179\2c 8\2c 0\.45\)\]:focus{--tw-shadow:0 0 16px rgba(234,179,8,0.45);--tw-shadow-colored:0 0 16px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:h-20{height:5rem}}</style>
 </head>
@@ -485,7 +493,7 @@
     <!-- STUDENT CORNER -->
     <section id="studentCorner" class="sec tab-pane" role="tabpanel">
         <div class="wrap">
-            <div class="sec-h"><span class="text-pink-400">Student corner</span><h2>Setbooks, novels, notes,KLB books,Lesson plan,Schemes of work &amp; interview prep</h2></div>
+            <div class="sec-h"><span class="text-pink-400">Student corner</span><h2>Setbooks, novels, notes, KLB books, lesson plans, schemes of work &amp; interview prep</h2></div>
             <div class="sp pink corner" id="cornerSp">
                 <div class="sp-rail" id="cornerRail"></div>
                 <div class="sp-panel" id="cornerList" aria-live="polite" aria-busy="true"><p class="sp-empty" role="status">Loading Student Corner resources...</p></div>
@@ -609,12 +617,13 @@
                 <div class="min-w-0">
                     <h4 class="text-white font-bold mb-1.5 uppercase tracking-wider text-[.58rem]">Contact</h4>
                     <p>Phone: <span class="text-white font-bold" data-business-value="phone"></span></p>
-                    <p class="mt-1">Email: <span class="text-white font-bold">sitatech3@gmail.com</span></p>
+                    <p class="mt-1">Email: <span class="text-white font-bold" data-business-value="email">sitatech3@gmail.com</span></p>
                     <p class="mt-1">Till: <span class="text-yellow-400 font-bold" data-business-value="till"></span></p>
                     <p id="visitorCounter" class="mt-1" hidden></p>
                 </div>
             </div>
-            <div class="pt-2 border-t border-zinc-900 text-center text-zinc-600 text-[.58rem]">
+            <p class="pt-2 text-center text-zinc-400 text-[.58rem] leading-snug">SITA-TECH is an independent service provider and is not affiliated with KRA, SHA, eCitizen, NTSA, NSSF, HELB or any government agency. Names and logos belong to their owners.</p>
+            <div class="pt-2 mt-2 border-t border-zinc-900 text-center text-zinc-400 text-[.58rem]">
                 <p onclick="secretTap()" class="select-none">&copy; 2026 SITA-TECH. All rights reserved. Fast • Reliable • Professional</p>
             </div>
         </div>
@@ -626,6 +635,7 @@
         <button type="button" id="dismissInstallPill" aria-label="Close install app prompt"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
     </div>
     <div id="offlineToast" class="offline-toast" role="status" aria-live="polite" hidden></div>
+    <a id="waFloat" data-business-whatsapp href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
     <!-- SHOP CHECKOUT -->
     <div id="shopModal" class="shop-ov" hidden onclick="if(event.target===this)shopCloseCart()">
@@ -876,7 +886,7 @@
 
                 <div id="admTab-corner" class="hidden">
                     <h3 class="text-lg font-bold text-white mb-1">Student Corner</h3>
-                    <p class="text-[11px] text-zinc-400 mb-3">Add a link (Google Drive, YouTube, etc.) or upload a file (up to 7 MB).</p>
+                    <p class="text-[11px] text-zinc-400 mb-3">Note: the live Student Corner now loads from your Google Sheet. Items added here only appear on this device and in site-data.json. Add a link (Google Drive, YouTube, etc.) or upload a file (up to 7 MB).</p>
                     <div class="space-y-2">
                         <input id="admCType" list="cornerCategoryOptions" value="English Setbooks" placeholder="Student Corner category (type a new category or choose one)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs text-white">
                         <datalist id="cornerCategoryOptions"></datalist>
@@ -941,8 +951,7 @@
                             <option value="freeTools">Free Tools</option>
                             <option value="shop">Shop</option>
                             <option value="gallery">Gallery</option>
-                            <option value="tips">Tips</option>
-                            <option value="visitFaq">Visit &amp; FAQ</option>
+                            <option value="tips">Help</option>
                         </select>
                     </label>
                     <div class="flex items-center gap-3 mt-3">
@@ -964,8 +973,7 @@
                             <option value="freeTools">Free Tools</option>
                             <option value="shop">Shop</option>
                             <option value="gallery">Gallery</option>
-                            <option value="tips">Tips</option>
-                            <option value="visitFaq">Visit &amp; FAQ</option>
+                            <option value="tips">Help</option>
                         </select>
                     </label>
                     <label class="block mt-2 text-[11px] text-zinc-400">Photo<input id="admTabPhotoFile" type="file" accept="image/*" class="mt-1 w-full text-xs text-zinc-400"></label>
@@ -1058,8 +1066,8 @@
             { id: 206, category: "Printing", title: "Scanning & PDF Conversion", price: "From KSh 20 per page", desc: "Scan documents, photos and certificates into clear PDFs ready for portal uploads.", icon: "fa-file-pdf", btnText: "Scan Documents" },
 
             // SHA Services
-            { id: 1, category: "SHA", title: "SHA Premium Reduction & Appeal", price: "From KSh 300", desc: "SHA premium too high? SITA-TECH appeals your SHA premium to KSh 6,000 per year.", icon: "fa-heart-pulse", btnText: "Appeal My Premium" },
-            { id: 2, category: "SHA", title: "SHA Punguza Malipo", price: "From KSh 300", desc: "Punguza Malipo is what many people call the SHA premium appeal. Same service, same offer.", icon: "fa-shield-heart", btnText: "Appeal My Premium" },
+            { id: 1, category: "SHA", title: "SHA Premium Review & Appeal", price: "From KSh 300", desc: "SHA premium too high? We help you prepare and submit a premium review request. SHA makes the final decision.", icon: "fa-heart-pulse", btnText: "Appeal My Premium" },
+            { id: 2, category: "SHA", title: "SHA Punguza Malipo", price: "From KSh 300", desc: "Punguza Malipo is what many people call the SHA premium appeal. Same service.", icon: "fa-shield-heart", btnText: "Appeal My Premium" },
             { id: 3, category: "SHA", title: "SHA Registration", price: "From KSh 200", desc: "Register yourself on SHA correctly the first time.", icon: "fa-address-card", btnText: "Get Help" },
             { id: 4, category: "SHA", title: "SHA Account Assistance", price: "From KSh 200", desc: "Can't log in, wrong details or account not showing? We sort it out.", icon: "fa-user-gear", btnText: "Get SHA Help" },
             { id: 5, category: "SHA", title: "SHA Payment Assistance", price: "From KSh 100", desc: "Check what you owe, pay your contribution and confirm it reflected.", icon: "fa-money-bill-wave", btnText: "Get Help" },
@@ -1293,7 +1301,7 @@
                 renderGlobalSearch(q.trim());
                 showTab('globalResults', { keepScroll: true });
             } else {
-                showTab('servicesGrid', { keepScroll: true });
+                showTab(lastMainTab, { keepScroll: true });
             }
         }
         function filterServicesGlobal(q) { runSearch(q); }
@@ -1313,7 +1321,7 @@
                 const content = ['en', 'sw'].flatMap(lang => [item[lang].shortTitle, item[lang].title, ...item[lang].paragraphs, item[lang].note || '']).join(' ');
                 add('tip', item.id, 'Guide', item.en.shortTitle, item.en.title, content);
             });
-            Object.entries(visitFaqData()).forEach(([id, item]) => add('faq', id, 'Help', item.title, item.answer, item.title + ' ' + item.answer));
+            Object.entries(visitFaqData()).forEach(([id, item]) => add('faq', id, 'Help', item.title, businessText(item.answer), item.title + ' ' + businessText(item.answer)));
             allCornerItems().forEach(item => add('corner', item.id, 'Student Corner', item.title, item.desc, item.title + ' ' + item.desc + ' ' + item.type));
             document.getElementById('globalResultsTitle').textContent = `Results for “${query}” · ${results.length}`;
             document.getElementById('globalResultsList').innerHTML = results.length ? results.map(item => `
@@ -1953,17 +1961,25 @@
         const ST = {};
         const STP = { crop: [['35x45 mm','35,45,mm'],['2x2 in (51x51 mm)','2,2,in'],['25x30 mm','25,30,mm'],['40x50 mm','40,50,mm'],['600x600 px','600,600,px'],['200x200 px','200,200,px']],
                       resize: [['1080x1080 px','1080,1080,px'],['1920x1080 px','1920,1080,px'],['800x600 px','800,600,px'],['500x500 px','500,500,px'],['A4 (210x297 mm)','210,297,mm']] };
+        const ST_COLORS = [['White','#ffffff'],['Light blue','#bcd7f0'],['Blue','#1e5aa8'],['Red','#c8102e'],['Light grey','#d9d9d9'],['Cream','#f5efe0'],['Green','#2e8b57'],['Black','#000000'],['Transparent (PNG)','transparent']];
+        function stSetBg(k, c) { if (!ST[k]) { ST[k + '_bg'] = c; return stMark(k, c); } ST[k + '_bg'] = c; stMark(k, c); stShow(k); }
+        function stMark(k, c) { const sw = document.getElementById(k + 'Sw'); if (!sw) return; sw.querySelectorAll('.st-sw').forEach(b => { b.style.outline = b.dataset.c === c ? '2px solid #a78bfa' : 'none'; b.style.outlineOffset = '2px'; }); if (/^#/.test(c)) { const i = document.getElementById(k + 'BgC'); if (i) i.value = c; } }
+        function stBg(k) { return ST[k + '_bg'] || '#ffffff'; }
+        function stComposite(k) { const S = ST[k], c = stBg(k), o = document.createElement('canvas'); o.width = S.cur.width; o.height = S.cur.height; const x = o.getContext('2d'); if (c !== 'transparent') { x.fillStyle = c; x.fillRect(0, 0, o.width, o.height); } x.drawImage(S.cur, 0, 0); return o; }
         function studio(k) {
             const box = document.getElementById(k + 'ToolContent'), pass = k === 'crop', d = pass ? '35,45,mm' : '1080,1080,px';
             box.innerHTML = `<h3 class="text-lg font-bold text-white mb-1">${pass ? 'Passport Photo Maker' : 'Image Resizer'}</h3>
-              <p class="text-xs text-zinc-400 mb-3">${pass ? 'Choose a passport photo size, crop your photo, and download it at the selected dimensions.' : 'AI keeps the person and removes the background. Photos use a white background and are processed on this device.'}</p>
+              <p class="text-xs text-zinc-400 mb-3">${pass ? 'Choose a passport photo size, crop your photo, erase the background with AI and pick a background colour, then download at the selected dimensions.' : 'AI keeps the person and removes the background. Pick any background colour. Photos are processed on this device.'}</p>
               <input type="file" accept="image/*" id="${k}F" class="w-full text-xs text-zinc-400">
               <div class="st-row"><select class="st-in" id="${k}P" style="grid-column:1/4">${STP[k].map(([l,v]) => `<option value="${v}"${v===d?' selected':''}>${l}</option>`).join('')}<option value="">Custom size</option></select>
                 <input class="st-in" id="${k}W" type="number" min="1" placeholder="Width"><input class="st-in" id="${k}H" type="number" min="1" placeholder="Height">
                 <select class="st-in" id="${k}U"><option>px</option><option>mm</option><option>cm</option><option>in</option></select></div>
               <p id="${k}Px" class="text-[11px] text-zinc-500 mt-1"></p>
-                              ${pass ? '' : `<div class="st-row"><label class="text-[11px] text-zinc-400" style="grid-column:1/4">Mask edge softness (lower keeps edges sharper) <input type="range" id="${k}T" min="5" max="30" value="12" class="w-full"></label></div>
-                              <div class="st-row" style="grid-template-columns:1fr 1fr"><button id="${k}EraseBtn" class="st-btn" style="background:#7c3aed" onclick="stErase('${k}')">AI erase background</button><button class="st-btn" style="background:#3f3f46" onclick="stUndo('${k}')">Undo erase</button></div>`}
+                              <div class="st-row"><label class="text-[11px] text-zinc-400" style="grid-column:1/4">Mask edge softness (lower keeps edges sharper) <input type="range" id="${k}T" min="5" max="30" value="12" class="w-full"></label></div>
+                              <div class="st-row" style="grid-template-columns:1fr 1fr"><button id="${k}EraseBtn" class="st-btn" style="background:#7c3aed" onclick="stErase('${k}')">AI erase background</button><button class="st-btn" style="background:#3f3f46" onclick="stUndo('${k}')">Undo erase</button></div>
+                              <p class="text-[11px] text-zinc-400 mt-2 mb-1">Background colour (shows where the background was erased)</p>
+                              <div id="${k}Sw" class="flex flex-wrap items-center gap-2">${ST_COLORS.map(([n,c]) => `<button type="button" title="${n}" aria-label="${n} background" data-c="${c}" onclick="stSetBg('${k}','${c}')" class="st-sw" style="width:28px;height:28px;border-radius:9999px;border:2px solid ${c==='#ffffff'?'#a78bfa':'#52525b'};background:${c==='transparent'?'repeating-conic-gradient(#888 0% 25%,#ddd 0% 50%) 50%/10px 10px':c}"></button>`).join('')}
+                                <label class="text-[11px] text-zinc-400 flex items-center gap-1">Custom <input type="color" id="${k}BgC" value="#ffffff" oninput="stSetBg('${k}',this.value)" style="width:32px;height:28px;background:none;border:0"></label></div>
               <div class="st-stage"><img id="${k}I" class="hidden" loading="lazy" decoding="async"></div>
               <div class="st-row" style="grid-template-columns:1fr 1fr"><input class="st-in" id="${k}K" type="number" min="5" placeholder="Max size KB (optional)"><select class="st-in" id="${k}O"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option></select></div>
               <button class="st-btn" style="background:#16a34a" onclick="stSave('${k}')">Download</button><p id="${k}M" class="text-[11px] text-zinc-400 mt-1"></p>`;
@@ -1973,7 +1989,7 @@
             q('F').onchange = e => { const f = e.target.files[0]; if (!f) return; const im = new Image(); im.onload = () => {
                 const sc = Math.min(1, 2048 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * sc); c.height = Math.round(im.height * sc);
                 c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); ST[k] = { src: c, cur: c }; if (!pass) { q('W').value = im.width; q('H').value = im.height; q('U').value = 'px'; } stShow(k); }; im.src = URL.createObjectURL(f); };
-            if (pass) q('P').onchange(); else { q('P').onchange(); }
+            q('P').onchange(); stMark(k, stBg(k));
         }
         function stPx(k) { const q = x => document.getElementById(k + x), u = q('U').value, f = { px: 1, mm: 300 / 25.4, cm: 300 / 2.54, in: 300 }[u];
             return [Math.min(6000, Math.round(q('W').value * f)), Math.min(6000, Math.round(q('H').value * f))]; }
@@ -1981,7 +1997,7 @@
         function stShow(k) {
             const S = ST[k], img = document.getElementById(k + 'I'), [w, h] = stPx(k);
             if (S.cr) S.cr.destroy();
-            img.classList.remove('hidden'); img.src = S.cur.toDataURL('image/png');
+            img.classList.remove('hidden'); img.src = stComposite(k).toDataURL('image/png');
             img.onload = () => { S.cr = new Cropper(img, { aspectRatio: w && h ? w / h : NaN, viewMode: 1, autoCropArea: 1 }); };
         }
         const ST_SEGMENTATION_CDN = 'https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@0.1.1675465747/';
@@ -2038,7 +2054,7 @@
                 if (foregroundPixels < W * H * 0.01) throw new Error('The AI could not identify a person in this photo. Try a clear, well-lit photo with the full subject visible.');
                 outputContext.putImageData(pixels, 0, 0);
                 S.cur = output; stShow(k);
-                msg.textContent = 'Background removed. The person mask preserves the face and body; adjust edge softness if needed, or choose Undo.';
+                msg.textContent = 'Background removed. Pick a background colour below, adjust edge softness if needed, or choose Undo. (Transparent needs PNG.)';
             } catch (error) {
                 msg.textContent = 'Background removal failed: ' + error.message;
             } finally {
@@ -2053,7 +2069,8 @@
             const cropped = S.cr.getCroppedCanvas({ width: w, height: h, imageSmoothingQuality: 'high' });
             const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
             const ctx = cv.getContext('2d');
-            ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, w, h);
+            const bgc = stBg(k);
+            if (bgc !== 'transparent' || type === 'image/jpeg') { ctx.fillStyle = bgc === 'transparent' ? '#ffffff' : bgc; ctx.fillRect(0, 0, w, h); }
             ctx.drawImage(cropped, 0, 0, w, h);
             const max = (+q('K').value || 0) * 1024;
             const toB = qa => new Promise(r => cv.toBlob(r, type, qa)); let blob = await toB(.95), qa = .95;
@@ -2422,8 +2439,14 @@
                 defaultServices.forEach(s => { if (s.img === undefined && DEFAULT_IMG[s.id]) s.img = DEFAULT_IMG[s.id]; });
             }
             if (location.protocol.startsWith('http')) { try { const r = await fetch('corner-data.json?v=' + Date.now(), { cache: 'no-store' }); if (r.ok) { const j = await r.json(); window.cornerExtra = Array.isArray(j.items) ? j.items : []; } } catch (e) {} }
+            renderSiteData();
+            loadCornerFeed();
+        }
+        async function loadCornerFeed() {
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), 15000);
             try {
-                const response = await fetch(CORNER_FEED_URL, { cache: 'no-store' });
+                const response = await fetch(CORNER_FEED_URL, { cache: 'no-store', signal: controller.signal });
                 if (!response.ok) throw new Error('Student Corner feed request failed.');
                 const feed = await response.json();
                 if (!Array.isArray(feed)) throw new Error('Student Corner feed did not return a list.');
@@ -2441,8 +2464,11 @@
                 window.cornerFeedStatus = 'ready';
             } catch (e) {
                 window.cornerFeedStatus = 'error';
+            } finally {
+                clearTimeout(timer);
             }
-            renderSiteData();
+            renderCorner();
+            renderCornerCategoryOptions();
         }
         function renderSiteData() { renderServices(currentCategory, searchTerm); renderAcademy(); renderSocial(); renderCorner(); renderVisitFaq(); }
         function renderSocial() {
@@ -2494,6 +2520,11 @@
             const options = document.getElementById('cornerCategoryOptions');
             if (options) options.innerHTML = getCornerTypes().map(([key, label]) => `<option value="${esc(label)}"></option>`).join('');
         }
+        function cornerDownloadUrl(url) {
+            const u = String(url || '');
+            const m = u.match(/drive\.google\.com\/file\/d\/([\w-]+)/) || u.match(/drive\.google\.com\/(?:open|uc)\?(?:[^#]*&)?id=([\w-]+)/);
+            return m ? 'https://drive.google.com/uc?export=download&id=' + m[1] : u;
+        }
         function setCornerTab(t) { cornerTab = t; renderCorner(); }
         function renderCorner() {
             const list = document.getElementById('cornerList'); if (!list) return;
@@ -2507,14 +2538,14 @@
             list.setAttribute('aria-busy', window.cornerFeedStatus === 'loading' ? 'true' : 'false');
             list.innerHTML = items.length ? `<div class="crn-grid">` + items.map(i => `
                 <div class="crn">
-                    ${i.thumbnail && okUrl(i.thumbnail) ? `<div class="crn-thumb"><img src="${esc(i.thumbnail)}" alt="${esc(i.title)}" loading="lazy" decoding="async" onerror="this.hidden=true"></div>` : `<span class="ic"><i class="fa-solid ${cur[2]}"></i></span>`}
+                    ${i.thumbnail && okUrl(i.thumbnail) ? `<div class="crn-thumb"><img src="${esc(i.thumbnail)}" alt="${esc(i.title)}" loading="lazy" decoding="async" onerror="this.closest('.crn-thumb').style.display='none'"></div>` : `<span class="ic"><i class="fa-solid ${cur[2]}"></i></span>`}
                     <div class="min-w-0 flex-1"><span class="crn-category">${esc(cornerTypeLabel(i.type))}</span>${i.featured ? '<span class="crn-featured">FEATURED</span>' : ''}<h3>${esc(i.title)}</h3>${i.desc ? `<p>${esc(i.desc)}</p>` : ''}</div>
                     ${i.live && okUrl(i.url)
-                        ? `<a href="${esc(i.url)}" download target="_blank" rel="noopener" class="go" aria-label="Download ${esc(i.title)}"><i class="fa-solid fa-download"></i>Download</a>`
+                        ? `<a href="${esc(cornerDownloadUrl(i.url))}" download target="_blank" rel="noopener" class="go" aria-label="Download ${esc(i.title)}"><i class="fa-solid fa-download"></i>Download</a>`
                         : okUrl(i.url) ? `<a href="${esc(i.url)}" target="_blank" rel="noopener" class="go" aria-label="View ${esc(i.title)}"><i class="fa-solid fa-arrow-up-right-from-square"></i>View</a>`
                         : `<button type="button" onclick="downloadCorner('${esc(i.id)}')" class="go" aria-label="Download ${esc(i.title)}"><i class="fa-solid fa-download"></i>Download</button>`}
                 </div>`).join('') + `</div>`
-                : `<p class="sp-empty" role="status">${window.cornerFeedStatus === 'error' ? 'Student Corner resources could not be loaded. Please try again later.' : `${cur[1]} coming soon. Follow our social pages for updates.`}</p>`;
+                : `<p class="sp-empty" role="status">${window.cornerFeedStatus === 'loading' ? 'Loading Student Corner resources...' : window.cornerFeedStatus === 'error' ? 'Student Corner resources could not be loaded. Please try again later.' : `${cur[1]} coming soon. Follow our social pages for updates.`}</p>`;
         }
         async function downloadCorner(id) {
             const i = allCornerItems().find(x => x.id === id); if (!i || !i.fileData) return;
@@ -2534,8 +2565,7 @@
             { id: 'freeTools', label: 'Free Tools' },
             { id: 'shop', label: 'Shop' },
             { id: 'gallery', label: 'Gallery' },
-            { id: 'tips', label: 'Tips' },
-            { id: 'visitFaq', label: 'Visit & FAQ' }
+            { id: 'tips', label: 'Help' }
         ];
         let tabPhotos = Object.fromEntries(TAB_PHOTO_SECTIONS.map(section => [section.id, []]));
         let tabIconPhotos = Object.fromEntries(TAB_PHOTO_SECTIONS.map(section => [section.id, '']));
@@ -3160,7 +3190,7 @@
             visitFaq.visit.address = document.getElementById('admFaqAddress').value.trim();
             visitFaq.visit.phone = document.getElementById('admFaqPhone').value.trim();
             visitFaq.visit.mapUrl = document.getElementById('admFaqMapUrl').value.trim();
-            if (ids.some(id => !visitFaq[id].title || !visitFaq[id].answer) || !visitFaq.visit.address || !/^[+()\d\s-]{7,20}$/.test(visitFaq.visit.phone) || !okUrl(visitFaq.visit.mapUrl)) {
+            if (ids.some(id => !visitFaq[id].title || !visitFaq[id].answer) || !visitFaq.visit.address || !/^(\{\{phone\}\}|[+()\d\s-]{7,20})$/.test(visitFaq.visit.phone) || !okUrl(visitFaq.visit.mapUrl)) {
                 alert('Please fill in every title and answer, a valid phone number, address, and Google Maps link starting with https://.'); return;
             }
             siteData.visitFaq = visitFaq;
@@ -3279,9 +3309,11 @@
                 const dy = e.changedTouches[0].clientY - touchStart.y;
                 touchStart = null;
                 if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.25) return;
-                const activeIndex = TAB_IDS.findIndex(id => document.getElementById(id)?.classList.contains('active'));
-                const nextIndex = Math.max(0, Math.min(TAB_IDS.length - 1, activeIndex + (dx < 0 ? 1 : -1)));
-                if (nextIndex !== activeIndex) showTab(TAB_IDS[nextIndex], { keepScroll: true });
+                const SWIPE_IDS = TAB_IDS.filter(id => id !== 'globalResults');
+                const activeIndex = SWIPE_IDS.findIndex(id => document.getElementById(id)?.classList.contains('active'));
+                if (activeIndex < 0) return;
+                const nextIndex = Math.max(0, Math.min(SWIPE_IDS.length - 1, activeIndex + (dx < 0 ? 1 : -1)));
+                if (nextIndex !== activeIndex) showTab(SWIPE_IDS[nextIndex], { keepScroll: true });
             }, { passive: true });
             document.addEventListener('touchcancel', () => { touchStart = null; }, { passive: true });
         }
@@ -3482,7 +3514,7 @@ const K=[
 [/\bshop\b|\bbuy\b|\bbuying\b|order (an? )?item|products?\b|\bcart\b|\bdeliver/,()=>`Open the Shop tab to browse items, add them to your cart and send your order on WhatsApp. You can pick up or ask for delivery. Pay by M-Pesa Till ${window.SITA_CONFIG.till} after we confirm.`],
 [/pay|till|mpesa|m-pesa|lipa|how much do i pay/,()=>`You can pay by M-Pesa to Till Number ${window.SITA_CONFIG.till}. Message us on WhatsApp first so we confirm the price, then pay.`],
 [/where|location|visit|address|find you|office|directions|map/,()=>`We are at Moi University, Kesses, Eldoret. Open the "Visit us" section for the map, or call ${window.SITA_CONFIG.phone}.`],
-[/phone|call|contact|email|reach|number|whatsapp/,()=>`Phone/WhatsApp: ${window.SITA_CONFIG.phone}\nEmail: sitatech3@gmail.com\nTill: ${window.SITA_CONFIG.till}`],
+[/phone|call|contact|email|reach|number|whatsapp/,()=>`Phone/WhatsApp: ${window.SITA_CONFIG.phone}\nEmail: ${window.SITA_CONFIG.email}\nTill: ${window.SITA_CONFIG.till}`],
 [/portal|login|log in|password|username|student account/,()=>'The Student Portal is at portal.html (yellow button beside the Academy title). Log in with your full name and the password we send after your fee payment is confirmed. To get one, enroll first.'],
 [/enrol|enroll|join|register for|sign up|how do i start/,()=>'Open the Academy section, pick a course and topics, then tap "Enroll Now". Pay the fee, we confirm the payment and send your portal login.'],
 [/free notes|notes|interview/,()=>'Setbooks (English and Kiswahili), novels, magazines, computer notes and interview questions are in the "Student corner" section. New items are added regularly.'],
@@ -3505,7 +3537,7 @@ function siteSearch(q){const skip=new Set(['what','where','when','which','that',
 function answer(q){const l=q.toLowerCase();
  if(/about (?:sita(?:-tech)?|(?:(?:this|the|your|our) )?(?:website|site))|what is (?:sita(?:-tech)?|this website|this site)|who are you|what do you do|all information|website information/.test(l)){
   const categories=[...new Set((window.defaultServices||defaultServices).map(s=>s.category))].join(', ');
-    return 'SITA-TECH is a cyber and digital services hub in Eldoret, with computer training and a free Student Corner. Services include '+categories+'. The Academy offers '+courses.length+' listed courses. The site also has free tools for QR codes, passport photos, resizing, file conversion, compression, PDFs, CVs and word counts. Contact: '+window.SITA_CONFIG.phone+' or sitatech3@gmail.com. Ask me about a service, course, fee or tool for current details.';
+    return 'SITA-TECH is a cyber and digital services hub in Eldoret, with computer training and a free Student Corner. Services include '+categories+'. The Academy offers '+courses.length+' listed courses. The site also has free tools for QR codes, passport photos, resizing, file conversion, compression, PDFs, CVs and word counts. Contact: '+window.SITA_CONFIG.phone+' or '+window.SITA_CONFIG.email+'. Ask me about a service, course, fee or tool for current details.';
  }
  if(/what services|list (all )?services|services do you offer/.test(l)){
   const categories=[...new Set((window.defaultServices||defaultServices).map(s=>s.category))];
@@ -3532,6 +3564,24 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
 (() => {
     const SWAHILI = Object.freeze({
         'Choose language': 'Chagua lugha',
+        'Help': 'Msaada',
+        'Guides': 'Miongozo',
+        'Visit & FAQ': 'Tembelea na Maswali',
+        'Our Work': 'Kazi Zetu',
+        'Our work': 'Kazi zetu',
+        'Recent client work': 'Kazi za hivi karibuni za wateja',
+        'Recent work for our clients': 'Kazi za hivi karibuni kwa wateja wetu',
+        'Guides & answers': 'Miongozo na majibu',
+        'SITA-TECH Help': 'Msaada wa SITA-TECH',
+        'Guides, location & common questions.': 'Miongozo, mahali tulipo na maswali ya kawaida.',
+        'Search services, courses, shop and help...': 'Tafuta huduma, kozi, duka na msaada...',
+        'Search all site content': 'Tafuta kwenye tovuti nzima',
+        'Search': 'Tafuta',
+        'Search results': 'Matokeo ya utafutaji',
+        'Chat on WhatsApp': 'Zungumza nasi WhatsApp',
+        'Setbooks, novels, notes, KLB books, lesson plans, schemes of work & interview prep': 'Vitabu vya kiada, riwaya, noti, vitabu vya KLB, mipango ya somo, maazimio ya kazi na maandalizi ya usaili',
+        'Loading Student Corner resources...': 'Inapakia rasilimali za Kona ya Wanafunzi...',
+        'SITA-TECH is an independent service provider and is not affiliated with KRA, SHA, eCitizen, NTSA, NSSF, HELB or any government agency. Names and logos belong to their owners.': 'SITA-TECH ni mtoa huduma huru na haihusiani na KRA, SHA, eCitizen, NTSA, NSSF, HELB wala wakala wowote wa serikali. Majina na nembo ni mali ya wamiliki wake.',
         'Services': 'Huduma',
         'Visitors:': 'Wageni:',
         'Activity on this device (private)': 'Shughuli kwenye kifaa hiki (faragha)',
@@ -3539,7 +3589,7 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
         'No activity recorded on this device yet.': 'Bado hakuna shughuli zilizorekodiwa kwenye kifaa hiki.',
         'times': 'mara',
         'Customer reviews': 'Maoni ya wateja',
-        'Happy with SITA-TECH? Be our  reviewer.': 'Umeridhika na SITA-TECH? Kuwa wa kwanza kutoa maoni.',
+        'Happy with SITA-TECH? Be our first reviewer.': 'Umeridhika na SITA-TECH? Kuwa wa kwanza kutoa maoni.',
         'Review us on Google': 'Tupe ukadiriaji kwenye Google',
         'Student Corner': 'Kona ya Wanafunzi',
         'Academy': 'Akademi',
@@ -3644,6 +3694,8 @@ window.cbToggle=()=>{const o=$('cbBox').classList.toggle('on');$('cbBtn').style.
         'Create click-to-chat links': 'Tengeneza viungo vya kuanzisha mazungumzo',
         'Use tool': 'Tumia zana',
         'Passport Photo Maker': 'Kitengeneza picha ya pasipoti',
+        'Background colour (shows where the background was erased)': 'Rangi ya mandharinyuma (inaonekana mahali mandharinyuma ilipoondolewa)',
+        'Custom': 'Chagua rangi',
         'Any size, background eraser': 'Ukubwa wowote, ondoa mandharinyuma',
         'Type any size, erase background': 'Weka ukubwa wowote, ondoa mandharinyuma',
         'KB, MB, GB conversions': 'Ubadilishaji wa KB, MB na GB',
